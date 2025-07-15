@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "test";
+    Layout = null;
+}
+
+<h2>test</h2>
+
+<div id="shareBlock"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script src="~/Content/front/assets/js/jquery.c-share.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+
+    $('#shareBlock').cShare({
+        description: 'شقة للايجار',
+        show_buttons: [
+            'fb',
+            'gPlus',
+            'line',
+            'plurk',
+            'weibo',
+            'twitter',
+            'tumblr',
+            'pinterest',
+            'email'
+        ]
+    });
+</script>

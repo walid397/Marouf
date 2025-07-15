@@ -1,0 +1,643 @@
+﻿@using Marofh.Models
+@using Microsoft.AspNet.Identity
+@using Resources
+@model Marofh.Page
+
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    ViewBag.Title = culture.Contains("en-us") ? "ESTAQDAMI" : "إستقدام";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
+
+
+    if (culture.Contains("en-us"))
+    {
+        ViewBag.Title = Model.NameEN;
+    }
+    else
+    {
+        ViewBag.Title = Model.NameAR;
+
+    }
+
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int kafilRoleId = Convert.ToInt32(clsEnum.Roles.Kafil);
+
+    bool isAuthenticated = User.Identity.IsAuthenticated;
+    bool isKafil = isAuthenticated && User.IsInRole("Kafil");
+}
+
+<!-- hero-area start -->
+<section class="hero-area pos-rel">
+    <div class="hero-shape d-none d-lg-block">
+        <span class="circle"></span>
+        <span class="circle circle-yellow"></span>
+        <span class="shape-plus">+</span>
+    </div>
+    <div class="hero-slider">
+        <div class="single-slider slider-height d-flex align-items-center" data-background="/Content/front/assets/img/slider/01.jpg">
+            <div class="container">
+                <div class="row text-center d-flex align-items-center justify-content-center">
+                    <div class="col-xl-7 col-lg-9 col-md-10">
+                        <div class="hero-content pos-rel mt-10">
+                            <div class="hero-dot-shape d-none d-lg-block">
+                                <img src="/Content/front/assets/img/shape/dot-shape.png" alt="">
+                            </div>
+                            <div class="hero-slider-caption">
+                                <h2 class="mb-0 wow fadeInUp" data-animat22ion="fadeInUp" data-wow-delay="0.7s">
+                                    @Resource.MoreThan <span class="colorgreen">5000</span> <span>@Resource.Worker</span>
+                                </h2>
+                                <p class="mparc wow fadeInUp" data-animation="fadeInUp" data-wow-delay="0.8s">
+                                    @Resource.SearchingForworkersfromallovertheworldatpricessuitableforallcategories
+                                </p>
+
+                                @{
+                                    isKafil = User.Identity.IsAuthenticated && User.IsInRole("Kafil");
+                                    culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+                                    var isArabic = culture.Contains("ar");
+                                }
+                                <!-- 🔍 نموذج البحث -->
+                                <div class="job-hero-form wow bounceInUp mt-5" data-animation="bounceInUp" data-wow-delay="0.9s">
+                                    <form action="@(isKafil ? "/Kafil/Index" : "/home/result")" method="post">
+                                        <div class="row p-1 columflex @(isKafil ? "" : "align-items-start")" style="justify-content: space-around;">
+
+                                            <!-- الوظائف -->
+                                            <div class="col-xl-6 col-lg-6 col-md-6 select_wrap">
+                                                <span>@Resource.TheRequiredJob</span>
+                                            <div class="select" id="jobsContainer">
+                                                    @foreach (var job in ViewModel.GetAllJobs())
+                                                    {
+                                                        <label>
+                                                            <input type="checkbox" value="@job.ID" name="JobsID[]" class="job-checkbox" />
+                                                            @(isArabic ? job.NameAR : job.NameEN)
+                                                        </label>
+                                                    }
+                                                </div>
+                                                <div id="selectedJobs" class="mt-2 selected-values"></div>
+                                            </div>
+
+                                            <!-- الجنسيات -->
+                                            <div class="col-xl-4 col-lg-4 col-md-4 select_wrap nationality-select">
+                                                <span>@Resource.Nationality</span>
+                                                <div class="select" id="nationalitiesContainer">
+                                                    @foreach (var nationality in ViewModel.GetAllNationalities())
+                                                    {
+                                                        <label>
+                                                            <input type="checkbox" value="@nationality.ID" name="NationalityID[]" class="nationality-checkbox" />
+                                                            @(isArabic ? nationality.NameAR : nationality.NameEN)
+                                                        </label>
+                                                    }
+                                                </div>
+                                                <div id="selectedNationalities" class="mt-2 selected-values"></div>
+                                            </div>
+
+                                            <!-- زر البحث -->
+                                            <div class="col-xl-2 col-lg-2 col-md-2 d-flex flex-column justify-content-end mt-3 @(isArabic ? "arabic-btn" : "english-btn")">
+                                                <div class="text-center" style="position:relative">
+                                                    <button type="submit" class="hidemob"> <i class="far fa-search"></i></button>
+                                                    <button type="submit" class="mobilebtn">@Resource.Search <i class="far fa-search"></i></button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- hero-area end -->
+<!-- categories-area-start -->
+<div class="categories-area pt-80 grey-bg pb-50" data-background="/Content/front/assets/img/bg/map.png">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12  wow fadeInUp" data-animation="fadeInUp" data-wow-delay="0.4s">
+                <div class="section-title text-center ml-50 mr-50 mb-45">
+                    <h2>   @Resource.DiscoverThelatestEmployment  </h2>
+                    <div class="separate">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+
+
+            <!-- partial:index.partial.html -->
+            <div id="sync1" class="owl-carousel owl-theme newslidecr   wow fadeInUp" data-animation="fadeInUp" data-wow-delay="0.5s">
+                @foreach (AspNetUser worker in ViewModel.GetRecentWorkers())
+                {
+                    <div class="item">
+                        <div>
+                            <div class="boxemp ">
+                                <img src="@worker.ImageUrl" class="img-circle" />
+
+                                <h6 class="jtitle">  @worker.FName @Html.Raw(" ") @worker.LName</h6>
+                                @if (worker.Job != null)
+                                {
+                                    if (culture.Contains("en-us"))
+                                    {
+                                        <p class="greecoo">@worker.Job.NameEN</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="greecoo">@worker.Job.NameAR</p>
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    <p class="greecoo"></p>
+                                }
+                                @if (Request.IsAuthenticated)
+                                {
+                                    int roleId = ViewModel.GetUserRole(User.Identity.GetUserId());
+                                    if (roleId == officeRoleId)
+                                    {
+                                        <a href="/worker/profile/@worker.ShortID" class="h-btn h-btn-outline"> @Resource.More</a>
+                                    }
+                                    if (roleId == kafilRoleId)
+                                    {
+                                        <a href="/kafil/WorkerProfile/@worker.ShortID" class="h-btn h-btn-outline">@Resource.More</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a href="/worker/details/@worker.ShortID" class="h-btn h-btn-outline">@Resource.More</a>
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                }
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- categories-area-end -->
+
+
+
+<div class="cta-area pt-60 pb-50 wow fadeInUp" data-animation="fadeInUp" data-wow-delay="0.4s" data-background="/Content/front/assets/img/bg/cta-bg.jpg">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-9">
+                <div class="cta-text mb-30 textrig">
+                    <h2 class="titlcol">  @Resource.AreYouLookingFor  <b>   @Resource.TrainedWorker</b></h2>
+                    <p class="white-color">@*لدينا عمالة مدربة علي حسب حاجه كل عميل وبمواصفاته*@  @Resource.WeHaveTrainedworkforceAccordingtoeachclientsneedsandspecifications </p>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="cta-btn text-lg-left mb-30">
+                    <a class="b-btn  h-btn-outline2" href="/account/register">   @Resource.RegisterNow <i class="far fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- services area start -->
+<section class="services__area pt-80 pb-100 bgserice">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 ">
+                <div class="section-title text-center mb-45 wow fadeInUp" data-animation="fadeInUp" data-wow-delay="0.4s">
+                    <h2>    @Resource.HowDoesTheSitework</h2>
+                    <p>      @Resource.LearnHowTheSiteWorks </p>
+                    <div class="separate">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-6">
+
+                <div class="stepitem wow bounceInUp" data-animation="bounceInUp" data-wow-delay="0.3s">
+
+                    <div class="circlitem">
+                        <img src="/Content/front/assets/img/bg/icon01.jpg" />
+                    </div>
+                    <h6>   @Resource.RegisterNow    </h6>
+                    <p>    @Resource.CreateAccountAndConfirmYourMobileNumber </p>
+
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6">
+
+
+                <div class="stepitem wow bounceInUp" data-animation="bounceInUp" data-wow-delay="0.4s">
+
+                    <div class="circlitem">
+                        <img src="/Content/front/assets/img/bg/icon02.jpg" />
+
+                    </div>
+                    <h6>  @Resource.Search     </h6>
+                    <p>  @Resource.SearchForWorkerOnthesite </p>
+
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6">
+
+
+                <div class="stepitem wow bounceInUp" data-animation="bounceInUp" data-wow-delay="0.5s">
+
+                    <div class="circlitem">
+                        <img src="/Content/front/assets/img/bg/icon03.jpg" />
+
+                    </div>
+                    <h6>        @Resource.ChooseWorker </h6>
+                    <p>       @Resource.ChooseTheworkerThatfitsyourneedsandRequirements  </p>
+
+                </div>
+            </div>
+
+
+            <div class="col-xl-3 col-lg-3 col-md-6">
+
+
+                <div class="stepitem wow bounceInUp" data-animation="bounceInUp" data-wow-delay="0.6s">
+
+                    <div class="circlitem">
+                        <img src="/Content/front/assets/img/bg/icon04.jpg" />
+
+                    </div>
+                    <h6>   @Resource.Communication     </h6>
+                    <p>    @Resource.Theworkeriscontactedandthetransactioniscompleted </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- services area end -->
+<!-- starter area start -->
+<section class="starter__area pb-130 pt-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title textrig mb-25 animated   wow fadeInUp" data-animation="fadeInUp" data-wow-delay="0.5s">
+                    <h2>
+                        @Resource.WhatDoYouknowAbout
+                        <span class="colorgreen">
+                            @Resource.Marofah
+                        </span>
+
+                    </h2>
+                    <div class="separate">
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-7 col-lg-6 animated wow fadeInRight" data-animation="fadeInRight" data-wow-delay="0.6s">
+                <div class="starter__content conteright">
+                    <h6>  @Resource.Aleaderinprovidingprofessionalandhighqualitylaborthatmatchessupplyanddemand</h6>
+                    <p>
+
+                        @Resource.HomePageLabel
+
+
+                        @*احد الشركات السعودية المعتمدة التي تساعج في استطاب وتوفير الكوادر البشرية المحترفة من كافة الجنسيات،حيث تقوم عناية بتقديم خدمات توفير العمالة المنزلية والسائقين والطباخين وفئات اخري من العمالة بما يتوافق مع شروط الجودة الشاملة ويوفُق بين العرض والطلب  وحماية الخصوصية الخاصة بعملائها وسرية البيانات الخاصة
+                            بهم .
+                            احد الشركات السعودية المعتمدة التي تساعج في استطاب وتوفير الكوادر البشرية المحترفة من كافة الجنسيات،حيث تقوم عناية بتقديم خدمات توفير العمالة المنزلية والسائقين والطباخين وفئات اخري من العمالة بما يتوافق مع شروط الجودة الشاملة ويوفُق بين العرض والطلب وحماية الخصوصية الخاصة بعملائها وسرية البيانات الخاصة بهم .*@
+
+
+
+                    </p>
+                </div>
+            </div>
+            <div class="col-xl-5  pr-0 col-lg-6  wow zoomIn" data-animation="zoomIn" data-wow-delay="0.6s">
+                <div class="starter__thumb-wrapper pl-50">
+                    <div class="starter__shape">
+                        <img src="/Content/front/assets/img/icon/starter/icon-1.png" alt="">
+                    </div>
+                    <div class="starter__thumb-top mb-20">
+                        <img src="/Content/front/assets/img/starter/starter-1.jpg" alt="">
+                    </div>
+                    <div class="starter__thumb-bottom d-sm-flex">
+                        <div class="starter__thumb mr-20">
+                            <img src="/Content/front/assets/img/starter/starter-2.jpg" alt="">
+                        </div>
+                        <div class="starter__thumb">
+                            <img src="/Content/front/assets/img/starter/starter-3.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- starter area end -->
+
+
+<section class="app__area pt-25">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-4 offset-xl-1 col-lg-6">
+                <div class="app__img text-center wow animated fadeInRight" data-wow-delay="0.2s">
+                    <img src="/Content/front/assets/img/b-app/mobile.png" alt="">
+                </div>
+            </div>
+            <div class="col-xl-6 offset-xl-1 col-lg-6">
+                <div class="app__content  animated wow bounceInUp" data-wow-delay="0.2s">
+                    <h3> @Resource.DownloadMarofahapplication </h3>
+                    <p>
+                        @Resource.YouCanNowDownloadMarofahApplicationToworkonAndroidandiPhone
+                        @*يمكنك الان تحميل تطبيق معروفة ليعمل على
+                            الاندرويد والايفون*@
+                    </p>
+
+                    <div class="app__btn">
+                        <a href="#" class="mr-15 mb-15">  <img src="/Content/front/assets/img/b-app/iosapp.png" class="img-res" /></a>
+                        <a href="#" class="mb-15"><img src="/Content/front/assets/img/b-app/androidapp.png" class="img-res" /></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="contact-us pt-90 pb-95  " id="contact">
+    <div class="htitle mb-20 wow fadeInUp animated">
+        <h3>@Resource.KeepInTouch </h3>
+        <p class="mb-0 mt-10 fontsmall">  @Resource.WeArePleasedAndHonoredtoReceiveYourOpinions </p>
+        <div class="separate">
+            <span></span>
+        </div>
+    </div>
+    <div class="container wow fadeInUp animated" data-wow-delay="0.3s">
+
+        <div class="d-flex align-items-center justify-content-center">
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="text" class="form-control formcss mb-10" placeholder="@Resource.Name" id="Name" name="Name">
+                    </div>
+                    <div class="col-md-6">
+                        <input type="email" class="form-control formcss mb-10" placeholder="@Resource.Email" id="From" name="From" required>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control formcss" rows="10" placeholder="@Resource.Message" name="Message" id="Message"></textarea>
+                </div>
+
+                <div class="row ml-0 mr-0">
+
+                    <button id="sendmessage" name="sendmessage" class="b-btn h-btn colorblac sendmessage w-100" onclick="sendMessage();">
+                        <i class="far fa-envelope-open ml-10"></i>
+                        @*ارسال الرسالة*@
+                        @Resource.SendMessage
+
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div id="partners" class="partner-section py-5">
+            <div class="container text-center">
+                <h2 class="mb-4">@Resource.OurPartners</h2>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-3 col-6 mb-4">
+                        <img src="~/Content/front/assets/img/Apple.png" class="img-fluid" alt="Partner 1">
+                    </div>
+                    <div class="col-md-3 col-6 mb-4">
+                        <img src="~/Content/front/assets/img/Apple.png" class="img-fluid" alt="Partner 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="aboutus" class="aboutus-section py-5">
+            <div class="container text-center">
+                <h2 class="mb-4">@Resource.AboutUs</h2>
+
+                <div class="row justify-content-center">
+                    <section>
+
+                        <div class="wrapper">
+                            <div class="container">
+                                <div class="Termcod wow animated fadeIn" data-wow-delay="0.8s">
+                                    <div class="termtem">
+                                        @*<h2 class="pt-30 pb-20">@Resource.AboutUs</h2>*@
+
+                                        @{
+                                            culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+                                            var Page = ViewBag.Page as Marofh.Page;
+                                        }
+
+                                        @if (Page != null)
+                                        {
+                                            if (culture.Contains("en-us"))
+                                            {
+                                                <p>@Html.Raw(Page.DescriptionEN)</p>
+                                            }
+                                            else
+                                            {
+                                                <p>@Html.Raw(Page.DescriptionAR)</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>@Resource.ContactDetails</p> <!-- محتوى غير متوفر -->
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+@section Scripts{
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+    <script>
+        function sendMessage() {
+
+             event.preventDefault();
+            var Name = $('#Name').val();
+            var From = $('#From').val();
+            var Message = $('#Message').val();
+            if (Name == "" || From == "" || Message == "") {
+                Swal.fire("@Resource.Warning", "@Resource.PleaseEnterAlltheDataCorrectlysothattheMaroufateamcancontactyou", "warning");
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SendMessage", "Home")',//  this for calling the web method function in controller.
+                data: { Name: Name, From: From, Message: Message},
+                dataType: "json",
+                success: function (response) {
+                    switch (response) {
+
+
+                        //ارسال الطالبات
+                        case "MessageHasBeenSent":
+                            Swal.fire("@Resource.Done", "@Resource.YourInquiryhasbeensentsuccessfullyandMaroufateamwillrespondtoyouassoonaspossible", "success");
+
+                            /*      $('#Name').val(""); $('#From').val(""); $('#Message').val("");*/
+
+                           // clearTxtInputs('Name'); clearTxtInputs('From'); clearTxtInputs('Message');
+                            break;
+
+                        case "WrongEmail":
+                            Swal.fire("@Resource.Warning", "@Resource.YouMustEnteraValidEmailinordertoGetbackintouchwithyou", "warning");
+                            break;
+
+
+                        case "Exception":
+                            alert('@Resource.SomeThingWrong');
+                            break;
+
+                    }
+
+                }
+            });
+        }
+
+
+        function OnSuccessed(response) {
+
+            switch (response) {
+
+
+
+
+                //ارسال الطالبات
+                case "MessageHasBeenSent":
+                    Swal.fire("@Resource.Done", "@Resource.YourInquiryhasbeensentsuccessfullyandMaroufateamwillrespondtoyouassoonaspossible", "success");
+                    break;
+
+
+
+
+                case "WrongEmail":
+                    Swal.fire("@Resource.Warning", "@Resource.YouMustEnteraValidEmailinordertoGetbackintouchwithyou", "warning");
+                    break;
+
+
+                case "Exception":
+                    alert('@Resource.SomeThingWrong');
+                    break;
+
+            }
+        }
+        function clearTxtInputs(elementId) {
+            var element = document.getElementById(elementId);
+
+            element.value = '';
+
+        }
+    </script>
+    <style>
+        .arabic-btn {
+            align-items: flex-start;
+            text-align: left;
+            padding-left: 15px;
+            margin-right: 700px;
+            margin-bottom: 90px;
+        }
+
+        .english-btn {
+            align-items: flex-end;
+            text-align: right;
+            padding-right: 15px;
+            margin-left: 580px;
+            margin-bottom: 120px;
+        }
+
+
+        .Termcod {
+            background: #ffffff;
+            padding: 22px 20px;
+            box-shadow: -1px 6px 16px rgb(0 0 0 / 10%);
+            border-radius: 10px;
+            margin-top: 28px;
+            padding-top: 0px;
+        }
+        .select_wrap {
+            position: relative; /* مهم علشان position: absolute يشتغل جواه */
+        }
+
+            .select_wrap span:after,
+            .nationality-select span:after {
+                content: "";
+                color: #17a2b8;
+                font-weight: 900;
+                font-size: 16px;
+                font-family: "Font Awesome 5 Pro";
+                position: absolute;
+                top: 0;
+                line-height: 50px;
+                inset-inline-end: 15px; /* يتحرك تلقائيًا يمين أو يسار حسب اللغة */
+                padding-inline-end: 50px; /* بدل padding-right/left */
+            }
+
+    </style>
+
+
+
+    <!-- ✅ سكربت JavaScript لتحديث القيم المختارة -->
+    <script>
+        function updateSelectedValues(className, displayId) {
+            const checkboxes = document.querySelectorAll('.' + className + ':checked');
+            const displayDiv = document.getElementById(displayId);
+            const selectedTexts = Array.from(checkboxes).map(cb => cb.parentElement.textContent.trim());
+            displayDiv.innerHTML = selectedTexts.join(' - ');
+        }
+
+        // عند تغيير أي checkbox
+        document.querySelectorAll('.job-checkbox').forEach(cb => {
+            cb.addEventListener('change', () => updateSelectedValues('job-checkbox', 'selectedJobs'));
+        });
+
+        document.querySelectorAll('.nationality-checkbox').forEach(cb => {
+            cb.addEventListener('change', () => updateSelectedValues('nationality-checkbox', 'selectedNationalities'));
+        });
+
+        // عند تحميل الصفحة
+        window.onload = () => {
+            updateSelectedValues('job-checkbox', 'selectedJobs');
+            updateSelectedValues('nationality-checkbox', 'selectedNationalities');
+        };
+
+
+
+        function SetActiveClass(ele) {
+            document.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+            ele.classList.add('active');
+        }
+    </script>
+
+}
+

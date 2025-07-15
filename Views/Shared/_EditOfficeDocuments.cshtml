@@ -1,0 +1,46 @@
+﻿@model Marofh.OfficeDocument
+@using Resources 
+@using (Html.BeginForm("EditOfficeDocuments", "Office", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="row">
+
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.OfficeID)
+
+    <div class="col-12 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label">  @Resource.CertificateName </label>
+
+            <input type="text" class="form__input" id="Name" name="Name"  value="@Model.Name"/>
+
+        </div>
+    </div>
+
+
+    <div class="col-12 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label">@Resource.CertificateDate  </label>
+            @Html.TextBoxFor(m => m.Date, "{0:yyyy-MM-dd}", new { @class = "form-control form__input", type = "date" })
+
+        </div>
+    </div>
+    <div class="col-12 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label"> @Resource.File </label>
+            <input type="file" class="form__input" id="FileUrl" name="FileUrl" />
+
+
+        </div>
+    </div>
+
+</div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+
+            <i class="far fa-save "></i>
+    @Resource.Save
+            
+        </button>
+
+    </div>
+}

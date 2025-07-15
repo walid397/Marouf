@@ -1,0 +1,490 @@
+﻿@model  IEnumerable<ReportedWorker>
+@using Microsoft.AspNet.Identity
+@using Marofh.Models
+
+@{
+    ViewBag.Title = "اداره البلاغات";
+    ViewBag.Sub1Title = "لوحة التحكم";
+    ViewBag.Sub1Url = "/admin/";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{string userId = User.Identity.GetUserId();
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);}
+
+@using (Html.BeginForm("ManageWallet", "Admin", FormMethod.Post))
+{
+    <div class="row">
+
+
+        <div class="col-12">
+
+
+            <div class="tab-pane fade show  animate__animated animate__slideInUp" id="tab-5" role="tabpanel" aria-labelledby="tab-5">
+
+
+                <div class=" ">
+                    <ul class="nav nav-tabs" id="reportedWorkersTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active text-semibold" id="reportedWorkers-tab" data-toggle="tab" href="#reportedWorkers"
+                               role="tab" aria-controls="published" aria-selected="true">
+                                <i class="far fa-file mr-1 ml-1"></i>
+                                حسابات مبلغ عنها (@Model.Where(p => p.Status == clsEnum.ReportedWorkerStatus.تحت_المراجعة_من_قبل_الادارة.ToString()).Count())
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-semibold" id="OfficeReview-tab" data-toggle="tab" href="#OfficeReview"
+                               role="tab" aria-controls="OfficeReview" aria-selected="false">
+                                <i class="far fa-file-check mr-1 ml-1"></i>
+
+
+                                حسابات تحبت المرلاجعة من قبل المكتب (@Model.Where(p => p.Status == clsEnum.ReportedWorkerStatus.تحت_المراجعة_من_قبل_المكتب.ToString()).Count())
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-semibold" id="BlockedWorkers-tab" data-toggle="tab" href="#BlockedWorkers"
+                               role="tab" aria-controls="BlockedWorkers" aria-selected="false">
+                                <i class="far fa-file-check mr-1 ml-1"></i>
+
+
+                                حسابات محجوبة (@Model.Where(p => p.Status == clsEnum.ReportedWorkerStatus.حساب_معلق.ToString()).Count())
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                    <div class="tab-content" id="reportedWorkersTabContent">
+                        <div class="tab-pane fade show active  animate__animated animate__fadeIn" id="reportedWorkers" role="tabpanel" aria-labelledby="reportedWorkers-tab">
+
+
+                            <div class="col-12">
+                                <h2 class="form__title mt-4 mb-0 stylrep">
+                                    <span> حسابات مبلغ عنها </span>
+                                </h2>
+
+                            </div>
+                            <table id="files_list" class="table table-striped dt-responsive datatable" style="width:100%">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">اسم العامل</th>
+                                        <th scope="col">مهنة العامل</th>
+                                        <th scope="col"> تاريخ الابلاغ</th>
+                                        <th scope="col"> يحتوي علي معلومات مزيفة </th>
+                                        <th scope="col"> يحتوي علي صور غير لائقة </th>
+                                        <th scope="col"> ملاحظات </th>
+
+
+                                        <th scope="col" class="text-center"> الاستجابة</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var report in Model.Where(p => p.Status == clsEnum.ReportedWorkerStatus.تحت_المراجعة_من_قبل_الادارة.ToString()))
+                                    {
+                                    <tr>
+                                        <td class="img-td">
+                                            <a href="/worker/profile/@report.AspNetUser.ShortID"> @report.AspNetUser.FName @Html.Raw(" ") 
+                                            @report.AspNetUser.LName</a>
+                                        </td>
+
+                                        @if (report.AspNetUser.Job != null)
+                                        {
+                                            <td class="img-td">
+                                                @report.AspNetUser.Job.NameAR
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="img-td">
+                                            </td>
+                                        }
+
+
+                                        <td scope="col">
+
+                                            @report.ReportDate.ToShortDateString()
+
+                                        </td>
+
+
+                                        @if (report.HasFakeData)
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("نعم")
+                                            </td>
+                                        }
+
+                                        else
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("لا")
+                                            </td>
+                                        }
+
+
+
+
+                                        @if (report.HasInappropriateImages)
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("نعم")
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("لا")
+                                            </td>
+                                        }
+
+
+                                        <td scope="col">
+
+                                            @report.Notes
+
+                                        </td>
+
+                                        <td class="text-center">
+                                            <div class="">
+                                                <a href="/worker/profile/@report.AspNetUser.ShortID" class=""
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="مراجعة الحساب" data-original-title="مراجعة الحساب">
+                                                    <i class="far fa-user"></i>
+                                                </a>
+                                            
+
+                                                <a href="/admin/ReviewByOffice/@report.ID" class=""
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="تحويلها الى المكتب للمراجعة" 
+                                                   data-original-title="تحويلها الى المكتب للمراجعة" ><i class="far fa-edit"></i>
+                                                </a>
+
+                                                <a href="/admin/BlockkWorker/@report.ID" class="text-secondary sizbtn"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top" title="حظر"><i class="far fa-lock"></i></a>
+
+                                                <a href="/admin/DeleteWorker/@report.AspNetUser.ShortID" class="text-danger sizbtn"
+                                                   data-toggle="tooltip"
+                                                   data-placement="top" title="حذف الحساب"><i class="far fa-times-circle"></i></a>
+
+
+
+
+                                            </div>
+
+                                        </td>
+
+
+
+                                    </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="tab-pane fade animate__animated animate__fadeIn" id="OfficeReview" role="tabpanel" aria-labelledby="OfficeReview-tab">
+
+
+
+                            <div class="col-12">
+                                <h2 class="form__title mt-4 mb-0 stylrep">
+                                    <span>
+
+
+                                        حسابات تحت المراجعة من قبل المكتب
+                                    </span>
+                                </h2>
+                            </div>
+                            <table class="table table-striped dt-responsive datatable" style="width:100%">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">اسم العامل</th>
+                                        <th scope="col">مهنة العامل</th>
+                                        <th scope="col"> تاريخ الابلاغ</th>
+                                        <th scope="col"> يحتوي علي معلومات مزيفة </th>
+                                        <th scope="col"> يحتوي علي صور غير لائقة </th>
+                                        <th scope="col"> ملاحظات </th>
+                                        <th scope="col" class="text-center"> الاستجابة</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var report in Model.Where(p => p.Status == clsEnum.ReportedWorkerStatus.تحت_المراجعة_من_قبل_المكتب.ToString()))
+                                    {
+                                    <tr>
+                                        <td class="img-td">
+                                            <a href="/worker/profile/@report.AspNetUser.ShortID"> @report.AspNetUser.FName @Html.Raw(" ") @report.AspNetUser.LName</a>
+                                        </td>
+
+                                        @if (report.AspNetUser.Job != null)
+                                        {
+                                            <td class="img-td">
+                                                @report.AspNetUser.Job.NameAR
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="img-td">
+                                            </td>
+                                        }
+
+
+                                        <td scope="col">
+
+                                            @report.ReportDate.ToShortDateString()
+
+                                        </td>
+
+
+                                        @if (report.HasFakeData)
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("نعم")
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("لا")
+                                            </td>
+                                        }
+
+
+                                        <td scope="col">
+
+                                            @if (report.HasInappropriateImages)
+                                            {
+
+                                            <td scope="col">
+                                               @Html.Raw("نعم")
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("لا")
+                                            </td>
+                                        }
+
+
+                                            <td scope="col">
+
+                                                @report.Notes
+
+                                            </td>
+                                            <td class="text-center">
+                                                <div class="">
+
+
+                                                    <a href="/admin/DeleteWorker/@report.AspNetUser.ShortID" class="text-danger sizbtn" data-toggle="tooltip"
+                                                       data-placement="top" title="حذف الحساب"><i class="fas fa-times-circle"></i></a>
+
+
+
+
+                                                </div>
+
+                                            </td>
+
+
+
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="tab-pane fade animate__animated animate__fadeIn" id="BlockedWorkers" role="tabpanel" aria-labelledby="BlockedWorkers-tab">
+
+
+
+                            <div class="col-12">
+                                <h2 class="form__title mt-4 mb-0 stylrep">
+                                    <span>
+
+
+                                        حسابات موقوفة
+                                    </span>
+                                </h2>
+                            </div>
+                            <table class="table table-striped dt-responsive datatable" style="width:100%">
+                                <thead class="thead">
+                                    <tr>
+                                        <th scope="col">اسم العامل</th>
+                                        <th scope="col">مهنة العامل</th>
+                                        <th scope="col"> تاريخ الابلاغ</th>
+                                        <th scope="col"> يحتوي علي معلومات مزيفة </th>
+                                        <th scope="col"> يحتوي علي صور غير لائقة </th>
+                                        <th scope="col"> ملاحظات </th>
+                                        <th scope="col" class="text-center"> الاستجابة</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    @foreach (var report in Model.Where(p => p.Status == clsEnum.ReportedWorkerStatus.حساب_معلق.ToString()))
+                                    {
+                                    <tr>
+                                        <td class="img-td">
+                                            <a href="/worker/profile/@report.AspNetUser.ShortID"> @report.AspNetUser.FName @Html.Raw(" ") @report.AspNetUser.LName</a>
+                                        </td>
+
+                                        @if (report.AspNetUser.Job != null)
+                                        {
+                                            <td class="img-td">
+                                                @report.AspNetUser.Job.NameAR
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="img-td">
+                                            </td>
+                                        }
+
+
+                                        <td scope="col">
+
+                                            @report.ReportDate.ToShortDateString()
+
+                                        </td>
+
+
+                                        @if (report.HasFakeData)
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("نعم")
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("لا")
+                                            </td>
+                                        }
+
+
+
+
+                                        @if (report.HasInappropriateImages)
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("نعم")
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td scope="col">
+                                                @Html.Raw("لا")
+                                            </td>
+                                        }
+
+
+                                        <td scope="col">
+
+                                            @report.Notes
+
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="">
+
+
+                                                <a href="/office/DeleteWorker/@report.AspNetUser.ShortID" class="text-danger sizbtn" data-toggle="tooltip"
+                                                   data-placement="top" title="حذف الحساب"><i class="fas fa-times-circle"></i></a>
+
+
+
+
+                                            </div>
+
+                                        </td>
+
+
+
+                                    </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+}
+
+@section Scripts{
+
+    <!--Datatable-->
+    <script src="/Content/front/assets/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <link href="/Content/front/assets/css/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script>
+
+        $(document).ready(function () {
+            $('#files_list').tooltip({ selector: '[data-toggle="tooltip"]' });
+
+                $('body').tooltip({selector: '[data-toggle="tooltip"]' });
+            $('#files_list').on('draw.dt', function () {
+        
+   
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [7, 10, 25, -1],
+                    [7, 10, 25, "All"]
+                ],
+                "iDisplayLength": 7,
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+
+            
+        });
+     
+    
+    </script>
+    <!--Datatable-->
+
+
+
+
+
+}

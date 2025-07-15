@@ -1,0 +1,282 @@
+﻿@model DBEntities
+@{
+    ViewBag.Title = "الصفحة الرئيسية";
+    ViewBag.Parent = "لوحة التحكم";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int kafilRoleId = Convert.ToInt32(clsEnum.Roles.Kafil);
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);}
+<div class="row justify-content-center align-items-start">
+
+    <div class="col-3 pl-1 pr-1">
+        <h6 class="divtitle mb-2 mb-2"> احصائيات المشتركين  </h6>
+
+        <div class="col-12 mg-t-10  mb-1">
+            <a href="/admin/AllOffices">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-briefcase-outline tx-teal"></i>
+                        <div class="media-body">
+                            <h1>@Model.AspNetUsers.Where(p => p.RoleID == officeRoleId).Count()</h1>
+                            <p>مكاتب الاستقدام </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-12 mg-t-10  mb-1">
+            <a href="/admin/AllKafils">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-body-outline tx-teal"></i>
+                        <div class="media-body">
+                            <h1>@Model.AspNetUsers.Where(p => p.RoleID == kafilRoleId).Count()</h1>
+                            <p>اصحاب الاعمال </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-12 mg-t-10  mb-1">
+            <a href="/admin/AllWorkers">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-people-outline tx-teal"></i>
+                        <div class="media-body">
+                            <h1>@Model.AspNetUsers.Where(p => p.RoleID == workerRoleId).Count()</h1>
+                            <p>العمالة  </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+
+
+        <!--<div class="col-12 mg-t-10  mb-1">
+            <a href="/NewsLetters/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-person-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.NewsLetters.Count()</h1>
+                            <p> مشتركى النشرة البريدية </p>
+                        </div>-->
+        <!-- media-body -->
+        <!--</div>--><!-- media -->
+        <!--</div>--><!-- card -->
+        <!--</a>
+        </div>-->
+        <!-- col-3 pl-1 pr-1 -->
+
+
+    </div>
+
+
+    <div class="col-3 pl-1 pr-1">
+        <h6 class="divtitle mb-2"> احصائيات الموقع  </h6>
+
+
+        <div class="col-12">
+            <a href="/pages/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-book-outline "></i>
+                        <div class="media-body">
+                            <h1>@Model.Pages.Count()</h1>
+                            <p>الصفحات </p>
+                        </div><!-- media-body -->
+                    </div><!-- media -->
+                </div><!-- card -->
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+
+        <div class="col-12 mg-t-10  mb-1">
+            <a href="/FAQs/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-chatboxes-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.FAQs.Count()</h1>
+                            <p>الاسئلة الشائعة </p>
+                        </div><!-- media-body -->
+                    </div><!-- media -->
+                </div><!-- card -->
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+
+        <div class="col-12 mg-t-10  mb-1">
+            <a href="/admin/ManageMails/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-chatboxes-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.Mails.Where(p => p.IsRead == false & p.OperatorID == null).Count()</h1>
+                            <p>   مراسلات مكاتب الاستقدام </p>
+                        </div>
+
+                    </div>
+                </div>
+            </a>
+        </div>
+
+
+
+    </div>
+
+
+
+    <div class="col-3 pl-1 pr-1">
+        <h6 class="divtitle mb-2"> احصائيات المكاتب و ادارة المحفظة  </h6>
+
+
+
+        <div class="col-12 mb-2">
+            <a href="/Admin/UnVerifiedOffices">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-briefcase-outline tx-teal"></i>
+                        <div class="media-body">
+                            <h1>@Model.AspNetUsers.Where(p => p.RoleID == officeRoleId & p.IsVerifed == false).Count()</h1>
+                            <p>مكاتب الغير موثقة </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+
+        <div class="col-12">
+            <a href="/Admin/VerifiedOffices">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-briefcase-outline tx-teal"></i>
+                        <div class="media-body">
+                            <h1>@Model.AspNetUsers.Where(p => p.RoleID == officeRoleId == true).Count()</h1>
+                            <p>المكاتب الموثقة </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+
+
+        <div class="col-12 mg-t-10  mb-1">
+            <a href="/Admin/ManageWallet/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon fa-money"></i>
+                        <div class="media-body">
+                            <h1>@Model.WorkerRequests.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مستحقة.ToString() & p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString() || p.PaidStatus == clsEnum.WorkerRequestStatus.تحت_المراجعة.ToString() & p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()).ToList().Sum(x => x.Balance)</h1>
+                            <p>اجمالى المستحق </p>
+                        </div><!-- media-body -->
+                    </div><!-- media -->
+                </div><!-- card -->
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+        <!--<div class="col-12 mg-t-10  mb-1">
+            <a href="/NewsLetters/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-person-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.NewsLetters.Count()</h1>
+                            <p> مشتركى النشرة البريدية </p>
+                        </div>-->
+        <!--<div class="col-12 mg-t-10  mb-1">
+            <a href="/NewsLetters/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-person-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.NewsLetters.Count()</h1>
+                            <p> مشتركى النشرة البريدية </p>
+                        </div>-->
+        <!-- media-body -->
+        <!--</div>--><!-- media -->
+        <!--</div>--><!-- card -->
+        <!--</a>
+        </div>-->
+        <!-- col-3 pl-1 pr-1 -->
+
+
+    </div>
+
+
+
+    <div class="col-3 pl-1 pr-1">
+        <h6 class="divtitle mb-2"> احصائيات البلاغات  </h6>
+
+
+        <div class="col-12 mb-2">
+            <a href="/Admin/ManageReportedWorkers">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-people-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.ReportedWorkers.Where(p => p.Status == clsEnum.ReportedWorkerStatus.تحت_المراجعة_من_قبل_الادارة.ToString()).Count()</h1>
+                            <p>تحت مراجعة الادارة   </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+
+        <div class="col-12">
+            <a href="/Admin/ManageReportedWorkers">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-briefcase-outline tx-teal"></i>
+                        <div class="media-body">
+                            <h1>@Model.ReportedWorkers.Where(p => p.Status == clsEnum.ReportedWorkerStatus.تحت_المراجعة_من_قبل_المكتب.ToString()).Count()</h1>
+                            <p>تحت مراجعة المكتب   </p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+
+
+        <div class="col-12 mg-t-10  mb-1">
+            <a href="/Admin/ManageReportedWorkers/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-close-outline tx-teal"></i>
+                        <div class="media-body">
+                            <h1>@Model.ReportedWorkers.Where(p => p.Status == clsEnum.ReportedWorkerStatus.حساب_معلق.ToString()).Count()</h1>
+                            <p>حسابات محجوبة   </p>
+                        </div><!-- media-body -->
+                    </div><!-- media -->
+                </div><!-- card -->
+            </a>
+        </div><!-- col-3 pl-1 pr-1 -->
+        <!--<div class="col-12 mg-t-10  mb-1">
+            <a href="/NewsLetters/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-person-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.NewsLetters.Count()</h1>
+                            <p> مشتركى النشرة البريدية </p>
+                        </div>-->
+        <!--<div class="col-12 mg-t-10  mb-1">
+            <a href="/NewsLetters/">
+                <div class="card card-status">
+                    <div class="media">
+                        <i class="icon ion-ios-person-outline"></i>
+                        <div class="media-body">
+                            <h1>@Model.NewsLetters.Count()</h1>
+                            <p> مشتركى النشرة البريدية </p>
+                        </div>-->
+        <!-- media-body -->
+        <!--</div>--><!-- media -->
+        <!--</div>--><!-- card -->
+        <!--</a>
+        </div>-->
+        <!-- col-3 pl-1 pr-1 -->
+
+
+    </div>
+</div>

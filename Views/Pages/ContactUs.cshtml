@@ -1,0 +1,217 @@
+﻿@model Marofh.Contact
+@using Resources
+
+
+@{
+
+    //Layout = "~/Views/Shared/_LayoutFront.cshtml";
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+
+
+    if (culture.Contains("en-us"))
+    {
+        ViewBag.Title = " Contact Us";
+    }
+    else
+    {
+        ViewBag.Title = "اتصل بنا";
+
+    }
+
+
+}
+<div class="breadcrumbitem">
+    <div class="container-fluid">
+        <h4 class="font-weight-bolder">
+
+
+            @if (culture.Contains("en-us"))
+            {
+                ViewBag.Title = " Contact Us";
+
+            }
+            else
+            {
+                ViewBag.Title = "اتصل بنا";
+
+
+            }
+        </h4>
+    </div>
+
+
+</div>
+
+<main id="ts-main">
+    <section id="contact-form">
+        <div class="container-fluid">
+
+            <div class="sec-pad bg-s-grey pt-6 bg-white">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <!--CONTACTS (LEFT SIDE)
+                    =============================================================================================-->
+                        <div class="col-md-5">
+                            <div class="bicrm  mt-3">
+
+                                <div class="service-title mb-3">
+                                    <h5 class="text-bold">
+                                        @Resource.ContactDetails
+                                    </h5>
+                                </div>
+                                <figure class="ts-center__vertical  mt-1">
+                                    <i class="far fa-map-marker-alt ts-opacity__50 mr-3 mb-0 h4 font-weight-bold"></i>
+                                    <dl class="mb-0">
+
+
+
+                                        <dt>    @Resource.Address </dt>
+                                        <dd class="ts-opacity__50">         @Model.Address</dd>
+                                    </dl>
+                                </figure>
+                                <!--Phone-->
+                                <figure class="ts-center__vertical  mt-1">
+                                    <i class="far fa-phone ts-opacity__50 mr-3 mb-0 h4 font-weight-bold"></i>
+                                    <dl class="mb-0">
+
+
+
+                                        <dt> @Resource.Phone</dt>
+                                        <dd class="ts-opacity__50">  @Model.Phone</dd>
+                                    </dl>
+                                </figure>
+
+                                <!--Email-->
+                                <figure class="ts-center__vertical  mt-1">
+                                    <i class="far fa-envelope ts-opacity__50 mr-3 mb-0 h4 font-weight-bold"></i>
+                                    <dl class="mb-0">
+
+
+                                        <dt>@Resource.Email</dt>
+                                        <dd class="ts-opacity__50">
+                                            <a href="#">@Model.Email</a>
+                                        </dd>
+                                    </dl>
+                                </figure>
+
+                                <!--Skype-->
+                                <figure class="ts-center__vertical mt-1">
+                                    <i class="far fa-mobile-alt ts-opacity__50 mr-3 mb-0 h4 font-weight-bold"></i>
+                                    <dl class="mb-0">
+                                        <dt>  @Resource.MobileNo</dt>
+
+
+
+                                        <dd class="ts-opacity__50">
+                                            <a href="#">  @Model.Mobile    </a>
+                                        </dd>
+                                    </dl>
+                                </figure>
+
+                                <div class="info">
+                                    <span class="title">@Resource.FollowUsOnOurPages</span>
+                                    <div class="footer-links">
+
+                                        <nav>
+                                            <a class="facebook" href="@Model.Facebook" target="_blank"><i class="fab fa-facebook"></i></a>
+                                            <a class="twitter" href="@Model.Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                                            <a class="twitter" href="@Model.Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                                            <a class="linkedin" href="@Model.LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+                                            <a class="youtube" href="@Model.Youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                                        </nav>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                     
+
+                        </div>
+                        <!--end col-md-4-->
+                        <!--FORM (RIGHT SIDE)
+                    =============================================================================================-->
+                        <div class="col-md-7">
+
+                           
+                            <h4 class="font-weight-bolder greemcolor">    @Resource.ContactForm</h4>
+
+
+
+
+
+                            @Html.Partial("_ContactUsForm")
+
+                        </div>
+                        <!--end col-md-8-->
+
+                    </div>
+                    <!--end row-->
+                </div>
+                <!--end container-->
+            </div>
+
+            </div>
+    </section>
+    <div class="sec-pad bg-s-grey pt-0">
+
+
+
+
+        <div class="services">
+            <div class="container">
+                <div class="row">
+
+
+                    <div class="col-md-8">
+
+                        
+
+                    </div>
+
+
+
+                    <div class="col-md-4 col-sm-6">
+
+                        @*<div class="box service text-center mt-3">
+
+                            <div class="service-title mb-3">
+                                <h3 class="text-bold">
+                                
+                                </h3>
+                            </div>
+                        </div>*@
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </main>
+    <style>
+        .info {
+            text-align: right;
+            padding: 6px;
+        }
+
+        .service {
+            min-height: 400px;
+        }
+
+        .title {
+            font-weight: bold;
+            padding-left: 20px;
+            float: right;
+        }
+
+        .footer-links {
+            float: right;
+        }
+    </style>
+    <!-- Contact Section End -->

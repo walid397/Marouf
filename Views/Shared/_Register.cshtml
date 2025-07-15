@@ -1,0 +1,580 @@
+﻿@using Resources
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+
+
+
+    @*<style >
+            /* Chrome, Safari, Edge, Opera */
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            /* Firefox */
+            input[type=number] {
+                -moz-appearance: textfield;
+            }
+        </style>*@
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+    function IsUniq(name) {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("IsUniq", "Account")',//  this for calling the web method function in controller.
+                data: '{name: "' + name.value + '" }',// user name value
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response);
+                }
+                //error: function (jqxhr, status, exception) {
+                //    alert('Exception:', exception);
+                //}
+
+            });
+    };
+
+    function IsRegistered(email) {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("IsRegistered", "Account")',//  this for calling the web method function in controller.
+                data: '{email: "' + email.value + '" }',// user name value
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+    };
+    function CheckMobile(mobile) {
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("CheckMobile", "Account")',//  this for calling the web method function in controller.
+                data: '{mobile: "' + mobile.value + '" }',// user name value
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response);
+                }
+            });
+        };
+    //function OnSuccess
+    function OnSuccess(response) {
+        var msg = $("#errorMessage1");
+        var dublicatedMobile = $("#errorMessage2");
+        var dublicatedEmail = $("#errorMessage3");
+
+
+
+        switch (response) {
+            case "false":
+                msg.show();
+                msg.css("color","red");
+                msg.html('@Resource.UserNameALreadyRegistered');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                sendbtn.disabled = checker.disabled = response
+                $('#SpanNameValid').text("false");
+
+
+
+
+
+                break;
+            case "true":
+                msg.show();
+                msg.css("color", "green");
+                msg.html('@Resource.UserNameIsAvailable');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                  checker.disabled = false
+                $('#SpanNameValid').text("true");
+                if (Formvalid() == true) {
+                    checker.disabled = false;
+                 //   alert("Enabled");
+                }
+                else {
+                    checker.disabled = true;
+                  //  alert("disabled");
+                }
+
+
+                break;
+
+            case "NotEnglish":
+                msg.show();
+                msg.css("color","red");
+                    msg.html('@Resource.UserNameMustBeEnglish');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                sendbtn.disabled = checker.disabled = true;
+                $('#SpanNameValid').text("false");
+
+                break;
+            case "TooShort":
+                msg.show();
+                msg.css("color","red");
+                 msg.html('@Resource.UserNameMustBeNotLess8Char');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                sendbtn.disabled = checker.disabled = true;
+                $('#SpanNameValid').text("false");
+
+                break;
+            case "Registered":
+                dublicatedEmail.show();
+                dublicatedEmail.css("color","red");
+               dublicatedEmail.html('@Resource.EmailAlreadyRegistered');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                sendbtn.disabled = checker.disabled = true;
+                $('#SpanEmailValid').text("false");
+
+
+
+                break;
+            case "NotVaild":
+                dublicatedEmail.show();
+                dublicatedEmail.css("color","red");
+               dublicatedEmail.html('@Resource.PleaseEnterEmailInCorrectFormat');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                sendbtn.disabled = checker.disabled = true;
+                $('#SpanEmailValid').text("false");
+
+                break;
+            case "MobileExisted":
+                dublicatedMobile.show();
+                dublicatedMobile.css("color", "red");
+                dublicatedMobile.html('@Resource.MobileAlreadyRegistered');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                sendbtn.disabled = checker.disabled = true;
+                $('#SpanMobileValid').text("false");
+
+                break;
+            case "LessThanTen":
+                dublicatedMobile.show();
+                dublicatedMobile.css("color", "red");
+                dublicatedMobile.html('@Resource.MobileMustBe10Number');
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                sendbtn.disabled = checker.disabled = true;
+                $('#SpanMobileValid').text("false");
+
+                break;
+
+            case "MobileNotExisted":
+                dublicatedMobile.show();
+                dublicatedMobile.css("color", "green");
+                dublicatedMobile.html("");
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                $('#SpanMobileValid').text("true");
+                //sendbtn.disabled = checker.disabled = true;
+
+                if (Formvalid() == true) {
+                    checker.disabled = false;
+                   // alert("Enabled");
+                }
+                else {
+                    checker.disabled = true;
+                   // alert("disabled");
+                }
+
+
+                break;
+            case "NotRegistered":
+                dublicatedEmail.show();
+                dublicatedEmail.css("color", "green");
+                dublicatedEmail.html("");
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                $('#SpanEmailValid').text("true");
+
+                if (Formvalid() == true) {
+                    checker.disabled = false;
+                    //alert("Enabled");
+                }
+                else {
+                    checker.disabled = true;
+                  //  alert("disabled");
+                }
+
+                break;
+
+
+
+
+
+
+        }
+    }
+
+
+
+    //function TestOnTextChange() {
+    //    //if (this.value.length >= 8)
+    //    //{
+
+    //    //    alert('chnaged');
+    //    //    msg.html("okkk");
+    //    //}
+
+    //    var txtName = document.getElementById('Name');
+
+    //    alert(txtName.value.length);
+    //}
+
+
+</script>
+
+
+
+
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="modal show fade logincssdiv registercss" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header flex-column no-padding mb-1">
+
+                    <h5 class="modal-title mb-2 text-bold font-weight-bolder" id="loginModalLabel">@Resource.NewUser</h5>
+                  
+                    <p class="model-desc pl-4 pr-4">
+                        @*سجل الان في معروفة لتستمتع بجميع خدمات معروفة المجانية ويصل اليك اخر الاخبار
+            والتحديثات*@
+                        @Resource.RegisterNowInDorrToEnjoyFreeDorrServices
+
+                    </p>
+                    <button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body no-padding">
+
+                    <div class="form-group">
+                        <label for="fullName" class="mb-1 text-semibold"> @Resource.UserName </label>  <span class="required">*</span>
+                        @*// هذه  الفنكشن  تعمل  في حالة مجرد الكتابة في مربع النص*@
+                        <input type="text" class="form-control" name="Name" id="Name" placeholder="@Resource.EnterYourNameByEnglish" required oninvalid="this.setCustomValidity(this.placeholder)" oninput="" onkeyup="return IsUniq(this)">
+
+                        @*<input type="text" class="form-control" name="Name" id="Name" placeholder="ادخل اسمك باللغة الانجليزية " required oninvalid="this.setCustomValidity(this.placeholder)" oninput="" onchange="TestOnTextChange()"   onfocusout="return IsUniq(this)">*@
+
+
+                        <input placeholder="@Resource.UserName" name="UserName" id="UserName" type="text" style="display:none;height:1px;">
+                        <span id="errorMessage1"></span>
+                        <span id="SpanNameValid" style="display:none;">false</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber" class="mb-1 text-semibold">@Resource.MobileNo</label><span class="required">*</span>
+                        @*<input type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" name="Mobile" id="Mobile" placeholder="05XXXXXXXX" required orequired onkeyup="return CheckMobile(this)" maxlength="10">*@
+
+                        <input id="Mobile" name="Mobile" type="number" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="form-control" placeholder="05XXXXXXXX" required orequired onkeyup="return CheckMobile(this)" maxlength="10">
+                        <span id="errorMessage2"></span>
+                        <span id="SpanMobileValid" style="display:none;">false</span>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="emailS" class="mb-1 text-semibold">@Resource.Email</label> <span class="required">*</span>
+                        <input type="email" class="form-control" id="Email" name="Email" placeholder="@Resource.Email" required onkeyup="return IsRegistered(this)">
+                        <span id="errorMessage3"></span>
+                        <span id="SpanEmailValid" style="display:none;">false</span>
+
+                    </div>
+
+                    <div class="form-group" id="DivPassReg">
+                        <label for="passwordS" class="mb-1 text-semibold">@Resource.Password</label> <span class="required">*</span>
+                        <input type="password" class="form-control" name="Password" id="Password" size="20" maxlength="100" onkeyup="return passwordChanged(this);" required oninvalid="this.setCustomValidity(this.placeholder)" oninput="">
+
+                        <span id="strength" name="strength">    </span>
+                        <span id="strengthpwd" name="strengthpwd" style="visibility:hidden;">    </span>
+                        <span id="SpanPasswordValid" style="display:none;">false</span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword" class="mb-1 text-semibold">@Resource.ConfirmPassword</label> <span class="required">*</span>
+                        <input type="password" class="form-control" name="ConfirmPassword" id="ConfirmPassword" placeholder="@Resource.EnterConfirmPassword" onkeyup="return confirm(this);">
+                        <span id="confirmstrength" name="confirmstrength">    </span>
+                        <span id="SpanPasswordMatch" style="display:none;">false</span>
+                    </div>
+
+
+                    <div class="d-flex justify-content-between">
+                        <div class="checkbox-custom">
+                            <input type="checkbox" disabled name="acceptTerms" value="1" id="acceptTerms"
+                                   class="form-checkbox pull-left">
+                            <label for="acceptTerms" class="pull-left text-capitalize">
+                                @Resource.IagreeandAccept <a href="/pages/details/2">@Resource.TermsandConditions</a>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-start align-items-start flex-column no-padding mt-3">
+
+                    <button class="btn d-block w-100" id="registerbtn" name="registerbtn" disabled onclick="match();">
+                        @Resource.Register
+                    </button>
+                    <span class="d-block mt-3">
+                        @Resource.AlreadyRegistered ? <a href="#" class="text-brand mt-1 text-semibold font-weight-bold"
+                                                         data-toggle="modal" data-target="#loginModal"
+                                                         data-dismiss="modal">@Resource.Login</a>
+                                                    </span>
+                                                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/conutrywithflags/build/js/intlTelInput.js"></script>
+    <script>
+        //this is for Country Flags Options
+        var input = document.querySelector("#Mobile");
+        window.intlTelInput(input, {
+            // allowDropdown: false,
+            // autoHideDialCode: false,
+            // autoPlaceholder: "off",
+            // dropdownContainer: document.body,
+            // excludeCountries: ["us"],
+            // formatOnDisplay: false,
+            // geoIpLookup: function(callback) {
+            //   $.get("http://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+            //     var countryCode = (resp && resp.country) ? resp.country : "";
+            //     callback(countryCode);
+            //   });
+            // },
+            // hiddenInput: "full_number",
+            // initialCountry: "auto",
+            // localizedCountries: { 'de': 'Deutschland' },
+            // nationalMode: false,
+            //onlyCountries: ['us', 'gb', 'ch', 'us', 'do', 'sa'],
+            /*onlyCountries: ['us'],*/
+            onlyCountries: ['sa'],
+            // placeholderNumberType: "MOBILE",
+            // preferredCountries: ['cn', 'jp'],
+            // separateDialCode: true,
+            utilsScript: "Scripts/conutrywithflags/build/js/utils.js",
+        });
+    </script>
+
+
+
+    <script>
+        function Formvalid() {
+            if (($('#SpanNameValid').text() == "true") && ($('#SpanMobileValid').text() == "true") && ($('#SpanEmailValid').text() == "true") && ($('#SpanPasswordValid').text() == "true") && ($('#SpanPasswordMatch').text() == "true"))
+            {
+                var PasswordinRegister = document.getElementById('DivPassReg').getElementsByTagName('input')[0].value.trim();
+                var PasswordConfirm = document.getElementById('ConfirmPassword').value.trim();
+                //alert(PasswordinRegister);
+                //alert(PasswordConfirm);
+                var confirmstrength = document.getElementById('confirmstrength');
+                if (PasswordinRegister == PasswordConfirm) {
+
+                    confirmstrength.innerHTML = '<span style="color:green">@Resource.PasswordandConfirmAreMatched</span>';
+                    return true;
+                }
+                else {
+                    confirmstrength.innerHTML = '<span style="color:red">@Resource.PasswordandConfirmNotMatched</span>';
+                    return false;
+                }
+
+            }
+            else {
+                return false;
+
+            }
+
+        }
+
+        //$(document).ready(function () {
+        //    if (($('#Name').val.length == 0) && ($('#Mobile').val.length == 0) && ($('#Email').val.length == 0) && ($('#Password').val.length == 0))
+        //    {
+        //        var checker = document.getElementById('acceptTerms');
+        //        checker.disabled = true;
+
+        //    }
+
+        //});
+
+
+        var checker = document.getElementById('acceptTerms');
+        var sendbtn = document.getElementById('registerbtn');
+        checker.onchange = function () {
+
+            if (Formvalid() == true) {
+                //checker.disabled = false;
+                //alert("Enabled");
+                sendbtn.disabled = !this.checked;
+
+            }
+            else {
+                //checker.disabled = true;
+                //  alert("disabled");
+                sendbtn.disabled = this.checked;
+
+            }
+
+
+
+        };
+
+
+
+        function passwordChanged(str) {
+            var confirmstrength = document.getElementById('confirmstrength');
+            var strength = document.getElementById('strength');
+            var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+            var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+            var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+            var pwd = str;
+            if (pwd.value.length == 0) {
+                strength.innerHTML = '@Resource.EnterSuitablePassword';
+                confirmstrength.innerHTML = '';
+                strengthpwd.innerHTML = pwd.value;
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                checker.disabled = true
+                $('#SpanPasswordValid').text("false");
+
+            } else if (false == enoughRegex.test(pwd.value)) {
+                strength.innerHTML = '<span style="color:red">@Resource.PasswordMustNotlessthan6CharIncludeCapitalandSmallandSymbols</span>';
+                strengthpwd.innerHTML = pwd.value;
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                checker.disabled = true
+                $('#SpanPasswordValid').text("false");
+            } else if (strongRegex.test(pwd.value)) {
+                strength.innerHTML = '<span style="color:green">@Resource.PasswordareStrong</span>';
+                strengthpwd.innerHTML = pwd.value;
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                checker.disabled = true
+                $('#SpanPasswordValid').text("true");
+
+                // تم اضافة هذا السطر لحل مشكله عدم تنشيط زرار الاتفاقية 17-07-2021
+                confirm(str);
+
+
+                if (Formvalid() == true) {
+                    checker.disabled = false;
+                    //  alert("Enabled");
+                }
+                else {
+                    checker.disabled = true;
+                    // alert("disabled");
+                }
+
+
+
+
+            }
+            else if (mediumRegex.test(pwd.value)) {
+                strength.innerHTML = '<span style="color:orange">@Resource.PasswordareModerate</span>';
+                confirmstrength.innerHTML = '';
+                strengthpwd.innerHTML = pwd.value;
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                checker.disabled = true
+                $('#SpanPasswordValid').text("false");
+            } else {
+
+                strength.innerHTML = '<span style="color:red">@Resource.PasswordMustNotlessthan6CharIncludeCapitalandSmallandSymbols</span>';
+                /*strength.innerHTML = '<span style="color:red">كلمة المرور ضعيفة</span>';*/
+
+                strengthpwd.innerHTML = pwd.value;
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                checker.disabled = true
+                $('#SpanPasswordValid').text("false");
+
+            }
+
+          
+
+        }
+
+        function match() {
+            var name = document.getElementById('Name');
+            var username = document.getElementById('UserName');
+            var email = document.getElementById('Email');
+            username.value = email.value;
+
+            var n1 = document.getElementById('Password');
+            var n2 = document.getElementById('ConfirmPassword');
+            n2.value = n1.value;
+
+
+        }
+
+        function confirm(str) {
+            var strengthpwd = document.getElementById('strengthpwd');
+            var confirmstrength = document.getElementById('confirmstrength');
+            var TextPassword = document.getElementById('Password');
+
+
+            if (str.value == strengthpwd.innerHTML) {
+
+                confirmstrength.innerHTML = '<span style="color:green">@Resource.PasswordandConfirmAreMatched </span>';
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+
+
+                $('#SpanPasswordMatch').text("true");
+
+
+                if (Formvalid() == true) {
+                    checker.disabled = false;
+
+                }
+                else {
+                    checker.disabled = true;
+
+                }
+
+
+
+
+
+            }
+            else {
+                confirmstrength.innerHTML = '<span style="color:red">@Resource.PasswordandConfirmNotMatched</span>';
+                var sendbtn = document.getElementById('registerbtn');
+                var checker = document.getElementById('acceptTerms');
+                checker.disabled = true
+                $('#SpanPasswordMatch').text("false");
+
+
+            }
+
+
+
+        }
+
+
+
+    </script>
+
+
+}
+
+
+

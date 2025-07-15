@@ -1,0 +1,2524 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>عن إستقدامي</value>
+  </data>
+  <data name="ActivateTextBoxByMouseAndUseArrows" xml:space="preserve">
+    <value>قم بتنشيط مربع النص بالماوس ثم  استخدم الأسهم  لإدخال الوقت المناسب</value>
+  </data>
+  <data name="AddAdvertisment" xml:space="preserve">
+    <value>أعلن عن عقارك</value>
+  </data>
+  <data name="AddComment" xml:space="preserve">
+    <value>اضف  تعليق</value>
+  </data>
+  <data name="AddedProperties" xml:space="preserve">
+    <value>العقارات المضافة</value>
+  </data>
+  <data name="AddedToCompareList" xml:space="preserve">
+    <value>تم اضافة الاعلان الى قائمة المقارنات</value>
+  </data>
+  <data name="AddedToFavoritesList" xml:space="preserve">
+    <value>تم اضافة الاعلان الى قائمة المفضلة</value>
+  </data>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>معلومات اضافية</value>
+  </data>
+  <data name="AdditionalNo" xml:space="preserve">
+    <value>الرقم الاضافي</value>
+  </data>
+  <data name="AddProperty" xml:space="preserve">
+    <value>اضافة عقار</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>العنوان</value>
+  </data>
+  <data name="AddToCompare" xml:space="preserve">
+    <value>اضف للمقارنة</value>
+  </data>
+  <data name="AddToFavorite" xml:space="preserve">
+    <value>اضف للمفضلة</value>
+  </data>
+  <data name="AdvancedSearch" xml:space="preserve">
+    <value>بحث متقدم</value>
+  </data>
+  <data name="AdvertiserData" xml:space="preserve">
+    <value>بيانات المعلن</value>
+  </data>
+  <data name="AdvertiseYourProperty" xml:space="preserve">
+    <value>أعلن عن عقارك</value>
+  </data>
+  <data name="AdvertismentDetails" xml:space="preserve">
+    <value>تفاصيل الاعلان</value>
+  </data>
+  <data name="AdvertismentExpirationDate" xml:space="preserve">
+    <value>تاريخ انتهاء الاعلان</value>
+  </data>
+  <data name="Agree" xml:space="preserve">
+    <value>موافقة</value>
+  </data>
+  <data name="AgreementRegistrationData" xml:space="preserve">
+    <value>بيانات تسجيل الاتفاق</value>
+  </data>
+  <data name="AirConditionNo" xml:space="preserve">
+    <value>عدد المكيفات</value>
+  </data>
+  <data name="AllowMessages" xml:space="preserve">
+    <value>السماح للرسائل</value>
+  </data>
+  <data name="AllProperty" xml:space="preserve">
+    <value>العقار كامل</value>
+  </data>
+  <data name="AllRightsReservedToDor2021ApplicationForTheCompany" xml:space="preserve">
+    <value>جميع الحقوق محفوظه لتطبيق إستقدامي 2022 لشركة</value>
+  </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>تمتلك حساب؟</value>
+  </data>
+  <data name="ApartmentCount" xml:space="preserve">
+    <value>عدد الشقق</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>مساحة</value>
+  </data>
+  <data name="AreaByMetreSquare" xml:space="preserve">
+    <value>المساحه بالمتر المربع</value>
+  </data>
+  <data name="Areaofpropertyinsquaremeters" xml:space="preserve">
+    <value>مساحة العقار بالمتر المربع</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>هل أنت متأكد ؟</value>
+  </data>
+  <data name="AreYouSureToDeleteThisMessage" xml:space="preserve">
+    <value>هل أنت متأكد من حذف هذه الرسالة ؟</value>
+  </data>
+  <data name="AreYouSureToPermanentlyDeleteThisAdvertisment" xml:space="preserve">
+    <value>هل أنت متأكد من حذف هذا الاعلان بصورة نهائية ؟</value>
+  </data>
+  <data name="AreYouSureYouWantToRestoreThisAdvertisment" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد إسترجاع هذا الاعلان ؟</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>تنبيه</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>الرجوع للرئيسية</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>البيانات الاساسية</value>
+  </data>
+  <data name="BathRoom" xml:space="preserve">
+    <value>معروفةة مياه</value>
+  </data>
+  <data name="Big" xml:space="preserve">
+    <value>الأكبر</value>
+  </data>
+  <data name="Bonds" xml:space="preserve">
+    <value>السندات</value>
+  </data>
+  <data name="BrokerName" xml:space="preserve">
+    <value>اسم الوسيط العقارى</value>
+  </data>
+  <data name="BrokerTransfer" xml:space="preserve">
+    <value>نقل وسيط عقارى</value>
+  </data>
+  <data name="ByArea" xml:space="preserve">
+    <value>من حيث المساحة</value>
+  </data>
+  <data name="ByPrice" xml:space="preserve">
+    <value>من حيث السعر</value>
+  </data>
+  <data name="ByPropertyAge" xml:space="preserve">
+    <value>من حيث عمر العقار</value>
+  </data>
+  <data name="ByPropertyIncome" xml:space="preserve">
+    <value>من حيث الدخل من العقار</value>
+  </data>
+  <data name="CalendarGregorian" xml:space="preserve">
+    <value>التقويم  ميلادي</value>
+  </data>
+  <data name="CalendarHijri" xml:space="preserve">
+    <value>التقويم هجري</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="ChooseAppropriateImagesForYourAdAndThenClickOnOneToSetItAsMainImageForTheAd" xml:space="preserve">
+    <value>اختر الصور المناسبة لاعلانك ثم قم بالضغط على احداهما لتعينها كصورة رئيسية للاعلان</value>
+  </data>
+  <data name="ChooseCity" xml:space="preserve">
+    <value>اختر المدينة</value>
+  </data>
+  <data name="ChooseDistrict" xml:space="preserve">
+    <value>اختر الحى</value>
+  </data>
+  <data name="ChooseFacades" xml:space="preserve">
+    <value>اختر الواجهات</value>
+  </data>
+  <data name="ChooseOrderType" xml:space="preserve">
+    <value>اختار نوع الفرز</value>
+  </data>
+  <data name="ChoosePropertyType" xml:space="preserve">
+    <value>اختر نوع العقار</value>
+  </data>
+  <data name="ChoosePurpose" xml:space="preserve">
+    <value>اختر الغرض</value>
+  </data>
+  <data name="ChooseServiceType" xml:space="preserve">
+    <value>اختر نوع الخدمة</value>
+  </data>
+  <data name="ChooseTheProperty" xml:space="preserve">
+    <value>قم بأختيار العقار</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>المدينة</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>التعليقات</value>
+  </data>
+  <data name="ComparationPage" xml:space="preserve">
+    <value>صفحة المقارنة</value>
+  </data>
+  <data name="Comparations" xml:space="preserve">
+    <value>المقارانات</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>قارن</value>
+  </data>
+  <data name="ComparePage" xml:space="preserve">
+    <value>صفحة المقارنة</value>
+  </data>
+  <data name="ComparisonList" xml:space="preserve">
+    <value>قائمة المقارنات</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>تأكيد كلمة المرور</value>
+  </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>بيانات الاتصال</value>
+  </data>
+  <data name="ContactForm" xml:space="preserve">
+    <value>نموذج الاتصال</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>اتصل بنا</value>
+  </data>
+  <data name="ContractEndDate" xml:space="preserve">
+    <value>تاريخ نهاية العقد</value>
+  </data>
+  <data name="ContractNo" xml:space="preserve">
+    <value>رقم العقد</value>
+  </data>
+  <data name="ContractStartDate" xml:space="preserve">
+    <value>تاريخ بداية العقد</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>الدولة</value>
+  </data>
+  <data name="CreateNewMessage" xml:space="preserve">
+    <value>انشئ رسالة جديدة</value>
+  </data>
+  <data name="CreateYourRealStateReportFromDorr" xml:space="preserve">
+    <value>انشئ تقريرك العقاري من إستقدامي</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>أيام</value>
+  </data>
+  <data name="DearUserPleaseNoteThatThisEmailIsAlreadySubscribedToOurMailingList" xml:space="preserve">
+    <value>عميلنا العزيز برجاء العلم بأن هذا البريد الالكترونى مشترك بالفعل فى قائمتنا البريدية</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="DeleteAdvertisment" xml:space="preserve">
+    <value>حذف الأعلان</value>
+  </data>
+  <data name="DeleteAdvertismentPermenant" xml:space="preserve">
+    <value>حذف نهائى</value>
+  </data>
+  <data name="DeletedAdvertisments" xml:space="preserve">
+    <value>اعلانات محذوفة</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>حذف رسالة</value>
+  </data>
+  <data name="DeleteProperty" xml:space="preserve">
+    <value>حذف عقار</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>الوصف</value>
+  </data>
+  <data name="DetailedInformations" xml:space="preserve">
+    <value>الييانات التفصيلية</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>التفاصيل</value>
+  </data>
+  <data name="DeterminePropertySpecifications" xml:space="preserve">
+    <value>قم بتحديد مواصفات العقار</value>
+  </data>
+  <data name="DiscoverLatestDorrOffers" xml:space="preserve">
+    <value>تعرف علي اخر عروض إستقدامي العقارية</value>
+  </data>
+  <data name="DiscoverLatestOffers" xml:space="preserve">
+    <value>اكتشف اخر العروض</value>
+  </data>
+  <data name="DiscoverOurServices" xml:space="preserve">
+    <value>اكتشف خدماتنا</value>
+  </data>
+  <data name="DiscoverServicesPresentedByDorr" xml:space="preserve">
+    <value>تعرف علي خدمات المقدمة من معروفة</value>
+  </data>
+  <data name="DistinguishedRealStateManagementInDorr" xml:space="preserve">
+    <value>ادراة العقارات المتميزة من معروفة</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>الحي</value>
+  </data>
+  <data name="DistrictNo" xml:space="preserve">
+    <value>رقم القطعة</value>
+  </data>
+  <data name="DoNotHaveAccount" xml:space="preserve">
+    <value>لا تملك حساب؟</value>
+  </data>
+  <data name="DorrApp" xml:space="preserve">
+    <value>تطبيق إستقدامي</value>
+  </data>
+  <data name="DorrWebsite" xml:space="preserve">
+    <value>موقع إستقدامي </value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>تحميل</value>
+  </data>
+  <data name="DownloadDorrAppOnYourMobile" xml:space="preserve">
+    <value>حمل تطبيق إستقدامي علي جوالك الأن</value>
+  </data>
+  <data name="EditAdvertisementInformation" xml:space="preserve">
+    <value>تعديل بيانات الاعلان</value>
+  </data>
+  <data name="EditAdvertisment" xml:space="preserve">
+    <value>تعديل الأعلان</value>
+  </data>
+  <data name="EditProperty" xml:space="preserve">
+    <value>تعديل عقار</value>
+  </data>
+  <data name="ElectricityCount" xml:space="preserve">
+    <value>عدد العدادات</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>البريد الالكتروني</value>
+  </data>
+  <data name="EmailAlreadyRegistered" xml:space="preserve">
+    <value>هذا البريد الالكترونى مسجل من قبل</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="EnjoyAllDorrFreeServices" xml:space="preserve">
+    <value>وتمتع بجميع خدمات إستقدامي مجانا</value>
+  </data>
+  <data name="EnjoyAllFreeServices" xml:space="preserve">
+    <value>استمتع بكافة الخدمات الالكترونية مجانا</value>
+  </data>
+  <data name="EnterBriefDescriptionForTheMaintenanceRequest" xml:space="preserve">
+    <value>إدخل وصف مختصر لطلب الصيانة</value>
+  </data>
+  <data name="EnterConfirmPassword" xml:space="preserve">
+    <value>أكد كلمة المرور</value>
+  </data>
+  <data name="EnterDistrictName" xml:space="preserve">
+    <value>ادخل اسم  الحي</value>
+  </data>
+  <data name="EnterMessageDetails" xml:space="preserve">
+    <value>ادخل نص الرسالة</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>ادخل كلمة المرور</value>
+  </data>
+  <data name="EnterReasonForReporting" xml:space="preserve">
+    <value>ادخل سبب البلاغ</value>
+  </data>
+  <data name="EnterStreetName" xml:space="preserve">
+    <value>ادخل اسم الشارع</value>
+  </data>
+  <data name="EnterSuitablePassword" xml:space="preserve">
+    <value>ادخل كلمة مرور مناسبة</value>
+  </data>
+  <data name="EnterUserName" xml:space="preserve">
+    <value>ادخل اسم المستخدم</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>ادخل البريد الالكتروني</value>
+  </data>
+  <data name="EnterYourEmailToRestoreYourPassword" xml:space="preserve">
+    <value>ادخل الايميل الالكتروني لأستعاده كلمة السر</value>
+  </data>
+  <data name="EnterYourNameByEnglish" xml:space="preserve">
+    <value>ادخل اسمك باللغة الانجليزية</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>التقييم</value>
+  </data>
+  <data name="ExpiredAdvertisments" xml:space="preserve">
+    <value>اعلانات منتهية</value>
+  </data>
+  <data name="FavoriteAdvertisments" xml:space="preserve">
+    <value>الاعلانات المفضلة</value>
+  </data>
+  <data name="FavoriteList" xml:space="preserve">
+    <value>قائمة المفضلة</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>المفضلة</value>
+  </data>
+  <data name="FloorCount" xml:space="preserve">
+    <value>عدد الأدوار</value>
+  </data>
+  <data name="FollowUsOnOurPages" xml:space="preserve">
+    <value>تابعنا على صفحاتنا</value>
+  </data>
+  <data name="Footer1" xml:space="preserve">
+    <value>قم بالبحث عن العقار المناسب وذالك عن باختيار (الدولة - والمدينة) لتظهر لك جميع العقارات الموجودة فى هذة المدينة سواء كانت على الخريطة اوبالنتائج التفصيلية.</value>
+  </data>
+  <data name="Footer2" xml:space="preserve">
+    <value>تستطيع تحديد موصفات العقار المناسب والمطلوب لتحصل على نتائج فى البحث أكثر دقة من خلال تحديد (الغرض –  نوع العقار – السعر – المساحة) وذالك عن طريق البحث المتقدم.</value>
+  </data>
+  <data name="Footer3" xml:space="preserve">
+    <value>من نتائج البحث تستطيع مشاهدة جميع تفاصيل العقار وايضا تستطيع مقارنته من حيث (السعر – العمر – المساحة – الدخل) بالعقارات الاخرى حتى تتمكن من اختيار العقار المناسب.</value>
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>نسيت كلمة المرور؟</value>
+  </data>
+  <data name="ForSale" xml:space="preserve">
+    <value>للبيع</value>
+  </data>
+  <data name="FrequentlyAskedQuestions" xml:space="preserve">
+    <value>الأسئلة المتداولة</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>من</value>
+  </data>
+  <data name="FromMaximumToMinimum" xml:space="preserve">
+    <value>من الأكثر لأقل</value>
+  </data>
+  <data name="FromMinimumToMaximum" xml:space="preserve">
+    <value>من الأقل للأكثر</value>
+  </data>
+  <data name="FromNewestToOldest" xml:space="preserve">
+    <value>لأحدث الي الأقدم</value>
+  </data>
+  <data name="FromOldestToNewest" xml:space="preserve">
+    <value>من الأقدم للأحدث</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="HowToTakeAdvantageFromDorr" xml:space="preserve">
+    <value>كيف تستفيد من إستقدامي</value>
+  </data>
+  <data name="HowWebSiteWorks" xml:space="preserve">
+    <value>كيف يعمل الموقع</value>
+  </data>
+  <data name="IagreeandAccept" xml:space="preserve">
+    <value>انا اتفق تماماً عند التسجيل مع</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>مسلسل</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>الصور</value>
+  </data>
+  <data name="Inbox" xml:space="preserve">
+    <value>البريد الوارد</value>
+  </data>
+  <data name="IncludesFurniture" xml:space="preserve">
+    <value>يشمل قطع الأثاث</value>
+  </data>
+  <data name="IncludesKitchenParts" xml:space="preserve">
+    <value>يشمل قطع المطبخ</value>
+  </data>
+  <data name="IncorrectEmailorPassword" xml:space="preserve">
+    <value>البريد الالكتروني أو كلمة المرور  غير صحيح</value>
+  </data>
+  <data name="InstallmentDate" xml:space="preserve">
+    <value>تاريخ الدفعة</value>
+  </data>
+  <data name="Installments" xml:space="preserve">
+    <value>الدفعات</value>
+  </data>
+  <data name="InstallmentValue" xml:space="preserve">
+    <value>قيمة الدفعة</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>التأمين</value>
+  </data>
+  <data name="Lang" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="LastUpdateSince" xml:space="preserve">
+    <value>اخر تحديث منذ</value>
+  </data>
+  <data name="LegalAgencyNO" xml:space="preserve">
+    <value>رقم الوكالة</value>
+  </data>
+  <data name="LegalAgencyUrl" xml:space="preserve">
+    <value>صورة رقم الوكالة الشرعية</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>الموقع</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل خروج</value>
+  </data>
+  <data name="MaintainWithSpecificPrice" xml:space="preserve">
+    <value>صلح برقم معين للصيانة</value>
+  </data>
+  <data name="MaintenanceRequest" xml:space="preserve">
+    <value>طلب صيانة</value>
+  </data>
+  <data name="MaintenanceRequestByPrice" xml:space="preserve">
+    <value>طلب  تصليح بمبلغ</value>
+  </data>
+  <data name="MaintenanceRequestDetails" xml:space="preserve">
+    <value>تفاصيل طلب الصيانة</value>
+  </data>
+  <data name="MaintenanceRequests" xml:space="preserve">
+    <value>طلبات الصيانة</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>الأعلي</value>
+  </data>
+  <data name="MaximumArea" xml:space="preserve">
+    <value>أعلي مساحة</value>
+  </data>
+  <data name="MaximumPrice" xml:space="preserve">
+    <value>أعلي سعر</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>الرسالة</value>
+  </data>
+  <data name="MessageDetails" xml:space="preserve">
+    <value>تفاصيل الرسالة</value>
+  </data>
+  <data name="Meter" xml:space="preserve">
+    <value>متر</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>الأقل</value>
+  </data>
+  <data name="MinimumArea" xml:space="preserve">
+    <value>أقل مساحة</value>
+  </data>
+  <data name="MinimumPrice" xml:space="preserve">
+    <value>أقل سعر</value>
+  </data>
+  <data name="MobileAlreadyRegistered" xml:space="preserve">
+    <value>رقم الجوال مستخدم من قبل  مستخدم اخر</value>
+  </data>
+  <data name="MobileMustBe10Number" xml:space="preserve">
+    <value>يجب أن يكون رقم الجوال 10 أرقام</value>
+  </data>
+  <data name="MobileNo" xml:space="preserve">
+    <value>رقم الجوال</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>حسابي</value>
+  </data>
+  <data name="MyAdvertisments" xml:space="preserve">
+    <value>إعلاناتى</value>
+  </data>
+  <data name="MyOrders" xml:space="preserve">
+    <value>طلباتى</value>
+  </data>
+  <data name="MyProperties" xml:space="preserve">
+    <value>عقاراتى</value>
+  </data>
+  <data name="MyRentedProperties" xml:space="preserve">
+    <value>عقاراتي المستأجرة</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="NationalAddress" xml:space="preserve">
+    <value>العنوان الوطني</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>الجنسية</value>
+  </data>
+  <data name="Newest" xml:space="preserve">
+    <value>الأحدث</value>
+  </data>
+  <data name="NewRequests" xml:space="preserve">
+    <value>طلبات جديدة</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>مستخدم جديد</value>
+  </data>
+  <data name="NIDNo" xml:space="preserve">
+    <value>رقم الهوية</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>لا</value>
+  </data>
+  <data name="NoOfdaysForNextInstallment" xml:space="preserve">
+    <value>عدد الأيام للدفعة القادمة</value>
+  </data>
+  <data name="NotAllowed" xml:space="preserve">
+    <value>غير مسموح</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
+  <data name="NotResponsibleForFaults" xml:space="preserve">
+    <value>غير مسئولين علي الاعطال</value>
+  </data>
+  <data name="OfficeCommission" xml:space="preserve">
+    <value>عمولة المكتب</value>
+  </data>
+  <data name="OfficesCount" xml:space="preserve">
+    <value>عدد المكاتب</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>موافق</value>
+  </data>
+  <data name="Oldest" xml:space="preserve">
+    <value>الأقدم</value>
+  </data>
+  <data name="OldMessages" xml:space="preserve">
+    <value>الرسائل السابقة</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>الترتيب بواسطة</value>
+  </data>
+  <data name="OurServices" xml:space="preserve">
+    <value>خدماتنا</value>
+  </data>
+  <data name="OwnerData" xml:space="preserve">
+    <value>بيانات المالك</value>
+  </data>
+  <data name="OwnerName" xml:space="preserve">
+    <value>اسم المالك</value>
+  </data>
+  <data name="OwnerShipContractNo" xml:space="preserve">
+    <value>رقم الصك</value>
+  </data>
+  <data name="OwnerShipContractUrl" xml:space="preserve">
+    <value>صورة صك الملكية</value>
+  </data>
+  <data name="OwnershipTransfer" xml:space="preserve">
+    <value>نقل الملكية</value>
+  </data>
+  <data name="OwnerType" xml:space="preserve">
+    <value>نوع المالك</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="PasswordandConfirmAreMatched" xml:space="preserve">
+    <value>كلمة المرور متطابقة</value>
+  </data>
+  <data name="PasswordandConfirmNotMatched" xml:space="preserve">
+    <value>كلمة المرور غير متطابقة</value>
+  </data>
+  <data name="PasswordareModerate" xml:space="preserve">
+    <value>لا يمكن التسجيل بكلمة مرور متوسطة</value>
+  </data>
+  <data name="PasswordareStrong" xml:space="preserve">
+    <value>كلمة المرور قوية الان</value>
+  </data>
+  <data name="PasswordMustNotlessthan6CharIncludeCapitalandSmallandSymbols" xml:space="preserve">
+    <value>كلمة المرور تجب ان لا تقل عن 6 حروف تشمل حروف كبيرة وصغيرة ورموز</value>
+  </data>
+  <data name="PathRoom" xml:space="preserve">
+    <value>حمام</value>
+  </data>
+  <data name="PathRoomsCount" xml:space="preserve">
+    <value>عدد الحمامات</value>
+  </data>
+  <data name="PaymentPolicy" xml:space="preserve">
+    <value>سياسة الدفع</value>
+  </data>
+  <data name="PersonalInformation" xml:space="preserve">
+    <value>البيانات الشخصية</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
+  <data name="PleaseAdjustYourEmailSettingsWithYourHostingServiceProviders" xml:space="preserve">
+    <value>برجاء ضبط اعدادت الايميلات مع مزودى خدمة الاستضافة</value>
+  </data>
+  <data name="PleaseChooseSocialNetwork" xml:space="preserve">
+    <value>من فضلك اختر موقع التواصل الأجتماعي</value>
+  </data>
+  <data name="PleaseEnterEmailInCorrectFormat" xml:space="preserve">
+    <value>من فضلك قم بادخال البريد الالكترونى بشكل صحيح</value>
+  </data>
+  <data name="PleaseFillToContactWithYou" xml:space="preserve">
+    <value>برجاء مل بيانات حتي نتواصل معكم</value>
+  </data>
+  <data name="PleaseLocatePropertyOnTheMapByclickingThedesiredlocation" xml:space="preserve">
+    <value>فضلا حدد موقع العقار علي الخريطة من خلال النقر علي الموقع المطلوب</value>
+  </data>
+  <data name="PleaseLoginFirst" xml:space="preserve">
+    <value>من فضلك قم بتسجيل الدخول اولا</value>
+  </data>
+  <data name="PleaseLoginToYourPersonalAccountFirst" xml:space="preserve">
+    <value>يرجى تسجيل الدخول إلى حسابك  الشخصى اولا</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>الرمز البريدي</value>
+  </data>
+  <data name="PreferredTimeForContact" xml:space="preserve">
+    <value>الوقت المفضل للتواصل</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>السعر</value>
+  </data>
+  <data name="PriceAllowedForMaintenance" xml:space="preserve">
+    <value>المبلغ المسموح للصيانة</value>
+  </data>
+  <data name="PriceInRiyal" xml:space="preserve">
+    <value>السعر بالريال</value>
+  </data>
+  <data name="PriceSom" xml:space="preserve">
+    <value>سعر السوم</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>سياسة الخصوصية</value>
+  </data>
+  <data name="PropertiesThatHaveRentedAndHandedOver" xml:space="preserve">
+    <value>عقارات تم إنتهاء استئجارها وتسليمها</value>
+  </data>
+  <data name="Property" xml:space="preserve">
+    <value>العقار</value>
+  </data>
+  <data name="PropertyAge" xml:space="preserve">
+    <value>عمر العقار</value>
+  </data>
+  <data name="PropertyDescription" xml:space="preserve">
+    <value>وصف العقار</value>
+  </data>
+  <data name="PropertyDetails" xml:space="preserve">
+    <value>تفاصيل الوحدة</value>
+  </data>
+  <data name="PropertyFeatures" xml:space="preserve">
+    <value>مميزات  العقار</value>
+  </data>
+  <data name="PropertyIncome" xml:space="preserve">
+    <value>الدخل من العقار</value>
+  </data>
+  <data name="PropertyManagement" xml:space="preserve">
+    <value>ادارة العقارات</value>
+  </data>
+  <data name="PropertyName" xml:space="preserve">
+    <value>اسم العقار</value>
+  </data>
+  <data name="PropertyNo" xml:space="preserve">
+    <value>رقم العقار</value>
+  </data>
+  <data name="PropertyOnMap" xml:space="preserve">
+    <value>موقع العقار علي الخريطة</value>
+  </data>
+  <data name="PropertyState" xml:space="preserve">
+    <value>حالة العقار</value>
+  </data>
+  <data name="PropertyType" xml:space="preserve">
+    <value>نوع العقار</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>نشر</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>تاريخ النشر</value>
+  </data>
+  <data name="PublishedAdvertisments" xml:space="preserve">
+    <value>اعلانات منشورة</value>
+  </data>
+  <data name="PublishTheReply" xml:space="preserve">
+    <value>انشر الرد</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>الغرض</value>
+  </data>
+  <data name="RateDorrFeaturedProperties" xml:space="preserve">
+    <value>قيم عقارات إستقدامي المميزة</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>اقرا المزيد</value>
+  </data>
+  <data name="RealStateAppraisal" xml:space="preserve">
+    <value>التقييم العقاري</value>
+  </data>
+  <data name="RealStateBrokerage" xml:space="preserve">
+    <value>الوساطة العقارية</value>
+  </data>
+  <data name="RealStateNews" xml:space="preserve">
+    <value>نشرة أخبار العقارات</value>
+  </data>
+  <data name="RealStateNewsGuideProvidedbyDorr" xml:space="preserve">
+    <value>دليل اخباري للعقارات مقدم من معروفة</value>
+  </data>
+  <data name="RealStateReports" xml:space="preserve">
+    <value>التقارير العقارية</value>
+  </data>
+  <data name="RealStatetips" xml:space="preserve">
+    <value>نصائح عقارية</value>
+  </data>
+  <data name="ReasonForReporting" xml:space="preserve">
+    <value>سبب الابلاغ</value>
+  </data>
+  <data name="ReceiptOfMaintenanceProcess" xml:space="preserve">
+    <value>إيصال عملية التصليح</value>
+  </data>
+  <data name="RecipientName" xml:space="preserve">
+    <value>اسم المرسل إليه</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>تسجيل حساب</value>
+  </data>
+  <data name="RegisterNowInDorrToEnjoyFreeDorrServices" xml:space="preserve">
+    <value>سجل الان في إستقدامي لتستمتع بجميع خدمات إستقدامي  المجانية ويصل اليك اخر الاخبار
+                        والتحديثات</value>
+  </data>
+  <data name="RememberMeNextTime" xml:space="preserve">
+    <value>تذكرنى فى المرة المقبلة</value>
+  </data>
+  <data name="Rent" xml:space="preserve">
+    <value>تأجير</value>
+  </data>
+  <data name="RentAmount" xml:space="preserve">
+    <value>قيمة الايجار</value>
+  </data>
+  <data name="RentContractUrl" xml:space="preserve">
+    <value>صورة عقد إيجار</value>
+  </data>
+  <data name="RentedProperties" xml:space="preserve">
+    <value>عقارات مستأجرة</value>
+  </data>
+  <data name="RentRequest" xml:space="preserve">
+    <value>طلب تأجير</value>
+  </data>
+  <data name="RentRequests" xml:space="preserve">
+    <value>طلبات التأجير</value>
+  </data>
+  <data name="RentStatus" xml:space="preserve">
+    <value>حالة التأجير</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>رد</value>
+  </data>
+  <data name="ReplyOnMessage" xml:space="preserve">
+    <value>الرد علي  الرسالة</value>
+  </data>
+  <data name="ReportAcomment" xml:space="preserve">
+    <value>ابلاغ عن تعليق</value>
+  </data>
+  <data name="ReportAdvertisment" xml:space="preserve">
+    <value>ابلغ عن الاعلان او إساءة</value>
+  </data>
+  <data name="Republish" xml:space="preserve">
+    <value>إعادة نشر</value>
+  </data>
+  <data name="RequestsHaveBeenSentToMaintenanceWorker" xml:space="preserve">
+    <value>طلبات تم ارسال عامل الصيانة</value>
+  </data>
+  <data name="RequestsNotResponsibleForItsMalfunctions" xml:space="preserve">
+    <value>طلبات  غير مسئولين عن أعطالها</value>
+  </data>
+  <data name="RequestsToAcceptRenting" xml:space="preserve">
+    <value>طلبات لقبول تأجيرها</value>
+  </data>
+  <data name="RequiredMaintenance" xml:space="preserve">
+    <value>الصيانة المطلوبة</value>
+  </data>
+  <data name="RequiredPrice" xml:space="preserve">
+    <value>السعر المطلوب</value>
+  </data>
+  <data name="RestoreAdvertisment" xml:space="preserve">
+    <value>اعادة الأعلان</value>
+  </data>
+  <data name="Room" xml:space="preserve">
+    <value>غرفة</value>
+  </data>
+  <data name="RoomsCount" xml:space="preserve">
+    <value>عدد الغرف</value>
+  </data>
+  <data name="SAR" xml:space="preserve">
+    <value>ريال</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="SearchFilter" xml:space="preserve">
+    <value>فلتر البحث</value>
+  </data>
+  <data name="SearchForAuserByNameOrPhoneNumber" xml:space="preserve">
+    <value>ابحث عن مستخدم بالاسم أو  رقم الهاتف</value>
+  </data>
+  <data name="SearchForYourProperty" xml:space="preserve">
+    <value>ابحث عن عقارك</value>
+  </data>
+  <data name="SearchNowforYourPropertyInDoor" xml:space="preserve">
+    <value>ابحث الان عن عقارك في إستقدامي </value>
+  </data>
+  <data name="SelectService" xml:space="preserve">
+    <value>حدد الخدمة</value>
+  </data>
+  <data name="SellYourProperty" xml:space="preserve">
+    <value>بيع عقارك</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>ارسال</value>
+  </data>
+  <data name="SendComplainAboutAdvertisment" xml:space="preserve">
+    <value>أبلغ عن الاعلان</value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>ارسال البريد الالكترونى</value>
+  </data>
+  <data name="SenderData" xml:space="preserve">
+    <value>بيانات الراسل</value>
+  </data>
+  <data name="SenderName" xml:space="preserve">
+    <value>اسم الراسل</value>
+  </data>
+  <data name="SendMessage" xml:space="preserve">
+    <value>ارسال رسالة</value>
+  </data>
+  <data name="SendMessageToAdvertiser" xml:space="preserve">
+    <value>ارسل رسالة للمعلن</value>
+  </data>
+  <data name="SendMobileNo" xml:space="preserve">
+    <value>ارسال رقم الجوال</value>
+  </data>
+  <data name="SendReply" xml:space="preserve">
+    <value>ارسال رد</value>
+  </data>
+  <data name="SendRequest" xml:space="preserve">
+    <value>إرسال طلب</value>
+  </data>
+  <data name="SendWhatAppNo" xml:space="preserve">
+    <value>ارسال رقم الواتس اب</value>
+  </data>
+  <data name="SentEmail" xml:space="preserve">
+    <value>البريد المرسل</value>
+  </data>
+  <data name="SentMessageCount" xml:space="preserve">
+    <value>عدد الرسائل المرسلة</value>
+  </data>
+  <data name="ServiceDetails" xml:space="preserve">
+    <value>تفاصيل  الخدمة</value>
+  </data>
+  <data name="ServiceType" xml:space="preserve">
+    <value>نوع الخدمة</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>مشاركة</value>
+  </data>
+  <data name="ShareOnSocialMedia" xml:space="preserve">
+    <value>مشاركه في السوشيال ميديا</value>
+  </data>
+  <data name="ShowMobileNumber" xml:space="preserve">
+    <value>اظهر رقم الجوال</value>
+  </data>
+  <data name="ShowPrice" xml:space="preserve">
+    <value>اظهار السعر</value>
+  </data>
+  <data name="ShowPropertyLocationOnMap" xml:space="preserve">
+    <value>اظهار موقع العقار علي الخريطة</value>
+  </data>
+  <data name="ShowWhatAppNumber" xml:space="preserve">
+    <value>اظهر رقم الواتس اب</value>
+  </data>
+  <data name="SiteMap" xml:space="preserve">
+    <value>خريطة الموقع</value>
+  </data>
+  <data name="SleepingRoom" xml:space="preserve">
+    <value>غرف نوم</value>
+  </data>
+  <data name="SleepRooms" xml:space="preserve">
+    <value>غرف نوم</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>الأصغر</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>تاريخ البدء</value>
+  </data>
+  <data name="StartInRealestateBrokerageNow" xml:space="preserve">
+    <value>ابدا  في الوساطة العقارية الان</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>الشارع</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>إضافة عقار</value>
+  </data>
+  <data name="SubscribeToNewsletter" xml:space="preserve">
+    <value>أشترك في النشرة الأخبارية</value>
+  </data>
+  <data name="SuccessOperation" xml:space="preserve">
+    <value>عملية ناجحة</value>
+  </data>
+  <data name="TenantName" xml:space="preserve">
+    <value>اسم المستأجر</value>
+  </data>
+  <data name="TermsandConditions" xml:space="preserve">
+    <value>الخصوصية والأتفاقات</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>شكرا لك</value>
+  </data>
+  <data name="ThankYouYourMessageHasBeenSentSuccessfully" xml:space="preserve">
+    <value>شكرا لك تم ارسال بلاغك بنجاح</value>
+  </data>
+  <data name="TheAdvertiserWillContactYou" xml:space="preserve">
+    <value>سيقوم المعلن بالتواصل معك</value>
+  </data>
+  <data name="TheDoorManagementTeamWillReviewtheCommunicationAndTakeTheNecessaryMeasures" xml:space="preserve">
+    <value>سيقوم فريق عمل ادارة  إستقدامي بمراجعة  البلاغ واتخاذ الاجراءات اللازمة</value>
+  </data>
+  <data name="ThisAdvertismentIsAlreadyInComparisonList" xml:space="preserve">
+    <value>هذا  الاعلان موجود بالفعل فى قائمة المقارنات</value>
+  </data>
+  <data name="ThisAdvertismentIsAlreadyInFavoriteList" xml:space="preserve">
+    <value>هذا  الاعلان موجود بالفعل فى قائمة المفضلة</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>الي</value>
+  </data>
+  <data name="TotalRentForWholePeriod" xml:space="preserve">
+    <value>اجمالي قيمة الايجار للفترة كاملة</value>
+  </data>
+  <data name="TotalRentValue" xml:space="preserve">
+    <value>اجمالي قيمة الايجار</value>
+  </data>
+  <data name="TypeInYourMessage" xml:space="preserve">
+    <value>اضف رد</value>
+  </data>
+  <data name="TypeInYourMessageFirst" xml:space="preserve">
+    <value>من فضلك ادخل نص الرسالة اولا</value>
+  </data>
+  <data name="UnitCount" xml:space="preserve">
+    <value>عدد الوحدات</value>
+  </data>
+  <data name="UnitDetails" xml:space="preserve">
+    <value>تفاصيل الوحدة</value>
+  </data>
+  <data name="UnitFacades" xml:space="preserve">
+    <value>الواجهات</value>
+  </data>
+  <data name="UnitType" xml:space="preserve">
+    <value>نوع العقار</value>
+  </data>
+  <data name="UnPublishedAdvertisments" xml:space="preserve">
+    <value>اعلانات غير منشورة</value>
+  </data>
+  <data name="UploadReceipt" xml:space="preserve">
+    <value>تحميل الوصل</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>اسم المستخدم</value>
+  </data>
+  <data name="UserNameALreadyRegistered" xml:space="preserve">
+    <value>هذا الاسم مستخدم من قبل مستخدم اخر</value>
+  </data>
+  <data name="UserNameIsAvailable" xml:space="preserve">
+    <value>هذا الاسم متاح</value>
+  </data>
+  <data name="UserNameMustBeEnglish" xml:space="preserve">
+    <value>يجب ان يكون اسم المستخدم باللغة الانجليزية</value>
+  </data>
+  <data name="UserNameMustBeNotLess8Char" xml:space="preserve">
+    <value>يجب ان لا يقل اسم المستخدم عن 8 احرف</value>
+  </data>
+  <data name="ViewAdvertisment" xml:space="preserve">
+    <value>مشاهدة الأعلان</value>
+  </data>
+  <data name="ViewAdvertismentDetails" xml:space="preserve">
+    <value>مشاهدة تفاصيل الأعلان</value>
+  </data>
+  <data name="WatchingCount" xml:space="preserve">
+    <value>عدد المشاهدات</value>
+  </data>
+  <data name="WaterInvoice" xml:space="preserve">
+    <value>فاتورة المياه</value>
+  </data>
+  <data name="WelcomeLogin" xml:space="preserve">
+    <value>مرحبا بك! من فضلك سجل دخولك لحسابك الشخصي للأستمرار</value>
+  </data>
+  <data name="WeOfferYouAsetOfRealstateTips" xml:space="preserve">
+    <value>نقدم لك مجموعة من النصائح العقارية</value>
+  </data>
+  <data name="WeWillSendMaintenanceWorker" xml:space="preserve">
+    <value>سنقوم بارسال عامل صيانة</value>
+  </data>
+  <data name="WhatAppNo" xml:space="preserve">
+    <value>رقم الواتس اب</value>
+  </data>
+  <data name="WriteComment" xml:space="preserve">
+    <value>اكتب تعليقك</value>
+  </data>
+  <data name="WriteQuestionOrCommentAboutProperty" xml:space="preserve">
+    <value>اكتب سؤال او تعليقك بخصوص العقار</value>
+  </data>
+  <data name="WriteReplyOnComment" xml:space="preserve">
+    <value>اكتب رد علي التعليق</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>عام</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>سنوات</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="YouCanNowAdvertiseYourPropertyInDorr" xml:space="preserve">
+    <value>تستطيع الان الاعلان عن عقارك في  إستقدامي </value>
+  </data>
+  <data name="YouCanNowDownloadForMobile" xml:space="preserve">
+    <value>تستطيع الان تحميل للجوال</value>
+  </data>
+  <data name="YouHaveBeenSuccessfullySubscribedToTheMailingList" xml:space="preserve">
+    <value>تم اشتراكك فى القائمة البريدية بنجاح</value>
+  </data>
+  <data name="YouMustChoosePropertyTypeAndPurposeOfAdvertisment" xml:space="preserve">
+    <value>يجب إختيار نوع  العقار والغرض  من الاعلان</value>
+  </data>
+  <data name="AllrightsReserved2021" xml:space="preserve">
+    <value>جميع الحقوق  2021محفوظة لشركة</value>
+  </data>
+  <data name="Importantlinks" xml:space="preserve">
+    <value>روابط هامة</value>
+  </data>
+  <data name="PaymentTerms" xml:space="preserve">
+    <value>شروط الدفع</value>
+  </data>
+  <data name="PleaseFillinYourLoginInformation" xml:space="preserve">
+    <value>من فضلك سجل بيانات الدخول</value>
+  </data>
+  <data name="QuestionsAndAnswers" xml:space="preserve">
+    <value>اسئلة واجوبة</value>
+  </data>
+  <data name="SocialMedia" xml:space="preserve">
+    <value>التواصل الاجتماعي</value>
+  </data>
+  <data name="TermsAndPolicies" xml:space="preserve">
+    <value>الشروط والسياسات</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>نوع الحساب</value>
+  </data>
+  <data name="Aleaderinprovidingprofessionalandhighqualitylaborthatmatchessupplyanddemand" xml:space="preserve">
+    <value>رائدة في مجال توفير العمالة باحترافية وبجودة عالية  توافق العرض والطلب</value>
+  </data>
+  <data name="And300riyalshavebeenaddedasaninitialvaluetoyouraccountPleasecontactthesponsortoterminatethecontract" xml:space="preserve">
+    <value>وتم اضافة 300 ريال كقيمة مبدئية على حسابكم نرجو التواصل مع الكفيل لانهاء التعاقد</value>
+  </data>
+  <data name="AreYouLookingFor" xml:space="preserve">
+    <value>هل تبحث عن</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>رجوع</value>
+  </data>
+  <data name="Choosethetypeofaccountyouwanttoopen" xml:space="preserve">
+    <value>اختر نوع الحساب المراد فتحه</value>
+  </data>
+  <data name="ChooseTheworkerThatfitsyourneedsandRequirements" xml:space="preserve">
+    <value>اختر العاملة التي تناسب احتياجاتك ومتطلباتك</value>
+  </data>
+  <data name="ChooseWorker" xml:space="preserve">
+    <value>اختر العاملة</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>التواصل</value>
+  </data>
+  <data name="CompletingData" xml:space="preserve">
+    <value>استكمال البيانات</value>
+  </data>
+  <data name="ContactWithMaroufah" xml:space="preserve">
+    <value>تواصل مع  إستقدامي</value>
+  </data>
+  <data name="CreateAccountAndConfirmYourMobileNumber" xml:space="preserve">
+    <value>انشي حساب وتاكيد رقم الجوال</value>
+  </data>
+  <data name="DiscoverThelatestEmployment" xml:space="preserve">
+    <value>اكتشف اخر العمالة</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>تم</value>
+  </data>
+  <data name="DownloadMarofahapplication" xml:space="preserve">
+    <value>حمل تطبيق  إستقدامي</value>
+  </data>
+  <data name="EnterName" xml:space="preserve">
+    <value>ادخل اسمك</value>
+  </data>
+  <data name="HomePageLabel" xml:space="preserve">
+    <value>احد الشركات السعودية المعتمدة التي تساعد في استقطاب وتوفير الكوادر البشرية المحترفة من كافة الجنسيات،حيث تقوم عناية بتقديم خدمات توفير العمالة المنزلية والسائقين والطباخين وفئات اخري من العمالة بما يتوافق مع شروط الجودة الشاملة ويوفُق بين العرض والطلب  وحماية الخصوصية الخاصة بعملائها وسرية البيانات الخاصة  بهم .   احد الشركات السعودية المعتمدة التي تساعج في استطاب وتوفير الكوادر البشرية المحترفة من كافة الجنسيات،حيث تقوم عناية بتقديم خدمات توفير العمالة المنزلية والسائقين والطباخين وفئات اخري من العمالة بما يتوافق مع شروط الجودة الشاملة ويوفُق بين العرض والطلب وحماية الخصوصية الخاصة بعملائها وسرية البيانات الخاصة بهم .</value>
+  </data>
+  <data name="HowDoesTheSitework" xml:space="preserve">
+    <value>كيف يعمل الموقع</value>
+  </data>
+  <data name="KeepInTouch" xml:space="preserve">
+    <value>كن علي تواصل</value>
+  </data>
+  <data name="KingdomofSaudiArabia" xml:space="preserve">
+    <value>المملكة العربية السعودية</value>
+  </data>
+  <data name="LearnHowTheSiteWorks" xml:space="preserve">
+    <value>تعرف علي طريقة عمل الموقع</value>
+  </data>
+  <data name="Marofah" xml:space="preserve">
+    <value>إستقدامي</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>المزيد</value>
+  </data>
+  <data name="MoreThan" xml:space="preserve">
+    <value>اكثر من</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="PleaseEnterAlltheDataCorrectlysothattheMaroufateamcancontactyou" xml:space="preserve">
+    <value>برجاء ادخال كافة البيانات بشكل صحيح حتى يتمكن فريق إستقدامي من التواصل معك</value>
+  </data>
+  <data name="RegisterNow" xml:space="preserve">
+    <value>تسجيل الان</value>
+  </data>
+  <data name="RegistrationIsDone" xml:space="preserve">
+    <value>تم التسجيل</value>
+  </data>
+  <data name="Riyadh" xml:space="preserve">
+    <value>الرياض</value>
+  </data>
+  <data name="Sahafa" xml:space="preserve">
+    <value>الصحافة</value>
+  </data>
+  <data name="SearchForWorkerOnthesite" xml:space="preserve">
+    <value>قم بالبحث عن عاملة في الموقع</value>
+  </data>
+  <data name="SearchingForworkersfromallovertheworldatpricessuitableforallcategories" xml:space="preserve">
+    <value>البحث عن عاملات من جميع دول العالم وباسعار تناسب جميع الفئات</value>
+  </data>
+  <data name="SelectAccountType" xml:space="preserve">
+    <value>حدد نوع الحساب</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>الموقع</value>
+  </data>
+  <data name="SomeThingWrong" xml:space="preserve">
+    <value>حدث خطأ ما</value>
+  </data>
+  <data name="TheRequiredJob" xml:space="preserve">
+    <value>المهنة المطلوبة</value>
+  </data>
+  <data name="Theworkeriscontactedandthetransactioniscompleted" xml:space="preserve">
+    <value>يتم التواصل مع العاملة واتمام المعاملة</value>
+  </data>
+  <data name="TrainedWorker" xml:space="preserve">
+    <value>عمالة مدربة</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>تنبية</value>
+  </data>
+  <data name="WeArePleasedAndHonoredtoReceiveYourOpinions" xml:space="preserve">
+    <value>يسعدنا ويشرفنا استقبال ارائكم</value>
+  </data>
+  <data name="WeHaveTrainedworkforceAccordingtoeachclientsneedsandspecifications" xml:space="preserve">
+    <value>لدينا عمالة مدربة علي حسب حاجه كل عميل وبمواصفاته</value>
+  </data>
+  <data name="WhatDoYouknowAbout" xml:space="preserve">
+    <value>ماذا تعرف عن</value>
+  </data>
+  <data name="Worker" xml:space="preserve">
+    <value>عامل / عاملة</value>
+  </data>
+  <data name="YouCanNowDownloadMarofahApplicationToworkonAndroidandiPhone" xml:space="preserve">
+    <value>يمكنك الان تحميل تطبيق إستقدامي  ليعمل على الاندرويد والايفون</value>
+  </data>
+  <data name="YouMustEnteraValidEmailinordertoGetbackintouchwithyou" xml:space="preserve">
+    <value>يجب وضع بريد الكترونى حقيقى لمعاوده التواصل معكمم من خلاله</value>
+  </data>
+  <data name="YourInquiryhasbeensentsuccessfullyandMaroufateamwillrespondtoyouassoonaspossible" xml:space="preserve">
+    <value>تم إرسال استفسارك بنجاح وسيقوم فريق إستقدامي بالرد على سيادتكم فى اقرب وقت</value>
+  </data>
+  <data name="YourRequestHasBeenSuccessfullyAccepted" xml:space="preserve">
+    <value>تم قبول طلبكم بنجاح</value>
+  </data>
+  <data name="AccountSettings" xml:space="preserve">
+    <value>اعدادت الحساب</value>
+  </data>
+  <data name="Accredited" xml:space="preserve">
+    <value>معتمدة</value>
+  </data>
+  <data name="AccreditedRequests" xml:space="preserve">
+    <value>طلبات معتمدة</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>العمر</value>
+  </data>
+  <data name="ApprovalRefusalRequests" xml:space="preserve">
+    <value>طلبات رفض اعتماد</value>
+  </data>
+  <data name="BusinessOwner" xml:space="preserve">
+    <value>صاحب عمل</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغییر كلمة المرور</value>
+  </data>
+  <data name="ChooseCountry" xml:space="preserve">
+    <value>اختر البلد</value>
+  </data>
+  <data name="ChooseAge" xml:space="preserve">
+    <value>اختر العمر</value>
+  </data>
+  <data name="HasChildren" xml:space="preserve">
+    <value>لديه اطفال</value>
+  </data>
+  <data name="MoreThan10" xml:space="preserve">
+    <value>اكبر من 10</value>
+  </data>
+  <data name="ChooseTypeofAccountyouWanttoOpen" xml:space="preserve">
+    <value>اختر نوع الحساب المراد فتحه</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>تفريغ</value>
+  </data>
+  <data name="CompleteYourAccountInformation" xml:space="preserve">
+    <value>استكمل بيانات حسابك</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="FavoriteItems" xml:space="preserve">
+    <value>العناصر المفضلة</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>أنثي</value>
+  </data>
+  <data name="FilterResults" xml:space="preserve">
+    <value>تصفية النتائج</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>الاسم الاول</value>
+  </data>
+  <data name="FirstStep" xml:space="preserve">
+    <value>الخطوة الاولي</value>
+  </data>
+  <data name="IagreeToAll" xml:space="preserve">
+    <value>أوافق على كافة</value>
+  </data>
+  <data name="InitialAdmission" xml:space="preserve">
+    <value>قبول أولي</value>
+  </data>
+  <data name="InitialAdmissionRequests" xml:space="preserve">
+    <value>طلبات قبول أولى</value>
+  </data>
+  <data name="InitialRejection" xml:space="preserve">
+    <value>رفض أولي</value>
+  </data>
+  <data name="InitialRejectionRequests" xml:space="preserve">
+    <value>طلبات رفض أولي</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>الاسم الاخير</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>ذكر</value>
+  </data>
+  <data name="MaroufaIsaleaderInProvidingProfessionalandhighqualitylaborthatmatchessupplyanddemand" xml:space="preserve">
+    <value>إستقدامي : رائدة في مجال توفير العمالة باحترافية وبجودة عالية توافق العرض والطلب</value>
+  </data>
+  <data name="Muslim" xml:space="preserve">
+    <value>مسلم</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>كلمة السر الجديدة</value>
+  </data>
+  <data name="OfficeAddress" xml:space="preserve">
+    <value>عنوان المكتب</value>
+  </data>
+  <data name="OfficeName" xml:space="preserve">
+    <value>اسم المكتب</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>كلمة السر القديمة</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="RecruitingOffice" xml:space="preserve">
+    <value>مكتب استقدام</value>
+  </data>
+  <data name="RefusalRequest" xml:space="preserve">
+    <value>رفض اعتماد</value>
+  </data>
+  <data name="Religion" xml:space="preserve">
+    <value>الديانة</value>
+  </data>
+  <data name="Removefromfavourites" xml:space="preserve">
+    <value>حذف من المفضلة</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>تاريخ الطلب</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>حفظ التعديل</value>
+  </data>
+  <data name="search filter" xml:space="preserve">
+    <value>فلتر البحث</value>
+  </data>
+  <data name="SecondStep" xml:space="preserve">
+    <value>الخطوة الثانية</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>الاعدادات</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>الجنس</value>
+  </data>
+  <data name="Showfavourites" xml:space="preserve">
+    <value>اعرض المفضلة</value>
+  </data>
+  <data name="Stage1of3" xml:space="preserve">
+    <value>مرحلة 1 من 3</value>
+  </data>
+  <data name="Stage2of3" xml:space="preserve">
+    <value>مرحلة 2 من 3</value>
+  </data>
+  <data name="TheRequestHasalreadyBeenSent" xml:space="preserve">
+    <value>تم ارسال الطلب مسبقا</value>
+  </data>
+  <data name="TheworkerhasbeenRemovedfromyourFavoritelistsuccessfully" xml:space="preserve">
+    <value>تم حذف العامل من قائمتك الممفضلة بنجاح</value>
+  </data>
+  <data name="ThisWorkerisalreadyinFavoritelist" xml:space="preserve">
+    <value>هذا العامل موجود بالفعل فى القائمة المفضلة</value>
+  </data>
+  <data name="WorkerAddedToFavoriteList" xml:space="preserve">
+    <value>اضافة العامل الى القائمة المفضلة</value>
+  </data>
+  <data name="WorkerJob" xml:space="preserve">
+    <value>مهنة العامل</value>
+  </data>
+  <data name="WorkerName" xml:space="preserve">
+    <value>اسم العامل</value>
+  </data>
+  <data name="WorkRequests" xml:space="preserve">
+    <value>طلبات  العمالة</value>
+  </data>
+  <data name="YearsofExperience" xml:space="preserve">
+    <value>سنوات الخبرة</value>
+  </data>
+  <data name="Advanced Filter" xml:space="preserve">
+    <value>فلتر متقدم</value>
+  </data>
+  <data name="OurPartners" xml:space="preserve">
+    <value>شركائنا</value>
+  </data>
+  <data name="Hiring Cost" xml:space="preserve">
+    <value>مبلغ استقدام</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>الوزن</value>
+  </data>
+  <data name="Recommendation_for_Sponsor" xml:space="preserve">
+    <value>ترشيح لكفيل</value>
+  </data>
+  <data name="Recommended" xml:space="preserve">
+    <value>مرشح</value>
+  </data>
+  <data name="NotRecommended" xml:space="preserve">
+    <value>غير مرشح</value>
+  </data>
+  <data name="chooseRecommendation" xml:space="preserve">
+    <value>اختر ترشيح</value>
+  </data>
+  <data name="AdvancedFilter" xml:space="preserve">
+    <value> فلتر متقدم</value>
+  </data>
+  <data name="YourAccounthasbeensuccessfullyregisteredPleasecheckyouremailtoactivateyouraccount" xml:space="preserve">
+    <value>تمت عملية التسجيل بنجاح حسابك بنجاح برجاء مراجعة بريدك الالكترونى لتنشيط حسابك</value>
+  </data>
+  <data name="YourRequestHasbeensuccessfullySentandtheofficewillcontactyouassoonaspossible" xml:space="preserve">
+    <value>تم إرسال طلبك بنجاح وسيتم التواصل معكم من قبل المكتب فى اقرب وقت</value>
+  </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>نتائج البحث</value>
+  </data>
+  <data name="YouMustRegisterfirsttobeabletorequestthisoperator" xml:space="preserve">
+    <value>يجب التسجيل اولا حتى تتمكن من طلب هذا العامل</value>
+  </data>
+  <data name="AnotherReason" xml:space="preserve">
+    <value>سبب اخر</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>تاريخ الميلاد</value>
+  </data>
+  <data name="BirthPlace" xml:space="preserve">
+    <value>مكان الميلاد</value>
+  </data>
+  <data name="BriefSummary" xml:space="preserve">
+    <value>نبذة مختصرة</value>
+  </data>
+  <data name="Certificate" xml:space="preserve">
+    <value>الشهادة</value>
+  </data>
+  <data name="Certificates" xml:space="preserve">
+    <value>الشهادات</value>
+  </data>
+  <data name="Choose the type of account you want to open" xml:space="preserve">
+    <value>اختر نوع الحساب المراد فتحه</value>
+  </data>
+  <data name="Christian" xml:space="preserve">
+    <value>مسيحي</value>
+  </data>
+  <data name="CommercialRegistrationExpiryDate" xml:space="preserve">
+    <value>تاريخ نهاية السجل التجاري</value>
+  </data>
+  <data name="CommercialRegistrationNo" xml:space="preserve">
+    <value>رقم السجل التجاري</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>الشركة</value>
+  </data>
+  <data name="Containsfakeinformation" xml:space="preserve">
+    <value>يحتوي علي معلومات مزيفة</value>
+  </data>
+  <data name="Containsinappropriateimages" xml:space="preserve">
+    <value>يحتوي علي صور غير لائقة</value>
+  </data>
+  <data name="Degreeofmastery" xml:space="preserve">
+    <value>درجة الاتقان</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>مطلق</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>التعليم</value>
+  </data>
+  <data name="EducationalCenter" xml:space="preserve">
+    <value>المركز التعليمي</value>
+  </data>
+  <data name="EmployeeEmail" xml:space="preserve">
+    <value>البريد الالكتروني للموظف</value>
+  </data>
+  <data name="Employeefirstname" xml:space="preserve">
+    <value>الاسم الاول للموظف</value>
+  </data>
+  <data name="EmployeeLastname" xml:space="preserve">
+    <value>الاسم الاخير للموظف</value>
+  </data>
+  <data name="EmployeePhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف للموظف</value>
+  </data>
+  <data name="IdentificationNumber" xml:space="preserve">
+    <value>رقم الهوية</value>
+  </data>
+  <data name="Introductionvideo" xml:space="preserve">
+    <value>فيديو تعريفي</value>
+  </data>
+  <data name="Jewish" xml:space="preserve">
+    <value>يهودي</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>الطول</value>
+  </data>
+  <data name="lengthCm" xml:space="preserve">
+    <value>الطول (سم)</value>
+  </data>
+  <data name="LicenseExpiryDate" xml:space="preserve">
+    <value>تاريخ نهاية الترخيص</value>
+  </data>
+  <data name="licenseNumberofMinistryofHumanResourcesandSocialDevelopment" xml:space="preserve">
+    <value>رقم ترخيص وزارة الموارد البشرية والتنمية الإجتماعية</value>
+  </data>
+  <data name="ManagerMobileNumber" xml:space="preserve">
+    <value>رقم جوال المدير</value>
+  </data>
+  <data name="Married" xml:space="preserve">
+    <value>متزوج</value>
+  </data>
+  <data name="Natureoflanguage" xml:space="preserve">
+    <value>طبيعة اللغة</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>لايوجد</value>
+  </data>
+  <data name="Numberofchildren" xml:space="preserve">
+    <value>عدد الاطفال</value>
+  </data>
+  <data name="OfficeEmail" xml:space="preserve">
+    <value>البريد الالكتروني للمكتب</value>
+  </data>
+  <data name="OfficeownerIDnumber" xml:space="preserve">
+    <value>رقم هوية صاحب المكتب</value>
+  </data>
+  <data name="PhotoGallery" xml:space="preserve">
+    <value>معرض الصور</value>
+  </data>
+  <data name="RecruitmentAmount" xml:space="preserve">
+    <value>مبلغ الاستقدام</value>
+  </data>
+  <data name="Recruitmentofficedata" xml:space="preserve">
+    <value>بيانات مكتب استقدام</value>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>تاريخ الاصدار</value>
+  </data>
+  <data name="ReportAnaccount" xml:space="preserve">
+    <value>ابلاغ عن حساب</value>
+  </data>
+  <data name="Requestaworker" xml:space="preserve">
+    <value>طلب عامل او عاملة</value>
+  </data>
+  <data name="RoomSharing" xml:space="preserve">
+    <value>مشاركة الغرفة</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>الراتب</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>اعزب</value>
+  </data>
+  <data name="SkillName" xml:space="preserve">
+    <value>اسم المهارة</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>المهارات</value>
+  </data>
+  <data name="SocialStatus" xml:space="preserve">
+    <value>الحالة الاجتماعية</value>
+  </data>
+  <data name="Stage3of3" xml:space="preserve">
+    <value>مرحلة 3 من 3</value>
+  </data>
+  <data name="Step3" xml:space="preserve">
+    <value>الخطوة 3</value>
+  </data>
+  <data name="ThankYouforregisteringInthesite" xml:space="preserve">
+    <value>شكرا لتسجيل في الموقع</value>
+  </data>
+  <data name="ThankYouforyourcooperationTheaccounthasbeenreportedandisunderreviewbytheadministration" xml:space="preserve">
+    <value>نشكرك على تعاونك تم الابلاغ عن الحساب وجارى مراجعة من قبل الادارة</value>
+  </data>
+  <data name="Thefirstnameofthemanagerorofficeowner" xml:space="preserve">
+    <value>الاسم الأول للمدير او صاحب المكتب</value>
+  </data>
+  <data name="Thelastnameoftheowner" xml:space="preserve">
+    <value>الاسم الاخير لصاحب المكتب</value>
+  </data>
+  <data name="TheWeight" xml:space="preserve">
+    <value>الوزن</value>
+  </data>
+  <data name="Thisaccountisreportedbecause" xml:space="preserve">
+    <value>يتم الابلاغ عن  هذا الحساب لانه</value>
+  </data>
+  <data name="UnifiedPhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف الموحد</value>
+  </data>
+  <data name="University" xml:space="preserve">
+    <value>الجامعة</value>
+  </data>
+  <data name="Universitydegree" xml:space="preserve">
+    <value>الدرجة الجامعية</value>
+  </data>
+  <data name="Weightkg" xml:space="preserve">
+    <value>الوزن (كجم)</value>
+  </data>
+  <data name="workareas" xml:space="preserve">
+    <value>مناطق العمل</value>
+  </data>
+  <data name="YoualreadyReportedthisaccount" xml:space="preserve">
+    <value>قمت بالابلاغ عن هذا الحساب مسبقا</value>
+  </data>
+  <data name="YouMustregisterfirsttobeabletoreportthisaccount" xml:space="preserve">
+    <value>يجب التسجيل اولا حتى تتمكن من الابلاغ عن هذا الحساب</value>
+  </data>
+  <data name="Youmustregisterfirsttobeabletouseyourfavourites" xml:space="preserve">
+    <value>يجب التسجيل اولا حتى تتمكن من استخدام المفضلة</value>
+  </data>
+  <data name="AccountStatement" xml:space="preserve">
+    <value>كشف الحساب</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>تغيير الصورة</value>
+  </data>
+  <data name="contracting" xml:space="preserve">
+    <value>التعاقد</value>
+  </data>
+  <data name="ContractUnderReview" xml:space="preserve">
+    <value>العقد تحت المراجعة</value>
+  </data>
+  <data name="FemaleWorkers" xml:space="preserve">
+    <value>العاملات</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>اخر دخول</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جديدة</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>البلاغات</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>طلبات جديدة</value>
+  </data>
+  <data name="Undocumented" xml:space="preserve">
+    <value>غير موثق</value>
+  </data>
+  <data name="Blocked" xml:space="preserve">
+    <value>محجوبة</value>
+  </data>
+  <data name="WorkerRequest" xml:space="preserve">
+    <value>طلب عاملة</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>حظر</value>
+  </data>
+  <data name="BlockedRequests" xml:space="preserve">
+    <value>طلبات محجوبة</value>
+  </data>
+  <data name="FinalAdmission" xml:space="preserve">
+    <value>اعتماد نهائى</value>
+  </data>
+  <data name="InitialRejectRequests" xml:space="preserve">
+    <value>طلبات رفض أولي</value>
+  </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+  <data name="RemoveProhibition" xml:space="preserve">
+    <value>فك الحظر</value>
+  </data>
+  <data name="Response" xml:space="preserve">
+    <value>الاستجابة</value>
+  </data>
+  <data name="SponsorAddress" xml:space="preserve">
+    <value>عنوان الكفيل</value>
+  </data>
+  <data name="SponsorCity" xml:space="preserve">
+    <value>مدينة الكفيل</value>
+  </data>
+  <data name="SponsorCountry" xml:space="preserve">
+    <value>بلد الكفيل</value>
+  </data>
+  <data name="SponsorMobile" xml:space="preserve">
+    <value>جوال الكفيل</value>
+  </data>
+  <data name="SponsorName" xml:space="preserve">
+    <value>اسم الكفيل</value>
+  </data>
+  <data name="AddAnewWorker" xml:space="preserve">
+    <value>اضافة عاملة جديدة</value>
+  </data>
+  <data name="AvailableAgain" xml:space="preserve">
+    <value>متاح مرة أخرى</value>
+  </data>
+  <data name="AvailableEmployment" xml:space="preserve">
+    <value>العمالة المتاحة</value>
+  </data>
+  <data name="CandidateEmployment" xml:space="preserve">
+    <value>العمالة المرشحة</value>
+  </data>
+  <data name="UnavailableEmployment" xml:space="preserve">
+    <value>العمالة الغير المتاحة</value>
+  </data>
+  <data name="YouCanonlyaddworkersaftersendingthecontractandreviewingitthroughMaroufaworkteam" xml:space="preserve">
+    <value>لا يمكنك اضافة عاملات الا بعد ارسال التعاقد ومراجعته من خلال فريق عمل إستقدامي </value>
+  </data>
+  <data name="AddAnewbranch" xml:space="preserve">
+    <value>اضافة فرع جديد</value>
+  </data>
+  <data name="AddBranch" xml:space="preserve">
+    <value>إضافة فرع</value>
+  </data>
+  <data name="AddCertificate" xml:space="preserve">
+    <value>اضافة شهادة</value>
+  </data>
+  <data name="AddService" xml:space="preserve">
+    <value>اضافة خدمة</value>
+  </data>
+  <data name="Anamountof300Sarwillbeaddedtoyourwallet" xml:space="preserve">
+    <value>سوف يتم اضافة مبلغ 300 ريال على محفظتك</value>
+  </data>
+  <data name="And300riyalshasbeenaddedasaninitialvaluetoyouraccountPleasecontactthesponsortoterminatethecontract" xml:space="preserve">
+    <value>وتم اضافة 300 ريال كقيمة مبدئية على حسابكم نرجو التواصل مع الكفيل لانهاء التعاقد</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>المرفقات</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>متاح</value>
+  </data>
+  <data name="Branches" xml:space="preserve">
+    <value>الفروع</value>
+  </data>
+  <data name="BranchName" xml:space="preserve">
+    <value>اسم الفرع</value>
+  </data>
+  <data name="CertificateDate" xml:space="preserve">
+    <value>تاريخ الشهادة</value>
+  </data>
+  <data name="CertificateName" xml:space="preserve">
+    <value>اسم الشهادة</value>
+  </data>
+  <data name="Chooseareligion" xml:space="preserve">
+    <value>اختر الديانة</value>
+  </data>
+  <data name="ChooseJob" xml:space="preserve">
+    <value>اختر الوظيفة</value>
+  </data>
+  <data name="ChooseNationality" xml:space="preserve">
+    <value>اختر الجنسية</value>
+  </data>
+  <data name="ChooseSex" xml:space="preserve">
+    <value>اختر الجنس</value>
+  </data>
+  <data name="ChooseTheWorker" xml:space="preserve">
+    <value>اختر العاملة</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>تاكيد</value>
+  </data>
+  <data name="ContractDate" xml:space="preserve">
+    <value>تاريخ العقد</value>
+  </data>
+  <data name="ContractEntryIntoforce" xml:space="preserve">
+    <value>بداية سريان العقد</value>
+  </data>
+  <data name="ContractingInstructions" xml:space="preserve">
+    <value>تعليمات التعاقد</value>
+  </data>
+  <data name="ContractLine1" xml:space="preserve">
+    <value>بعد الضغط على زر (ابداء التعاقد) فضلا قم بمراجعة البيانات الخاصة بالحساب ثم قم بالضغط على (انشاء).</value>
+  </data>
+  <data name="ContractLine2" xml:space="preserve">
+    <value>البدء فى تحميل العقد ومن ثم التوقيع والختم على العقد</value>
+  </data>
+  <data name="ContractLine3" xml:space="preserve">
+    <value>اعادة تحميل العقد (الموقع والمختوم) ثم ارسالة الى  إستقدامي</value>
+  </data>
+  <data name="ContractLine4" xml:space="preserve">
+    <value>سيقوم فريق عمل إستقدامي بمراجعة العقد ومن ثم توثيق الحساب للبدء فى الاستخدام</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>إنشاء</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="DeleteTheAccount" xml:space="preserve">
+    <value>حذف الحساب</value>
+  </data>
+  <data name="DoneSuccessfully" xml:space="preserve">
+    <value>تم بنجاح</value>
+  </data>
+  <data name="DownloadContract" xml:space="preserve">
+    <value>تحميل العقد</value>
+  </data>
+  <data name="Doyouwanttodeletethisitem" xml:space="preserve">
+    <value>هل تريد حذف هذا العنصر ؟</value>
+  </data>
+  <data name="DoYouWanttoDeletThisItem" xml:space="preserve">
+    <value>هل تريد حذف هذا العنصر ؟</value>
+  </data>
+  <data name="drivinglicense" xml:space="preserve">
+    <value>رخصة القيادة</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>اسم الموظف</value>
+  </data>
+  <data name="Endofcontract" xml:space="preserve">
+    <value>نهاية سريان العقد</value>
+  </data>
+  <data name="EnterCommercialRegistrationNo" xml:space="preserve">
+    <value>ادخل رقم السجل التجارى</value>
+  </data>
+  <data name="EnterOfficeAddress" xml:space="preserve">
+    <value>ادخل عنوان المكتب</value>
+  </data>
+  <data name="EnterOfficelicenseNo" xml:space="preserve">
+    <value>ادخل رقم ترخيص المكتب</value>
+  </data>
+  <data name="EnterOfficeName" xml:space="preserve">
+    <value>ادخل اسم المكتب</value>
+  </data>
+  <data name="FamilyName" xml:space="preserve">
+    <value>اسم العائلة</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>الملف</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>إخفاء</value>
+  </data>
+  <data name="LoadingThefile" xml:space="preserve">
+    <value>جارى تحميل الملف</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>الخريطة</value>
+  </data>
+  <data name="Mydata" xml:space="preserve">
+    <value>بياناتي</value>
+  </data>
+  <data name="NewContract" xml:space="preserve">
+    <value>تعاقد جديد</value>
+  </data>
+  <data name="Nothing" xml:space="preserve">
+    <value>لا يوجد</value>
+  </data>
+  <data name="OfficeLicense" xml:space="preserve">
+    <value>ترخيص المكتب</value>
+  </data>
+  <data name="OnceAgain" xml:space="preserve">
+    <value>مرة اخرى</value>
+  </data>
+  <data name="PleaseAfterdownloadingthecontractReviewitsignandsealitandthenreuploadittoMaroufaSite" xml:space="preserve">
+    <value>فضلا نرجو بعد تحميل العقد مراجعته والتوقيع والختم ثم اعادة رفعه الى موقع إستقدامي </value>
+  </data>
+  <data name="QuickSearchforWorker" xml:space="preserve">
+    <value>بحث سريع عن عامل</value>
+  </data>
+  <data name="ReportedAccounts" xml:space="preserve">
+    <value>حسابات مبلغ عنها</value>
+  </data>
+  <data name="ReportingDate" xml:space="preserve">
+    <value>تاريخ الابلاغ</value>
+  </data>
+  <data name="ReviewTheAccount" xml:space="preserve">
+    <value>مراجعة الحساب</value>
+  </data>
+  <data name="SendAcopyofthecontracttothereviewandyouwillbenotifiedoftheresultassoonaspossible" xml:space="preserve">
+    <value>ارسال نسخه التعاقد الى المراجعة وسوف يتم اعلامك بالنتيجه فى اقرب وقت</value>
+  </data>
+  <data name="ServiceName" xml:space="preserve">
+    <value>اسم الخدمة</value>
+  </data>
+  <data name="ServicePrice" xml:space="preserve">
+    <value>سعر الخدمة</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>الخدمات</value>
+  </data>
+  <data name="ServicesWeProvide" xml:space="preserve">
+    <value>الخدمات التي نقدمها</value>
+  </data>
+  <data name="SigntheContractandattachithere" xml:space="preserve">
+    <value>قم بتوقيع العقد وارفاقة هنا</value>
+  </data>
+  <data name="StartContract" xml:space="preserve">
+    <value>ابدا التعاقد</value>
+  </data>
+  <data name="Submitthecontractforreview" xml:space="preserve">
+    <value>ارسال العقد للمراجعة</value>
+  </data>
+  <data name="SuspendedAccounts" xml:space="preserve">
+    <value>حسابات موقوفة</value>
+  </data>
+  <data name="TheDateofwritingthecontract" xml:space="preserve">
+    <value>تاريخ كتابة العقد</value>
+  </data>
+  <data name="TheNameofOfficeownerorauthorizedmanager" xml:space="preserve">
+    <value>اسم مالك المكتب او المدير المفوض</value>
+  </data>
+  <data name="ThereIs" xml:space="preserve">
+    <value>يوجد</value>
+  </data>
+  <data name="TheStatusofthisWorkerwillbechangedto" xml:space="preserve">
+    <value>سوف يتم تغير حالة هذا العامل الى</value>
+  </data>
+  <data name="AccountSettlement" xml:space="preserve">
+    <value>تسوية الحساب</value>
+  </data>
+  <data name="BackToMyAccount" xml:space="preserve">
+    <value>العودة الى حسابى</value>
+  </data>
+  <data name="ContractRequisitionsDue" xml:space="preserve">
+    <value>طلبات التعاقد المستحقة</value>
+  </data>
+  <data name="DeservedAmount" xml:space="preserve">
+    <value>المبلغ المستحق</value>
+  </data>
+  <data name="LoginName" xml:space="preserve">
+    <value>اسم الدخول</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>حالة الطلب</value>
+  </data>
+  <data name="PaidContractRequests" xml:space="preserve">
+    <value>طلبات التعاقد المسددة</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>سداد</value>
+  </data>
+  <data name="PayContractValue" xml:space="preserve">
+    <value>سداد قيمة تعاقد</value>
+  </data>
+  <data name="Referredsettlement" xml:space="preserve">
+    <value>تسويه المشار اليه</value>
+  </data>
+  <data name="RefundedContractRequests" xml:space="preserve">
+    <value>طلبات التعاقدالمردودة</value>
+  </data>
+  <data name="SponserData" xml:space="preserve">
+    <value>بيانات الكفيل</value>
+  </data>
+  <data name="TheAmountEnteredDoesnotMatchtheAmountdue" xml:space="preserve">
+    <value>المبلغ الذى تم ادخاله غير مطابق للقيمة المستحقة</value>
+  </data>
+  <data name="Totaldue" xml:space="preserve">
+    <value>اجمالى المستحق</value>
+  </data>
+  <data name="TotalRepaid" xml:space="preserve">
+    <value>اجمالى المسدد</value>
+  </data>
+  <data name="TotalYield" xml:space="preserve">
+    <value>اجمالى المردود</value>
+  </data>
+  <data name="AsthegeneralManager" xml:space="preserve">
+    <value>بصفته المدير العام</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>بين</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>عقد</value>
+  </data>
+  <data name="Correspoding" xml:space="preserve">
+    <value>الموافق</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>أولاً</value>
+  </data>
+  <data name="hereinafterreferredtoas" xml:space="preserve">
+    <value>يشار إليه  فيما  بعد بـ</value>
+  </data>
+  <data name="InformationExpertsCompanyforInformationTechnologyCommercialRegistrationNo" xml:space="preserve">
+    <value>شركة خبراء المعلومات لتقنية المعلومات سجل تجاري رقم</value>
+  </data>
+  <data name="ItsheadquartersIsInRiyadhanditisRepresentedinthisContractbyMr" xml:space="preserve">
+    <value>ومقرها بمدينة الرياض ، ويمثلها في هذا العقد السيد</value>
+  </data>
+  <data name="ItsInAday" xml:space="preserve">
+    <value>إنه فى يوم</value>
+  </data>
+  <data name="LicenseNo" xml:space="preserve">
+    <value>ترخيص رقم</value>
+  </data>
+  <data name="NationalIdentity" xml:space="preserve">
+    <value>هوية وطنية</value>
+  </data>
+  <data name="Office" xml:space="preserve">
+    <value>مكتب</value>
+  </data>
+  <data name="Secondly" xml:space="preserve">
+    <value>ثانيا</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>تقديم</value>
+  </data>
+  <data name="SuleimanAhmedAlMashari" xml:space="preserve">
+    <value>سليمان أحمد المشاري</value>
+  </data>
+  <data name="thefirstside" xml:space="preserve">
+    <value>الطرف الأول</value>
+  </data>
+  <data name="ThisContractHasBeenConcluded" xml:space="preserve">
+    <value>تم إبرام هذا العقد</value>
+  </data>
+  <data name="Whoever" xml:space="preserve">
+    <value>كل  من</value>
+  </data>
+  <data name="AndCompanyEmail" xml:space="preserve">
+    <value>والبريد الالكتروني للشركة</value>
+  </data>
+  <data name="anddate" xml:space="preserve">
+    <value>وتاريخ</value>
+  </data>
+  <data name="AndItEndsInaday" xml:space="preserve">
+    <value>وتنتهي في يوم</value>
+  </data>
+  <data name="asa" xml:space="preserve">
+    <value>بصفته</value>
+  </data>
+  <data name="Asthefirstpartyprovidesservicestothebeneficiariesbyprovidingtheelectronicsearchservice" xml:space="preserve">
+    <value>حيث أن الطرف الأول يقدم خدمات للمستفيدين، وذلك بتقديم خدمة البحث الإلكتروني</value>
+  </data>
+  <data name="BanqueSaudiFransi" xml:space="preserve">
+    <value>بالبنك السعودي الفرنسي</value>
+  </data>
+  <data name="Based" xml:space="preserve">
+    <value>ومقرها</value>
+  </data>
+  <data name="ContractCondition1" xml:space="preserve">
+    <value>في السير الذاتية للعمالة المنزلية او العمالة الخاصة دون الحاجة إلى زيارة مكاتب الاستقدام، وحيث أن الطرف الثاني يرغب في الاستفادة من هذه الخدمة، فقد التقت إرادة الطرفين بالإيجاب والقبول، وهما بكامل أهليتهما واتفقا فيما بينهما وتراضيا على تنفيذ "العقد" وفقًا للشروط والبنود التالية</value>
+  </data>
+  <data name="firstitem" xml:space="preserve">
+    <value>البند الأول</value>
+  </data>
+  <data name="Forthitem" xml:space="preserve">
+    <value>البند الرابع</value>
+  </data>
+  <data name="Forthitem41" xml:space="preserve">
+    <value>4 -1 على الطرف الثاني أن يدفع للطرف الأول مقابل ما يقدمه من خدمات مبلغ وقدره (300) ريال دفعة واحدة</value>
+  </data>
+  <data name="Forthitem411" xml:space="preserve">
+    <value>وذلك عن كل طلب استقدام تم على إثرة التعاقد مع صاحب عمل وذلك خلال مدة لا تتجاوز 15 يوم او ان يتم التسوية بشكل شهري</value>
+  </data>
+  <data name="Forthitem42" xml:space="preserve">
+    <value>4-2 تعد أي أعمال أو مهام إضافية يطلبها الطرف الثاني ويوافق عليها الطرف الأول متطلبات جديدة لا تعد جزء من هذا العقد ولا تعد مشمولة بثمن هذا العقد</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>التمهيد</value>
+  </data>
+  <data name="ItIsRepresentedinthisContractbyMr" xml:space="preserve">
+    <value>ويمثلها  في  هذا العقد   السيد</value>
+  </data>
+  <data name="ManagingDirector" xml:space="preserve">
+    <value>المدير المسئول</value>
+  </data>
+  <data name="OnthebankaccountNo" xml:space="preserve">
+    <value>على الحساب بالبنكي رقم</value>
+  </data>
+  <data name="Seconditem" xml:space="preserve">
+    <value>البند الثاني</value>
+  </data>
+  <data name="Seconditem21" xml:space="preserve">
+    <value>2-1على الطرف الأول القيام بكافة الأعمال بالموقع وكافة ما يتطلب منه من خدمات في هذا الإطار دون مطالبة الطرف الثاني بتكاليف ذلك ما عدا ما تم الإشارة إليه في البند الرابع من هذا العقد</value>
+  </data>
+  <data name="Seconditem22" xml:space="preserve">
+    <value>2-2 يقوم الطرف الأول بتسويق العاملات عبر منصة تابعة له ويظهر بيانات العمالة التي تمت إضافتها من قبل الطرف الثاني وتحت مسئوليته</value>
+  </data>
+  <data name="Seconditem23" xml:space="preserve">
+    <value>2-3 يقوم الطرف الأول بالتأكد من بيانات طالبي استقدام العمالة المنزلية المكانية وايضاً وسائل الاتصال</value>
+  </data>
+  <data name="Seconditem24" xml:space="preserve">
+    <value>2-4 يقوم الموقع بتقييم مستوى الخدمات المقدمة بعد طلب الاستقدام وتزويدها لمكاتب الاستقدام حسب طلبها وبمبالغ إضافية تحدد حسب الفترة وذلك لمراقبة الجودة</value>
+  </data>
+  <data name="SecondSide" xml:space="preserve">
+    <value>الطرف الثاني</value>
+  </data>
+  <data name="Theforegoingpreambleisanintegralpartofthiscontract" xml:space="preserve">
+    <value>يعتبر التمهيد السابق جزءًا لا يتجزأ من هذا العقد</value>
+  </data>
+  <data name="Thirditem" xml:space="preserve">
+    <value>البند الثالث</value>
+  </data>
+  <data name="Thirditem31" xml:space="preserve">
+    <value>3-1 تبدأ مدة هذا العقد اعتبارًا من يوم</value>
+  </data>
+  <data name="Thirditem311" xml:space="preserve">
+    <value>وفقًا للأحكام المذكورة بهذا العقد، ولا يتجدد هذا العقد لمدة أو مدد أخرى إلا بموافقة الطرفين الكتابية المسبقة</value>
+  </data>
+  <data name="Thirditem32" xml:space="preserve">
+    <value>3-2 يحق للطرف الأول إنهاء هذا العقد في أي وقت قبل انتهاء مدته في حال اكتشف تلاعب او تعامل غير لائق مع العملاء</value>
+  </data>
+  <data name="Accordingtotheregulations" xml:space="preserve">
+    <value>بموجب الأنظمة</value>
+  </data>
+  <data name="ContractItem43" xml:space="preserve">
+    <value>تمثل القيمة المذكورة أعلاه كافة المبالغ المستحقة لتنفيذ الأعمال المطلوبة من الطرف الأول بكافة أنواعها وأشكالها طوال مدة العقد والتي يجب على الطرف الثاني دفعها، ولا تخضع هذه القيمة للضريبة أو أي رسوم مقررة</value>
+  </data>
+  <data name="EighthItem" xml:space="preserve">
+    <value>البند الثامن</value>
+  </data>
+  <data name="EighthItem1" xml:space="preserve">
+    <value>في حالة نشوء أي نزاع بسب تفسير أو تنفيذ هذا العقد تختص المحاكم السعودية على اختلاف درجاتها بالفصل فيه</value>
+  </data>
+  <data name="Fifthitem" xml:space="preserve">
+    <value>البند الخامس</value>
+  </data>
+  <data name="Fifthitem51" xml:space="preserve">
+    <value>5-1 لا يجوز لأي من الطرفين التنازل عن التزاماته الناشئة عن هذا العقد أو أي جزء منها إلى طرف ثالث من دون الحصول على الموافقة الكتابية المسبقة من الطرف الآخر</value>
+  </data>
+  <data name="Fifthitem52" xml:space="preserve">
+    <value>5-2 جميع حقوق الملكية الفكرية والقانونية للصور والمعلومات والإعلانات التي يعرضها الطرف الأول في التطبيقات الإلكترونية تعود للطرف الأول</value>
+  </data>
+  <data name="GeneralDirector" xml:space="preserve">
+    <value>المدير العام</value>
+  </data>
+  <data name="Informationexperts" xml:space="preserve">
+    <value>شركة خبراء المعلومات   لتقنية المعلومات</value>
+  </data>
+  <data name="IntheKingdomofSaudiArabia" xml:space="preserve">
+    <value>بالمملكة العربية السعودية</value>
+  </data>
+  <data name="Mr" xml:space="preserve">
+    <value>السيد</value>
+  </data>
+  <data name="MrSuleimanAhmedAlMashari" xml:space="preserve">
+    <value>السيد / سليمان أحمد المشاري</value>
+  </data>
+  <data name="NinthItem" xml:space="preserve">
+    <value>البند التاسع</value>
+  </data>
+  <data name="NinthItem1" xml:space="preserve">
+    <value>تحرر هذا العقد من نسختين بيد كل طرف نسخة للعمل بموجبها</value>
+  </data>
+  <data name="NinthItem2" xml:space="preserve">
+    <value>قام الطرفان بالتوقيع على هذا العقد</value>
+  </data>
+  <data name="NinthItem3" xml:space="preserve">
+    <value>وإثابتًا لما تقدم</value>
+  </data>
+  <data name="NinthItem4" xml:space="preserve">
+    <value>والله الموفق</value>
+  </data>
+  <data name="Seventhitem" xml:space="preserve">
+    <value>البند السابع</value>
+  </data>
+  <data name="Seventhitem1" xml:space="preserve">
+    <value>يلتزم الطرف الثاني بتحديث البيانات المرفوعة عبر المنصة في حال تم استقدام أي عامل او عاملة خارج المنصة ، ويتزم بالتواصل المباشر مع المتقدمين لطلبات الإستقدام لانهاء إجراءات الإستقدام، كما يلتزم المكتب برفع البيانات الصحيحة للعمالة المسجلة لديه في الموقع، كما يلتزم المكتب برفع الصور ومقاطع فيديو للعمالة بلباس محتشم</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>التوقيع</value>
+  </data>
+  <data name="Sixthitem" xml:space="preserve">
+    <value>البند السادس</value>
+  </data>
+  <data name="Sixthitem61" xml:space="preserve">
+    <value>6-1 يجب على الطرف الثاني حل خلافاته وإجراءاته بينه وبين عملائه والجهات الأخرى دون إدخال الطرف الأول في هذا الأمر، وفي حالة موافقة الطرف الأول على إدخاله فيحق للطرف الأول مطالبة الطرف الثاني برسوم وقدرها (50) ريال لكل ساعة أو جزء منها يقضيها أو أي طرف من قبله في متابعة معالجة تلك المشكلة ومع ذلك فإن الطرف الأول لا يتحمل أي مسؤولية قانونية أمام الغير</value>
+  </data>
+  <data name="Sixthitem62" xml:space="preserve">
+    <value>6-2 لا يتحمل الطرف الأول أي مسؤولية عن أي ضرر يلحق بالطرف الثاني في حالة تعرض التطبيقات الإلكترونية لعملية قرصنة إلكترونية أو حدث إخلال بأمنها وخدماتها أو توقفها أو تم التصرف بأي صورة مخالفة لإرادة الطرف الأول في معلومات التطبيقات الإلكترونية</value>
+  </data>
+  <data name="theseal" xml:space="preserve">
+    <value>الختم</value>
+  </data>
+  <data name="Acceptable" xml:space="preserve">
+    <value>مقبول</value>
+  </data>
+  <data name="AddArea" xml:space="preserve">
+    <value>اضافة منطقة</value>
+  </data>
+  <data name="Addlanguage" xml:space="preserve">
+    <value>اضافة لغة</value>
+  </data>
+  <data name="Addnew" xml:space="preserve">
+    <value>اضافة جديد</value>
+  </data>
+  <data name="Addphotos" xml:space="preserve">
+    <value>اضافة صور</value>
+  </data>
+  <data name="Addskill" xml:space="preserve">
+    <value>اضافة مهارة</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>ابريل</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>أغسطس</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>اسم الشركة</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>تاريخ من</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>تاريخ الي</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>ديسمبر</value>
+  </data>
+  <data name="Degree" xml:space="preserve">
+    <value>الدرجة العلمية</value>
+  </data>
+  <data name="Doyouwanttodeletethisphoto" xml:space="preserve">
+    <value>هل تريد حذف هذه الصورة</value>
+  </data>
+  <data name="Excellent" xml:space="preserve">
+    <value>ممتاز</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>فبراير</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>الجمعة</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>جيد</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>يناير</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>يوليو</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>يونيو</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>مارس</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>مايو</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
+    <value>متوسط</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>الإثنين</value>
+  </data>
+  <data name="Noofchildren" xml:space="preserve">
+    <value>عدد الاطفال</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>نوفمبر</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>اكتوبر</value>
+  </data>
+  <data name="PlaceName" xml:space="preserve">
+    <value>اسم المكان</value>
+  </data>
+  <data name="Reading" xml:space="preserve">
+    <value>قراءة</value>
+  </data>
+  <data name="ReadingAndwriting" xml:space="preserve">
+    <value>قراءة وكتابة</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>السبت</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>سبتمبر</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>الأحد</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>الخميس</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>الثلاثاء</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>جيد جدا</value>
+  </data>
+  <data name="VideoLink" xml:space="preserve">
+    <value>رابط الفيديو</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>المشاهدات</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>الأربعاء</value>
+  </data>
+  <data name="Writing" xml:space="preserve">
+    <value>كتابة</value>
+  </data>
+  <data name="ConfirmReceiptofmoney" xml:space="preserve">
+    <value>تأكد من استلام مبلغ</value>
+  </data>
+  <data name="Connecttothedatabase" xml:space="preserve">
+    <value>الاتصال بقاعدة البيانات</value>
+  </data>
+  <data name="NewPendingRequests" xml:space="preserve">
+    <value>طلبات جديدة معلقة</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>التنبيهات</value>
+  </data>
+  <data name="UniversityName" xml:space="preserve">
+    <value>اسم الجامعة</value>
+  </data>
+  <data name="Activateacc" xml:space="preserve">
+    <value>تم تنشيط حسابك بنجاح يمكنك الان استخدام منصة إستقدامي</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>اضغط هنا</value>
+  </data>
+  <data name="Logintoyouraccountontheplatform" xml:space="preserve">
+    <value>سجل الدخول لحسابك في المنصة</value>
+  </data>
+  <data name="passConfirm" xml:space="preserve">
+    <value>اذا كان بريدك موجوده فى قاعدة بيانات إستقدامي سوف يصلك رسالة على بريدك الالكترونى تساعدك على استرجاع حسابك</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>حقل إجباري</value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value>استرجاع</value>
+  </data>
+  <data name="ThankyouforusingMarofahplatform" xml:space="preserve">
+    <value>نشكرك على استخدام منصة إستقدامي </value>
+  </data>
+  <data name="Yourpasswordhasbeenchanged" xml:space="preserve">
+    <value>تم تغير كلمة المرور الخاص بك لتسجيل الدخول</value>
+  </data>
+  <data name="Choosemaritalstatus" xml:space="preserve">
+    <value>اختر الحالة الاجتماعية</value>
+  </data>
+  <data name="HightoLow" xml:space="preserve">
+    <value>من الاعلى الى الاقل</value>
+  </data>
+  <data name="LowtoHigh" xml:space="preserve">
+    <value>من الاقل الى الاعلى</value>
+  </data>
+  <data name="SelectSortRecruitment" xml:space="preserve">
+    <value>ترتيب الاستقدام</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>على حسب</value>
+  </data>
+  <data name="PreliminarilyAcceptedApplications" xml:space="preserve">
+    <value>طلبات مقبولة مبدئيا</value>
+  </data>
+  <data name="RejectedRequests" xml:space="preserve">
+    <value>طلبات مرفوضة</value>
+  </data>
+  <data name="ApprovalRejected" xml:space="preserve">
+    <value>طلبات مرفوضة الاعتماد</value>
+  </data>
+  <data name="ApprovedRequests" xml:space="preserve">
+    <value>طلبات معتمدة</value>
+  </data>
+  <data name="UploadCVsforWorkers" xml:space="preserve">
+    <value>رفع سير ذاتية للعمالة</value>
+  </data>
+</root>

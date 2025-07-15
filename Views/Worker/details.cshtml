@@ -1,0 +1,1242 @@
+﻿@model  AspNetUser
+@using Microsoft.AspNet.Identity
+@using Marofh.Models
+@using Resources
+
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+       
+    if (culture.Contains("en-us"))
+    {
+
+         ViewBag.Title = "Worker Personal Page";
+    }
+    else
+    {
+         ViewBag.Title = "الصفحة الشخصية للعامل";
+
+    }
+}
+
+@{
+   
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+
+
+@{string userId = User.Identity.GetUserId();
+    var loggedInUser = ViewModel.GetCurrentUser(userId);
+
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int kafilRoleId = Convert.ToInt32(clsEnum.Roles.Kafil);
+
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);
+    int index = 1;}
+
+<div class="container pl-0 pr-0 mt-4">
+    <div class="row ">
+
+
+
+
+        <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="tab-content">
+                <div class="w-100 d-flex centerlai2 pt-2">
+                    <div class="col-2 align-items-center ml0 pr0 ">
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <img src="@Model.ImageUrl" alt="" class="borderdov">
+                        }
+                        else
+                        {
+                            <img src="/Content/front/assets/img/user.png" alt="" class="borderdov">
+                        }
+                    </div>
+
+                    <div class="col-7 text-right">
+
+                        <h4 class="textrig">@Model.FName  @Html.Raw(" ") @Model.LName  </h4>
+                        @if (Model.Job != null)
+                        {
+                            if (culture.Contains("en-us"))
+                            {
+                                <p class="righttex pb-0">@Model.Job.NameEN</p>
+
+                            }
+                            else
+                            {
+                                <p class="righttex pb-0">@Model.Job.NameAR  </p>
+
+                            }
+                        }
+                        else
+                        {
+                            <p class="righttex pb-0">  </p>
+
+                        }
+                        <div class="set-size charts-container">
+
+
+
+                        </div>
+                        <ul class="newclassit mt-0">
+                            <li>
+
+                                <a class="btn badge badge-warning bordebtn text-right pl-2 pr-2 pt-2 pb-2">
+                                    <i class="fa fa-check-circle"></i>
+                                    @ViewModel.GetWorkerStatusByID(Model.Id)
+
+                                </a>
+                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                if (loggedInUser.RoleID == kafilRoleId)
+                                {
+                                    <li>
+                                        <a class="btn bkeubtn SendWorkerRequest" onclick="Swal.fire('@Resource.Warning', '@Resource.YouMustRegisterfirsttobeabletorequestthisoperator', 'warning');">
+
+                                            <i class="fad fa-user-friends pl25"></i>                                           
+                                            @Resource.Requestaworker
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-danger text-danger bancss"
+                                           onclick="Swal.fire('@Resource.Warning', '@Resource.YouMustregisterfirsttobeabletoreportthisaccount', 'warning');">
+                                            <i class="fas fa-ban pl25"></i>
+                                            @*ابلاغ عن حساب*@
+                                            @Resource.ReportAnaccount
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+
+                    <div class="modal fade bandiv " id="bandiv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-dialog modalsmall" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header  ">
+                                        <h6 class="modal-title" id="exampleModalLabel">
+                                            @Resource.ReportAnaccount
+                                        </h6>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body p-2">
+                                        <div class="pr-5 pt-3 pb-2 d-flex flexdor align-items-start  ">
+
+                                            <p class="font-weight-bold pr-0 colostyle">@Resource.Thisaccountisreportedbecause</p>
+                                            <div class=" text-right mb-4">
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        @*يحتوي علي معلومات مزيفة*@
+                                                        @Resource.Containsfakeinformation
+                                                    </label>
+                                                </div>
+
+                                                <div class="form-check mt-2">
+                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                                    <label class="form-check-label" for="defaultCheck1">
+                                                        @*يحتوي علي صور غير لائقة*@
+                                                        @Resource.Containsinappropriateimages
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn  btn-secondary2">
+
+                                                <i class="far fa-check-circle "></i>
+                                                &nbsp;
+                                                @*ارسال*@
+                                                @Resource.Send
+                                            </button>
+                                            <button type="submit" class="btn  btn-grey" data-dismiss="modal" aria-label="Close">
+                                                @*الغاء*@
+                                                @Resource.Cancel
+                                            </button>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3 cssleft">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (loggedInUser.RoleID == kafilRoleId)
+                            {
+                                <a class="post__actions-btn post__actions-btn--green bookmarkscss float-left mt-5" title="@Resource.AddToFavorite" onclick="Swal.fire('@Resource.Warning', '@Resource.Youmustregisterfirsttobeabletouseyourfavourites', 'warning');">
+                                    <i class="far fa-star"></i>
+                                </a>
+                            }
+                        }
+                    </div>
+
+                </div>
+
+
+                <div class="tab-pane fade show active" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+
+
+                    <div class="row">
+
+
+                        <div class="col-2 ml0 pr0">
+
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" data-toggle="pill" href="#v-pills-home" role="tab">
+                                    <i class="fad fa-user-circle"></i>
+                                    @*البيانات الشخصية*@
+                                    @Resource.PersonalInformation
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-video" role="tab">
+
+
+                                    <i class="fad fa-file-video"></i>
+                                    
+                                    @Resource.Introductionvideo
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-profile" role="tab">
+
+
+                                    <i class="fad fa-address-card"></i>
+                                    
+                                    @Resource.BriefSummary
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-messages" role="tab">
+                                    <i class="fad fa-building"></i>
+                                  @Resource.YearsofExperience
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">
+                                    <i class="fad fa-user-tie"></i>
+                                    @Resource.Education
+
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-payment" role="tab">
+
+                                    <i class="fad fa-user-graduate"></i>
+
+                                    @Resource.Certificates
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-skikks" role="tab">
+
+                                    <i class="fad fa-magic"></i>
+
+                                    @Resource.Skills
+                                </a>
+
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-work" role="tab">
+
+                                    <i class="fad fa-location"></i>
+
+                                  @Resource.workareas
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-lang" role="tab">
+
+                                    <i class="fad fa-globe"></i>
+                                    @Resource.language
+                                 
+                                </a>
+
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-gallery" role="tab">
+                                    <i class="fad fa-images"></i>
+
+                                    @Resource.PhotoGallery
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-10">
+
+                            <div class="workerProfile">
+
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+                                        <!-- form -->
+                                        <div action="/worker/UpdateProfile" class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-user-circle"></i>
+                                                        @Resource.PersonalInformation
+                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form__group">
+                                                        <label for="firstname" class="form__label">@Resource.FirstName </label>
+                                                        <input name="FName" id="FName" type="text" disabled class="form__input" placeholder="@Resource.FirstName " value="@Model.FName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form__group">
+                                                        <label for="lastname" class="form__label">  @Resource.LastName </label>
+                                                        <input name="LName" id="LName" type="text" disabled class="form__input" placeholder="@Resource.LastName" value="@Model.LName">
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-12 col-lg-4">
+                                                    <div class="form__group">
+                                                        <label for="lastname" class="form__label">@Resource.BirthDate </label>
+                                                        @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @disabled = "disabled" })
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="form__group">
+                                                        <label for="location" class="form__label">@Resource.Country </label>
+                                                        @if (Model.Country != null)
+                                                        {
+                                                            if (culture.Contains("en-us"))
+                                                            {
+
+                                                                <input name="CountryID" id="CountryID" type="text" disabled class="form__input" placeholder="@Resource.Country" value="@Model.Country.NameEN">
+                                                            }
+                                                            else
+                                                            {
+                                                                <input name="CountryID" id="CountryID" type="text" disabled class="form__input" placeholder="@Resource.Country" value="@Model.Country.NameAR">
+
+                                                            }
+
+
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <input name="CountryID" id="CountryID" type="text" disabled class="form__input" placeholder="@Resource.Country">
+
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 selectcss">
+                                                    <div class="form__group">
+                                                        <label for="lang" class="form__label">@Resource.City </label>
+                                                        @if (Model.City != null)
+                                                        {
+                                                            if (culture.Contains("en-us"))
+                                                            {
+                                                                <input name="CityID" id="CityID" type="text" disabled class="form__input" placeholder="@Resource.City" value="@Model.City.NameEN">
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <input name="CityID" id="CityID" type="text" disabled class="form__input" placeholder="@Resource.City" value="@Model.City.NameAR">
+
+                                                            }
+
+
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <input name="CityID" id="CityID" type="text" disabled class="form__input" placeholder="@Resource.City">
+
+                                                        }
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-xl-4">
+                                                    <div class="form__group">
+                                                        <label for="category" class="form__label">@Resource.Job </label>
+                                                        <div class="form__select-wrap">
+
+                                                            @Html.DropDownList("JobsID", ViewBag.JobsID as List<SelectListItem>, Resource.Job, htmlAttributes: new { @class = "form-control select2", @disabled = "disabled" })
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-xl-4">
+                                                    <div class="form__group">
+                                                        <label for="category" class="form__label">@Resource.Sex </label>
+                                                        <div class="form__select-wrap">
+                                                            <select name="Gender" id="Gender" class="form__select" disabled>
+
+                                                                <option value="True">@Resource.Male</option>
+                                                                <option value="False">@Resource.Female</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-xl-4">
+                                                    <div class="form__group">
+                                                        <label for="type" class="form__label">@Resource.Religion </label>
+                                                        <div class="form__select-wrap">
+                                                            <select name="Religion" id="Religion" class="form__select" disabled>
+                                                                @if (culture.Contains("en-us"))
+                                                                {
+                                                                    <option value="Muslim">@Resource.Muslim </option>
+                                                                    <option value="Christian">@Resource.Christian</option>
+                                                                    <option value="Jewish">@Resource.Jewish</option>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="مسلم">@Resource.Muslim </option>
+                                                                    <option value="مسيحي">@Resource.Christian</option>
+                                                                    <option value="يهودي">@Resource.Jewish</option>
+
+                                                                }
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="col-12 col-xl-4">
+                                                    <div class="form__group">
+                                                        <label for="level" class="form__label">@Resource.Numberofchildren </label>
+                                                        <div class="form__select-wrap">
+                                                            <select name="ChildernsCount" id="ChildernsCount" class="form__select select2" disabled>
+                                                                <option value="0" @(ViewBag.ChildernsCount?.ToString() == "0" ? "selected" : "")>@Resource.None</option>
+                                                                <option value="1" @(ViewBag.ChildernsCount?.ToString() == "1" ? "selected" : "")>1</option>
+                                                                <option value="2" @(ViewBag.ChildernsCount?.ToString() == "2" ? "selected" : "")>2</option>
+                                                                <option value="3" @(ViewBag.ChildernsCount?.ToString() == "3" ? "selected" : "")>3</option>
+                                                                <option value="4" @(ViewBag.ChildernsCount?.ToString() == "4" ? "selected" : "")>4</option>
+                                                                <option value="5" @(ViewBag.ChildernsCount?.ToString() == "5" ? "selected" : "")>5</option>
+                                                                <option value="6-" @(ViewBag.ChildernsCount?.ToString() == "6-" ? "selected" : "")>6</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="col-4">
+                                                    <div class="form__group">
+                                                        <label for="min" class="form__label">@Resource.Salary </label>
+                                                        <input name="Salary" id="Salary" type="number" disabled min="0" class="form__input" placeholder="@Resource.Salary" value="@Model.Salary">
+                                                    </div>
+                                                </div>
+
+
+
+
+                                                <div class="col-4">
+                                                    <div class="form__group">
+                                                        <label for="location" class="form__label">@Resource.Age</label>
+
+
+                                                        <input name="Age" id="Age" type="number" disabled min="0" class="form__input " placeholder="@Resource.Age" value="@Model.Age">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="form__group">
+                                                        <label for="location" class="form__label"> @Resource.YearsofExperience</label>
+
+
+                                                        <input name="ExperienceYearsCount" id="ExperienceYearsCount" min="0" type="text" disabled class="form__input " placeholder="@Resource.YearsofExperience" value="@Model.ExperienceYearsCount">
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4 selectcss">
+                                                    <div class="form__group">
+                                                        <label for="lang" class="form__label">@Resource.SocialStatus</label>
+                                                        <select class="select2" name="MaritalStatus" id="MaritalStatus" disabled>
+                                                            <option value="@Resource.Single">@Resource.Single</option>
+                                                            <option value="@Resource.Married">@Resource.Married</option>
+                                                            <option value="@Resource.Divorced">@Resource.Divorced</option>
+
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4 selectcss">
+                                                    <div class="form__group">
+                                                        <label for="lang" class="form__label">@Resource.BirthPlace </label>
+                                                        @Html.DropDownList("BirthCountryID", ViewBag.BirthCountryID as List<SelectListItem>, Resource.Country, htmlAttributes: new { @class = "form-control select2", @disabled = "disabled" })
+                                                        
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-4">
+                                                    <div class="form__group">
+                                                        <label for="location" class="form__label">
+                                                            @Resource.Weightkg
+                                                        </label>
+
+                                                        <input name="Weight" id="Weight" type="number" disabled min="0" class="form__input " placeholder="@Resource.TheWeight" value="@Model.Weight">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-4">
+                                                    <div class="form__group">
+                                                        <label for="location" class="form__label">
+                                                     @Resource.lengthCm
+                                                        </label>
+                                                        <input name="Height" id="Height" type="number" disabled min="0" class="form__input " placeholder="@Resource.Length" value="@Model.Height">
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-xl-4">
+                                                    <div class="form__group">
+                                                        <label for="level" class="form__label">@Resource.RoomSharing </label>
+                                                        <div class="form__select-wrap">
+                                                            <select name="IsRoomShared" id="IsRoomShared" class="form__select" disabled>
+                                                                <option value="True"> @Resource.Yes</option>
+                                                                <option value="False"> @Resource.No</option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="col-12 col-xl-4">
+                                                    <div class="form__group">
+                                                        <label for="level" class="form__label">@Resource.RecruitmentAmount</label>
+                                                        <input name="RequestAmount" id="RequestAmount" type="number" class="form__input " placeholder="@Resource.RecruitmentAmount" value="@Model.RequestAmount" disabled>
+
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <!-- end form -->
+
+
+
+
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
+
+
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-file-video"></i>
+
+                                                        @Resource.Introductionvideo
+                                                      
+                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <iframe width="100%" height="315" src="@Model.VideoUrl" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-address-card"></i>
+
+                                                        @Resource.BriefSummary
+                                                        @*نبذة مختصرة*@
+                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <textarea class="textarea" rows="4" cols="5" id="Brief" name="Brief" disabled>
+                                                          @Model.Brief
+                                                            </textarea>
+
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-building"></i>
+                                                        @Resource.YearsofExperience
+                                                        @*سنوات الخبرة*@
+
+                                                    </h2>
+                                                </div>
+
+
+
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.Company </th>
+                                                            <th scope="col"> @Resource.From</th>
+                                                            <th scope="col"> @Resource.To</th>
+                                                            <th scope="col"> @Resource.Country</th>
+                                                            <th scope="col"> @Resource.City      </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (WorkerExpertis expertis in Model.WorkerExpertises)
+                                                        {
+                                                        <tr>
+                                                            <td> @index</td>
+                                                            <td>@expertis.CompanyName </td>
+
+                                                            <td>@expertis.From.Value.ToShortDateString() </td>
+
+                                                            <td>@expertis.To.Value.ToShortDateString() </td>
+                                                            @if (@expertis.Country != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@expertis.Country.NameEN </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@expertis.Country.NameAR </td>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+                                                            @if (@expertis.City != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@expertis.City.NameEN </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@expertis.City.NameAR </td>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+
+
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+
+
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                        <div action="#" class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-user-tie"></i>
+
+                                                        @*التعليم*@
+                                                        @Resource.Education
+
+                                                    </h2>
+                                                </div>
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.Universitydegree  </th>
+                                                            <th scope="col">@Resource.From </th>
+                                                            <th scope="col"> @Resource.To</th>
+                                                            <th scope="col"> @Resource.Country</th>
+                                                            <th scope="col">@Resource.University</th>
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerCertificate certificate in Model.WorkerCertificates)
+                                                        {
+                                                        <tr>
+                                                            <td> @index</td>
+                                                            <td>@certificate.Name </td>
+
+                                                            <td>@certificate.From.Value.ToShortDateString() </td>
+
+                                                            <td>@certificate.To.Value.ToShortDateString() </td>
+
+                                                            @if (certificate.Country != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@certificate.Country.NameEN</td>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@certificate.Country.NameAR </td>
+
+                                                                }
+
+
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+
+
+
+                                                            <td>@certificate.University </td>
+
+
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                        <!-- form -->
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+
+                                                        <i class="fad fa-user-graduate"></i>
+                                                        @Resource.Certificates
+                                                        @*الشهادات*@
+                                                    </h2>
+                                                </div>
+
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.Certificate </th>
+                                                            <th scope="col">  @Resource.ReleaseDate</th>
+                                                            <th scope="col"> @Resource.EducationalCenter</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerCours course in Model.WorkerCourses)
+                                                        {
+                                                            <tr>
+                                                                <td> @index</td>
+                                                                <td>@course.Name </td>
+
+                                                                <td>@course.Date.Value.ToShortDateString() </td>
+
+                                                                <td>@course.CenterName </td>
+
+
+
+                                                            </tr>
+                                                            { index++; }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                        </div>
+                                        <!-- end form -->
+                                    </div>
+
+
+
+                                    <div class="tab-pane fade" id="v-pills-skikks" role="tabpanel" aria-labelledby="v-pills-skikks-tab">
+
+
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+
+                                                        <i class="fad fa-magic"></i>
+
+                                                        @*المهارات*@
+                                                        @Resource.Skills
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <table class="table table-bordered table-striped tabdiv">
+                                                        <thead class="thead">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">  @Resource.SkillName</th>
+                                                                <th scope="col">@Resource.Degreeofmastery</th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{index = 1; }
+                                                            @foreach (WorkerSkill skill in Model.WorkerSkills)
+                                                            {
+                                                            <tr>
+                                                                <td> @index</td>
+                                                                @if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@skill.Skill.NameEN</td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@skill.Skill.NameAR </td>
+                                                                }
+                                                                <td>@skill.Level </td>
+                                                            </tr>
+                                                                { index++; }
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-work" role="tabpanel" aria-labelledby="v-pills-work-tab">
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-location"></i>
+                                                        @Resource.workareas
+                                                        @*مناطق العمل*@
+
+                                                    </h2>
+                                                </div>
+
+
+
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.Country @*اسم البلد*@</th>
+                                                            <th scope="col"> @Resource.City </th>
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerWorkingPlace place in Model.WorkerWorkingPlaces)
+                                                        {
+                                                        <tr>
+                                                            <td> @index</td>
+                                                            @if (culture.Contains("en-us"))
+                                                            {
+                                                                <td>@place.Country.NameEN </td>
+                                                                <td>@place.City.NameEN </td>
+                                                            }
+                                                            else
+                                                            {
+                                                                <td>@place.Country.NameAR </td>
+                                                                <td>@place.City.NameAR </td>
+                                                            }
+
+
+
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+
+
+
+
+
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-lang" role="tabpanel" aria-labelledby="v-pills-lang-tab">
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-globe"></i>
+@Resource.language
+                                                        @*اللغة*@
+                                                    </h2>
+                                                </div>
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.language </th>
+                                                            <th scope="col">@Resource.Degreeofmastery  </th>
+                                                            <th scope="col">@Resource.Natureoflanguage</th>
+
+
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerLanguage wl in Model.WorkerLanguages)
+                                                        {
+                                                        <tr>
+                                                            <td> @index</td>
+                                                            @if (wl.Language != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@wl.Language.NameEN</td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@wl.Language.NameAR</td>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+
+                                                            <td>@wl.Level </td>
+                                                            <td>@wl.Method </td>
+
+
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+                                                    </tbody>
+                                                </table>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-gallery" role="tabpanel" aria-labelledby="v-pills-gallery-tab">
+                                        <!-- form -->
+                                        <div class="form formcss">
+                                            <div class="row">
+
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+
+                                                        <i class="fad fa-images"></i>
+                                                        @Resource.PhotoGallery
+                                                        @*معرض الصور*@
+                                                    </h2>
+                                                </div>
+                                                <div class="demo-gallery">
+                                                    @foreach (Gallery gallery in Model.Galleries)
+                                                    {
+                                                        <a href="@gallery.ImageUrl" class="without-caption image-link">
+                                                            <img src="@gallery.ImageUrl" width="172" height="115" />
+                                                        </a>
+                                                    }
+
+
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- end form -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+    <script>
+    $(".AddToFavoriteByAjax").click(function (e) {
+    e.preventDefault();
+    var link = $(this);
+    $.ajax({
+    url: '@Url.Action("AddToFavoriteByAjax", "Kafil")',//  this for calling the web method function in controller.
+
+    type: "POST",
+        data: '{wId: "' + link.attr("data-id") + '" }',// user name value
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: OnSuccessed,
+    failure: function (response) {
+    alert(response);
+    }
+    });
+    });
+
+
+
+
+
+        $(".SendWorkerRequest").click(function (e) {
+    e.preventDefault();
+    var link = $(this);
+    $.ajax({
+    url: '@Url.Action("SendWorkerRequest", "Kafil")',//  this for calling the web method function in controller.
+
+    type: "POST",
+    data: '{wId: "' + link.attr("data-id") + '"  }',// user name value
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: OnSuccessed,
+    failure: function (response) {
+    alert(response);
+    }
+    });
+            });
+
+
+
+    function OnSuccessed(response) {
+
+    switch (response) {
+
+    case "AddedToFavoriteList":
+   //   alert('تم اضافة العامل الى القائمة المفضلة');
+            Swal.fire("@Resource.Done", "@Resource.WorkerAddedToFavoriteList", "success");
+            break;
+
+
+    case "AlreadyExistedInFavoriteList":
+           //  alert('هذا العامل موجود بالفعل فى القائمة المفضلة');
+            Swal.fire("@Resource.Warning", "@Resource.ThisWorkerisalreadyinFavoritelist", "info");
+    break;
+
+
+
+        //ارسال الطالبات
+        case "ResquestHasBeenSent":
+            // alert('تم إرسال طلبك الى مكتب الاستقدام بنجاح');
+            
+            Swal.fire("@Resource.Done", "@Resource.YourRequestHasbeensuccessfullySentandtheofficewillcontactyouassoonaspossible", "success");
+          //  window.location.href = "/kafil/WorkerProfile/@Model.ShortID"
+            break;
+
+
+        case "SentBefore":
+           // alert('تم ارسال الطلب مسبقا');
+                    Swal.fire("@Resource.Warning", "@Resource.TheRequestHasalreadyBeenSent", "info");
+            break;
+
+    case "Exception":
+    alert('حدث خطأ ما');
+    break;
+
+    }
+    }
+
+    </script>
+
+
+
+    <script>
+        function add(ths, sno) {
+
+
+            for (var i = 1; i <= 5; i++) {
+                var cur = document.getElementById("star" + i)
+                cur.className = "far fa-star"
+            }
+
+            for (var i = 1; i <= sno; i++) {
+                var cur = document.getElementById("star" + i)
+                if (cur.className == "far fa-star") {
+                    cur.className = "fas fa-star checked"
+                }
+            }
+
+        }
+
+
+        $(document).ready(function () {
+            $('[data-toggle=tooltip]').tooltip();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("[data-toggle=\"tooltip\"]").tooltip();
+
+
+        $('.without-caption').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+            image: {
+                verticalFit: true
+            },
+            zoom: {
+                enabled: true,
+                duration: 300 // don't foget to change the duration also in CSS
+            }
+        });
+
+        $('.with-caption').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            mainClass: 'mfp-with-zoom mfp-img-mobile',
+            image: {
+                verticalFit: true,
+                titleSrc: function (item) {
+                    return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
+                }
+            },
+            zoom: {
+                enabled: true
+            }
+        });
+
+
+    </script>
+    <link href="/Content/front/assets/css/bootstrap-FileUpload.min.css" rel="stylesheet" />
+    <script src="/Content/front/assets/css/bootstrap-FileUpload.min.js"></script>
+    <script>
+        $("#myUpload").bootstrapFileUpload({
+            url: "processor.php"
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("[data-toggle=\"tooltip\"]").tooltip();
+
+
+        $('.without-caption').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+            image: {
+                verticalFit: true
+            },
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+            },
+            zoom: {
+                enabled: true,
+                duration: 300 // don't foget to change the duration also in CSS
+            }
+        });
+
+        $('.with-caption').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            mainClass: 'mfp-with-zoom mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                verticalFit: true,
+                titleSrc: function (item) {
+                    return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
+                }
+            },
+            zoom: {
+                enabled: true
+            }
+        });
+
+
+
+
+                  
+              ($("#select2-CountryID-container").text("@Resource.Country"));
+
+       ($("#select2-CityID-container").text("@Resource.City"));
+
+    </script>
+}
+

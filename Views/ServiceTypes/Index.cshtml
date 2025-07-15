@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Marofh.ServiceType>
+
+@{
+    ViewBag.Title = "متابعة الغرض من الاعلان ";
+    ViewBag.Parent = " الغرض من الاعلان";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("إضافة عنصر جديد", "Create", new { @class = "btn btn-default" })
+</p>
+
+<table class="table display responsive nowrap">
+     <thead>
+         <tr>
+             <th>
+                 نوع الخدمة باللغة العربية
+             </th>
+             <th>
+                 نوع الخدمة باللغة الانجليزية
+             </th>
+
+             <th></th>
+         </tr>
+     </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameAR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameEN)
+                </td>
+
+                <td>
+                    @Html.ActionLink("تعديل", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+</table>

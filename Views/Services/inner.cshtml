@@ -1,0 +1,284 @@
+﻿@model DBEntities
+@{
+   Layout = null;
+}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>المركز المصري الالماني</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/content/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/content/assets/css/fontawesome-all.css">
+    <link rel="stylesheet" href="/content/assets/css/animate.css">
+    <link rel="stylesheet" href="/content/assets/css/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="/content/assets/css/odometer-theme-default.css">
+    <link rel="stylesheet" href="/content/assets/css/owl.carousel.css">
+    <link rel="stylesheet" href="/content/assets/css/style.css">
+</head>
+<body class="dia-home">
+    <!-- preloader - start -->
+    <div id="dia-preloader"></div>
+    <div class="up">
+        <a href="#" class="dia-scrollup text-center"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <!-- Start of header section  ============================================= -->
+
+    <header id="dia-header" class="dia-main-header bgheader">
+        <div class="container">
+            <div class="dia-main-header-content clearfix">
+                <div class="dia-logo float-left">
+                    <a href="/home/"><img src="/content/assets/img/d-agency/logo/logo.png" class="csslogo" alt=""></a>
+                </div>
+                <div class="dia-main-menu-item float-right menunew">
+                    <nav class="dia-main-navigation  clearfix ul-li">
+                        <ul id="main-nav" class="navbar-nav text-capitalize clearfix">
+
+                            <li class="#">
+                                <a href="/home/">
+
+                                    <span class="fa fa-chevron-left d-block"></span>
+                                    رجوع
+                                </a>
+
+                            </li>
+                            <li class="#dia-banner">
+                                <a href="/home/">
+
+                                    <span class="fa fa-home d-block"></span>
+                                    الرئيسية
+                                </a>
+
+                            </li>
+
+                            <li>
+                                <a href="/pages/inner/1">
+                                    <span class="fas fa-address-card d-block"></span>
+                                    عن المركز
+                                </a>
+                            </li>
+
+
+                            @*<li>
+                                <a href="#dia-team">
+
+                                    <i class="fas fa-cogs  d-block"></i>
+                                    الخدمات
+                                </a>
+                            </li>*@
+                        <li>
+                            <a href="/pages/inner/2">
+
+                                <span class="fas fa-briefcase d-block"></span>
+                                التوظيف
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/inner/3">
+
+
+                                <i class="fas fa-address-book  d-block"></i>
+                                التدريب
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/pages/inner/4">
+
+                                <i class="fas fa-globe  d-block"></i>
+                                عن الهجرة
+
+                            </a>
+                        </li>
+                            <li>
+                                <a href="#dia-footer">
+
+                                    <i class="fas fa-envelope  d-block"></i>
+                                    اتصل بنا
+
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /desktop menu -->
+            <!--<div class="dia-mobile_menu relative-position">
+                    <div class="dia-mobile_menu_button dia-open_mobile_menu">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                    <div class="dia-mobile_menu_wrap">
+                        <div class="mobile_menu_overlay dia-open_mobile_menu"></div>
+                        <div class="dia-mobile_menu_content">
+                            <div class="dia-mobile_menu_close dia-open_mobile_menu">
+                                <i class="far fa-times-circle"></i>
+                            </div>
+                            <div class="m-brand-logo text-center">
+                                <a href="%21.html#"><img src="/content/assets/img/d-agency/logo/logo.png" alt=""></a>
+                            </div>
+                            <nav class="dia-mobile-main-navigation  clearfix ul-li">
+                             <ul id="main-nav" class="navbar-nav text-capitalize clearfix">
+                                <li class="dropdown">
+                                    <a href="#">الصفحة الرئيسية</a>
+                                    <ul class="dropdown-menu clearfix">
+                                        <li><a href="#">قائمة منسدلة 1</a></li>
+                                        <li><a href="#">قائمة منسدلة 2</a></li>
+                                        <li><a href="#">قائمة منسدلة 3</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">الصفحة الرئيسية</a>
+                                    <ul class="dropdown-menu clearfix">
+                                        <li><a href="#">قائمة منسدلة 1</a></li>
+                                        <li><a href="#">قائمة منسدلة 2</a></li>
+                                        <li><a href="#">قائمة منسدلة 3</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#dia-service">الخدمات</a></li>
+                                <li><a href="#dia-about">حول</a></li>
+                                <li><a href="#dia-portfolio">محفظة</a></li>
+                                <li><a href="#dia-blog">مدونة</a> </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                 /mobile-menu
+            </div>-->
+        </div>
+    </header>
+    <!-- End of header section
+        ============================================= -->
+    <!-- Start of Banner section
+        ============================================= -->
+    <section id="dia-banner" class="dia-banner-section position-relative bgdiv">
+
+        <div class="container pt80">
+        
+            <h1 class="ghealine">
+                اكتشف خدماتنا
+
+            </h1>
+        </div>
+
+    </section>
+
+
+    <!-- End of Banner section
+        ============================================= -->
+    <section id="contentsect" class="bgsecti">
+        <div class="imgbanner">
+            <div class="container">
+
+            </div>
+        </div>
+
+        <div class="sectioncontent">
+            <div class="container">
+                <div class="row flexdiv">
+                    <div class="col-md-12">
+
+                        <h1 class="redcolor fsoze">  @Model.Service.Find(Convert.ToInt32(@ViewBag.PId)).Name </h1>
+
+                        <p class="pardiv">
+
+                            @Html.Raw(Model.Service.Find(Convert.ToInt32(@ViewBag.PId)).Description)
+                        </p>
+
+                 
+                    </div>
+                   
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!--    ============================================= -->
+    <!-- Start of Footer  section
+        ============================================= -->
+    <section id="dia-footer" class="dia-footer-section position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="dia-footer-widget pera-content dia-headline clearfix">
+                        <div class="dia-footer-logo">
+                            <a href="/home/">
+                                <img src="/content/assets/img/d-agency/logo/f-logo.png" alt="">
+                            </a>
+                        </div>
+                        <p>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="dia-footer-widget dia-headline ul-li-block clearfix">
+                        <h3 class="dia-widget-title">رابط مفيد:</h3>
+                        <ul>
+                            <li><a href="/home/">الرئيسية </a></li>
+                            <li><a href="/pages/inner/1">عن المركز</a></li>
+                            <li><a href="/pages/inner/2">التوظيف</a></li>
+                            <li><a href="/pages/inner/3">التدريب</a></li>
+                            <li><a href="/pages/inner/4">معلومات عن الهجرة</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="dia-footer-widget dia-headline  ul-li-block clearfix">
+                        <h3 class="dia-widget-title">اتصل:</h3>
+                        <h4>
+                            <i class="fas fa-phone"></i>
+                            اتصل بنا: @Model.Contacts.FirstOrDefault().Phone
+                            <span>@Model.Contacts.FirstOrDefault().WorkDays</span>
+                        </h4>
+                        <h4>
+                            <i class="fas fa-map-marker-alt"></i>
+                            @Model.Contacts.FirstOrDefault().Address
+                        </h4>
+                        <div class="download-btn">
+                        </div>
+                        <div class="dia-footer-social">
+                            <a href="@Model.Contacts.FirstOrDefault().Facebook"><i class="fab fa-facebook-f "></i></a>
+                            <a href="@Model.Contacts.FirstOrDefault().Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="@Model.Contacts.FirstOrDefault().LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="@Model.Contacts.FirstOrDefault().Youtube"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dia-footer-copyright">
+            <div class="container">
+                <div class="dia-footer-copyright-content">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <div class="dia-copyright-text pera-content">
+                                <p>© 2020 <a href="#">جميع الحقوق محفوظة للمركز المصري الالماني</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="dia-footer-shape3 position-absolute"><img src="/content/assets/img/d-agency/shape/diamap.png" alt=""></div>
+    </section>
+    <!-- End of Footer  section
+      ============================================= -->
+    <!-- JS library -->
+    <script src="/content/assets/js/jquery.js"></script>
+    <script src="/content/assets/js/popper.min.js"></script>
+    <script src="/content/assets/js/appear.js"></script>
+    <script src="/content/assets/js/bootstrap.min.js"></script>
+    <script src="/content/assets/js/wow.min.js"></script>
+    <script src="/content/assets/js/jquery.fancybox.js"></script>
+    <script src="/content/assets/js/tilt.jquery.min.js"></script>
+    <script src="/content/assets/js/owl.js"></script>
+    <script src="/content/assets/js/typer-new.js"></script>
+    <script src="/content/assets/js/odometer.js"></script>
+    <script src="/content/assets/js/parallax-scroll.js"></script>
+    <script src="/content/assets/js/custom.js"></script>
+</body>
+
+</html>

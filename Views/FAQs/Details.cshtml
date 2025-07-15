@@ -1,0 +1,255 @@
+﻿@model IEnumerable<Marofh.FAQ>
+@using Resources;
+@{
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+    if (culture.Contains("en-us"))
+    {
+        ViewBag.Title = "FAQs";
+    }
+    else
+    {
+        ViewBag.Title = "الأسئلة المتداولة";
+
+    }
+
+}
+
+
+
+<section>
+
+    <div class="wrapper">
+
+
+        <div class="">
+
+
+            <div class="container ">
+
+
+                <div class="Termcod wow animated fadeIn" data-wow-delay="0.8s">
+
+                    <div class="termtem">
+
+                        <h4 class="pt-30 pb-20"></h4>
+   <section class="sec-pad cover reviews" style="background-image: url('/Content/frontend/assets/images/review-img.jpg');background-attachment: fixed;">
+                                <div class="container">
+                                    <div class="section-title text-center">
+                                        <h2 class="mb-4 pb-4 text-bold"> @Resource.FrequentlyAskedQuestions </h2>
+
+                                    </div>
+
+
+                                    <div class="row mt-60 text-right">
+
+                                        <div style="visibility: hidden; position: absolute; width: 0px; height: 0px;">
+                                            <svg xmlns="http://www.w3.org/2000/svg">
+                                                <symbol viewBox="0 0 24 24" id="expand-more">
+                                                    <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+                                                    <path d="M0 0h24v24H0z" fill="none" />
+                                                </symbol>
+                                                <symbol viewBox="0 0 24 24" id="close">
+                                                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                                    <path d="M0 0h24v24H0z" fill="none" />
+                                                </symbol>
+                                            </svg>
+                                        </div>
+                                        @{int faqIndex = 0;
+                                            foreach (FAQ faq in Marofh.Models.ViewModel.GetFAQs())
+                                            {
+                                                faqIndex++;
+                                                if (faqIndex == 1)
+                                                {
+                                                    <details open>
+                                                        <summary>
+                                                            <span>
+
+                                                                <span class="numbgx">@faqIndex</span>
+                                                                @if (culture.Contains("en-us"))
+                                                                {
+                                                                    @faq.QuestionEN
+                                                                }
+                                                                else
+                                                                {
+                                                                    @faq.QuestionAR
+                                                                }
+
+                                                            </span>
+
+
+                                                            <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
+                                                            <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
+                                                        </summary>
+                                                        <p>
+
+                                                            @if (culture.Contains("en-us"))
+                                                            {
+                                                                @faq.AnswerEN
+                                                            }
+                                                            else
+                                                            {
+                                                                @faq.AnswerAR
+                                                            }
+
+
+
+
+                                                        </p>
+                                                    </details>
+                                                }
+                                                else
+                                                {
+                                                    <details>
+                                                        <summary>
+                                                            <span>
+
+                                                                <span class="numbgx">@faqIndex</span>
+
+                                                                @if (culture.Contains("en-us"))
+                                                                {
+                                                                    @faq.QuestionEN
+                                                                }
+                                                                else
+                                                                {
+                                                                    @faq.QuestionAR
+                                                                }
+                                                            </span>
+
+
+                                                            <svg class="control-icon control-icon-expand" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#expand-more" /></svg>
+                                                            <svg class="control-icon control-icon-close" width="24" height="24" role="presentation"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#close" /></svg>
+                                                        </summary>
+                                                        <p>
+                                                            @if (culture.Contains("en-us"))
+                                                            {
+                                                                @faq.AnswerEN
+                                                            }
+                                                            else
+                                                            {
+                                                                @faq.AnswerAR
+                                                            }
+
+
+
+                                                        </p>
+                                                    </details>
+                                                }
+
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </section>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="row mt-5">
+                    <div class="borbo col-md-12 m-2">
+                        <a href="#" onclick="history.back()" class="backbuton"> @Resource.Back </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+<style>
+
+    details {
+        width: 97%;
+        min-height: 5px;
+        max-width: 90%;
+        padding: 19px 30px 19px 20px;
+        margin: 0 auto;
+        position: relative;
+        font-size: 1.2rem;
+        border: 1px solid rgba(0,0,0,.1);
+        border-radius: 15px;
+        box-sizing: border-box;
+        -webkit-transition: all .3s;
+        transition: all .3s;
+        background-color: #fff
+    }
+
+        details + details {
+            margin-top: 18px
+        }
+
+        details[open] {
+            min-height: 50px;
+            background-color: #f6f7f8;
+            box-shadow: 2px 2px 20px rgba(0,0,0,.2);
+            border: 1px solid #cea120
+        }
+
+        details p {
+            color: #58585d;
+            font-weight: 500;
+            letter-spacing: 0px;
+            font-size: 1rem
+        }
+
+    summary {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        align-items: center;
+        font-weight: 500;
+        cursor: pointer;
+        font-size: 1.4rem;
+        font-size: 1.1rem;
+        font-weight: 700
+    }
+
+        summary:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px #018ef1,0 0 0 5px #018ef1
+        }
+
+        summary::-webkit-details-marker {
+            display: none
+        }
+
+    .control-icon {
+        fill: #d8a81c;
+        -webkit-transition: .3s ease;
+        transition: .3s ease;
+        pointer-events: none
+    }
+
+    .control-icon-close {
+        display: none
+    }
+
+    details[open] .control-icon-close {
+        display: initial;
+        -webkit-transition: .3s ease;
+        transition: .3s ease
+    }
+
+    details[open] .control-icon-expand {
+        display: none
+    }
+
+    details[open] summary:hover:after {
+        -webkit-animation: pulse 1s ease;
+        animation: pulse 1s ease
+    }
+</style>

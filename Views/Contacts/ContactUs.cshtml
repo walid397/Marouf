@@ -1,0 +1,79 @@
+﻿@model Marofh.Contact
+
+@{
+    ViewBag.Title = "اتصل بنا";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+
+    <!-- Contact Section Start -->
+    <div class="contact-section section bg_color--5 pb-120 pb-lg-100 pb-md-80 pb-sm-60 pb-xs-50">
+        <div class="container contact-wrapper mt-20">
+            <div class="row row-30">
+
+                <div class="col-lg-4">
+                    <!-- Map Area Start -->
+                    <div class="contact-info mb-30">
+                        <h2 class="title">الموقع</h2>
+                        <div class="contact-map-area">
+                            @Html.Raw(Model.MAP)
+                        </div>
+                    </div>
+                    <!-- Map Area End -->
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Contact info Start -->
+                    <div class="contact-info mb-30">
+                        <h2 class="title">بيانات الاتصال</h2>
+                        <div class="contact-information">
+                            <div class="info">
+                                <span class="title">البريد الالكتروني:</span>
+                                <span class="text">@Model.Email</span>
+                            </div>
+                            <div class="info">
+                                <span class="title">الجوال:</span>
+                                <span class="text phone">
+                                    @Model.Phone
+                                </span>
+                            </div>   <div class="info">
+                                <span class="title">الجوال:</span>
+                                <span class="text phone">
+                                    @Model.Mobile
+                                </span>
+                            </div>
+                            <div class="info">
+                                <span class="title">العنوان:</span>
+                                <span class="text">
+                                    @Model.Address
+                                </span>
+                            </div>
+                            <div class="info">
+                                <span class="title">تابعنا :</span>
+                                <ul class="social-icon">
+                                    <li><a class="facebook" href="@Model.Facebook" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                                    <li><a class="twitter" href="@Model.Twitter" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a class="twitter" href="@Model.Instagram" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a class="linkedin" href="@Model.LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                    <li><a class="youtube" href="@Model.Youtube" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Contact info End -->
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Contact info Start -->
+                    <div class="contact-info mb-30">
+                        <h2 class="title">نموذج الاتصال</h2>
+                        <div class="contact-form">
+                            @Html.Partial("_ContactUsForm")
+                        </div>
+                    </div>
+                    <!-- Contact info End -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- Contact Section End -->

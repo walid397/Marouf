@@ -1,0 +1,1750 @@
+﻿@model  AspNetUser
+@using Microsoft.AspNet.Identity
+@using Marofh.Models
+@{
+    ViewBag.Title = "الصفحة الشخصية لعامل";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+    ViewBag.Sub1Title = "حسابى";
+    ViewBag.Sub1Url = "/office/";
+}
+
+@{string userId = User.Identity.GetUserId();
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);
+    int index = 1;}
+
+<div class="container pl-0 pr-0 mt-5">
+    <div class="row ">
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+            <!-- user -->
+            <div class="user">
+                <div class="user__head">
+                    <div class="user__img">
+                        @{string profileImg = ViewModel.GetCurrentUser(userId).ImageUrl;}
+                        @if (!string.IsNullOrEmpty(profileImg))
+                        {
+                            <img src="@profileImg" alt="">
+                        }
+                        else
+                        {
+                            <img src="/Content/front/assets/img/user.png" alt="">
+                        }
+
+
+                        <a href="#" class="imgcss" onclick="editOfficeImageProfile(@Model.AspNetUser1.ShortID)">
+                            <i class="fa fa-camera fa-5x"></i>
+                            <span class="changetitle">تغيير الصورة</span>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="user__title">
+                    <h2>@Model.AspNetUser1.OfficeName</h2>
+                    <p>@Model.AspNetUser1.Country.NameAR</p>
+
+                    <div class="verviedaccoutn  ">
+                        <i class="fa fa-check-circle"></i>
+
+                    </div>
+
+                    <div class=" mt-20 staticite">
+                        <div class="">
+                            <span class="fad fa-user-circle d-block"></span>
+                            <span class="d-block fontsizerbol">
+                                @Marofh.Models.ViewModel.GetWorkersCount(userId, workerRoleId)
+
+
+                            </span>
+                            <span class="cfont">
+                                العاملات
+                            </span>
+
+                        </div>
+                        <div class="">
+                            <span class="fad fa-eye d-block"></span>
+                            <span class="d-block fontsizerbol">@Model.ViewCount </span>
+                            <span class="cfont">
+                                المشاهدات
+                            </span>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <ul class="user__list">
+
+                    <li>
+                        <a href="/office/"><i class="fad fa-home-lg-alt"></i>الصفحة الرئيسية</a>
+                    </li>
+                    <!--<li>
+                        <a href="#"><i class="fad fa-user-tie"></i> الملف الشخصى</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fad fa-handshake"></i>إدارة المقابلات </a>
+                    </li>-->
+
+                    <li>
+
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fad fa-sign-out-alt"></i> تسجيل الخروج</a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- end user -->
+            <!-- social -->
+            <div class="sidebox">
+                <!--<div class="sidebox__share">
+                    <span>اجتماعی:</span>
+                    <ul>
+                        <li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
+                        <li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
+                    </ul>
+                </div>-->
+            </div>
+            <!-- end social -->
+        </div>
+        <div class="col-12 col-md-8 col-lg-8 col-xl-9">
+
+
+            <!--<ul class="nav nav-tabs main__nav" id="main__nav" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false">الاعدادت</a>
+                </li>
+
+
+            </ul>-->
+
+            <div class="tab-content">
+                <div class="w-100 d-flex centerlai2 pt-2">
+                    <div class="col-2 align-items-center ml0 pr0 ">
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <img src="@Model.ImageUrl" alt="" class="borderdov">
+                        }
+                        else
+                        {
+                            <img src="/Content/front/assets/img/user.png" alt="" class="borderdov">
+                        }
+
+                        @*<div class="deletebox">
+                                <a href="#" class="delete_icon1 delteicob" data-toggle="tooltip" title="حذف" alt="حذف"><i class="far fa-trash-alt" ></i></a>
+                            </div>*@
+
+
+                        <div class="deletebox">
+                            <a href="#" class="delete_icon1 delteicob2 uploaifncss" data-toggle="tooltip" title="تغيير الصورة" alt="تغيير الصورة"  onclick="editWorkerImageProfile(@Model.ShortID)"><i class="fa fa-camera "></i></a>
+
+                            <a href="#" class="delete_icon1 delteicob" data-toggle="tooltip" title="حذف" alt="حذف" onclick="editWorkerImageProfile(@Model.ShortID)"><i class="far fa-trash-alt"></i></a>
+
+                            @*<input id='uploadprofile' type='file'>*@
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div class="col-10 text-right">
+
+                        <div class="d-flex align-items-center">
+                            <div class="col-10 ">
+                                <h4 class="textrig">@Model.FName  @Html.Raw(" ") @Model.LName  </h4>
+                                @if (Model.Job != null)
+                                {
+
+                                    <p class="righttex pb-0">@Model.Job.NameAR  </p>
+
+                                }
+                                else
+                                {
+                                    <p class="righttex pb-0">  </p>
+
+                                }
+
+                            </div>
+
+                            <div>
+                                <div class="col-2">
+                                    <div id="cont" data-pct="100">
+                                        <svg id="svg" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+                                            <circle id="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+                                        </svg>
+                                    </div>
+                                    <input id="percent" name="percent" value="@ViewBag.Percetage" style="display:none">
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    @*<div class="set-size charts-container">
+
+
+                            <div class="pie-wrapper progress-45 style-2">
+                                <span class="label"> <span class="smaller">%</span></span>
+                                <div class="pie">
+                                    <div class="left-side half-circle"></div>
+                                    <div class="right-side half-circle"></div>
+                                </div>
+
+                            </div>
+
+
+                        </div>*@
+
+                 
+
+
+
+                        @*<div class="col-3 cssleft">
+
+
+                            </div>*@
+                    </div>
+
+
+                    <div class="tab-pane fade show active" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+
+
+                        <div class="row">
+
+
+                            <div class="col-2 ml0 pr0">
+
+                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <a class="nav-link active" data-toggle="pill" href="#v-pills-home" role="tab">
+                                        <i class="fad fa-user-circle"></i>
+                                        البيانات الشخصية
+                                    </a>
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-video" role="tab">
+
+
+                                        <i class="fad fa-file-video"></i>
+                                        فيديو تعريفي
+                                    </a>
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-profile" role="tab">
+
+
+                                        <i class="fad fa-address-card"></i>
+                                        نبذة مختصرة
+                                    </a>
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-messages" role="tab">
+                                        <i class="fad fa-building"></i>
+                                        سنوات الخبرة
+                                    </a>
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">
+                                        <i class="fad fa-user-tie"></i>
+                                        التعليم
+
+                                    </a>
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-payment" role="tab">
+
+                                        <i class="fad fa-user-graduate"></i>
+
+                                        الشهادات
+                                    </a>
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-skikks" role="tab">
+
+                                        <i class="fad fa-magic"></i>
+
+                                        المهارات
+                                    </a>
+
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-work" role="tab">
+
+                                        <i class="fad fa-location"></i>
+
+                                        مناطق العمل
+                                    </a>
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-lang" role="tab">
+
+                                        <i class="fad fa-globe"></i>
+
+                                        اللغة
+                                    </a>
+
+                                    <a class="nav-link" data-toggle="pill" href="#v-pills-gallery" role="tab">
+                                        <i class="fad fa-images"></i>
+
+                                        معرض الصور
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-10">
+
+                                <div class="workerProfile">
+
+                                    <div class="tab-content" id="v-pills-tabContent">
+                                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+                                            <!-- form -->
+                                            <form action="/worker/UpdateProfile" class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+                                                            <i class="fad fa-user-circle"></i>
+                                                            بيانات شخصية
+                                                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+                                                        </h2>
+                                                    </div>
+
+                                                    <div class="col-12 col-lg-4">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">الاسم الاول:</label>
+                                                            <input name="FName" id="FName" type="text" class="form__input" placeholder="الاسم الاول" value="@Model.FName">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-lg-4">
+                                                        <div class="form__group">
+                                                            <label for="lastname" class="form__label">الاسم الاخير:</label>
+                                                            <input name="LName" id="LName" type="text" class="form__input" placeholder="الاسم الاخير" value="@Model.LName">
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="form__group">
+                                                            <label for="lastname" class="form__label">تاريخ الميلاد:</label>
+                                                            @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form__input", type = "date", max = "2000-01-01" })
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <div class="form__group">
+                                                            <label for="location" class="form__label">البلد:</label>
+                                                            @Html.DropDownList("CountryID", null, htmlAttributes: new { @class = "form__input select2" })
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="form__group">
+                                                            <label for="lang" class="form__label">المدينة:</label>
+                                                            <div class="form__select-wrap">
+
+                                                                @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control form__select" })
+
+
+                                                            </div>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                    <div class="col-12 col-xl-4 ">
+                                                        <div class="form__group">
+                                                            <label for="category" class="form__label">الوظيفة:</label>
+                                                            <div class="form__select-wrap">
+
+                                                                @Html.DropDownList("JobsID", null, htmlAttributes: new { @class = "form-control " })
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="form__group">
+                                                            <label for="category" class="form__label">الجنس:</label>
+                                                            <div class="form__select-wrap">
+                                                                <select name="Gender" id="Gender" class="form__select">
+                                                                    @if (Convert.ToBoolean(Model.Gender))
+                                                                    {
+                                                                        <option value="True" selected>ذكر</option>
+                                                                        <option value="False">أنثي</option>
+
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="True">ذكر</option>
+                                                                        <option value="False" selected>أنثي</option>
+                                                                    }
+
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="form__group">
+                                                            <label for="type" class="form__label">الديانة:</label>
+                                                            <div class="form__select-wrap">
+                                                                <select name="Religion" id="Religion" class="form__select">
+                                                                    @if (Model.Religion == "مسلم")
+                                                                    {
+                                                                        <option value="مسلم" selected>مسلم </option>
+                                                                        <option value="مسيحي">مسيحي</option>
+                                                                        <option value="يهودي">يهودي</option>
+                                                                        <option value="غير">غير</option>
+                                                                    }
+                                                                    else if (Model.Religion == "مسيحي")
+                                                                    {
+                                                                        <option value="مسلم">مسلم </option>
+                                                                        <option value="مسيحي" selected>مسيحي</option>
+                                                                        <option value="يهودي">يهودي</option>
+                                                                        <option value="غير">غير</option>
+                                                                    }
+                                                                    else if (Model.Religion == "يهودي")
+                                                                    {
+                                                                        <option value="مسلم">مسلم </option>
+                                                                        <option value="مسيحي">مسيحي</option>
+                                                                        <option value="يهودي" selected>يهودي</option>
+                                                                        <option value="غير">غير</option>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="مسلم">مسلم </option>
+                                                                        <option value="مسيحي">مسيحي</option>
+                                                                        <option value="يهودي">يهودي</option>
+                                                                        <option value="غير" selected>غير</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="form__group">
+                                                            <label for="level" class="form__label">عدد الاطفال:</label>
+                                                            <div class="form__select-wrap">
+                                                                <select name="ChildernsCount" id="ChildernsCount" class="form__select">
+                                                                    @if (Model.ChildernsCount == 0)
+                                                                    {
+
+
+                                                                        <option value="0" selected>لايوجد</option>
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <option value="0">لايوجد</option>
+
+                                                                    }
+                                                                    @for (int i = 1; i < 8; i++)
+                                                                    {
+
+                                                                        if (i == Model.ChildernsCount)
+                                                                        {
+                                                                            <option value="@i" selected>@i</option>
+
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <option value="@i">@i</option>
+
+                                                                        }
+                                                                    }
+
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+
+                                                    <div class="col-4">
+                                                        <div class="form__group">
+                                                            <label for="location" class="form__label">العمر </label>
+
+
+                                                            <input name="Age" id="Age" type="number" min="0" class="form__input " placeholder="العمر" value="@Model.Age">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <div class="form__group">
+                                                            <label for="location" class="form__label">سنوات الخبرة </label>
+
+
+                                                            <input name="ExperienceYearsCount" id="ExperienceYearsCount" min="0" type="text" class="form__input " placeholder="سنوات الخبرة" value="@Model.ExperienceYearsCount">
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4 selectcss">
+                                                        <div class="form__group">
+                                                            <label for="lang" class="form__label">الحالة الاجتماعية:</label>
+                                                            <select class="" name="MaritalStatus" id="MaritalStatus">
+                                                                @if (Model.MaritalStatus == "اعزب")
+                                                                {
+                                                                    <option value="اعزب" selected>اعزب</option>
+                                                                    <option value="متزوج">متزوج</option>
+                                                                    <option value="مطلق">مطلق</option>
+                                                                }
+                                                                else if (Model.MaritalStatus == "متزوج")
+                                                                {
+                                                                    <option value="اعزب">اعزب</option>
+                                                                    <option value="متزوج" selected>متزوج</option>
+                                                                    <option value="مطلق">مطلق</option>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <option value="اعزب">اعزب</option>
+                                                                    <option value="متزوج">متزوج</option>
+                                                                    <option value="مطلق" selected> مطلق</option>
+                                                                }
+
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4 selectcss">
+                                                        <div class="form__group">
+                                                            <label for="lang" class="form__label">مكان الميلاد:</label>
+                                                            @Html.DropDownList("BirthCountryID", null, "الدولة", htmlAttributes: new { @class = "form-control " })
+
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-4">
+                                                        <div class="form__group">
+                                                            <label for="location" class="form__label">الوزن   (كجم) </label>
+
+
+                                                            <input name="Weight" id="Weight" type="number" min="0" class="form__input " placeholder="الوزن" value="@Model.Weight">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-4">
+                                                        <div class="form__group">
+                                                            <label for="location" class="form__label">الطول (سم) </label>
+
+
+                                                            <input name="Height" id="Height" type="number" min="0" class="form__input " placeholder="الطول" value="@Model.Height">
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 col-xl-4">
+                                                        <div class="form__group">
+                                                            <label for="level" class="form__label">مشاركة الغرفة:</label>
+                                                            <div class="form__select-wrap">
+                                                                <select name="IsRoomShared" id="IsRoomShared" class="form__select">
+                                                                    <option value="True">نعم</option>
+                                                                    <option value="False">لا</option>
+
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12">
+                                                        <div class="form__group">
+                                                            <label for="skills" class="form__label">المهارات:</label>
+
+                                                            @Html.DropDownList("SkillsID", Model.WorkerSkills as List<SelectListItem>,htmlAttributes: new { @class = "form-control ", multiple = "multiple" })
+
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <button class="form__btn" type="submit">
+                                                            <span>
+                                                                <span class="fa fa-save"></span>
+                                                                حفظ التعديل
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <!-- end form -->
+
+
+
+
+
+
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
+
+
+
+                                            <form action="/worker/UpdateVideoUrl" class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+                                                            <i class="fad fa-file-video"></i>
+
+
+                                                            فيديو تعريفي
+                                                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                        </h2>
+                                                    </div>
+
+                                                    <div class="col-12">
+
+
+                                                        <iframe width="100%" height="315" src="@Model.VideoUrl" title="YouTube video player"
+                                                                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                                allowfullscreen></iframe>
+
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <div class="form__group">
+                                                            <label class="form__label">رابط الفيديو:</label>
+
+                                                            <input id="VideoUrl" name="VideoUrl" class="col-md-12" />
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button class="form__btn" type="submit">
+                                                            <span>
+                                                                <span class="fa fa-save"></span>
+                                                                حفظ التعديل
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+
+                                            <form action="/worker/UpdateBrief" class="form formcss" method="post">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+                                                            <i class="fad fa-address-card"></i>
+
+
+                                                            نبذة مختصرة
+                                                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                        </h2>
+                                                    </div>
+
+                                                    <div class="col-12">
+
+                                                        <textarea class="textarea" rows="4" cols="5" id="Brief" name="Brief">
+                        @Model.Brief
+                                                            </textarea>
+
+                                                    </div>
+
+
+                                                    <div class="col-12">
+                                                        <button class="form__btn" type="submit">
+                                                            <span>
+                                                                <span class="fa fa-save"></span>
+                                                                حفظ التعديل
+                                                            </span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+                                            <div class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+                                                            <i class="fad fa-building"></i>
+
+                                                            سنوات الخبرة
+
+                                                        </h2>
+                                                    </div>
+
+
+
+                                                    <table class="table table-bordered table-striped tabdiv">
+                                                        <thead class="thead">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">الشركة</th>
+                                                                <th scope="col">من </th>
+                                                                <th scope="col">الي</th>
+                                                                <th scope="col">البلد </th>
+                                                                <th scope="col">المدينة</th>
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (WorkerExpertis expertis in Model.WorkerExpertises)
+                                                            {
+                                                                <tr>
+                                                                    <td> @index</td>
+                                                                    <td>@expertis.CompanyName </td>
+
+                                                                    <td>@expertis.From.Value.ToShortDateString() </td>
+
+                                                                    <td>@expertis.To.Value.ToShortDateString() </td>
+                                                                    <td>@expertis.Country.NameAR </td>
+
+                                                                    <td>@expertis.City.NameAR </td>
+
+                                                                    <td>
+                                                                        <a href="#">
+                                                                            <i class="fad fa-edit" onclick="editWorkerExpertis(@expertis.ID)"></i>
+
+                                                                        </a>
+                                                                        <a class="table-link-download" href="/worker/DeleteWorkerExpertis/@expertis.ID"><i class="fad fa-trash"></i></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                                { index++; }
+                                                            }
+
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="">
+                                                        <button class="cssadd" type="button" data-toggle="modal" data-target="#Experiedivl">
+                                                            <span>
+                                                                <i class="far fa-plus-circle"></i>
+                                                                اضافة جديد
+                                                            </span>
+                                                        </button>
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+                                                <div class="modal fade" id="Experiedivl" tabindex="-1" role="dialog" aria-labelledby="Experiedivl" aria-hidden="true">
+                                                    <div class="modal-dialog nemofa">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">اضافة جديد</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/worker/AddWorkerExpertises">
+                                                                    <div class="col-12 mt-10">
+                                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">اسم الشركة:</label>
+                                                                                    <input name="CompanyName" id="CompanyName" type="text" class="form__input" placeholder="اسم الشركة">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">اسم الكفيل:</label>
+                                                                                    <input name="KafilName" id="KafilName" type="text" class="form__input" placeholder="اسم الكفيل">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">تاريخ من :</label>
+                                                                                    <input name="From" id="From" type="date" class="form__input" placeholder="تاريخ من">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">تاريخ الي:</label>
+                                                                                    <input name="To" id="To" type="date" class="form__input" placeholder="تاريخ الي">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">البلد :</label>
+                                                                                    @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,"البلد", htmlAttributes: new { @class = "form-control " })
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">المدينة:</label>
+                                                                                    @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,"المدينة", htmlAttributes: new { @class = "form-control " })
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary">حفظ</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                            <div action="#" class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+                                                            <i class="fad fa-user-tie"></i>
+
+                                                            التعليم
+
+                                                        </h2>
+                                                    </div>
+                                                    <table class="table table-bordered table-striped tabdiv">
+                                                        <thead class="thead">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">الدرجة الجامعية</th>
+                                                                <th scope="col">من</th>
+                                                                <th scope="col">الي</th>
+                                                                <th scope="col">البلد</th>
+                                                                <th scope="col">الجامعة</th>
+                                                                <th colspan="3" scope="col"></th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{index = 1; }
+                                                            @foreach (WorkerCertificate certificate in Model.WorkerCertificates)
+                                                            {
+                                                                <tr>
+                                                                    <td> @index</td>
+                                                                    <td>@certificate.Name </td>
+
+                                                                    <td>@certificate.From.Value.ToShortDateString() </td>
+
+                                                                    <td>@certificate.To.Value.ToShortDateString() </td>
+                                                                    <td>@certificate.Country.NameAR </td>
+
+                                                                    <td>@certificate.University </td>
+
+                                                                    <td>
+                                                                        <a href="#">
+                                                                            <i class="fad fa-edit" onclick="editWorkerCertificate(@certificate.ID)"></i>
+
+                                                                        </a>
+                                                                        <a class="table-link-download" href="/worker/DeleteWorkerCertificate/@certificate.ID"><i class="fad fa-trash"></i></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                                { index++; }
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="">
+                                                        <button class="cssadd" type="button" data-toggle="modal" data-target="#Educatio">
+                                                            <span>
+                                                                <i class="far fa-plus-circle"></i>
+                                                                اضافة شهادة
+                                                            </span>
+                                                        </button>
+
+                                                    </div>
+                                                    <div class="modal fade" id="Educatio" tabindex="-1" role="dialog" aria-labelledby="Educatio" aria-hidden="true">
+                                                        <div class="modal-dialog nemofa">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">اضافة جديد</h4>
+                                                                </div>
+                                                                <form action="/worker/AddWorkerCertificates">
+                                                                    <div class="col-12 mt-10">
+                                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">الدرجة الجامعية:</label>
+                                                                                    <input name="Name" id="Name" type="text" class="form__input" placeholder="الدرجة الجامعية">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">اسم الجامعة:</label>
+                                                                                    <input name="University" id="University" type="text" class="form__input" placeholder="اسم الجامعة">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">تاريخ من :</label>
+                                                                                    <input name="From" id="From" type="date" class="form__input" placeholder="تاريخ من">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">تاريخ الي:</label>
+                                                                                    <input name="To" id="To" type="date" class="form__input" placeholder="تاريخ الي">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">البلد :</label>
+                                                                                    @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,"البلد", htmlAttributes: new { @class = "form-control " })
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary">حفظ</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                            <!-- form -->
+                                            <div class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+
+                                                            <i class="fad fa-user-graduate"></i>
+
+                                                            الشهادات
+                                                        </h2>
+                                                    </div>
+
+                                                    <table class="table table-bordered table-striped tabdiv">
+                                                        <thead class="thead">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">الشهادة</th>
+                                                                <th scope="col">تاريخ الاصدار</th>
+                                                                <th scope="col">المركز التعليمي</th>
+                                                                <th colspan="3" scope="col"></th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{index = 1; }
+                                                            @foreach (WorkerCours course in Model.WorkerCourses)
+                                                            {
+                                                                <tr>
+                                                                    <td> @index</td>
+                                                                    <td>@course.Name </td>
+
+                                                                    <td>@course.Date.Value.ToShortDateString() </td>
+
+                                                                    <td>@course.CenterName </td>
+                                                                    <td>
+                                                                        <a href="#">
+                                                                            <i class="fad fa-edit" onclick="editWorkerCourses(@course.ID)"></i>
+
+                                                                        </a>
+                                                                        <a class="table-link-download" href="/worker/DeleteWorkerCourses/@course.ID"><i class="fad fa-trash"></i></a>
+
+                                                                    </td>
+
+
+                                                                </tr>
+                                                                { index++; }
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="col-12">
+                                                        <button class="form__btn" type="button" data-toggle="modal" data-target="#gradu"><span>اضف جديد</span></button>
+                                                    </div>
+
+                                                    <div class="modal fade" id="gradu" tabindex="-1" role="dialog" aria-labelledby="gradu" aria-hidden="true">
+                                                        <div class="modal-dialog nemofa">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">الشهادات</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="/worker/AddWorkerCourses">
+
+                                                                        <div class="col-12 mt-10">
+                                                                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                            <div class="row">
+                                                                                <div class="col-12 col-lg-6">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label">اسم الشهادة:</label>
+                                                                                        <input name="Name" id="Name" type="text" class="form__input" placeholder="اسم الشهادة">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-12 col-lg-6">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label">تاريخ الاصدار:</label>
+                                                                                        <input name="Date" id="Date" type="date" class="form__input" placeholder="تاريخ الاصدار">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-lg-12">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label">المركز التعليمي :</label>
+                                                                                        <input name="CenterName" id="CenterName" type="text" class="form__input" placeholder="المركز التعليمي">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-primary">حفظ</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end form -->
+                                        </div>
+
+
+
+                                        <div class="tab-pane fade" id="v-pills-skikks" role="tabpanel" aria-labelledby="v-pills-skikks-tab">
+
+
+
+                                            <div class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+
+                                                            <i class="fad fa-magic"></i>
+
+                                                            المهارات
+
+                                                        </h2>
+                                                    </div>
+
+                                                    <div class="col-12">
+
+                                                        <table class="table table-bordered table-striped tabdiv">
+                                                            <thead class="thead">
+                                                                <tr>
+                                                                    <th scope="col">#</th>
+                                                                    <th scope="col">اسم المهارة</th>
+                                                                    <th scope="col">درجة الاتقان</th>
+                                                                    <th colspan="3" scope="col"></th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @{index = 1; }
+                                                                @foreach (WorkerSkill skill in Model.WorkerSkills)
+                                                                {
+                                                                    <tr>
+                                                                        <td> @index</td>
+                                                                        <td>@skill.Skill.NameAR </td>
+
+                                                                        <td>@skill.Level </td>
+
+
+                                                                        <td>
+                                                                            <a onclick="editWorkerSkill(@skill.ID)">
+                                                                                <i class="fad fa-edit"></i>
+
+                                                                            </a>
+                                                                            <a class="table-link-download" href="/worker/DeleteWorkerSkill/@skill.ID"><i class="fad fa-trash"></i></a>
+
+                                                                        </td>
+
+                                                                    </tr>
+                                                                    { index++; }
+                                                                }
+
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+
+                                                    <div class="col-12">
+                                                        <button class="form__btn" type="button" data-toggle="modal" data-target="#skikk">
+                                                            <span>
+                                                                <span class="fa fa-save"></span>
+                                                                اضافة مهارة
+                                                            </span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal fade" id="skikk" tabindex="-1" role="dialog" aria-labelledby="skikk" aria-hidden="true">
+                                                        <div class="modal-dialog nemofa">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">المهارات</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+
+
+                                                                    <form action="/worker/AddWorkerSkills">
+
+                                                                        <div class="col-12 mt-10">
+                                                                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                            <div class="row">
+                                                                                <div class="col-12 col-lg-6">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label">اسم المهارة:</label>
+                                                                                        @Html.DropDownList("SkillID", ViewBag.SkillsID as List<SelectListItem>,"المهارة", htmlAttributes: new { @class = "form-control " })
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-12 col-lg-6">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label"> درجة الإتقان :</label>
+                                                                                        <select class="form-control" name="Level">
+                                                                                            <option value="">
+                                                                                                درجة الإتقان
+                                                                                            </option>
+                                                                                            <option value="جيد">جيد</option>
+                                                                                            <option value="متوسط">متوسط</option>
+                                                                                            <option value="ممتاز">ممتاز</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-primary">حفظ</button>
+                                                                        </div>
+                                                                    </form>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-work" role="tabpanel" aria-labelledby="v-pills-work-tab">
+
+                                            <div class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+                                                            <i class="fad fa-location"></i>
+
+                                                            مناطق العمل
+
+                                                        </h2>
+                                                    </div>
+
+
+
+                                                    <table class="table table-bordered table-striped tabdiv">
+                                                        <thead class="thead">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">اسم البلد</th>
+                                                                <th scope="col">المدينة </th>
+
+                                                                <th scope="col"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{index = 1; }
+                                                            @foreach (WorkerWorkingPlace place in Model.WorkerWorkingPlaces)
+                                                            {
+                                                                <tr>
+                                                                    <td> @index</td>
+                                                                    <td>@place.Country.NameAR </td>
+
+                                                                    <td>@place.City.NameAR </td>
+
+
+
+                                                                    <td>
+                                                                        <a onclick="editWorkerWorkingPlace(@place.ID)">
+                                                                            <i class="fad fa-edit"></i>
+
+                                                                        </a>
+                                                                        <a class="table-link-download" href="/worker/DeleteWorkerWorkingPlace/@place.ID"><i class="fad fa-trash"></i></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                                { index++; }
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="">
+                                                        <button class="cssadd" type="button" data-toggle="modal" data-target="#newarea">
+                                                            <span>
+                                                                <i class="far fa-plus-circle"></i>
+                                                                اضافة منطقة
+                                                            </span>
+                                                        </button>
+
+                                                    </div>
+
+
+
+
+                                                </div>
+
+                                                <div class="modal fade" id="newarea" tabindex="-1" role="dialog" aria-labelledby="newarea" aria-hidden="true">
+                                                    <div class="modal-dialog nemofa">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">اضافة جديد</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="col-12 mt-10">
+                                                                    <form action="/worker/AddWorkerWorkingPlaces">
+                                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">اختر البلد:</label>
+                                                                                    @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,"البلد", htmlAttributes: new { @class = "form-control " })
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">اختر المدينة:</label>
+                                                                                    @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,"المدينة", htmlAttributes: new { @class = "form-control " })
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-primary">حفظ</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+
+
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-lang" role="tabpanel" aria-labelledby="v-pills-lang-tab">
+                                            <div class="form formcss">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+                                                            <i class="fad fa-globe"></i>
+
+                                                            اللغة
+                                                        </h2>
+                                                    </div>
+                                                    <table class="table table-bordered table-striped tabdiv">
+                                                        <thead class="thead">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">اللغة</th>
+                                                                <th scope="col">درجة الاتقان</th>
+                                                                <th scope="col">طبيعة اللغة</th>
+
+                                                                <th colspan="3" scope="col"></th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{index = 1; }
+                                                            @foreach (WorkerLanguage language in Model.WorkerLanguages)
+                                                            {
+                                                                <tr>
+                                                                    <td> @index</td>
+                                                                    <td>@language.Name</td>
+
+                                                                    <td>@language.Level </td>
+                                                                    <td>@language.Method </td>
+
+
+
+                                                                    <td>
+                                                                        <a href="#">
+                                                                            <i class="fad fa-edit" onclick="editWorkerLanguage(@language.ID)"></i>
+
+                                                                        </a>
+                                                                        <a class="table-link-download" href="/worker/DeleteWorkerLanguage/@language.ID"><i class="fad fa-trash"></i></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                                { index++; }
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="">
+                                                        <button class="cssadd" type="button" data-toggle="modal" data-target="#langc">
+                                                            <span>
+                                                                <i class="far fa-plus-circle"></i>
+                                                                اضافة شهادة
+                                                            </span>
+                                                        </button>
+
+                                                    </div>
+                                                    <div class="modal fade" id="langc" tabindex="-1" role="dialog" aria-labelledby="langc" aria-hidden="true">
+                                                        <div class="modal-dialog nemofa">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">اضافة اللغات</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="/worker/AddWorkerLanguages">
+                                                                        <div class="col-12 mt-10">
+                                                                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                            <div class="row">
+                                                                                <div class="col-12 col-lg-12">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label">اسم اللغة:</label>
+                                                                                        <input name="Name" id="Name" type="text" class="form__input" placeholder="اسم اللغة">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-12 col-lg-6">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label">درجة الاتقان:</label>
+                                                                                        <select name="Level" id="Level" class="" required="">
+
+                                                                                            <option value="مقبول">مقبول</option>
+                                                                                            <option value="جيد">جيد </option>
+
+                                                                                            <option value="جيد جدا">جيد جدا</option>
+                                                                                            <option value="ممتاز">ممتاز</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-lg-6">
+                                                                                    <div class="form__group">
+                                                                                        <label for="firstname" class="form__label">قراءة وكتابة :</label>
+                                                                                        <select name="Method" id="Method" class="" required="">
+
+                                                                                            <option value="قراءة وكتابة">قراءة وكتابة</option>
+                                                                                            <option value="قراءة">قراءة </option>
+                                                                                            <option value="كتابة">كتابة</option>
+                                                                                        </select>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit" class="btn btn-primary">حفظ</button>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </form>
+
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="v-pills-gallery" role="tabpanel" aria-labelledby="v-pills-gallery-tab">
+                                            <!-- form -->
+                                            <div class="form formcss">
+                                                <div class="row">
+
+                                                    <div class="col-12">
+                                                        <h2 class="form__title">
+
+                                                            <i class="fad fa-images"></i>
+
+                                                            معرض الصور
+                                                        </h2>
+                                                    </div>
+                                                    <div class="demo-gallery">
+                                                        @foreach (Gallery gallery in Model.Galleries)
+                                                        {
+                                                            <a href="@gallery.ImageUrl" class="without-caption image-link">
+                                                                <img src="@gallery.ImageUrl" width="172" height="115" />
+
+
+                                                                <span class="bgdangercss">
+
+                                                                    <i class="far fa-trash" onclick="deleteImageFromGallry(@gallery.ID)"></i>
+                                                                </span>
+                                                                @*<i class="fad fa-trash" onclick="deleteImageFromGallry(@gallery.ID)"></i>*@
+                                                            </a>
+
+
+                                                        }
+
+
+
+
+                                                    </div>
+                                                    <form action="/worker/AddWorkerGallery" enctype="multipart/form-data" method="post">
+                                                        <div class="col-12">
+                                                            <input type="file" name="gallery" id="gallery" multiple />
+                                                            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                            <button class="cssadd" type="submit">
+                                                                <span>
+                                                                    <i class="far fa-plus-circle"></i>
+                                                                    اضافة صور
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+
+
+                                                </div>
+                                            </div>
+                                            <!-- end form -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="modal fade" id="imageipload" tabindex="-1" role="dialog" aria-labelledby="imageipload" aria-hidden="true">
+                            <div class="modal-dialog nemofa">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">اضافة صور جديدة</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-12 mt-10">
+
+                                            <div class="container">
+                                                <div class="fileupload-wrapper"><div id="myUpload"></div></div>
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary">حفظ</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal  fade modal fade bd-example-modal-lg createnew" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="viewdetailsLabel" aria-modal="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header flex-column no-padding mb-0">
+                    <h6>تعديل</h6>
+                    <button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <hr class="mt-0 mb-0">
+                <div class="modal-body pt-2  pl-4 pr-4 pb-0" id="Preview">
+
+                    @*PartialView*@
+
+                </div>
+            </div>
+            <div class="modal-footer justify-content-start align-items-start flex-column no-padding d-block">
+
+            </div>
+        </div>
+    </div>
+
+
+    @section Scripts{
+
+
+        <script>
+            function add(ths, sno) {
+
+
+                for (var i = 1; i <= 5; i++) {
+                    var cur = document.getElementById("star" + i)
+                    cur.className = "far fa-star"
+                }
+
+                for (var i = 1; i <= sno; i++) {
+                    var cur = document.getElementById("star" + i)
+                    if (cur.className == "far fa-star") {
+                        cur.className = "fas fa-star checked"
+                    }
+                }
+
+            }
+
+
+            $(document).ready(function () {
+                $('[data-toggle=tooltip]').tooltip();
+            });
+        </script>
+
+        <script type="text/javascript">
+            $("[data-toggle=\"tooltip\"]").tooltip();
+
+
+            $('.without-caption').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                closeBtnInside: false,
+                mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+                image: {
+                    verticalFit: true
+                },
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+                },
+                zoom: {
+                    enabled: true,
+                    duration: 300 // don't foget to change the duration also in CSS
+                }
+            });
+
+            $('.with-caption').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                closeBtnInside: false,
+                mainClass: 'mfp-with-zoom mfp-img-mobile',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+                },
+                image: {
+                    verticalFit: true,
+                    titleSrc: function (item) {
+                        return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
+                    }
+                },
+                zoom: {
+                    enabled: true
+                }
+            });
+
+
+        </script>
+
+
+        <link href="/Content/front/assets/css/bootstrap-FileUpload.min.css" rel="stylesheet" />
+        <script src="/Content/front/assets/css/bootstrap-FileUpload.min.js"></script>
+        <script>
+            $("#myUpload").bootstrapFileUpload({
+                url: "processor.php"
+            });
+        </script>
+
+        <script>
+
+    function editWorkerExpertis(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerExpertis", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+        function editWorkerCourses(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerCourses", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function editWorkerCertificate(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerCertificate", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function editOfficeImageProfile(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditOfficeImageProfile", "Office")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+        function editWorkerSkill(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerSkill", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function editWorkerWorkingPlace(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerWorkingPlace", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+    }
+
+        function editWorkerLanguage(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerLanguage", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function deleteImageFromGallry(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("DeleteImageFromGallry", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+        function editWorkerImageProfile(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerImageProfile", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+
+
+        $(function () {
+            $("#btn").click(function () {
+                var obj = [],
+                    items = '';
+                $('.SkillsID option:selected').each(function (i) {
+                    obj.push($(this).val());
+                    $('.SkillsID')[0].sumo.unSelectItem(i);
+                });
+
+
+
+                // send select ittems to controlelr
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    url: '@Url.Action("UpdateProfile", "Worker")',
+                    data: JSON.stringify(obj)
+                });
+
+            });
+
+        })
+        </script>
+
+    }
+

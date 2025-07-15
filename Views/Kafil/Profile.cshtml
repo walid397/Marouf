@@ -1,0 +1,212 @@
+﻿@model  AspNetUser
+@using Microsoft.AspNet.Identity
+@using Marofh.Models
+@using Resources
+
+@{
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {
+        ViewBag.Title = "Sponser Home Page";
+         ViewBag.Sub1Title = "My Account";
+    }
+    else
+    {
+      ViewBag.Title = "الصفحة الشخصية للكفيل";
+             ViewBag.Sub1Title = "حسابى ";
+    }
+
+   
+  
+    ViewBag.Sub1Url = "/office/";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+
+@{string userId = User.Identity.GetUserId();
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);
+    int index = 1;}
+
+<main class="main main--breadcrumb styledmanin newmain">
+
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-4 col-md-5 col-lg-4 col-xl-3 maxdihitem">
+                <!-- user -->
+
+
+                <div class="user">
+                    <div class="user__head">
+                        <div class="user__img">
+                            <img src="/Content/front/assets/img/user5.jpg" alt="">
+                            <a href="#" class="imgcss ">
+                                <i class="fa fa-camera fa-5x"></i>
+                            </a>
+                        </div>
+
+                    </div>
+
+
+                    <div class="user__title">
+                        <h2>@Model.FName @Html.Raw(" ")  @Model.LName  </h2>
+                        @if (Model.Country != null)
+                        {
+
+                            if (culture.Contains("en-us"))
+                            {
+                                <p>@Model.Country.NameEN</p>
+
+                            }
+                            else
+                            {
+                                <p>@Model.Country.NameAR</p>
+
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            <p></p>
+                        }
+                        <div class="post__actions mt-0 mlmr ">
+                            <div class="text-center">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <p class="cright">
+
+                        <span class="far fa-clock "></span> &nbsp;
+                        <strong>  @Resource.LastLogin </strong>
+                        @if (Model.LastLoggedInDate.HasValue)
+                        {
+                            @Model.LastLoggedInDate.Value.ToShortDateString();
+                        }
+                        else
+                        {
+
+                        }
+
+
+                    </p>
+                    <ul class="user__list">
+
+                        <li>
+                            <a href="/office/"><i class="fad fa-home-lg-alt"></i> @Resource.BackToMyAccount</a>
+                        </li>
+
+                        <li>
+
+                            <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fad fa-sign-out-alt"></i> @Resource.Logout  </a>
+                            `
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+            </div>
+            <div class="col-8">
+
+
+
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="form__title">  @Resource.SponserData</h2>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="form__group">
+                            <label for="login" class="form__label">@Resource.LoginName </label>
+                            <input name="login" id="login" type="text" class="form__input" value="@Model.Email">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="form__group">
+                            <label for="email" class="form__label">@Resource.Email  </label>
+                            <input name="email" id="email" type="text" class="form__input" value="@Model.Email">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="form__group">
+                            <label for="firstname" class="form__label">  @Resource.FirstName </label>
+                            <input name="firstname" id="firstname" type="text" class="form__input" value="@Model.FName">
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="form__group">
+                            <label for="lastname" class="form__label">@Resource.LastName  </label>
+                            <input name="lastname" id="lastname" type="text" class="form__input" value="@Model.LName">
+                        </div>
+                    </div>
+                    @if (@Model.Country != null)
+                    {
+                        <div class="col-12 col-lg-6">
+                            <div class="form__group">
+                                <label for="lastname" class="form__label"> @Resource.Country </label>
+                                @if(culture.Contains("en-us"))
+                                {
+                                <input name="Country" id="Country" type="text" class="form__input" value="@Model.Country.NameEN">
+                                }
+                                else
+                                {
+                                <input name="Country" id="Country" type="text" class="form__input" value="@Model.Country.NameAR">
+
+                                }
+
+                            </div>
+                        </div>
+                    }
+                    else
+
+                    {
+                        <div class="col-12 col-lg-6">
+                            <div class="form__group">
+                                <label for="lastname" class="form__label"> @Resource.Country </label>
+                                <input name="Country" id="Country" type="text" class="form__input">
+                            </div>
+                        </div>
+                    }
+
+                    <div class="col-12 col-lg-6">
+                        <div class="form__group">
+                            <label for="lastname" class="form__label"> @Resource.MobileNo </label>
+                            <input name="Mobile" id="Mobile" type="text" class="form__input" value="@Model.Mobile">
+                            <div class="icon-bg text-center">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+@section Scripts{
+    <script src="~/Scripts/conutrywithflags/build/js/intlTelInput.js"></script>
+
+    <script>
+        var input = document.querySelector("#Mobile");
+        window.intlTelInput(input, {
+            onlyCountries: ['sa'],
+            utilsScript: "Scripts/conutrywithflags/build/js/utils.js",
+        });
+    </script>
+    }

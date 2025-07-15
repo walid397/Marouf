@@ -1,0 +1,451 @@
+﻿@model AspNetUser
+@using  Resources
+@{ 
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+}
+
+<div class="row">
+
+
+ 
+            <ul class="nav nav-tabs" id="myOffersTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active text-semibold" id="published-tab" data-toggle="tab" href="#published"
+                       role="tab" aria-controls="published" aria-selected="true">
+                        <i class="far fa-file mr-1 ml-1"></i>
+                      @Resource.NewPendingRequests (@Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_ارسال_الطلب.ToString()).Count())
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-semibold" id="FirstAcceptance-tab" data-toggle="tab" href="#FirstAcceptance"
+                       role="tab" aria-controls="FirstAcceptance" aria-selected="false">
+
+                        <i class="far fa-file-times mr-1 ml-1"></i>
+
+                     @Resource.InitialAdmission     (@Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.قبول_أولى.ToString()).Count())
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-semibold" id="expired-tab" data-toggle="tab" href="#firsrregusedtabs"
+                       role="tab" aria-controls="firsrregusedtabs" aria-selected="false">
+
+                        <i class="far fa-file-times mr-1 ml-1"></i>
+
+                      @Resource.InitialRejection    (@Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.رفض_أولى.ToString()).Count())
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-semibold" id="registedtabs-tab" data-toggle="tab" href="#registedtabs"
+                       role="tab" aria-controls="registedtab" aria-selected="false">
+
+                        <i class="far fa-file-certificate mr-1 ml-1"></i>
+
+                    @Resource.Accredited     (@Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()).Count())
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link text-semibold" id="regusedtabs-tab" data-toggle="tab" href="#regusedtabs"
+                       role="tab" aria-controls="expired" aria-selected="false">
+
+                        <i class="far fa-file-signature mr-1 ml-1"></i>
+
+                    @Resource.ApprovalRefusalRequests    @*رفض اعتماد*@ (@Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_رفض_الاعتماد.ToString()).Count())
+                    </a>
+                </li>
+
+
+
+            </ul>
+            <div class="tab-content" id="myOffersTabContent">
+                <div class="tab-pane fade show active animate__animated animate__fadeIn" id="published" role="tabpanel" aria-labelledby="published-tab">
+
+
+                    <div class="col-12">
+                        <h2 class="form__title mt-4 mb-0 stylrep">
+                            <span>    @Resource.NewPendingRequests</span>
+                        </h2>
+
+                    </div>
+                    <table id="files_list" class="table table table-striped dt-responsive datatable" style="width:100%">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">  @Resource.OfficeName </th>
+                                <th scope="col">  @Resource.OfficeAddress</th>
+                                <th scope="col"> @Resource.WorkerName</th>
+                                <th scope="col"> @Resource.WorkerJob  </th>
+                                <th scope="col">@Resource.RequestDate  </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var request in Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_ارسال_الطلب.ToString()))
+                            {
+                            <tr>
+                                <td class="img-td">
+                                    @request.AspNetUser1.AspNetUser1.OfficeName
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                </td>
+                                @if (request.AspNetUser1.Job != null)
+                                {
+                                    if (culture.Contains("en-us"))
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameEN
+                                        </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameAR
+                                        </td>
+
+                                    }
+
+
+
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+
+                                <td scope="col">
+
+                                    @request.RequestDate.Value.ToShortDateString()
+
+                                </td>
+
+
+
+
+
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane fade show  animate__animated animate__fadeIn" id="FirstAcceptance" role="tabpanel" aria-labelledby="FirstAcceptance-tab">
+
+
+                    <div class="col-12">
+                        <h2 class="form__title mt-4 mb-0 stylrep">
+                            <span>   @Resource.InitialAdmissionRequests</span>
+                        </h2>
+
+                    </div>
+                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">  @Resource.OfficeName </th>
+                                <th scope="col">  @Resource.OfficeAddress</th>
+                                <th scope="col">@Resource.WorkerName  </th>
+                                <th scope="col">  @Resource.WorkerJob </th>
+                                <th scope="col">@Resource.RequestDate  </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var request in Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.قبول_أولى.ToString()))
+                            {
+                            <tr>
+                                <td class="img-td">
+                                    @request.AspNetUser1.AspNetUser1.OfficeName
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                </td>
+                                @if (request.AspNetUser1.Job != null)
+                                {
+                                    if (culture.Contains("en-us"))
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameEN
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameAR
+                                        </td>
+
+                                    }
+
+
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td scope="col">
+
+                                    @request.RequestDate.Value.ToShortDateString()
+
+                                </td>
+
+
+
+
+
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="tab-pane fade animate__animated animate__fadeIn" id="firsrregusedtabs" role="tabpanel" aria-labelledby="firsrregusedtabs-tab">
+
+                    <div class="col-12">
+                        <h2 class="form__title mt-4 mb-0 stylrep">
+                            <span>
+
+                                @Resource.InitialRejectionRequests
+                                @*طلبات رفض أولي*@
+
+                            </span>
+                        </h2>
+                    </div>
+                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">  @Resource.OfficeName </th>
+                                <th scope="col">  @Resource.OfficeAddress</th>
+                                <th scope="col">@Resource.WorkerName  </th>
+                                <th scope="col">  @Resource.WorkerJob </th>
+                                <th scope="col">@Resource.RequestDate  </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var request in Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.رفض_أولى.ToString()))
+                            {
+                            <tr>
+                                <td class="img-td">
+                                    @request.AspNetUser1.AspNetUser1.OfficeName
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                </td>
+                                @if (request.AspNetUser1.Job != null)
+                                {
+
+                                    if (culture.Contains("en-us"))
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameEN
+                                        </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameAR
+                                        </td>
+
+                                    }
+
+
+
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td scope="col">
+
+                                    @request.RequestDate.Value.ToShortDateString()
+
+                                </td>
+
+
+
+
+
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="tab-pane fade animate__animated animate__fadeIn" id="registedtabs" role="tabpanel" aria-labelledby="registedtabs-tab">
+                    <div class="col-12">
+                        <h2 class="form__title mt-4 mb-0 stylrep">
+                            <span>
+                                @Resource.AccreditedRequests
+
+                            
+
+                            </span>
+                        </h2>
+                    </div>
+                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">  @Resource.OfficeName </th>
+                                <th scope="col">  @Resource.OfficeAddress</th>
+                                <th scope="col">@Resource.WorkerName  </th>
+                                <th scope="col">  @Resource.WorkerJob </th>
+                                <th scope="col">@Resource.RequestDate  </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var request in Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()))
+                            {
+                            <tr>
+                                <td class="img-td">
+                                    @request.AspNetUser1.AspNetUser1.OfficeName
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                </td>
+                                @if (request.AspNetUser1.Job != null)
+                                {
+                                    if (culture.Contains("en-us"))
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameEN
+                                        </td>
+
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @request.AspNetUser1.Job.NameAR
+                                        </td>
+
+                                    }
+
+
+
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td scope="col">
+
+                                    @request.RequestDate.Value.ToShortDateString()
+
+                                </td>
+
+
+
+
+
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade animate__animated animate__fadeIn" id="regusedtabs" role="tabpanel" aria-labelledby="regusedtabs-tab">
+
+                    <div class="col-12">
+                        <h2 class="form__title mt-4 mb-0 stylrep">
+                            <span>
+
+                                @Resource.ApprovalRefusalRequests
+                                @*طلبات رفض اعتماد*@
+
+                            </span>
+                        </h2>
+                    </div>
+                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                        <thead class="thead">
+                            <tr>
+                                <th scope="col">  @Resource.OfficeName </th>
+                                <th scope="col">  @Resource.OfficeAddress</th>
+                                <th scope="col">@Resource.WorkerName  </th>
+                                <th scope="col">  @Resource.WorkerJob </th>
+                                <th scope="col">@Resource.RequestDate  </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var request in Model.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_رفض_الاعتماد.ToString()))
+                            {
+                            <tr>
+                                <td class="img-td">
+                                    @request.AspNetUser1.AspNetUser1.OfficeName
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                </td>
+                                <td>
+                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                </td>
+                                @if (request.AspNetUser1.Job != null)
+                                {
+                                    if (culture.Contains("en-us"))
+                                    {
+
+
+                                        <td>
+                                            @request.AspNetUser1.Job.NameEN
+                                        </td>
+                                    }
+                                    else
+                                    {
+
+                                        <td>
+                                            @request.AspNetUser1.Job.NameAR
+                                        </td>
+
+                                    }
+
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td scope="col">
+
+                                    @request.RequestDate.Value.ToShortDateString()
+
+                                </td>
+
+
+
+
+
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+   
+</div>
+

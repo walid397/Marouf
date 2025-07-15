@@ -1,0 +1,13 @@
+﻿@model Marofh.Service
+
+@{
+    ViewBag.Title = Model.NameAR;
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+
+<div class="col-lg-12">
+    <div class="about-content">
+        <p class="text-bold">
+            @Html.Raw(Model.DescriptionAR)
+    </div>
+</div>

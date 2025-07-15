@@ -1,0 +1,38 @@
+﻿@model Marofh.AspNetUser
+@using Resources
+
+@using (Html.BeginForm("EditOfficeImageProfile", "Office", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row fileinputcss">
+
+        <div class="d-flex justify-content-center align-items-end">
+
+
+
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.ShortID)
+            <div class="col-9">
+                <div class="form__group">
+                    <label for="category" class="form__label">@Resource.ChangeImage </label>
+
+                    <input type="file" class=" custom-file-input" name="ImageUrl" id="ImageUrl" />
+
+                </div>
+            </div>
+
+
+
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary mtmin">
+
+                    <i class="far fa-edit"></i>
+                    @Resource.Edit
+                    
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+}

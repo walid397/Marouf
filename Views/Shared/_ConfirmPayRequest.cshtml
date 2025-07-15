@@ -1,0 +1,113 @@
+﻿@model Marofh.WorkerRequest
+@using  Resources
+
+@using (Html.BeginForm("ConfirmPayRequest", "Admin", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.ID)
+
+<div class="row">
+
+    <div class="col-6 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label">@Resource.OfficeName  @Model.AspNetUser2.OfficeName</label>
+
+        </div>
+    </div>
+
+
+    <div class="col-6 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label">  @Resource.DeservedAmount </label>
+            <label id="WalletBalance" name="WalletBalance"> @Model.Balance</label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label"> @Resource.WorkerName   </label>
+            <label id="WalletBalance" name="WalletBalance"> @Model.AspNetUser1.FName @Html.Raw(" ")  @Model.AspNetUser1.LName</label>
+        </div>
+    </div>
+    @if (Model.AspNetUser1.Job != null)
+    {
+        <div class="col-6 col-xl-6">
+            <div class="form__group">
+                <label for="category" class="form__label"> @Resource.Job   </label>
+                <label id="WalletBalance" name="WalletBalance"> @Model.AspNetUser1.Job.NameAR</label>
+            </div>
+        </div>
+    }
+</div>
+    <div class="row">
+        <div class="col-6 col-xl-6">
+            <div class="form-group row">
+                <span for="category" style="color:red">  @Resource.ConfirmReceiptofmoney  @Model.Balance  @Resource.SAR  </span>
+                <input type="hidden" class="form-control" id="PaiedAmount" name="PaiedAmount" value="@Model.Balance" />
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="payBtn" name="payBtn">
+
+            <i class="far fa-save "></i>
+            &nbsp;
+            @Resource.AccountSettlement
+            @*تسوية الحساب*@
+        </button>
+
+    </div>
+
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+
+    <script>
+        //function validateAmout() {
+        //    var WalletBalance = document.getElementById('WalletBalance').innerHTML;
+        //    var PaiedAmount = document.getElementById('PaiedAmount').value;
+        //    var payBtn = document.getElementById('payBtn');
+
+        //    //alert(WalletBalance);
+        //    //alert(PaiedAmount);
+
+        //    if (parseFloat(PaiedAmount, 10) > parseFloat(WalletBalance, 10)) {
+        //        Swal.fire("تنبية", "لايمكن تسديد مبلغ اكثر من المبلغ المستحق", "info");
+
+        //        // alert('لايمكن تسديد مبلغ اكثر من المبلغ المستحق');
+        //        payBtn.disabled = true;
+        //    }
+        //    else {
+        //        payBtn.disabled = false;
+        //    }
+
+        //}
+
+
+
+        function validateAmount() {
+            var WalletBalance = document.getElementById('WalletBalance').innerHTML;
+            var PaiedAmount = document.getElementById('PaiedAmount').value;
+            var payBtn = document.getElementById('payBtn');
+
+            //alert(WalletBalance);
+            //alert(PaiedAmount);
+
+            if (parseFloat(PaiedAmount, 10) != parseFloat(WalletBalance, 10)) {
+                Swal.fire("@Resource.Warning", "@Resource.TheAmountEnteredDoesnotMatchtheAmountdue", "info");
+
+                // alert('لايمكن تسديد مبلغ اكثر من المبلغ المستحق');
+                payBtn.disabled = true;
+            }
+            else {
+                payBtn.disabled = false;
+            }
+
+        }
+
+    </script>
+
+    }

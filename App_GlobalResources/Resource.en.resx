@@ -1,0 +1,2507 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>About Us</value>
+  </data>
+  <data name="ActivateTextBoxByMouseAndUseArrows" xml:space="preserve">
+    <value>Activate TextBox By Mouse And Use Arrows</value>
+  </data>
+  <data name="AddAdvertisment" xml:space="preserve">
+    <value>Add listing</value>
+  </data>
+  <data name="AddComment" xml:space="preserve">
+    <value>Add Comment</value>
+  </data>
+  <data name="AddedProperties" xml:space="preserve">
+    <value>Added Properties</value>
+  </data>
+  <data name="AddedToCompareList" xml:space="preserve">
+    <value>Added To Compare</value>
+  </data>
+  <data name="AddedToFavoritesList" xml:space="preserve">
+    <value>Added To Favorites</value>
+  </data>
+  <data name="AdditionalInformation" xml:space="preserve">
+    <value>Additional Information</value>
+  </data>
+  <data name="AdditionalNo" xml:space="preserve">
+    <value>Additional No</value>
+  </data>
+  <data name="AddProperty" xml:space="preserve">
+    <value>Add Property</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="AddToCompare" xml:space="preserve">
+    <value>Compare</value>
+  </data>
+  <data name="AddToFavorite" xml:space="preserve">
+    <value>Add To Favorite</value>
+  </data>
+  <data name="AdvancedSearch" xml:space="preserve">
+    <value>Advanced Search</value>
+  </data>
+  <data name="AdvertiserData" xml:space="preserve">
+    <value>Advertiser Data</value>
+  </data>
+  <data name="AdvertiseYourProperty" xml:space="preserve">
+    <value>Advertise Your Property</value>
+  </data>
+  <data name="AdvertismentDetails" xml:space="preserve">
+    <value>Ad Details</value>
+  </data>
+  <data name="AdvertismentExpirationDate" xml:space="preserve">
+    <value>Expire Date</value>
+  </data>
+  <data name="Agree" xml:space="preserve">
+    <value>Agree</value>
+  </data>
+  <data name="AgreementRegistrationData" xml:space="preserve">
+    <value>Agreement Registration Data</value>
+  </data>
+  <data name="AirConditionNo" xml:space="preserve">
+    <value>Air Condition No</value>
+  </data>
+  <data name="AllowMessages" xml:space="preserve">
+    <value>Allow Messages</value>
+  </data>
+  <data name="AllProperty" xml:space="preserve">
+    <value>All Property</value>
+  </data>
+  <data name="AllRightsReservedToDor2021ApplicationForTheCompany" xml:space="preserve">
+    <value>All rights reserved to Dor 2021 application for the company</value>
+  </data>
+  <data name="AlreadyRegistered" xml:space="preserve">
+    <value>Already Registered</value>
+  </data>
+  <data name="ApartmentCount" xml:space="preserve">
+    <value>Apartment Count</value>
+  </data>
+  <data name="Area" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="AreaByMetreSquare" xml:space="preserve">
+    <value>Area By Metre Square</value>
+  </data>
+  <data name="Areaofpropertyinsquaremeters" xml:space="preserve">
+    <value>Area of Property In Square meters</value>
+  </data>
+  <data name="AreYouSure" xml:space="preserve">
+    <value>Are You Sure ?</value>
+  </data>
+  <data name="AreYouSureToDeleteThisMessage" xml:space="preserve">
+    <value>Are you sure to delete this message?</value>
+  </data>
+  <data name="AreYouSureToPermanentlyDeleteThisAdvertisment" xml:space="preserve">
+    <value>Are you sure to permanently delete this Advertisment?</value>
+  </data>
+  <data name="AreYouSureYouWantToRestoreThisAdvertisment" xml:space="preserve">
+    <value>Are you sure you want to Restore this Advertisment?</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="BackToHome" xml:space="preserve">
+    <value>Back To Home</value>
+  </data>
+  <data name="BasicInformation" xml:space="preserve">
+    <value>Basic  Information</value>
+  </data>
+  <data name="BathRoom" xml:space="preserve">
+    <value>Bath Room</value>
+  </data>
+  <data name="Big" xml:space="preserve">
+    <value>Big</value>
+  </data>
+  <data name="Bonds" xml:space="preserve">
+    <value>Bonds</value>
+  </data>
+  <data name="BrokerName" xml:space="preserve">
+    <value>Broker Name</value>
+  </data>
+  <data name="BrokerTransfer" xml:space="preserve">
+    <value>Broker Transfer</value>
+  </data>
+  <data name="ByArea" xml:space="preserve">
+    <value>By Area</value>
+  </data>
+  <data name="ByPrice" xml:space="preserve">
+    <value>By Price</value>
+  </data>
+  <data name="ByPropertyAge" xml:space="preserve">
+    <value>By Property Age</value>
+  </data>
+  <data name="ByPropertyIncome" xml:space="preserve">
+    <value>By Property Income</value>
+  </data>
+  <data name="CalendarGregorian" xml:space="preserve">
+    <value>Calendar Gregorian</value>
+  </data>
+  <data name="CalendarHijri" xml:space="preserve">
+    <value>Calendar Hijri</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ChooseAppropriateImagesForYourAdAndThenClickOnOneToSetItAsMainImageForTheAd" xml:space="preserve">
+    <value>Choose the appropriate images for your ad and then click on one of them to set it as the main image for the ad</value>
+  </data>
+  <data name="ChooseCity" xml:space="preserve">
+    <value>Choose City</value>
+  </data>
+  <data name="ChooseDistrict" xml:space="preserve">
+    <value>Choose District</value>
+  </data>
+  <data name="ChooseFacades" xml:space="preserve">
+    <value>Choose  Facades</value>
+  </data>
+  <data name="ChooseOrderType" xml:space="preserve">
+    <value>Choose Order Type</value>
+  </data>
+  <data name="ChoosePropertyType" xml:space="preserve">
+    <value>Choose Property Type</value>
+  </data>
+  <data name="ChoosePurpose" xml:space="preserve">
+    <value>Choose Purpose</value>
+  </data>
+  <data name="ChooseServiceType" xml:space="preserve">
+    <value>Choose Service Type</value>
+  </data>
+  <data name="ChooseTheProperty" xml:space="preserve">
+    <value>Choose The Property</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Comments</value>
+  </data>
+  <data name="ComparationPage" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="Comparations" xml:space="preserve">
+    <value>Comparations</value>
+  </data>
+  <data name="Compare" xml:space="preserve">
+    <value>Compare</value>
+  </data>
+  <data name="ComparePage" xml:space="preserve">
+    <value>Compare Page</value>
+  </data>
+  <data name="ComparisonList" xml:space="preserve">
+    <value>Comparison List</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="ContactDetails" xml:space="preserve">
+    <value>Contact Details</value>
+  </data>
+  <data name="ContactForm" xml:space="preserve">
+    <value>Contact Form</value>
+  </data>
+  <data name="ContactUs" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="ContractEndDate" xml:space="preserve">
+    <value>Contract End Date</value>
+  </data>
+  <data name="ContractNo" xml:space="preserve">
+    <value>Contract No</value>
+  </data>
+  <data name="ContractStartDate" xml:space="preserve">
+    <value>Contract Start Date</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CreateNewMessage" xml:space="preserve">
+    <value>Create New Message</value>
+  </data>
+  <data name="CreateYourRealStateReportFromDorr" xml:space="preserve">
+    <value>Create Your Real State Report From Dorr</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="DearUserPleaseNoteThatThisEmailIsAlreadySubscribedToOurMailingList" xml:space="preserve">
+    <value>Dear customer, please note that this email is already subscribed to our mailing list</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteAdvertisment" xml:space="preserve">
+    <value>Delete Advertisment</value>
+  </data>
+  <data name="DeleteAdvertismentPermenant" xml:space="preserve">
+    <value>Delete Permenant</value>
+  </data>
+  <data name="DeletedAdvertisments" xml:space="preserve">
+    <value>Deleted  Advertisments</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Delete Message</value>
+  </data>
+  <data name="DeleteProperty" xml:space="preserve">
+    <value>Delete Property</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="DetailedInformations" xml:space="preserve">
+    <value>Detailed  Informations</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="DeterminePropertySpecifications" xml:space="preserve">
+    <value>Determine Property Specifications</value>
+  </data>
+  <data name="DiscoverLatestDorrOffers" xml:space="preserve">
+    <value>Discover Latest Dorr Offers</value>
+  </data>
+  <data name="DiscoverLatestOffers" xml:space="preserve">
+    <value>Discover Latest Offers</value>
+  </data>
+  <data name="DiscoverOurServices" xml:space="preserve">
+    <value>Discover Our Services</value>
+  </data>
+  <data name="DiscoverServicesPresentedByDorr" xml:space="preserve">
+    <value>Discover Services Presented By Dorr</value>
+  </data>
+  <data name="DistinguishedRealStateManagementInDorr" xml:space="preserve">
+    <value>Distinguished RealState Management In Dorr</value>
+  </data>
+  <data name="District" xml:space="preserve">
+    <value>District</value>
+  </data>
+  <data name="DistrictNo" xml:space="preserve">
+    <value>District No</value>
+  </data>
+  <data name="DoNotHaveAccount" xml:space="preserve">
+    <value>don't have account</value>
+  </data>
+  <data name="DorrApp" xml:space="preserve">
+    <value>Dorr App</value>
+  </data>
+  <data name="DorrWebsite" xml:space="preserve">
+    <value>Dorr Website</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="DownloadDorrAppOnYourMobile" xml:space="preserve">
+    <value>Download Dorr App On Your Mobile</value>
+  </data>
+  <data name="EditAdvertisementInformation" xml:space="preserve">
+    <value>Edit Ads</value>
+  </data>
+  <data name="EditAdvertisment" xml:space="preserve">
+    <value>Edit Advertisment</value>
+  </data>
+  <data name="EditProperty" xml:space="preserve">
+    <value>Edit Property</value>
+  </data>
+  <data name="ElectricityCount" xml:space="preserve">
+    <value>Electricity Count</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailAlreadyRegistered" xml:space="preserve">
+    <value>Email Already Registered</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End Date</value>
+  </data>
+  <data name="EnjoyAllDorrFreeServices" xml:space="preserve">
+    <value>Enjoy All Dorr Free Services</value>
+  </data>
+  <data name="EnjoyAllFreeServices" xml:space="preserve">
+    <value>Enjoy All Free Services</value>
+  </data>
+  <data name="EnterBriefDescriptionForTheMaintenanceRequest" xml:space="preserve">
+    <value>Enter Brief Description For The Maintenance Request</value>
+  </data>
+  <data name="EnterConfirmPassword" xml:space="preserve">
+    <value>Enter Confirm Password</value>
+  </data>
+  <data name="EnterDistrictName" xml:space="preserve">
+    <value>Enter District Name</value>
+  </data>
+  <data name="EnterMessageDetails" xml:space="preserve">
+    <value>Enter Message Details</value>
+  </data>
+  <data name="EnterPassword" xml:space="preserve">
+    <value>Enter Password</value>
+  </data>
+  <data name="EnterReasonForReporting" xml:space="preserve">
+    <value>Enter Reason For Reporting</value>
+  </data>
+  <data name="EnterStreetName" xml:space="preserve">
+    <value>Enter Street Name</value>
+  </data>
+  <data name="EnterSuitablePassword" xml:space="preserve">
+    <value>Enter Suitable Password</value>
+  </data>
+  <data name="EnterUserName" xml:space="preserve">
+    <value>Enter UserName</value>
+  </data>
+  <data name="EnterYourEmail" xml:space="preserve">
+    <value>Enter Your Email</value>
+  </data>
+  <data name="EnterYourEmailToRestoreYourPassword" xml:space="preserve">
+    <value>Enter your email to retrieve your password</value>
+  </data>
+  <data name="EnterYourNameByEnglish" xml:space="preserve">
+    <value>Enter Your Name By English</value>
+  </data>
+  <data name="Evaluation" xml:space="preserve">
+    <value>Evaluation</value>
+  </data>
+  <data name="ExpiredAdvertisments" xml:space="preserve">
+    <value>Expired  Advertisments</value>
+  </data>
+  <data name="FavoriteAdvertisments" xml:space="preserve">
+    <value>Favorite Advertisments</value>
+  </data>
+  <data name="FavoriteList" xml:space="preserve">
+    <value>Favorite List</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="FloorCount" xml:space="preserve">
+    <value>Floor Count</value>
+  </data>
+  <data name="FollowUsOnOurPages" xml:space="preserve">
+    <value>Follow Us On Our Pages</value>
+  </data>
+  <data name="Footer1" xml:space="preserve">
+    <value>Search for the appropriate property by choosing (country - and city) to show you all the properties in this city, whether on the map or in detailed results.</value>
+  </data>
+  <data name="Footer2" xml:space="preserve">
+    <value>You can specify the specifications of the appropriate and desired property to get more accurate results in the search by specifying (purpose - type of property - price - area) through advanced search.</value>
+  </data>
+  <data name="Footer3" xml:space="preserve">
+    <value>From the search results, you can view all the details of the property and also you can compare it in terms of (price - age - area - income) with other properties so that you can choose the right property.</value>
+  </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>Forget Password</value>
+  </data>
+  <data name="ForSale" xml:space="preserve">
+    <value>For Sale</value>
+  </data>
+  <data name="FrequentlyAskedQuestions" xml:space="preserve">
+    <value>Frequently Asked Questions</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="FromMaximumToMinimum" xml:space="preserve">
+    <value>From Maximum To Minimum</value>
+  </data>
+  <data name="FromMinimumToMaximum" xml:space="preserve">
+    <value>From Minimum To Maximum</value>
+  </data>
+  <data name="FromNewestToOldest" xml:space="preserve">
+    <value>From Newest To Oldest</value>
+  </data>
+  <data name="FromOldestToNewest" xml:space="preserve">
+    <value>From Oldest To Newest</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HowToTakeAdvantageFromDorr" xml:space="preserve">
+    <value>How To Take Advantage From Dorr</value>
+  </data>
+  <data name="HowWebSiteWorks" xml:space="preserve">
+    <value>How WebSite Works</value>
+  </data>
+  <data name="IagreeandAccept" xml:space="preserve">
+    <value>I agree and Accept</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="Images" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="Inbox" xml:space="preserve">
+    <value>Inbox</value>
+  </data>
+  <data name="IncludesFurniture" xml:space="preserve">
+    <value>Includes Furniture</value>
+  </data>
+  <data name="IncludesKitchenParts" xml:space="preserve">
+    <value>Includes  Kitchen Parts</value>
+  </data>
+  <data name="IncorrectEmailorPassword" xml:space="preserve">
+    <value>Incorrect Email or  Password</value>
+  </data>
+  <data name="InstallmentDate" xml:space="preserve">
+    <value>Installment Date</value>
+  </data>
+  <data name="Installments" xml:space="preserve">
+    <value>Installments</value>
+  </data>
+  <data name="InstallmentValue" xml:space="preserve">
+    <value>Installment Value</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>Insurance</value>
+  </data>
+  <data name="Lang" xml:space="preserve">
+    <value>En</value>
+  </data>
+  <data name="LastUpdateSince" xml:space="preserve">
+    <value>Last Update Since</value>
+  </data>
+  <data name="LegalAgencyNO" xml:space="preserve">
+    <value>Legal Agency No</value>
+  </data>
+  <data name="LegalAgencyUrl" xml:space="preserve">
+    <value>Legal Agency Image</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="MaintainWithSpecificPrice" xml:space="preserve">
+    <value>Maintain With Specific Price</value>
+  </data>
+  <data name="MaintenanceRequest" xml:space="preserve">
+    <value>Maintenance Request</value>
+  </data>
+  <data name="MaintenanceRequestByPrice" xml:space="preserve">
+    <value>Maintenance Request By Price</value>
+  </data>
+  <data name="MaintenanceRequestDetails" xml:space="preserve">
+    <value>Maintenance Request Details</value>
+  </data>
+  <data name="MaintenanceRequests" xml:space="preserve">
+    <value>Maintenance Requests</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="MaximumArea" xml:space="preserve">
+    <value>Maximum Area</value>
+  </data>
+  <data name="MaximumPrice" xml:space="preserve">
+    <value>Maximum Price</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="MessageDetails" xml:space="preserve">
+    <value>Message Details</value>
+  </data>
+  <data name="Meter" xml:space="preserve">
+    <value>Meter</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="MinimumArea" xml:space="preserve">
+    <value>Minimum Area</value>
+  </data>
+  <data name="MinimumPrice" xml:space="preserve">
+    <value>Minimum Price</value>
+  </data>
+  <data name="MobileAlreadyRegistered" xml:space="preserve">
+    <value>This Mobile No Alraedy Registered</value>
+  </data>
+  <data name="MobileMustBe10Number" xml:space="preserve">
+    <value>Mobile Must Be Not Less 10 Number</value>
+  </data>
+  <data name="MobileNo" xml:space="preserve">
+    <value>Mobile No</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>MyAccount</value>
+  </data>
+  <data name="MyAdvertisments" xml:space="preserve">
+    <value>MyAdvertisments</value>
+  </data>
+  <data name="MyOrders" xml:space="preserve">
+    <value>My Orders</value>
+  </data>
+  <data name="MyProperties" xml:space="preserve">
+    <value>My Properties</value>
+  </data>
+  <data name="MyRentedProperties" xml:space="preserve">
+    <value>My Rented Properties</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NationalAddress" xml:space="preserve">
+    <value>National  Address</value>
+  </data>
+  <data name="Nationality" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="Newest" xml:space="preserve">
+    <value>Newest</value>
+  </data>
+  <data name="NewRequests" xml:space="preserve">
+    <value>New Requests</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New User</value>
+  </data>
+  <data name="NIDNo" xml:space="preserve">
+    <value>NID No</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="NoOfdaysForNextInstallment" xml:space="preserve">
+    <value>No Of days For Next Installment</value>
+  </data>
+  <data name="NotAllowed" xml:space="preserve">
+    <value>Not Allowed</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="NotResponsibleForFaults" xml:space="preserve">
+    <value>Not Responsible For Faults</value>
+  </data>
+  <data name="OfficeCommission" xml:space="preserve">
+    <value>Office Commission</value>
+  </data>
+  <data name="OfficesCount" xml:space="preserve">
+    <value>Offices Count</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Oldest" xml:space="preserve">
+    <value>Oldest</value>
+  </data>
+  <data name="OldMessages" xml:space="preserve">
+    <value>Old Messages</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order By</value>
+  </data>
+  <data name="OurServices" xml:space="preserve">
+    <value>Our Services</value>
+  </data>
+  <data name="OwnerData" xml:space="preserve">
+    <value>Owner Data</value>
+  </data>
+  <data name="OwnerName" xml:space="preserve">
+    <value>Owner Name</value>
+  </data>
+  <data name="OwnerShipContractNo" xml:space="preserve">
+    <value>OwnerShip Contract No</value>
+  </data>
+  <data name="OwnerShipContractUrl" xml:space="preserve">
+    <value>OwnerShip Contract Image</value>
+  </data>
+  <data name="OwnershipTransfer" xml:space="preserve">
+    <value>Ownership Transfer</value>
+  </data>
+  <data name="OwnerType" xml:space="preserve">
+    <value>Owner Type</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordandConfirmAreMatched" xml:space="preserve">
+    <value>Password and Confirm Password Are Matched</value>
+  </data>
+  <data name="PasswordandConfirmNotMatched" xml:space="preserve">
+    <value>Password and Confirm Password Not Matched</value>
+  </data>
+  <data name="PasswordareModerate" xml:space="preserve">
+    <value>Complex Password is required</value>
+  </data>
+  <data name="PasswordareStrong" xml:space="preserve">
+    <value>Strong</value>
+  </data>
+  <data name="PasswordMustNotlessthan6CharIncludeCapitalandSmallandSymbols" xml:space="preserve">
+    <value>Password Must Not less than 6 Char Include Capital and Small  &amp; Symbols</value>
+  </data>
+  <data name="PathRoom" xml:space="preserve">
+    <value>Path Room</value>
+  </data>
+  <data name="PathRoomsCount" xml:space="preserve">
+    <value>Path Rooms </value>
+  </data>
+  <data name="PaymentPolicy" xml:space="preserve">
+    <value>Payment Policy</value>
+  </data>
+  <data name="PersonalInformation" xml:space="preserve">
+    <value>Personal Info</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="PleaseAdjustYourEmailSettingsWithYourHostingServiceProviders" xml:space="preserve">
+    <value>Please adjust your email settings with your hosting service providers</value>
+  </data>
+  <data name="PleaseChooseSocialNetwork" xml:space="preserve">
+    <value>Please Choose Social Network</value>
+  </data>
+  <data name="PleaseEnterEmailInCorrectFormat" xml:space="preserve">
+    <value>Please Enter Email In Correct Format</value>
+  </data>
+  <data name="PleaseFillToContactWithYou" xml:space="preserve">
+    <value>Please Fill To Contact With You</value>
+  </data>
+  <data name="PleaseLocatePropertyOnTheMapByclickingThedesiredlocation" xml:space="preserve">
+    <value>Please Locate Property On The Map By clicking The Desired Location</value>
+  </data>
+  <data name="PleaseLoginFirst" xml:space="preserve">
+    <value>Please Login First</value>
+  </data>
+  <data name="PleaseLoginToYourPersonalAccountFirst" xml:space="preserve">
+    <value>Please login to your personal account first</value>
+  </data>
+  <data name="PostalCode" xml:space="preserve">
+    <value>Postal Code</value>
+  </data>
+  <data name="PreferredTimeForContact" xml:space="preserve">
+    <value>Preferred Time For Contact</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PriceAllowedForMaintenance" xml:space="preserve">
+    <value>Price  Allowed For Maintenance</value>
+  </data>
+  <data name="PriceInRiyal" xml:space="preserve">
+    <value>Price In Riyal</value>
+  </data>
+  <data name="PriceSom" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="PropertiesThatHaveRentedAndHandedOver" xml:space="preserve">
+    <value>Properties That Have Rented And Handed Over</value>
+  </data>
+  <data name="Property" xml:space="preserve">
+    <value>Property</value>
+  </data>
+  <data name="PropertyAge" xml:space="preserve">
+    <value>Property Age</value>
+  </data>
+  <data name="PropertyDescription" xml:space="preserve">
+    <value>Property Description</value>
+  </data>
+  <data name="PropertyDetails" xml:space="preserve">
+    <value>Property Details</value>
+  </data>
+  <data name="PropertyFeatures" xml:space="preserve">
+    <value>Property Features</value>
+  </data>
+  <data name="PropertyIncome" xml:space="preserve">
+    <value>Property Income</value>
+  </data>
+  <data name="PropertyManagement" xml:space="preserve">
+    <value>Property Management</value>
+  </data>
+  <data name="PropertyName" xml:space="preserve">
+    <value>Property Name</value>
+  </data>
+  <data name="PropertyNo" xml:space="preserve">
+    <value>Property No</value>
+  </data>
+  <data name="PropertyOnMap" xml:space="preserve">
+    <value>Property On Map</value>
+  </data>
+  <data name="PropertyState" xml:space="preserve">
+    <value>Property State</value>
+  </data>
+  <data name="PropertyType" xml:space="preserve">
+    <value>Property Type</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="PublishDate" xml:space="preserve">
+    <value>Publish Date</value>
+  </data>
+  <data name="PublishedAdvertisments" xml:space="preserve">
+    <value>Published Advertisments</value>
+  </data>
+  <data name="PublishTheReply" xml:space="preserve">
+    <value>Publish The  Reply</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Purpose</value>
+  </data>
+  <data name="RateDorrFeaturedProperties" xml:space="preserve">
+    <value>Rate Dorr Featured Properties</value>
+  </data>
+  <data name="ReadMore" xml:space="preserve">
+    <value>Read More</value>
+  </data>
+  <data name="RealStateAppraisal" xml:space="preserve">
+    <value>Real State Appraisal</value>
+  </data>
+  <data name="RealStateBrokerage" xml:space="preserve">
+    <value>RealState Brokerage</value>
+  </data>
+  <data name="RealStateNews" xml:space="preserve">
+    <value>RealState News</value>
+  </data>
+  <data name="RealStateNewsGuideProvidedbyDorr" xml:space="preserve">
+    <value>Real State News Guide Provided by Dorr</value>
+  </data>
+  <data name="RealStateReports" xml:space="preserve">
+    <value>Real State Reports</value>
+  </data>
+  <data name="RealStatetips" xml:space="preserve">
+    <value>RealState Tips</value>
+  </data>
+  <data name="ReasonForReporting" xml:space="preserve">
+    <value>Reason For Reporting</value>
+  </data>
+  <data name="ReceiptOfMaintenanceProcess" xml:space="preserve">
+    <value>Receipt Of Maintenance Process</value>
+  </data>
+  <data name="RecipientName" xml:space="preserve">
+    <value>Recipient Name</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RegisterNowInDorrToEnjoyFreeDorrServices" xml:space="preserve">
+    <value>Register Now In Dorr To Enjoy Free Dorr Services And Latest New</value>
+  </data>
+  <data name="RememberMeNextTime" xml:space="preserve">
+    <value>Remember me </value>
+  </data>
+  <data name="Rent" xml:space="preserve">
+    <value>Rent</value>
+  </data>
+  <data name="RentAmount" xml:space="preserve">
+    <value>Rent Amount</value>
+  </data>
+  <data name="RentContractUrl" xml:space="preserve">
+    <value>Rent Contract Image</value>
+  </data>
+  <data name="RentedProperties" xml:space="preserve">
+    <value>Rented Properties</value>
+  </data>
+  <data name="RentRequest" xml:space="preserve">
+    <value>Rent Request</value>
+  </data>
+  <data name="RentRequests" xml:space="preserve">
+    <value>Rent Requests</value>
+  </data>
+  <data name="RentStatus" xml:space="preserve">
+    <value>Rent Status</value>
+  </data>
+  <data name="Reply" xml:space="preserve">
+    <value>Reply</value>
+  </data>
+  <data name="ReplyOnMessage" xml:space="preserve">
+    <value>Reply On Message</value>
+  </data>
+  <data name="ReportAcomment" xml:space="preserve">
+    <value>Report Acomment</value>
+  </data>
+  <data name="ReportAdvertisment" xml:space="preserve">
+    <value>Report Advertisment</value>
+  </data>
+  <data name="Republish" xml:space="preserve">
+    <value>Republish</value>
+  </data>
+  <data name="RequestsHaveBeenSentToMaintenanceWorker" xml:space="preserve">
+    <value>Requests Have Been Sent To Maintenance Worker</value>
+  </data>
+  <data name="RequestsNotResponsibleForItsMalfunctions" xml:space="preserve">
+    <value>Requests Not Responsible For Its Malfunctions</value>
+  </data>
+  <data name="RequestsToAcceptRenting" xml:space="preserve">
+    <value>Requests To Accept Renting</value>
+  </data>
+  <data name="RequiredMaintenance" xml:space="preserve">
+    <value>Required Maintenance</value>
+  </data>
+  <data name="RequiredPrice" xml:space="preserve">
+    <value>Required Price</value>
+  </data>
+  <data name="RestoreAdvertisment" xml:space="preserve">
+    <value>Restore Advertisment</value>
+  </data>
+  <data name="Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="RoomsCount" xml:space="preserve">
+    <value>Rooms Count</value>
+  </data>
+  <data name="SAR" xml:space="preserve">
+    <value>SAR</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchFilter" xml:space="preserve">
+    <value>Search Filter</value>
+  </data>
+  <data name="SearchForAuserByNameOrPhoneNumber" xml:space="preserve">
+    <value>Search for a user by name or phone number</value>
+  </data>
+  <data name="SearchForYourProperty" xml:space="preserve">
+    <value>Search For Your Property</value>
+  </data>
+  <data name="SearchNowforYourPropertyInDoor" xml:space="preserve">
+    <value>Search Now for Your Property In Door</value>
+  </data>
+  <data name="SelectService" xml:space="preserve">
+    <value>Select Service</value>
+  </data>
+  <data name="SellYourProperty" xml:space="preserve">
+    <value>Sell Your Property</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SendComplainAboutAdvertisment" xml:space="preserve">
+    <value>Send Complain </value>
+  </data>
+  <data name="SendEmail" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="SenderData" xml:space="preserve">
+    <value>Sender Data</value>
+  </data>
+  <data name="SenderName" xml:space="preserve">
+    <value>Sender Name</value>
+  </data>
+  <data name="SendMessage" xml:space="preserve">
+    <value>Send Message</value>
+  </data>
+  <data name="SendMessageToAdvertiser" xml:space="preserve">
+    <value>Send Message </value>
+  </data>
+  <data name="SendMobileNo" xml:space="preserve">
+    <value>Send Mobile No</value>
+  </data>
+  <data name="SendReply" xml:space="preserve">
+    <value>Send Reply</value>
+  </data>
+  <data name="SendRequest" xml:space="preserve">
+    <value>Send Request</value>
+  </data>
+  <data name="SendWhatAppNo" xml:space="preserve">
+    <value>Send WhatApp No</value>
+  </data>
+  <data name="SentEmail" xml:space="preserve">
+    <value>SentEmail</value>
+  </data>
+  <data name="SentMessageCount" xml:space="preserve">
+    <value>Sent Message Count</value>
+  </data>
+  <data name="ServiceDetails" xml:space="preserve">
+    <value>Service Details</value>
+  </data>
+  <data name="ServiceType" xml:space="preserve">
+    <value>Service Type</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="ShareOnSocialMedia" xml:space="preserve">
+    <value>Share On Social Media</value>
+  </data>
+  <data name="ShowMobileNumber" xml:space="preserve">
+    <value>Show Number</value>
+  </data>
+  <data name="ShowPrice" xml:space="preserve">
+    <value>Show Price</value>
+  </data>
+  <data name="ShowPropertyLocationOnMap" xml:space="preserve">
+    <value>Show Property Location On Map</value>
+  </data>
+  <data name="ShowWhatAppNumber" xml:space="preserve">
+    <value>Show WhatApp No</value>
+  </data>
+  <data name="SiteMap" xml:space="preserve">
+    <value>Site Map</value>
+  </data>
+  <data name="SleepingRoom" xml:space="preserve">
+    <value>Sleeping Room</value>
+  </data>
+  <data name="SleepRooms" xml:space="preserve">
+    <value>Sleep Rooms</value>
+  </data>
+  <data name="Small" xml:space="preserve">
+    <value>Small</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start Date</value>
+  </data>
+  <data name="StartInRealestateBrokerageNow" xml:space="preserve">
+    <value>Start In Realestate Brokerage Now</value>
+  </data>
+  <data name="Street" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="SubscribeToNewsletter" xml:space="preserve">
+    <value>Subscribe To Newsletter</value>
+  </data>
+  <data name="SuccessOperation" xml:space="preserve">
+    <value>Success Operation</value>
+  </data>
+  <data name="TenantName" xml:space="preserve">
+    <value>Tenant Name</value>
+  </data>
+  <data name="TermsandConditions" xml:space="preserve">
+    <value>Terms &amp; Conditions</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Thank You</value>
+  </data>
+  <data name="ThankYouYourMessageHasBeenSentSuccessfully" xml:space="preserve">
+    <value>Thank you, your message has been sent successfully</value>
+  </data>
+  <data name="TheAdvertiserWillContactYou" xml:space="preserve">
+    <value>The Advertiser Will Contact You</value>
+  </data>
+  <data name="TheDoorManagementTeamWillReviewtheCommunicationAndTakeTheNecessaryMeasures" xml:space="preserve">
+    <value>The Door management team will review the communication and take the necessary measures</value>
+  </data>
+  <data name="ThisAdvertismentIsAlreadyInComparisonList" xml:space="preserve">
+    <value>This Advertisment Is Already In Comparison List</value>
+  </data>
+  <data name="ThisAdvertismentIsAlreadyInFavoriteList" xml:space="preserve">
+    <value>This Advertisment Is Already In Favorite List</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>To</value>
+  </data>
+  <data name="TotalRentForWholePeriod" xml:space="preserve">
+    <value>Total Rent For The Whole Period</value>
+  </data>
+  <data name="TotalRentValue" xml:space="preserve">
+    <value>Total Rent Value</value>
+  </data>
+  <data name="TypeInYourMessage" xml:space="preserve">
+    <value>Type In Your Message</value>
+  </data>
+  <data name="TypeInYourMessageFirst" xml:space="preserve">
+    <value>Please type in your message first!</value>
+  </data>
+  <data name="UnitCount" xml:space="preserve">
+    <value>Unit Count</value>
+  </data>
+  <data name="UnitDetails" xml:space="preserve">
+    <value>Unit Details</value>
+  </data>
+  <data name="UnitFacades" xml:space="preserve">
+    <value>Unit Facades</value>
+  </data>
+  <data name="UnitType" xml:space="preserve">
+    <value>Unit Type</value>
+  </data>
+  <data name="UnPublishedAdvertisments" xml:space="preserve">
+    <value>UnPublished  Advertisments</value>
+  </data>
+  <data name="UploadReceipt" xml:space="preserve">
+    <value>Upload Receipt</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>User Name</value>
+  </data>
+  <data name="UserNameALreadyRegistered" xml:space="preserve">
+    <value>This User Name ALready Registered</value>
+  </data>
+  <data name="UserNameIsAvailable" xml:space="preserve">
+    <value>User Name Is Available</value>
+  </data>
+  <data name="UserNameMustBeEnglish" xml:space="preserve">
+    <value>User Name Must Be English</value>
+  </data>
+  <data name="UserNameMustBeNotLess8Char" xml:space="preserve">
+    <value>User Name Must Be Not Less Tha  8 Character</value>
+  </data>
+  <data name="ViewAdvertisment" xml:space="preserve">
+    <value>View Advertisment</value>
+  </data>
+  <data name="ViewAdvertismentDetails" xml:space="preserve">
+    <value>View Advertisment Details</value>
+  </data>
+  <data name="WatchingCount" xml:space="preserve">
+    <value>Watching Count</value>
+  </data>
+  <data name="WaterInvoice" xml:space="preserve">
+    <value>Water Bill</value>
+  </data>
+  <data name="WelcomeLogin" xml:space="preserve">
+    <value>Welcome Please Sign In To Access Your Account</value>
+  </data>
+  <data name="WeOfferYouAsetOfRealstateTips" xml:space="preserve">
+    <value>We Offer You Aset Of Realstate Tips</value>
+  </data>
+  <data name="WeWillSendMaintenanceWorker" xml:space="preserve">
+    <value>We Will Send Maintenance Worker</value>
+  </data>
+  <data name="WhatAppNo" xml:space="preserve">
+    <value>WhatApp No</value>
+  </data>
+  <data name="WriteComment" xml:space="preserve">
+    <value>Write Comment</value>
+  </data>
+  <data name="WriteQuestionOrCommentAboutProperty" xml:space="preserve">
+    <value>Write Question Or Comment About Property</value>
+  </data>
+  <data name="WriteReplyOnComment" xml:space="preserve">
+    <value>Write Reply On The  Comment</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>Year</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Years</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="YouCanNowAdvertiseYourPropertyInDorr" xml:space="preserve">
+    <value>You Can Now Advertise Your Property In Dorr</value>
+  </data>
+  <data name="YouCanNowDownloadForMobile" xml:space="preserve">
+    <value>Download For Mobile</value>
+  </data>
+  <data name="YouHaveBeenSuccessfullySubscribedToTheMailingList" xml:space="preserve">
+    <value>You have been successfully subscribed to the mailing list</value>
+  </data>
+  <data name="YouMustChoosePropertyTypeAndPurposeOfAdvertisment" xml:space="preserve">
+    <value>You Must Choose Property Type And Purpose Of Advertisment</value>
+  </data>
+  <data name="AllrightsReserved2021" xml:space="preserve">
+    <value>All rights Reserved 2021</value>
+  </data>
+  <data name="Importantlinks" xml:space="preserve">
+    <value>Important links</value>
+  </data>
+  <data name="PaymentTerms" xml:space="preserve">
+    <value>PaymentTerms</value>
+  </data>
+  <data name="PleaseFillinYourLoginInformation" xml:space="preserve">
+    <value>Please Fill in Your Login Information</value>
+  </data>
+  <data name="QuestionsAndAnswers" xml:space="preserve">
+    <value>Questions And Answers</value>
+  </data>
+  <data name="SocialMedia" xml:space="preserve">
+    <value>Social Media</value>
+  </data>
+  <data name="TermsAndPolicies" xml:space="preserve">
+    <value>Terms And Policies</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="Aleaderinprovidingprofessionalandhighqualitylaborthatmatchessupplyanddemand" xml:space="preserve">
+    <value>A leader in providing professional and high-quality labor that matches supply and demand</value>
+  </data>
+  <data name="And300riyalshavebeenaddedasaninitialvaluetoyouraccountPleasecontactthesponsortoterminatethecontract" xml:space="preserve">
+    <value>And 300 riyals have been added as an initial value to your account. Please contact the sponsor to terminate the contract</value>
+  </data>
+  <data name="AreYouLookingFor" xml:space="preserve">
+    <value>Are You Looking For</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Choosethetypeofaccountyouwanttoopen" xml:space="preserve">
+    <value>Choose the type of account you want to open</value>
+  </data>
+  <data name="ChooseTheworkerThatfitsyourneedsandRequirements" xml:space="preserve">
+    <value>Choose The worker That fits Your needs And Requirements</value>
+  </data>
+  <data name="ChooseWorker" xml:space="preserve">
+    <value>Choose Worker</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>Communication</value>
+  </data>
+  <data name="CompletingData" xml:space="preserve">
+    <value>Completing  Data</value>
+  </data>
+  <data name="ContactWithMaroufah" xml:space="preserve">
+    <value>Contact With ESTQDAMI</value>
+  </data>
+  <data name="CreateAccountAndConfirmYourMobileNumber" xml:space="preserve">
+    <value>Create Account And Confirm Your Mobile Number</value>
+  </data>
+  <data name="DiscoverThelatestEmployment" xml:space="preserve">
+    <value>Discover The latest  Employment</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="DownloadMarofahapplication" xml:space="preserve">
+    <value>Download ESTQDAMI Application</value>
+  </data>
+  <data name="EnterName" xml:space="preserve">
+    <value>EnterName</value>
+  </data>
+  <data name="HomePageLabel" xml:space="preserve">
+    <value>One of the approved Saudi companies that assist in the recruitment and provision of professional human cadres of all nationalities, where Enaya provides services to provide domestic workers, drivers, cooks and other categories of employment in accordance with the conditions of total quality and reconcile between supply and demand and protect the privacy of its customers and the confidentiality of their data. One of the approved Saudi companies that assist in the recruitment and provision of professional human cadres of all nationalities, where Enaya provides services to provide domestic workers, drivers, cooks and other categories of employment in accordance with the conditions of total quality and reconcile between supply and demand and protect the privacy of its customers and the confidentiality of their data.</value>
+  </data>
+  <data name="HowDoesTheSitework" xml:space="preserve">
+    <value>How Does The Site work</value>
+  </data>
+  <data name="KeepInTouch" xml:space="preserve">
+    <value>Keep In Touch</value>
+  </data>
+  <data name="KingdomofSaudiArabia" xml:space="preserve">
+    <value>Kingdom of Saudi  Arabia</value>
+  </data>
+  <data name="LearnHowTheSiteWorks" xml:space="preserve">
+    <value>Learn How The Site Works</value>
+  </data>
+  <data name="Marofah" xml:space="preserve">
+    <value>ESTQDAMI</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>More</value>
+  </data>
+  <data name="MoreThan" xml:space="preserve">
+    <value>More Than</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PleaseEnterAlltheDataCorrectlysothattheMaroufateamcancontactyou" xml:space="preserve">
+    <value>Please Enter all the data correctly so that the Maroufa team Can contact you</value>
+  </data>
+  <data name="RegisterNow" xml:space="preserve">
+    <value>Register Now</value>
+  </data>
+  <data name="RegistrationIsDone" xml:space="preserve">
+    <value>Registration  Is  Done</value>
+  </data>
+  <data name="Riyadh" xml:space="preserve">
+    <value>Riyadh</value>
+  </data>
+  <data name="Sahafa" xml:space="preserve">
+    <value>Sahafa</value>
+  </data>
+  <data name="SearchForWorkerOnthesite" xml:space="preserve">
+    <value>Search for a worker on the site</value>
+  </data>
+  <data name="SearchingForworkersfromallovertheworldatpricessuitableforallcategories" xml:space="preserve">
+    <value>Searching for workers from all over the world at prices suitable for all categories</value>
+  </data>
+  <data name="SelectAccountType" xml:space="preserve">
+    <value>Select Account Type</value>
+  </data>
+  <data name="Site" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="SomeThingWrong" xml:space="preserve">
+    <value>Some Thing Wrong</value>
+  </data>
+  <data name="TheRequiredJob" xml:space="preserve">
+    <value>The Required Job</value>
+  </data>
+  <data name="Theworkeriscontactedandthetransactioniscompleted" xml:space="preserve">
+    <value>The worker is contacted and the transaction is completed</value>
+  </data>
+  <data name="TrainedWorker" xml:space="preserve">
+    <value>Trained Worker</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="WeArePleasedAndHonoredtoReceiveYourOpinions" xml:space="preserve">
+    <value>We are pleased and honored to receive your opinions</value>
+  </data>
+  <data name="WeHaveTrainedworkforceAccordingtoeachclientsneedsandspecifications" xml:space="preserve">
+    <value>We have a trained workforce according to each client's needs and specifications</value>
+  </data>
+  <data name="WhatDoYouknowAbout" xml:space="preserve">
+    <value>What Do You know About</value>
+  </data>
+  <data name="Worker" xml:space="preserve">
+    <value>Worker</value>
+  </data>
+  <data name="YouCanNowDownloadMarofahApplicationToworkonAndroidandiPhone" xml:space="preserve">
+    <value>You can now download ESTQDAMI application to work on Android and iPhone</value>
+  </data>
+  <data name="YouMustEnteraValidEmailinordertoGetbackintouchwithyou" xml:space="preserve">
+    <value>You Must Enter Avalid e-mail in order to get back in touch with you</value>
+  </data>
+  <data name="YourInquiryhasbeensentsuccessfullyandMaroufateamwillrespondtoyouassoonaspossible" xml:space="preserve">
+    <value>Your inquiry has been sent successfully and Maroufa team will respond to you as soon as possible</value>
+  </data>
+  <data name="YourRequestHasBeenSuccessfullyAccepted" xml:space="preserve">
+    <value>Your Request Has Been Successfully Accepted</value>
+  </data>
+  <data name="AccountSettings" xml:space="preserve">
+    <value>Account Settings</value>
+  </data>
+  <data name="Accredited" xml:space="preserve">
+    <value>Accredited</value>
+  </data>
+  <data name="AccreditedRequests" xml:space="preserve">
+    <value>Accredited Requests</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="ApprovalRefusalRequests" xml:space="preserve">
+    <value>Approval Refusal Requests</value>
+  </data>
+  <data name="BusinessOwner" xml:space="preserve">
+    <value>Business Owner</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ChooseCountry" xml:space="preserve">
+    <value>Choose Country</value>
+  </data>
+  <data name="ChooseAge" xml:space="preserve">
+    <value>Choose Age</value>
+  </data>
+  <data name="HasChildren" xml:space="preserve">
+    <value>Has Children</value>
+  </data>
+  <data name="MoreThan10" xml:space="preserve">
+    <value>More Than 10</value>
+  </data>
+  <data name="ChooseTypeofAccountyouWanttoOpen" xml:space="preserve">
+    <value>Choose The Type of account You want to open</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="CompleteYourAccountInformation" xml:space="preserve">
+    <value>Complete Your Account Information</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="FavoriteItems" xml:space="preserve">
+    <value>Favorite Items</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FilterResults" xml:space="preserve">
+    <value>Filter Results</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="FirstStep" xml:space="preserve">
+    <value>First Step</value>
+  </data>
+  <data name="IagreeToAll" xml:space="preserve">
+    <value>I agree To All</value>
+  </data>
+  <data name="InitialAdmission" xml:space="preserve">
+    <value>Initial Admission</value>
+  </data>
+  <data name="InitialAdmissionRequests" xml:space="preserve">
+    <value>Initial Admission Requests</value>
+  </data>
+  <data name="InitialRejection" xml:space="preserve">
+    <value>Initial Rejection</value>
+  </data>
+  <data name="InitialRejectionRequests" xml:space="preserve">
+    <value>Initial Rejection Requests</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>Job</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="MaroufaIsaleaderInProvidingProfessionalandhighqualitylaborthatmatchessupplyanddemand" xml:space="preserve">
+    <value>Maroufa: Is a leader in providing professional and high-quality labor that matches supply and demand</value>
+  </data>
+  <data name="Muslim" xml:space="preserve">
+    <value>Muslim</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="OfficeAddress" xml:space="preserve">
+    <value>Office Address</value>
+  </data>
+  <data name="OfficeName" xml:space="preserve">
+    <value>Office Name</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Old Password</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="RecruitingOffice" xml:space="preserve">
+    <value>Recruiting Office</value>
+  </data>
+  <data name="RefusalRequest" xml:space="preserve">
+    <value>Refusal Request</value>
+  </data>
+  <data name="Religion" xml:space="preserve">
+    <value>Religion</value>
+  </data>
+  <data name="Removefromfavourites" xml:space="preserve">
+    <value>Remove from favourites</value>
+  </data>
+  <data name="RequestDate" xml:space="preserve">
+    <value>Request Date</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Save </value>
+  </data>
+  <data name="SecondStep" xml:space="preserve">
+    <value>Second Step</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Sex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="Showfavourites" xml:space="preserve">
+    <value>Show favourites</value>
+  </data>
+  <data name="Stage1of3" xml:space="preserve">
+    <value>Stage 1 of 3</value>
+  </data>
+  <data name="Stage2of3" xml:space="preserve">
+    <value>Stage 2 of 3</value>
+  </data>
+  <data name="TheRequestHasalreadyBeenSent" xml:space="preserve">
+    <value>The Request Has already Been Sent</value>
+  </data>
+  <data name="TheworkerhasbeenRemovedfromyourFavoritelistsuccessfully" xml:space="preserve">
+    <value>The worker has been Removed from your Favorite list successfully</value>
+  </data>
+  <data name="ThisWorkerisalreadyinFavoritelist" xml:space="preserve">
+    <value>This Worker Is already In Favorite list</value>
+  </data>
+  <data name="WorkerAddedToFavoriteList" xml:space="preserve">
+    <value>Worker Added To Favorite List</value>
+  </data>
+  <data name="WorkerJob" xml:space="preserve">
+    <value>Worker Job</value>
+  </data>
+  <data name="WorkerName" xml:space="preserve">
+    <value>Worker Name</value>
+  </data>
+  <data name="WorkRequests" xml:space="preserve">
+    <value>Work Requests</value>
+  </data>
+  <data name="YearsofExperience" xml:space="preserve">
+    <value>Years of Experience</value>
+  </data>
+  <data name="OurPartners" xml:space="preserve">
+    <value>Our Partners</value>
+  </data>
+  <data name="Recommendation_for_Sponsor" xml:space="preserve">
+    <value>Recommendation for Sponsor </value>
+  </data>
+  <data name="Recommended" xml:space="preserve">
+    <value>Recommended</value>
+  </data>
+  <data name="NotRecommended" xml:space="preserve">
+    <value>Not Recommended</value>
+  </data>
+  <data name="chooseRecommendation" xml:space="preserve">
+    <value>choose Recommendation</value>
+  </data>
+  <data name="AdvancedFilter" xml:space="preserve">
+    <value>Advanced Filter</value>
+  </data>
+  <data name="YourAccounthasbeensuccessfullyregisteredPleasecheckyouremailtoactivateyouraccount" xml:space="preserve">
+    <value>Your account has been successfully registered. Please check your email to activate your account</value>
+  </data>
+  <data name="YourRequestHasbeensuccessfullySentandtheofficewillcontactyouassoonaspossible" xml:space="preserve">
+    <value>Your request has been successfully sent, and the office will contact you as soon as possible</value>
+  </data>
+  <data name="SearchResults" xml:space="preserve">
+    <value>Search Results</value>
+  </data>
+  <data name="YouMustRegisterfirsttobeabletorequestthisoperator" xml:space="preserve">
+    <value>You Must Register first to be able to request this operator</value>
+  </data>
+  <data name="AnotherReason" xml:space="preserve">
+    <value>Another Reason</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="BirthPlace" xml:space="preserve">
+    <value>Birth Place</value>
+  </data>
+  <data name="BriefSummary" xml:space="preserve">
+    <value>Brief Summary</value>
+  </data>
+  <data name="Certificate" xml:space="preserve">
+    <value>Certificate</value>
+  </data>
+  <data name="Certificates" xml:space="preserve">
+    <value>Certificates</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Choose the type of account you want to open" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Christian" xml:space="preserve">
+    <value>Christian</value>
+  </data>
+  <data name="CommercialRegistrationExpiryDate" xml:space="preserve">
+    <value>Commercial Registration Expiry Date</value>
+  </data>
+  <data name="CommercialRegistrationNo" xml:space="preserve">
+    <value>Commercial Registration No</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Containsfakeinformation" xml:space="preserve">
+    <value>Contains fake information</value>
+  </data>
+  <data name="Containsinappropriateimages" xml:space="preserve">
+    <value>Contains in appropriate images</value>
+  </data>
+  <data name="Degreeofmastery" xml:space="preserve">
+    <value>Degree of Mastery</value>
+  </data>
+  <data name="Divorced" xml:space="preserve">
+    <value>Divorced</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="EducationalCenter" xml:space="preserve">
+    <value>Educational Center</value>
+  </data>
+  <data name="EmployeeEmail" xml:space="preserve">
+    <value>Employee's email</value>
+  </data>
+  <data name="Employeefirstname" xml:space="preserve">
+    <value>Employee's first name</value>
+  </data>
+  <data name="EmployeeLastname" xml:space="preserve">
+    <value>Employee's Last name</value>
+  </data>
+  <data name="EmployeePhoneNumber" xml:space="preserve">
+    <value>Employee's phone number</value>
+  </data>
+  <data name="IdentificationNumber" xml:space="preserve">
+    <value>Identification Number</value>
+  </data>
+  <data name="Introductionvideo" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="Jewish" xml:space="preserve">
+    <value>Jewish</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="lengthCm" xml:space="preserve">
+    <value>Length (cm)</value>
+  </data>
+  <data name="LicenseExpiryDate" xml:space="preserve">
+    <value>License Expiry Date</value>
+  </data>
+  <data name="licenseNumberofMinistryofHumanResourcesandSocialDevelopment" xml:space="preserve">
+    <value>License Number of Ministry of Human Resources and Social Development </value>
+  </data>
+  <data name="ManagerMobileNumber" xml:space="preserve">
+    <value>Manager Mobile Number</value>
+  </data>
+  <data name="Married" xml:space="preserve">
+    <value>Married</value>
+  </data>
+  <data name="Natureoflanguage" xml:space="preserve">
+    <value>Nature of language</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Numberofchildren" xml:space="preserve">
+    <value>Number  of Children</value>
+  </data>
+  <data name="OfficeEmail" xml:space="preserve">
+    <value>Office Email</value>
+  </data>
+  <data name="OfficeownerIDnumber" xml:space="preserve">
+    <value>Office owner ID Number</value>
+  </data>
+  <data name="PhotoGallery" xml:space="preserve">
+    <value>PhotoGallery</value>
+  </data>
+  <data name="RecruitmentAmount" xml:space="preserve">
+    <value>Recruitment Amount</value>
+  </data>
+  <data name="Recruitmentofficedata" xml:space="preserve">
+    <value>Recruitment office Data</value>
+  </data>
+  <data name="ReleaseDate" xml:space="preserve">
+    <value>Release Date</value>
+  </data>
+  <data name="ReportAnaccount" xml:space="preserve">
+    <value>Report An account</value>
+  </data>
+  <data name="Requestaworker" xml:space="preserve">
+    <value>Request Aworker</value>
+  </data>
+  <data name="RoomSharing" xml:space="preserve">
+    <value>Room Sharing</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salary</value>
+  </data>
+  <data name="Single" xml:space="preserve">
+    <value>Single</value>
+  </data>
+  <data name="SkillName" xml:space="preserve">
+    <value>Skill Name</value>
+  </data>
+  <data name="Skills" xml:space="preserve">
+    <value>Skills</value>
+  </data>
+  <data name="SocialStatus" xml:space="preserve">
+    <value>Social Status</value>
+  </data>
+  <data name="Stage3of3" xml:space="preserve">
+    <value>Stage 3 of 3</value>
+  </data>
+  <data name="Step3" xml:space="preserve">
+    <value>Step 3</value>
+  </data>
+  <data name="ThankYouforregisteringInthesite" xml:space="preserve">
+    <value>Thank you for registering on the site</value>
+  </data>
+  <data name="ThankYouforyourcooperationTheaccounthasbeenreportedandisunderreviewbytheadministration" xml:space="preserve">
+    <value>Thank you for your cooperation. The account has been reported and is under review by the administration</value>
+  </data>
+  <data name="Thefirstnameofthemanagerorofficeowner" xml:space="preserve">
+    <value>The first name of the manager or office owner</value>
+  </data>
+  <data name="Thelastnameoftheowner" xml:space="preserve">
+    <value>The last name of the owner</value>
+  </data>
+  <data name="TheWeight" xml:space="preserve">
+    <value>The Weight</value>
+  </data>
+  <data name="Thisaccountisreportedbecause" xml:space="preserve">
+    <value>The account is reported because</value>
+  </data>
+  <data name="UnifiedPhoneNumber" xml:space="preserve">
+    <value>Unified Phone Number</value>
+  </data>
+  <data name="University" xml:space="preserve">
+    <value>University</value>
+  </data>
+  <data name="Universitydegree" xml:space="preserve">
+    <value>University Degree</value>
+  </data>
+  <data name="Weightkg" xml:space="preserve">
+    <value>Weight (kg)</value>
+  </data>
+  <data name="workareas" xml:space="preserve">
+    <value>Work Areas</value>
+  </data>
+  <data name="YoualreadyReportedthisaccount" xml:space="preserve">
+    <value>You Already Reported This account</value>
+  </data>
+  <data name="YouMustregisterfirsttobeabletoreportthisaccount" xml:space="preserve">
+    <value>You must register  first to be able to report this account</value>
+  </data>
+  <data name="Youmustregisterfirsttobeabletouseyourfavourites" xml:space="preserve">
+    <value>You must register  first to be able to use your favourites</value>
+  </data>
+  <data name="AccountStatement" xml:space="preserve">
+    <value>Account Statement</value>
+  </data>
+  <data name="ChangeImage" xml:space="preserve">
+    <value>Change Image</value>
+  </data>
+  <data name="contracting" xml:space="preserve">
+    <value>Contracting</value>
+  </data>
+  <data name="ContractUnderReview" xml:space="preserve">
+    <value>Contract under review</value>
+  </data>
+  <data name="FemaleWorkers" xml:space="preserve">
+    <value>Female Workers</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="LastLogin" xml:space="preserve">
+    <value>Last Login</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="Undocumented" xml:space="preserve">
+    <value>Undocumented</value>
+  </data>
+  <data name="Blocked" xml:space="preserve">
+    <value>Blocked</value>
+  </data>
+  <data name="WorkerRequest" xml:space="preserve">
+    <value>Worker Request</value>
+  </data>
+  <data name="Block" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="BlockedRequests" xml:space="preserve">
+    <value>Blocked Requests</value>
+  </data>
+  <data name="FinalAdmission" xml:space="preserve">
+    <value>Final Admission</value>
+  </data>
+  <data name="InitialRejectRequests" xml:space="preserve">
+    <value>Initial Reject Requests</value>
+  </data>
+  <data name="Refuse" xml:space="preserve">
+    <value>Refuse</value>
+  </data>
+  <data name="RemoveProhibition" xml:space="preserve">
+    <value>Remove Prohibition</value>
+  </data>
+  <data name="Response" xml:space="preserve">
+    <value>Response</value>
+  </data>
+  <data name="SponsorAddress" xml:space="preserve">
+    <value>Sponsor Address</value>
+  </data>
+  <data name="SponsorCity" xml:space="preserve">
+    <value>Sponsor City</value>
+  </data>
+  <data name="SponsorCountry" xml:space="preserve">
+    <value>Sponsor Country</value>
+  </data>
+  <data name="SponsorMobile" xml:space="preserve">
+    <value>Sponsor Mobile</value>
+  </data>
+  <data name="SponsorName" xml:space="preserve">
+    <value>Sponsor Name</value>
+  </data>
+  <data name="AddAnewWorker" xml:space="preserve">
+    <value>Add Anew Worker</value>
+  </data>
+  <data name="AvailableAgain" xml:space="preserve">
+    <value>Available Again</value>
+  </data>
+  <data name="AvailableEmployment" xml:space="preserve">
+    <value>Available Employment</value>
+  </data>
+  <data name="CandidateEmployment" xml:space="preserve">
+    <value>Candidate  Employment</value>
+  </data>
+  <data name="UnavailableEmployment" xml:space="preserve">
+    <value>Unavailable Employment</value>
+  </data>
+  <data name="YouCanonlyaddworkersaftersendingthecontractandreviewingitthroughMaroufaworkteam" xml:space="preserve">
+    <value>You Can only add workers after Sending the contract and reviewing it through Maroufa Work team</value>
+  </data>
+  <data name="AddAnewbranch" xml:space="preserve">
+    <value>Add Anew Branch</value>
+  </data>
+  <data name="AddBranch" xml:space="preserve">
+    <value>Add Branch</value>
+  </data>
+  <data name="AddCertificate" xml:space="preserve">
+    <value>Add Certificate</value>
+  </data>
+  <data name="AddService" xml:space="preserve">
+    <value>Add Service</value>
+  </data>
+  <data name="Anamountof300Sarwillbeaddedtoyourwallet" xml:space="preserve">
+    <value>An amount of 300 SAR will be added to your wallet</value>
+  </data>
+  <data name="And300riyalshasbeenaddedasaninitialvaluetoyouraccountPleasecontactthesponsortoterminatethecontract" xml:space="preserve">
+    <value>And 300 SAR has been added as an initial value to your account. Please contact the sponsor to terminate the contract</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Attachments</value>
+  </data>
+  <data name="Available" xml:space="preserve">
+    <value>Available</value>
+  </data>
+  <data name="Branches" xml:space="preserve">
+    <value>Branches</value>
+  </data>
+  <data name="BranchName" xml:space="preserve">
+    <value>Branch Name</value>
+  </data>
+  <data name="CertificateDate" xml:space="preserve">
+    <value>Certificate Date</value>
+  </data>
+  <data name="CertificateName" xml:space="preserve">
+    <value>Certificate Name</value>
+  </data>
+  <data name="Chooseareligion" xml:space="preserve">
+    <value>Choose areligion</value>
+  </data>
+  <data name="ChooseJob" xml:space="preserve">
+    <value>Choose Job</value>
+  </data>
+  <data name="ChooseNationality" xml:space="preserve">
+    <value>Choose Nationality</value>
+  </data>
+  <data name="ChooseSex" xml:space="preserve">
+    <value>ChooseSex</value>
+  </data>
+  <data name="ChooseTheWorker" xml:space="preserve">
+    <value>Choose The Worker</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="ContractDate" xml:space="preserve">
+    <value>Contract Date</value>
+  </data>
+  <data name="ContractEntryIntoforce" xml:space="preserve">
+    <value>Contract entry into force</value>
+  </data>
+  <data name="ContractingInstructions" xml:space="preserve">
+    <value>Contracting Instructions</value>
+  </data>
+  <data name="ContractLine1" xml:space="preserve">
+    <value>After pressing the button (Execute the contract), please review the account data, then click on (Create).</value>
+  </data>
+  <data name="ContractLine2" xml:space="preserve">
+    <value>Start downloading the contract, then sign and stamp the contract</value>
+  </data>
+  <data name="ContractLine3" xml:space="preserve">
+    <value>Re-upload the contract (signed and sealed) and then send it to ESTQDAMI</value>
+  </data>
+  <data name="ContractLine4" xml:space="preserve">
+    <value>ESTQDAMI work team will review the contract and then document the account to start using</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DeleteTheAccount" xml:space="preserve">
+    <value>Delete The Account</value>
+  </data>
+  <data name="DoneSuccessfully" xml:space="preserve">
+    <value>Done Successfully</value>
+  </data>
+  <data name="DownloadContract" xml:space="preserve">
+    <value>Download Contract</value>
+  </data>
+  <data name="Doyouwanttodeletethisitem" xml:space="preserve">
+    <value>Do you want to delete this item?</value>
+  </data>
+  <data name="DoYouWanttoDeletThisItem" xml:space="preserve">
+    <value>Do you want to delete this item?</value>
+  </data>
+  <data name="drivinglicense" xml:space="preserve">
+    <value>Driving License</value>
+  </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="EmployeeName" xml:space="preserve">
+    <value>Employee Name</value>
+  </data>
+  <data name="Endofcontract" xml:space="preserve">
+    <value>End of contract</value>
+  </data>
+  <data name="EnterCommercialRegistrationNo" xml:space="preserve">
+    <value>Enter Commercial Registration No</value>
+  </data>
+  <data name="EnterOfficeAddress" xml:space="preserve">
+    <value>Enter Office Address</value>
+  </data>
+  <data name="EnterOfficelicenseNo" xml:space="preserve">
+    <value>Enter Office license No</value>
+  </data>
+  <data name="EnterOfficeName" xml:space="preserve">
+    <value>Enter Office Name</value>
+  </data>
+  <data name="FamilyName" xml:space="preserve">
+    <value>Family Name</value>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="Hide" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="LoadingThefile" xml:space="preserve">
+    <value>Loading The file</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="Mydata" xml:space="preserve">
+    <value>My data</value>
+  </data>
+  <data name="NewContract" xml:space="preserve">
+    <value>New Contract</value>
+  </data>
+  <data name="Nothing" xml:space="preserve">
+    <value>Nothing</value>
+  </data>
+  <data name="OfficeLicense" xml:space="preserve">
+    <value>Office License</value>
+  </data>
+  <data name="OnceAgain" xml:space="preserve">
+    <value>Once Again</value>
+  </data>
+  <data name="PleaseAfterdownloadingthecontractReviewitsignandsealitandthenreuploadittoMaroufaSite" xml:space="preserve">
+    <value>Please, after downloading the contract, review it, sign and seal it, and then re-upload it to ESTQDAMI site</value>
+  </data>
+  <data name="QuickSearchforWorker" xml:space="preserve">
+    <value>Quick Search for Worker</value>
+  </data>
+  <data name="ReportedAccounts" xml:space="preserve">
+    <value>Reported Accounts</value>
+  </data>
+  <data name="ReportingDate" xml:space="preserve">
+    <value>Reporting Date</value>
+  </data>
+  <data name="ReviewTheAccount" xml:space="preserve">
+    <value>Review The Account</value>
+  </data>
+  <data name="SendAcopyofthecontracttothereviewandyouwillbenotifiedoftheresultassoonaspossible" xml:space="preserve">
+    <value>Send a copy of the contract to the review and you will be notified of the result as soon as possible</value>
+  </data>
+  <data name="ServiceName" xml:space="preserve">
+    <value>Service Name</value>
+  </data>
+  <data name="ServicePrice" xml:space="preserve">
+    <value>Service Price</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="ServicesWeProvide" xml:space="preserve">
+    <value>Services We Provide</value>
+  </data>
+  <data name="SigntheContractandattachithere" xml:space="preserve">
+    <value>Sign the contract and attach it here</value>
+  </data>
+  <data name="StartContract" xml:space="preserve">
+    <value>Start Contract</value>
+  </data>
+  <data name="Submitthecontractforreview" xml:space="preserve">
+    <value>Submit for Review</value>
+  </data>
+  <data name="SuspendedAccounts" xml:space="preserve">
+    <value>Suspended Accounts</value>
+  </data>
+  <data name="TheDateofwritingthecontract" xml:space="preserve">
+    <value>The Date of Writing the Contract</value>
+  </data>
+  <data name="TheNameofOfficeownerorauthorizedmanager" xml:space="preserve">
+    <value>The name of the office owner or authorized manager</value>
+  </data>
+  <data name="ThereIs" xml:space="preserve">
+    <value>There Is</value>
+  </data>
+  <data name="TheStatusofthisWorkerwillbechangedto" xml:space="preserve">
+    <value>The status of this factor will be changed to</value>
+  </data>
+  <data name="AccountSettlement" xml:space="preserve">
+    <value>Account Settlement</value>
+  </data>
+  <data name="BackToMyAccount" xml:space="preserve">
+    <value>Back To My Account</value>
+  </data>
+  <data name="ContractRequisitionsDue" xml:space="preserve">
+    <value>Contract Requisitions Due</value>
+  </data>
+  <data name="DeservedAmount" xml:space="preserve">
+    <value>Deserved Amount</value>
+  </data>
+  <data name="LoginName" xml:space="preserve">
+    <value>Login Name</value>
+  </data>
+  <data name="OrderStatus" xml:space="preserve">
+    <value>Order Status</value>
+  </data>
+  <data name="PaidContractRequests" xml:space="preserve">
+    <value>Paid Contract Requests</value>
+  </data>
+  <data name="Pay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="PayContractValue" xml:space="preserve">
+    <value>Pay Contract Value</value>
+  </data>
+  <data name="Referredsettlement" xml:space="preserve">
+    <value>Referred Settlement</value>
+  </data>
+  <data name="RefundedContractRequests" xml:space="preserve">
+    <value>Refunded Contract Requests</value>
+  </data>
+  <data name="SponserData" xml:space="preserve">
+    <value>Sponser Data</value>
+  </data>
+  <data name="TheAmountEnteredDoesnotMatchtheAmountdue" xml:space="preserve">
+    <value>The amount entered does not match the amount due</value>
+  </data>
+  <data name="Totaldue" xml:space="preserve">
+    <value>Total Due</value>
+  </data>
+  <data name="TotalRepaid" xml:space="preserve">
+    <value>Total Repaid</value>
+  </data>
+  <data name="TotalYield" xml:space="preserve">
+    <value>Total Yield</value>
+  </data>
+  <data name="AsthegeneralManager" xml:space="preserve">
+    <value>As the general manager</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Between</value>
+  </data>
+  <data name="Contract" xml:space="preserve">
+    <value>Contract</value>
+  </data>
+  <data name="Correspoding" xml:space="preserve">
+    <value>Correspoding</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="hereinafterreferredtoas" xml:space="preserve">
+    <value>Here in after referred to as</value>
+  </data>
+  <data name="InformationExpertsCompanyforInformationTechnologyCommercialRegistrationNo" xml:space="preserve">
+    <value>Information Experts Company for Information Technology Commercial Registration No</value>
+  </data>
+  <data name="ItsheadquartersIsInRiyadhanditisRepresentedinthisContractbyMr" xml:space="preserve">
+    <value>Its headquarters is in Riyadh, and it is represented in this contract by Mr</value>
+  </data>
+  <data name="ItsInAday" xml:space="preserve">
+    <value>It's in a day</value>
+  </data>
+  <data name="LicenseNo" xml:space="preserve">
+    <value>License No</value>
+  </data>
+  <data name="NationalIdentity" xml:space="preserve">
+    <value>National Identity</value>
+  </data>
+  <data name="Office" xml:space="preserve">
+    <value>Office</value>
+  </data>
+  <data name="Secondly" xml:space="preserve">
+    <value>Secondly</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="SuleimanAhmedAlMashari" xml:space="preserve">
+    <value>Suleiman Ahmed Al-Mashari</value>
+  </data>
+  <data name="thefirstside" xml:space="preserve">
+    <value>the first side</value>
+  </data>
+  <data name="ThisContractHasBeenConcluded" xml:space="preserve">
+    <value>This contract has been concluded</value>
+  </data>
+  <data name="Whoever" xml:space="preserve">
+    <value>Whoever</value>
+  </data>
+  <data name="AndCompanyEmail" xml:space="preserve">
+    <value>And Company Email</value>
+  </data>
+  <data name="anddate" xml:space="preserve">
+    <value>Anddate</value>
+  </data>
+  <data name="AndItEndsInaday" xml:space="preserve">
+    <value>And it ends in a day</value>
+  </data>
+  <data name="asa" xml:space="preserve">
+    <value>As a</value>
+  </data>
+  <data name="Asthefirstpartyprovidesservicestothebeneficiariesbyprovidingtheelectronicsearchservice" xml:space="preserve">
+    <value>As the first party provides services to the beneficiaries, by providing the electronic search service</value>
+  </data>
+  <data name="BanqueSaudiFransi" xml:space="preserve">
+    <value>Banque Saudi Fransi</value>
+  </data>
+  <data name="Based" xml:space="preserve">
+    <value>Based</value>
+  </data>
+  <data name="ContractCondition1" xml:space="preserve">
+    <value>In the resumes of domestic workers or private workers without the need to visit recruitment offices, and since the second party wishes to benefit from this service, the will of the two parties met with the offer and acceptance, and they are fully qualified and agreed between them and agreed to implement the "contract" in accordance with the following terms and conditions</value>
+  </data>
+  <data name="firstitem" xml:space="preserve">
+    <value>First Item</value>
+  </data>
+  <data name="Forthitem" xml:space="preserve">
+    <value>Forth item</value>
+  </data>
+  <data name="Forthitem41" xml:space="preserve">
+    <value>4-1 The second party must pay the first party for the services it provides an amount of (300) riyals in one go</value>
+  </data>
+  <data name="Forthitem411" xml:space="preserve">
+    <value>This is for each recruitment request that was made as a result of contracting with an employer, within a period not exceeding 15 days, or the settlement is done on a monthly basis</value>
+  </data>
+  <data name="Forthitem42" xml:space="preserve">
+    <value>4-2 Any additional works or tasks requested by the second party and approved by the first party are new requirements that are not considered part of this contract and are not included in the price of this contract</value>
+  </data>
+  <data name="Introduction" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="ItIsRepresentedinthisContractbyMr" xml:space="preserve">
+    <value>It is represented in this contract by Mr</value>
+  </data>
+  <data name="ManagingDirector" xml:space="preserve">
+    <value>Managing Director</value>
+  </data>
+  <data name="OnthebankaccountNo" xml:space="preserve">
+    <value>On the bank account No</value>
+  </data>
+  <data name="Seconditem" xml:space="preserve">
+    <value>Second item</value>
+  </data>
+  <data name="Seconditem21" xml:space="preserve">
+    <value>2-1 The first party must do all the work on the site and all the services required of it in this context without asking the second party for the costs of that, except for what was referred to in the fourth clause of this contract</value>
+  </data>
+  <data name="Seconditem22" xml:space="preserve">
+    <value>2-2 The first party markets the workers through its platform and shows the labor data that has been added by the second party and under its responsibility</value>
+  </data>
+  <data name="Seconditem23" xml:space="preserve">
+    <value>2-3 The first party verifies the data of the applicants for the recruitment of spatial domestic workers, as well as the means of communication</value>
+  </data>
+  <data name="Seconditem24" xml:space="preserve">
+    <value>2-4 The site evaluates the level of services provided after the recruitment request and provides them to the recruitment offices according to their request and with additional amounts determined according to the period in order to monitor the quality</value>
+  </data>
+  <data name="SecondSide" xml:space="preserve">
+    <value>Second Side</value>
+  </data>
+  <data name="Theforegoingpreambleisanintegralpartofthiscontract" xml:space="preserve">
+    <value>The foregoing preamble is an integral part of this contract</value>
+  </data>
+  <data name="Thirditem" xml:space="preserve">
+    <value>Third item</value>
+  </data>
+  <data name="Thirditem31" xml:space="preserve">
+    <value>3.1 The term of this Contract shall commence on the day of</value>
+  </data>
+  <data name="Thirditem311" xml:space="preserve">
+    <value>In accordance with the provisions mentioned in this contract, this contract shall not be renewed for another period or periods without the prior written consent of the two parties</value>
+  </data>
+  <data name="Thirditem32" xml:space="preserve">
+    <value>3-2 The first party has the right to terminate this contract at any time before the expiry of its term in the event that it discovers fraud or improper dealing with customers</value>
+  </data>
+  <data name="Accordingtotheregulations" xml:space="preserve">
+    <value>According to the regulations</value>
+  </data>
+  <data name="ContractItem43" xml:space="preserve">
+    <value>The above-mentioned value represents all amounts due to carry out the works required by the first party of all kinds and forms throughout the term of the contract, which the second party must pay, and this value is not subject to tax or any prescribed fees</value>
+  </data>
+  <data name="EighthItem" xml:space="preserve">
+    <value>Eighth Item</value>
+  </data>
+  <data name="EighthItem1" xml:space="preserve">
+    <value>In the event that any dispute arises due to the interpretation or implementation of this contract, the Saudi courts of all levels shall have jurisdiction to adjudicate it</value>
+  </data>
+  <data name="Fifthitem" xml:space="preserve">
+    <value>Fifth item</value>
+  </data>
+  <data name="Fifthitem51" xml:space="preserve">
+    <value>5-1 Neither party may assign its obligations arising from this Contract or any part thereof to a third party without obtaining the prior written consent of the other party</value>
+  </data>
+  <data name="Fifthitem52" xml:space="preserve">
+    <value>5-2 All intellectual and legal property rights to images, information and advertisements displayed by the first party in electronic applications belong to the first party</value>
+  </data>
+  <data name="GeneralDirector" xml:space="preserve">
+    <value>Genera lDirector</value>
+  </data>
+  <data name="Informationexperts" xml:space="preserve">
+    <value>Information experts for information technology company</value>
+  </data>
+  <data name="IntheKingdomofSaudiArabia" xml:space="preserve">
+    <value>In the Kingdom of Saudi Arabia</value>
+  </data>
+  <data name="Mr" xml:space="preserve">
+    <value>Mr</value>
+  </data>
+  <data name="MrSuleimanAhmedAlMashari" xml:space="preserve">
+    <value>Mr. Suleiman Ahmed Al-Mashari</value>
+  </data>
+  <data name="NinthItem" xml:space="preserve">
+    <value>Ninth Item</value>
+  </data>
+  <data name="NinthItem1" xml:space="preserve">
+    <value>This contract has been issued in two copies, with each party holding a copy to act upon</value>
+  </data>
+  <data name="NinthItem2" xml:space="preserve">
+    <value>The two parties have signed this contract</value>
+  </data>
+  <data name="NinthItem3" xml:space="preserve">
+    <value>And confirming what has been presented</value>
+  </data>
+  <data name="NinthItem4" xml:space="preserve">
+    <value>God bless</value>
+  </data>
+  <data name="Seventhitem" xml:space="preserve">
+    <value>Seventh item</value>
+  </data>
+  <data name="Seventhitem1" xml:space="preserve">
+    <value>The second party is obligated to update the data uploaded via the platform in the event that any male or female worker is recruited outside the platform, and is obligated to communicate directly with the applicants for recruitment requests to finish the recruitment procedures. modest dress</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>Signature</value>
+  </data>
+  <data name="Sixthitem" xml:space="preserve">
+    <value>Sixth item</value>
+  </data>
+  <data name="Sixthitem61" xml:space="preserve">
+    <value>6-1 The second party must resolve its differences and procedures between it and its clients and other parties without involving the first party in this matter, and in the event that the first party agrees to enter it, the first party has the right to demand the second party for a fee of (50) riyals per hour or part of it spent or any A party before him in continuing to address this problem, however, the first party does not bear any legal responsibility before third parties</value>
+  </data>
+  <data name="Sixthitem62" xml:space="preserve">
+    <value>6-2 The first party shall not bear any responsibility for any damage to the second party in the event that the electronic applications are subjected to an electronic piracy process, or a breach of their security and services has occurred, or their suspension has occurred, or if any act was done in contravention of the will of the first party in the information of electronic applications</value>
+  </data>
+  <data name="theseal" xml:space="preserve">
+    <value>The seal</value>
+  </data>
+  <data name="Acceptable" xml:space="preserve">
+    <value>Acceptable</value>
+  </data>
+  <data name="AddArea" xml:space="preserve">
+    <value>Add Area</value>
+  </data>
+  <data name="Addlanguage" xml:space="preserve">
+    <value>Add language</value>
+  </data>
+  <data name="Addnew" xml:space="preserve">
+    <value>Add new</value>
+  </data>
+  <data name="Addphotos" xml:space="preserve">
+    <value>Add photos</value>
+  </data>
+  <data name="Addskill" xml:space="preserve">
+    <value>Add skill</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>April</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>August</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="DateFrom" xml:space="preserve">
+    <value>Date From</value>
+  </data>
+  <data name="DateTo" xml:space="preserve">
+    <value>Date To</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>December</value>
+  </data>
+  <data name="Degree" xml:space="preserve">
+    <value>Degree</value>
+  </data>
+  <data name="Doyouwanttodeletethisphoto" xml:space="preserve">
+    <value>Do you want to delete this photo</value>
+  </data>
+  <data name="Excellent" xml:space="preserve">
+    <value>Excellent</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>February</value>
+  </data>
+  <data name="Friday" xml:space="preserve">
+    <value>Friday</value>
+  </data>
+  <data name="Good" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>January</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>July</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>June</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>March</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>May</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
+    <value>Moderate</value>
+  </data>
+  <data name="Monday" xml:space="preserve">
+    <value>Monday</value>
+  </data>
+  <data name="Noofchildren" xml:space="preserve">
+    <value>No of children</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>November</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>October</value>
+  </data>
+  <data name="PlaceName" xml:space="preserve">
+    <value>Place Name</value>
+  </data>
+  <data name="Reading" xml:space="preserve">
+    <value>Reading</value>
+  </data>
+  <data name="ReadingAndwriting" xml:space="preserve">
+    <value>Reading And writing</value>
+  </data>
+  <data name="Saturday" xml:space="preserve">
+    <value>Saturday</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>September</value>
+  </data>
+  <data name="Sunday" xml:space="preserve">
+    <value>Sunday</value>
+  </data>
+  <data name="Thursday" xml:space="preserve">
+    <value>Thursday</value>
+  </data>
+  <data name="Tuesday" xml:space="preserve">
+    <value>Tuesday</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>Very Good</value>
+  </data>
+  <data name="VideoLink" xml:space="preserve">
+    <value>Video Link</value>
+  </data>
+  <data name="Views" xml:space="preserve">
+    <value>Views</value>
+  </data>
+  <data name="Wednesday" xml:space="preserve">
+    <value>Wednesday</value>
+  </data>
+  <data name="Writing" xml:space="preserve">
+    <value>Writing</value>
+  </data>
+  <data name="ConfirmReceiptofmoney" xml:space="preserve">
+    <value>Confirm Receipt of money</value>
+  </data>
+  <data name="Connecttothedatabase" xml:space="preserve">
+    <value>Connect to the database</value>
+  </data>
+  <data name="NewPendingRequests" xml:space="preserve">
+    <value>New Pending Requests</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="UniversityName" xml:space="preserve">
+    <value>University Name</value>
+  </data>
+  <data name="Activateacc" xml:space="preserve">
+    <value>Your account has been successfully activated You can now use ESTQDAMI
+ platform</value>
+  </data>
+  <data name="ClickHere" xml:space="preserve">
+    <value>Click Here</value>
+  </data>
+  <data name="Logintoyouraccountontheplatform" xml:space="preserve">
+    <value>Log in to your account on the platform</value>
+  </data>
+  <data name="passConfirm" xml:space="preserve">
+    <value>If your e-mail is in a  database, you will receive a message on your e-mail to help you retrieve your account</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>Required Field</value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="ThankyouforusingMarofahplatform" xml:space="preserve">
+    <value>Thank you for using ESTQDAMI  platform</value>
+  </data>
+  <data name="Yourpasswordhasbeenchanged" xml:space="preserve">
+    <value>Your password has been changed </value>
+  </data>
+  <data name="Choosemaritalstatus" xml:space="preserve">
+    <value>Choose marital status</value>
+  </data>
+  <data name="HightoLow" xml:space="preserve">
+    <value>High to Low</value>
+  </data>
+  <data name="LowtoHigh" xml:space="preserve">
+    <value>Low to High</value>
+  </data>
+  <data name="SelectSortRecruitment" xml:space="preserve">
+    <value>Select Sort Recruitment</value>
+  </data>
+  <data name="SortBy" xml:space="preserve">
+    <value>Sort By</value>
+  </data>
+  <data name="PreliminarilyAcceptedApplications" xml:space="preserve">
+    <value>Preliminarily Accepted Applications</value>
+  </data>
+  <data name="RejectedRequests" xml:space="preserve">
+    <value>Rejected Requests</value>
+  </data>
+  <data name="ApprovalRejected" xml:space="preserve">
+    <value>Approval Rejected</value>
+  </data>
+  <data name="ApprovedRequests" xml:space="preserve">
+    <value>Approved Requests</value>
+  </data>
+  <data name="UploadCVsforWorkers" xml:space="preserve">
+    <value>Upload CVs for Workers</value>
+  </data>
+</root>

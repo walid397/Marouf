@@ -1,0 +1,297 @@
+﻿@using Resources
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+}
+
+@using (Html.BeginForm("Register", "Worker", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "FormAddWorker", name = "FormAddWorker" }))
+{
+    @Html.AntiForgeryToken()
+<div class="modal fade AddWorker" id="AddWorker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        <i class="far fa-address-card"></i>
+                     
+                        @Resource.AddAnewWorker
+
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+               
+                    <div class="row">
+
+
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="category" class="form__label">@Resource.FirstName  </label>
+
+                                <input type="text" name="FName" id="FName" class="form__input" required>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="category" class="form__label">@Resource.FamilyName</label>
+                                <input type="text" name="LName" id="LName" class="form__input">
+
+
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="category" class="form__label">  @Resource.BirthDate</label>
+                                <input type="date" class="form__input" max="2000-01-01" name="DOB" id="DOB" />
+
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="availab" class="form__label"> @Resource.Sex</label>
+                                <div class="form__select-wrap">
+                                    <select name="Gender" id="Gender" class="form__select">
+                                        <option value="0">@Resource.ChooseSex </option> 
+                                        <option value="True"> @Resource.Male</option>
+                                        <option value="False">@Resource.Female </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="category" class="form__label">@Resource.Job </label>
+                                <div class="form__select-wrap">
+
+                                    @Html.DropDownList("JobsID", ViewBag.JobsID as SelectList,Resource.Job, htmlAttributes: new { @class = "form-control form__select", @onchange = "GetNationalitiesByJobIDAndGenderID(this.value,'FormAddWorker');" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="location" class="form__label">@Resource.Nationality</label>
+                                @Html.DropDownList("NationalityID", ViewBag.NationalityID as SelectList,Resource.Nationality, htmlAttributes: new { required = "required",  @class = "form-control form__select" })
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="location" class="form__label">@Resource.Country</label>
+                                @Html.DropDownList("CountryID", ViewBag.CountryID as SelectList,Resource.Country, htmlAttributes: new { @class = "form-control form__select", @onchange = "GetCitiesByCountryID(this.value,'FormAddWorker');" })
+
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="location" class="form__label">@Resource.City </label>
+                                @Html.DropDownList("CityID", null, Resource.ChooseCity, htmlAttributes: new {  @class = "form-control form__select" })
+
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="type" class="form__label">@Resource.Religion </label>
+                                <div class="form__select-wrap">
+                                    <select id="Religion" name="Religion" class="form__select">
+                                        @if (culture.Contains("en-us"))
+                                        {
+                                            <option value="Muslim"> Muslim </option>
+                                            <option value="Not">Not</option>
+
+                                        }
+                                        else
+                                        {
+                                            <option value="مسلم">مسلم </option>
+                                            <option value="غير">غير</option>
+
+                                        }
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="level" class="form__label">@Resource.Numberofchildren</label>
+                                <div class="form__select-wrap">
+                                    <select name="ChildernsCount" id="ChildernsCount" class="form__select">
+                                        <option value="0"> @Resource.None</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="location" class="form__label">@Resource.YearsofExperience </label>
+
+
+                                <input name="ExperienceYearsCount" id="ExperienceYearsCount" type="number" class="form__input " placeholder="@Resource.YearsofExperience" min="0">
+
+
+                            </div>
+                        </div>
+                        <div class="col-4 selectcss">
+                            <div class="form__group">
+                                <label for="lang" class="form__label">  @Resource.SocialStatus</label>
+                                <select class="select2" name="MaritalStatus" id="MaritalStatus">
+                                    <option value="@Resource.Single">@Resource.Single</option>
+                                    <option value="@Resource.Married">@Resource.Married</option>
+                                    <option value="@Resource.Divorced">@Resource.Divorced</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-4 selectcss">
+                            <div class="form__group">
+                                <label for="lang" class="form__label">@Resource.drivinglicense</label>
+                                <select class="select2" name="HasDrivingLicense" id="HasDrivingLicense">
+                                    <option value="0">@Resource.Nothing</option>
+                                    <option value="1"> @Resource.ThereIs</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                        @*<div class="col-12">
+                    <div class="form__group">
+                        <label for="skills" class="form__label">المهارات:</label>
+
+        @Html.DropDownList("SkillsID", ViewBag.SkillsID as List<SelectListItem>,"المهارات", htmlAttributes: new { oninvalid = "this.setCustomValidity(' المهارات ')", oninput = "setCustomValidity('')", @class = "js-multiple select2 mselect2", multiple = "multiple", @onfocus = "this.size = 10; this.width = 100%; ", @onblur = "this.size = 1; ", @onchange = "this.size = 1; this.blur();   " })
+
+
+
+                    </div>
+                </div>*@
+
+                    </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">
+
+                                <i class="far fa-plus-circle "></i>
+                                &nbsp;
+                                @Resource.AddAnewWorker
+                                @*اضف عاملة*@
+                            </button>
+
+                        </div>
+                  
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<script>
+
+
+    $(document).ready(function () {
+        $('.select2').select2();
+    });   
+
+
+
+    function GetCitiesByCountryID(_countryId, _formName) {
+        var procemessage = "<option value='0'> @Resource.ChooseCity</option>";
+        $("#" + _formName + " " + "#CityID").html(procemessage).show();
+        var url = "/Cities/GetCitiesByCountryID/";
+        $.ajax({
+            url: url,
+            data: { countryId: _countryId },
+
+            cache: false,
+            type: "POST",
+            success: function (data) {
+               
+                var markup = "<option value='0'>@Resource.ChooseCity</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#" + _formName + " " + "#CityID").html(markup).show();
+
+
+
+            },
+            error: function (reponse) {
+                if (CityID > 0) {
+                    alert("error : " + reponse);
+                }
+            }
+        });
+
+    }
+
+    function GetNationalitiesByJobIDAndGenderID(_jobId, _formName) {
+        var procemessage = "<option value='0'> @Resource.ChooseNationality</option>";
+        $("#" + _formName + " " + "#NationalityID").html(procemessage).show();
+        var url = "/Worker/GetNationalitiesByJobIDAndGenderID/";
+        var _gender = $("#" + _formName + " " + "#Gender").val();
+
+        $.ajax({
+            url: url,
+            data: { jobId: _jobId, gender: _gender},
+
+            cache: false,
+            type: "POST",
+            success: function (data) {
+               
+                var markup = "<option value='0'>@Resource.ChooseNationality</option>";
+                for (var x = 0; x < data.length; x++) {
+                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                }
+                $("#" + _formName + " " + "#NationalityID").html(markup).show();
+
+
+
+            },
+            error: function (reponse) {
+                if (NationalityID > 0) {
+                    alert("error : " + reponse);
+                }
+            }
+        });
+
+    }
+
+</script>
+
+
+}

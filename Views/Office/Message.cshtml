@@ -1,0 +1,210 @@
+﻿@using Microsoft.AspNet.Identity
+@using Marofh.Models
+@model IEnumerable<Mail>
+@using  Resources
+ 
+@{
+
+     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {
+       
+            ViewBag.Title = " Message Details ";
+    ViewBag.Sub1Title = "Inbox ";
+    }
+    else
+    {
+            ViewBag.Title = " تفاصيل الرسالة";
+    ViewBag.Sub1Title = "البريد الوارد";
+     
+    }
+
+
+
+    ViewBag.Sub1Url = "/office/inbox";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+}
+@{
+    string userId = User.Identity.GetUserId();
+    AspNetUser loggedInUser = ViewModel.GetCurrentUser(User.Identity.GetUserId());
+}
+<link href="/Content/front/assets/css/mailpage.css" rel="stylesheet" />
+@using (Html.BeginForm("SendReply", "Office", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@ViewBag.MailID" id="MailID" name="MailID" />
+    <div class="container pl-0 pr-0">
+
+        <div class="card-box readmore mt-5">
+
+            <h6 class="page-title font-weight-bolder border-bottom pt-3 pb-3  stthead">@Resource.MessageDetails    </h6>
+            <div class="email-content">
+
+                <div class="body_comment">
+
+                    <div class="row">
+                        <ul id="list_comment" class="col-md-12">
+                            @foreach (var msg in Model)
+                            {
+
+                                <!-- Start List Comment  -->
+
+                                <li class="box_result row">
+
+                                    <div class="avatar_comment col-md-1">
+                                        @if (!string.IsNullOrEmpty(loggedInUser.ImageUrl))
+                                        {
+
+
+                                            <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar">
+
+                                        }
+                                        else
+                                        {
+                                            <img src="@loggedInUser.ImageUrl" alt="avatar">
+
+                                        }
+                                    </div>
+                                    <a href="#" class="col-md-11">
+
+                                        <div class="result_comment w-100">
+
+
+                                            <div>
+                                                @if (!string.IsNullOrEmpty(msg.OperatorID))
+                                                {
+                                                    <h4> @msg.AspNetUser.FName</h4>
+
+                                                }
+                                                else
+                                                { <h4> @msg.AspNetUser1.OfficeName</h4>}
+
+                                            </div>
+
+
+                                            <p>   @msg.Message  </p>
+
+
+                                            <div class="tools_comment">
+
+                                                <i class="far fa-clock  ml-1 mr-1"></i>
+                                                <span>
+                                                    @msg.Date
+                                                </span>
+
+                                            </div>
+                                            @if (!string.IsNullOrEmpty(msg.FileUrl))
+                                            {
+                                                <div class="tools_comment">
+
+                                                    <i class="fa fa-paperclip"></i>
+                                                    <span>
+                                                        <a href="@msg.FileUrl" target="">@*تحميل الملف*@ @Resource.Download</a>
+                                                    </span>
+
+                                                </div>
+                                            }
+                                        </div>
+                                    </a>
+                                </li>
+
+
+
+
+                            }
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+                <div class="body_comment">
+
+                    
+
+
+                </div>
+
+
+                <span class="readmore-link"></span>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="container mt-3">
+        <div class="row boxitem pt-2">
+            <!--<h6 class="page-title font-weight-bolder border-bottom pb-2">-->  <!--تفاصيل الرسالة </h6>-->
+
+
+            <div class="container mb-1 mt-3 ml-2">
+                <div class="mb-1">
+                    <div class="text-bold mb-2 stylec"><i class="far fa-info-circle greenolor mr-1"></i>  @*اضافة رد*@ @Resource.Reply  </div>
+
+                </div>
+
+              
+
+                    <div class="row">
+                        <ul id="list_comment" class="col-md-12">
+                            <!-- Start List Comment  -->
+
+                            <li class="box_result row">
+                                <div class="col-12">
+                                    <label class="Control-label"> @Resource.Attachments </label>
+                                    <input type="file" name="FileUrl" id="FileUrl" multiple />
+                                </div>
+                            </li>
+                            <li class="box_result row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="avatar_comment col-md-1">
+                                            @if (!string.IsNullOrEmpty(loggedInUser.ImageUrl))
+                                            {
+
+
+                                                <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar">
+
+                                            }
+                                            else
+                                            {
+                                                <img src="@loggedInUser.ImageUrl" alt="avatar">
+
+                                            }
+                                        </div>
+                                        <div class="box_comment col-md-11 ">
+                                            <textarea class="commentar" id="Message" name="Message" placeholder="@Resource.Reply" required="" oninvalid="this.setCustomValidity('من فضلك ادخل نص الرسالة اولا ')" ,="" oninput="setCustomValidity('')"></textarea>
+                                            <div class="box_post">
+
+                                                <div class="pull-right">
+
+                                                    <button type="submit">رد</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+
+                        </ul>
+                    </div>
+
+
+     
+            </div>
+
+            
+
+        </div>
+    </div>
+
+
+}

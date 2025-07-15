@@ -1,0 +1,41 @@
+﻿@model Marofh.WorkerSkill
+@using Resources
+ @using (Html.BeginForm("EditWorkerSkill", "Worker", FormMethod.Post))
+ {
+<div class="row">
+
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.WorkerID)
+
+    <div class="col-12 mt-10">
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">@Resource.SkillName </label>
+                    @Html.DropDownList("SkillID", ViewBag.SkillsID as List<SelectListItem>,htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">  @Resource.Degreeofmastery </label>
+                    <select class="form-control" name="Level">
+                        <option value="">
+                              @Resource.Degreeofmastery 
+                        </option>
+                        <option value=" @Resource.Good"> @Resource.Good</option>
+                        <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                        <option value="@Resource.Excellent">@Resource.Excellent</option>
+                    </select>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary"> @Resource.Save</button>
+    </div>
+</div>
+    }

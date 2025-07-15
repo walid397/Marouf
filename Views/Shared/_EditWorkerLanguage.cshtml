@@ -1,0 +1,51 @@
+﻿@model Marofh.WorkerLanguage
+@using Resources
+ @using (Html.BeginForm("EditWorkerLanguage", "Worker", FormMethod.Post))
+ {
+<div class="row">
+
+        <div class="col-12 mt-10">
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.WorkerID)
+        <div class="row">
+            <div class="col-12 col-lg-12">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">  @Resource.LastName </label>
+                    @Html.DropDownList("LanguageID", ViewBag.LanguageID as List<SelectListItem>,htmlAttributes: new { @class = "form-control select2" })
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">@Resource.Degreeofmastery   </label>
+                    <select name="Level" id="Level" class="select2" required="">
+
+                        <option value="@Resource.Acceptable"> @Resource.Acceptable</option>
+                        <option value="@Resource.Good"> @Resource.Good </option>
+                        <option value="@Resource.VeryGood">@Resource.VeryGood  </option>
+                        <option value="@Resource.Excellent">@Resource.Excellent</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">   @Resource.ReadingAndwriting </label>
+                    <select name="Method" id="Method" class="select2" required="">
+
+                        <option value="@Resource.ReadingAndwriting">@Resource.ReadingAndwriting</option>
+                        <option value="@Resource.Reading">  @Resource.Reading</option>
+                        <option value="@Resource.Writing">@Resource.Writing</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary"> @Resource.Save</button>
+        </div>
+    </div>
+
+
+
+</div>
+    }

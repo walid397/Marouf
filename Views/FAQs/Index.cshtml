@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Marofh.FAQ>
+
+@{
+    ViewBag.Title = "متابعة الاسئلة المتداولة";
+    ViewBag.Parent = "الاسئلة المتداولة";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("إضافة  سؤال جديد", "Create", new { @class = "btn btn-default" })
+</p>
+
+<table class="table display responsive nowrap">
+     <thead>
+         <tr>
+             <th>
+                 السؤال باللغة العربية
+             </th>
+             <th>
+                 السؤال باللغة الانجليزية
+             </th>
+
+             <th></th>
+         </tr>
+     </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionAR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuestionEN)
+                </td>
+
+                <td>
+                    @Html.ActionLink("تعديل", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+</table>

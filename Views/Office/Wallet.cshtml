@@ -1,0 +1,482 @@
+﻿
+@model IEnumerable<WorkerRequest>
+@using Marofh.Models
+@using Microsoft.AspNet.Identity
+@using Resources
+
+@{
+     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {       
+            ViewBag.Title = "Wallet";
+           ViewBag.Sub1Title = "My Account";
+
+    }
+    else
+    {    ViewBag.Title = "المحفظة";
+        ViewBag.Sub1Title = "حسابي";
+     
+    }
+
+
+
+    ViewBag.Sub1Url = "/office/";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+@{
+    string userId = User.Identity.GetUserId();
+    var loggedInUser = ViewModel.GetCurrentUser(userId);
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);
+}
+<!-- main content -->
+<main class="main main--breadcrumb styledmanin newmain">
+    <!-- breadcrumb -->
+
+    <div class="container">
+
+        <div class="row">
+            <div class="container mt-4">
+                <div class="row">
+
+                    <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+                        <!-- user -->
+                        <div class="user">
+                            <div class="user__head">
+                                <div class="user__img">
+                                    @if (!string.IsNullOrEmpty(loggedInUser.ImageUrl))
+                                    {
+                                        <img src="@loggedInUser.ImageUrl" alt="">
+                                    }
+                                    else
+                                    {
+                                        <img src="/Content/front/assets/img/user.png" alt="">
+                                    }
+
+
+                                    <a id="SendWorkerRequest" class="imgcss" data-toggle="modal" data-target="#interviewModal">
+
+                                        <i class="fa fa-camera fa-5x"></i>
+                                        <span class="changetitle">  @Resource.ChangeImage</span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
+                            <div class="user__title">
+                                <h2>@loggedInUser.OfficeName</h2>
+                                @if (loggedInUser.Country != null)
+                                {
+                                    if (culture.Contains("en-us"))
+                                    {
+                                        <p>@loggedInUser.Country.NameEN</p>
+
+                                    }
+                                    else
+                                    {
+                                        <p>@loggedInUser.Country.NameAR</p>
+
+                                    }
+
+
+
+                                }
+                                <div class="verviedaccoutn  ">
+
+                                    @if (Convert.ToBoolean(loggedInUser.IsVerifed))
+                                    {
+                                        <i class="fa fa-check-circle"></i>
+                                    }
+                                    else
+                                    {
+
+                                        <i class="fas fa-times-circle"></i> @Html.Raw(Resource.Undocumented)
+
+                                    }
+                                </div>
+
+                                <div class=" mt-20 staticite">
+                                    <div class="cright">
+                                        <span class="fad fa-user-circle d-block"></span>
+                                        <span class="d-block fontsizerbol">
+                                            @Marofh.Models.ViewModel.GetWorkersCount(userId, workerRoleId)
+                                        </span>
+                                        <span class="cfont">
+                                          @Resource.FemaleWorkers  
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+                            <p class="cright">
+
+                                <span class="far fa-clock "></span> &nbsp;
+                                <strong> @Resource.LastLogin  </strong>
+                                @if (loggedInUser.LastLoggedInDate.HasValue)
+                                {
+                                    @loggedInUser.LastLoggedInDate.Value.ToShortDateString();
+                                }
+                                else
+                                {
+
+                                }
+
+
+                            </p>
+
+
+
+                            <ul class="user__list">
+
+                                <li>
+                                    <a href="#">
+                                        <i class="fad fa-money-bill-alt"></i>@Resource.Totaldue  
+                                        @Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مستحقة.ToString() ).Sum(x => x.Balance)
+                                        <sub>S.R</sub>
+
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fad fa-money-bill-alt"></i>@Resource.TotalRepaid 
+                                        @Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مسددة.ToString() ).Sum(x => x.Balance)
+                                        <sub>S.R</sub>
+
+
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fad fa-money-bill-alt"></i>@Resource.TotalYield 
+                                        @Model.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.طلبات_مردودة.ToString()).Sum(x => x.Balance)
+                                        <sub>S.R</sub>
+
+
+                                    </a>
+                                </li>
+
+
+                            </ul>
+                            <ul class="user__list">
+
+                                <li>
+                                    <a href="/office/"><i class="fad fa-home-lg-alt"></i>@Resource.HomePage  </a>
+                                </li>
+                                @*<li>
+                                        <a href="/office/wallet"><i class="fad fa-wallet"></i>  المحفظة</a>
+                                    </li>*@
+
+                                <li>
+
+                                    <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fad fa-sign-out-alt"></i>@Resource.Logout  </a>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-md-8 col-lg-8 col-xl-9">
+
+
+
+
+                        <div class="tab-content">
+
+
+                            <div class="tab-pane fade show active animate__animated animate__slideInUp" id="tab-0" role="tabpanel" aria-labelledby="tab-0">
+
+
+                                <div class="newtabs mytabs">
+                                    <ul class="nav nav-tabs" id="myOffersTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active text-semibold" id="unPaied-tab" data-toggle="tab" href="#unPaied"
+                                               role="tab" aria-controls="published" aria-selected="true">
+                                                <i class="far fa-file mr-1 ml-1"></i>
+                                         @Resource.ContractRequisitionsDue         (@Model.Where(p =>  p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مستحقة.ToString()).Count())
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-semibold" id="Paied-tab" data-toggle="tab" href="#Paied"
+                                               role="tab" aria-controls="unpublished" aria-selected="false">
+                                                <i class="far fa-file-check mr-1 ml-1"></i>
+
+
+                                            @Resource.PaidContractRequests       ( @Model.Where(p =>  p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مسددة.ToString() || p.PaidStatus == clsEnum.WorkerRequestStatus.تحت_المراجعة.ToString()).Count())
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link text-semibold" id="Refunded-tab" data-toggle="tab" href="#Refunded"
+                                               role="tab" aria-controls="unpublished" aria-selected="false">
+                                                <i class="far fa-file-check mr-1 ml-1"></i>
+
+
+                                           @Resource.RefundedContractRequests       ( @Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مردودة.ToString()).Count())
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                    <div class="tab-content" id="myOffersTabContent">
+                                        <div class="tab-pane fade show active animate__animated animate__fadeIn" id="unPaied" role="tabpanel" aria-labelledby="unPaied-tab">
+
+
+                                            <div class="col-12">
+                                                <h2 class="form__title mt-4 mb-0 stylrep">
+                                                    <span>
+
+                                                   @Resource.ContractRequisitionsDue       
+                                                    </span>
+
+                                                </h2>
+                                            </div>
+                                            <form id="form1" name="form1">
+                                                <table id="tblRequests" name="tblRequests" class="table table-striped dt-responsive datatable" style="width:100%">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col" class="text-center">
+
+                                                            <th scope="col">  @Resource.Date </th>
+                                                            <th scope="col">    @Resource.OrderStatus </th>
+                                                            <th scope="col">  @Resource.SponsorName     </th>
+                                                            <th scope="col"> @Resource.WorkerName    </th>
+                                                            <th scope="col">@Resource.DeservedAmount  </th>
+                                                            <th scope="col"> @Resource.OrderStatus  </th>
+
+                                                            <th scope="col" class="text-center">  </th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        @foreach (var request in Model.Where(p =>  p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مستحقة.ToString()))
+                                                        {
+                                                            <tr>
+                                                                <td><input type="checkbox" name="ID" value="@request.ID" class="custom-checkbox chkCheckBoxId" onchange="enablepaySelectedBtn(this);" /></td>
+
+                                                                <td class="img-td">
+                                                                    @request.RequestDate.Value.ToShortDateString()
+                                                                </td> 
+                                                                <td class="img-td">
+                                                                    @request.RequestStatus.Replace("_"," ")
+                                                                </td>
+                                                                <td class="img-td">
+                                                                    @request.AspNetUser.FName @Html.Raw(" ") @request.AspNetUser.LName
+                                                                </td>
+                                                                <td class="img-td">
+                                                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                                </td>
+                                                                <td class="img-td">
+                                                                    @request.Balance
+                                                                </td>     <td class="img-td">
+                                                                    @request.PaidStatus
+                                                                </td>
+
+
+                                                              
+                                                                @if (@request.Balance > 0)
+                                                                {
+                                                                    <td class="text-center">
+
+                                                                        <a href="javascript:void(0);" onclick="payRequest(@request.ID)" data-toggle="tooltip">
+                                                                              @Resource.Pay
+                                                                        </a>
+                                                                    </td>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td class="text-center"></td>
+                                                                }
+
+
+                                                            </tr>
+
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+
+                                                <a href="javascript:void(0);" id="paySelectedBtn" disabled class="btn btn-sm btn-warning rounded-0" onclick="payBulkRequests()"><i class="fa fa-money"></i> @Resource.Referredsettlement @*تسويه المشار اليه*@</a>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade animate__animated animate__fadeIn" id="Paied" role="tabpanel" aria-labelledby="Paied-tab">
+
+
+
+                                            <div class="col-12">
+                                                <h2 class="form__title mt-4 mb-0 stylrep">
+                                                    <span>
+
+                                                  @Resource.PaidContractRequests      @*طلبات التعاقد المسددة*@
+                                                    </span>
+                                                </h2>
+                                            </div>
+                                            <table class="table table-striped dt-responsive datatable" style="width:100%">
+                                                <thead class="thead">
+                                                    <tr>
+
+                                                        <th scope="col">  @Resource.Date </th>
+                                                        <th scope="col">      @Resource.OrderStatus</th>
+                                                        <th scope="col">       @Resource.SponsorName</th>
+                                                        <th scope="col">     @Resource.WorkerName</th>
+                                                        <th scope="col">    @Resource.DeservedAmount</th>
+
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    @foreach (var request in Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مسددة.ToString()))
+                                                    {
+                                                        <tr>
+
+                                                            <td class="img-td">
+                                                                @request.RequestDate.Value.ToShortDateString()
+                                                            </td>
+                                                            <td class="img-td">
+                                                                @request.RequestStatus.Replace("_", " ")
+                                                            </td>
+                                                            <td class="img-td">
+                                                                @request.AspNetUser.FName @Html.Raw(" ") @request.AspNetUser.LName
+                                                            </td>
+                                                            <td class="img-td">
+                                                                @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                            </td>
+                                                            <td class="img-td">
+                                                                @request.Balance
+                                                            </td>
+                                                           
+
+
+                                                        </tr>
+
+                                                    }
+
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+
+
+                                        <div class="tab-pane fade animate__animated animate__fadeIn" id="Refunded" role="tabpanel" aria-labelledby="Refunded-tab">
+
+
+
+                                            <div class="col-12">
+                                                <h2 class="form__title mt-4 mb-0 stylrep">
+                                                    <span>
+
+                                                        @Resource.RefundedContractRequests
+                                                        @*طلبات التعاقد المردودة*@
+                                                    </span>
+                                                </h2>
+                                            </div>
+
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Modal -->
+<div class="modal  fade modal fade bd-example-modal-lg createnew" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="viewdetailsLabel" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header flex-column no-padding mb-0">
+                <h6>    @Resource.PayContractValue</h6>
+                <button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+
+            <hr class="mt-0 mb-0">
+            <div class="modal-body pt-2  pl-4 pr-4 pb-0" id="Preview">
+
+                @*PartialView*@
+
+            </div>
+        </div>
+        <div class="modal-footer justify-content-start align-items-start flex-column no-padding d-block">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+           function payRequest(_id) {
+        $.ajax({
+            type: "post",
+            url: '@Url.Action("PayRequest", "Office")',
+            data: { id: _id  },
+            success: function (data) {
+                $('#Preview').html(data);
+                $('#viewdetails').modal('show');
+            }
+        })
+        }
+
+        function payBulkRequests() {
+            var form = $("#form1").serialize();
+
+        $.ajax({
+            type: "Post",
+            url: '@Url.Action("PayBulkRequests", "Office")',
+            data: form,
+            success: function (data) {
+                $('#Preview').html(data);
+                $('#viewdetails').modal('show');
+            }
+        })
+        }
+
+
+        
+
+
+
+
+        function enablepaySelectedBtn() {
+            var table = $('#tblRequests').DataTable();
+            var paySelectedBtn = document.getElementById('paySelectedBtn');
+
+            if ($('[name="ID"]:checked').length <= 0) {
+                //alert('Please select minimum one data');
+                paySelectedBtn.disabled = true;
+            }
+            else {
+                paySelectedBtn.disabled = false;
+            }
+
+        }
+
+     
+
+
+    </script>
+}

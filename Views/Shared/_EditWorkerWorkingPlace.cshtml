@@ -1,0 +1,35 @@
+﻿@model Marofh.WorkerWorkingPlace
+@using  Resources
+ @using (Html.BeginForm("EditWorkerWorkingPlace", "Worker", FormMethod.Post))
+ {
+<div class="row">
+
+
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.WorkerID)
+
+    <div class="col-12 mt-10">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label"> @Resource.ChooseCountry </label>
+                    @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,htmlAttributes: new { @class = "form-control select2" })
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">  @Resource.ChooseCity </label>
+                    @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,htmlAttributes: new { @class = "form-control select2" })
+
+                </div>
+            </div>
+
+        </div>    </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">@Resource.Save </button>
+        </div>
+
+    </div>
+    }

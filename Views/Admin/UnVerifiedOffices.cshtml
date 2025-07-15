@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Marofh.AspNetUser>
+
+@{
+    ViewBag.Title = "متابعة المكاتب الغير موثقة ";
+    ViewBag.Parent = "إدارة المكاتب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-horizontal row" style="font-weight:bold;text-align:center">
+    <p class="col-12">
+         عدد المكاتب فى انتظار التوثيق =  @Model.Where(p => p.ContractUrl !=null).Count()
+    </p>
+
+    <p class="col-12">
+        عدد المكاتب التى لم ترسل طلبات التعاقد = @Model.Where(p => p.ContractUrl == null).Count()
+    </p>
+</div>
+<table class="table display responsive nowrap">
+    <thead>
+        <tr>
+            <th>
+                اسم المكتب
+            </th>
+            <th>
+                البريد الالكترونى
+            </th>
+            <th>
+                اسم الموظف المسئول
+            </th>
+            <th>
+                رقم الهاتف
+            </th>
+            <th>
+                ملف التعاقد
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OfficeName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @item.EmployeeFName @Html.Raw(" ")  @item.EmployeeLName
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mobile)
+    </td>
+
+    @if (!string.IsNullOrEmpty(@item.ContractUrl))
+    {
+        <td><a href="@item.ContractUrl" target="_blank">مراجعة</a>    </td>
+    }
+
+    else
+    {
+        <td>
+            @Html.Raw("لم يتم ارسال التعاقد بعد")
+        </td>
+    }
+
+    @if (!string.IsNullOrEmpty(@item.ContractUrl))
+    {
+        <td>
+            @Html.ActionLink("توثيق", "VerifyOffice", new { id = item.ShortID })
+        </td>
+    }
+
+    else
+    {
+        <td>
+        </td>
+    }
+
+</tr>
+    }
+
+</table>

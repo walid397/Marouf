@@ -1,0 +1,419 @@
+﻿@using Microsoft.AspNet.Identity;
+@model AspNetUsers
+@using Resources
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+
+    if (culture.Contains("en-us"))
+    {
+        ViewBag.Title = "User Profile";
+    }
+    else
+    {
+        ViewBag.Title = "الحساب الشخصى";
+
+    }
+
+}
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+@using (Html.BeginForm("UserProfile", "Account", FormMethod.Post))
+{
+    <div class="pages sec-pad bg-s-grey">
+        <div class="container">
+            <div class="box-alt" style="display:none;">
+                <div class="row">
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <div class="form-group">
+                            <br />
+                            <label for="membership" class="text-bold mb-0 mr-3">@Resource.AccountType  </label>
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+                        <div class="form-group">
+                            @Html.DropDownList("RoleID", null, htmlAttributes: new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-lg-2">
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-yellow">  @Resource.Confirm</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <h4 class="mt-4 mb-3 text-bold text-darkgray">@Resource.PersonalInformation </h4>
+            <div class="box-alt">
+                <form action="">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="fullNamee" class="d-block text-bold mb-2">@Resource.UserName  </label>
+                                @Html.EditorFor(model => model.Name, new { htmlattributes = new { @class = "form-control", @placeholder = @Resource.EnterUserName, MinLength = 8 } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="emailSSS" class="d-block text-bold mb-2">@Resource.Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlattributes = new { @class = "form-control", placeholder = Resource.EnterYourEmail } })
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="pwd" class="d-block text-bold mb-2">كلمة المرور  </label>
+                                    @Html.EditorFor(model => model.Password, new { htmlattributes = new { @class = "form-control",@type="Password", @placeholder = "********", MinLength = 8 } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="confirmPwd" class="d-block text-bold mb-2"> تأكيد كلمة المرور</label>
+
+                                    @Html.EditorFor(model => model.Password, new { htmlattributes = new { @class = "form-control", @type = "Password",placeholder = "********" } })
+                                </div>
+                            </div>*@
+                        <div class="col-sm-6 col-md-6 col-lg-4" style="display:none;">
+                            <div class="form-group">
+                                <label for="nationality" class="d-block text-bold mb-2">@Resource.Nationality </label>
+                                <div class="select-custom">
+                                    @Html.DropDownList("NationalityID", ViewBag.NationalityID as List<SelectListItem>,Resource.ChooseNationality, new { htmlattributes = new { @class = "form-control  col-md-6", placeholder = Resource.ChooseNationality } })
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="col-sm-6 col-md-6 col-lg-4">
+                            في حالة إظهار الجنسية  يجب أن تكون*@
+
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="phoneNumberr" class="mb-2 text-semibold">@Resource.MobileNo</label>
+                                @Html.EditorFor(model => model.Mobile, new { htmlattributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="whatsapp" class="mb-2 text-semibold">@Resource.WhatAppNo</label>
+                                @Html.EditorFor(model => model.WhatsAppNo, new { htmlattributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="idNumber" class="d-block text-bold mb-2">@Resource.IdentificationNumber  </label>
+                                @Html.EditorFor(model => model.NIDNo, new { htmlattributes = new { @class = "form-control", placeholder = Resource.IdentificationNumber } })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <hr class="mt-0">
+                    <div class="row" style="display:none;">
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="country" class="d-block text-bold mb-2">@Resource.Country </label>
+                                <div class="select-custom">
+                                    @Html.DropDownList("CountryID", null, new { htmlattributes = new { @class = "form-control col-md-6" } })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="city" class="d-block text-bold mb-2">@Resource.City </label>
+                                <div class="select-custom">
+                                    @Html.DropDownList("CityID", null, new { htmlattributes = new { @class = "form-control", @style = "width:100%;" } })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="address" class="d-block text-bold mb-2">@Resource.Address </label>
+                                @Html.EditorFor(model => model.HomeAddress, new { htmlattributes = new { @class = "form-control", placeholder = Resource.Address } })
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="datepicker" class="d-block text-bold mb-2">  @Resource.EndDate</label>
+                                @*<input type="date" name="NIDExpiryDate" id="NIDExpiryDate" value="@Model.NIDExpiryDate" class="form-contro" />*@
+                                @Html.TextBoxFor(m => m.NIDExpiryDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="InputSubmit" class="btn mt-3">@Resource.Save</button>
+
+
+                </form>
+            </div>
+
+
+            @*@if (Model.RoleID == Convert.ToInt32(clsEnum.Roles.Tenant))
+                {*@
+            <div>
+                <h4 class="mt-4 mb-3 text-bold text-darkgray" style="display:none;">بيانات العمل</h4>
+                <div class="box-alt" style="display:none;">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="workName" class="d-block text-bold mb-2">جهة العمل</label>
+                                @Html.EditorFor(model => model.CompanyName, new { htmlattributes = new { @class = "form-control", placeholder = "ادخل جهة العمل" } })
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="addresss" class="d-block text-bold mb-2">العنوان</label>
+                                @Html.EditorFor(model => model.CompanyAddress, new { htmlattributes = new { @class = "form-control", placeholder = "ادخل العنوان" } })
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4">
+                            <div class="form-group">
+                                <label for="addresss" class="d-block text-bold mb-2"> رقم السجل التجاري</label>
+                                @Html.EditorFor(model => model.CommercialRegisterNO, new { htmlattributes = new { @class = "form-control", placeholder = "السجل التجاري" } })
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-6 col-lg-4" style="display:none">
+                            <div class="form-group">
+                                <label for="ceoName" class="d-block text-bold mb-2">اسم الكفيل</label>
+                                @Html.EditorFor(model => model.KafilName, new { htmlattributes = new { @class = "form-control", placeholder = "ادخل اسم الكفيل" } })
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-4" style="display:none">
+                            <div class="form-group">
+                                <label for="ceoIdNumber" class="d-block text-bold mb-2">رقم هوية الكفيل</label>
+                                @Html.EditorFor(model => model.KafilNIDNo, new { htmlattributes = new { @class = "form-control", placeholder = "ادخل رقم هوية الكفيل" } })
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn mt-3">حفظ</button>
+                    <hr />
+                    <div class="box-alt">
+                        <div class="mb-2 mb-md-0">
+
+                        </div>
+                        <div class="d-md-flex ">
+                            <div class="mb-9 mb-md-0">
+                                <h6 class="m-0 d-inline-block mr-4 text-bold" style="color:red;"> @ViewBag.Message</h6>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr />
+                </div>
+                @*<h4 class="mt-4 mb-3 text-bold text-darkgray" >بيانات التابعين</h4>
+                    @Html.Partial("_UserFamily", Model)
+                    <h4 class="mt-4 mb-3 text-bold text-darkgray"  >المرفقات</h4>
+                    @Html.Partial("_UserFiles", Model)*@
+            </div>
+            @*}*@
+
+
+            @if (Model.RoleID == Convert.ToInt32(clsEnum.Roles.Broker))
+            {
+                <h4 class="mt-4 mb-3 text-bold text-darkgray">الأشتراكات</h4>
+                <div class="box-alt">
+                    <div class="d-md-flex align-items-center justify-content-between">
+                        @if (Model.UserPackage != null)
+                        {
+                            if (Model.UserPackage.Count > 0)
+                            {
+                                <div class="mb-3 mb-md-0">
+                                    <h6 class="m-0 d-inline-block mr-4 text-bold">الأشتراك الحالي:</h6>
+                                    <span>
+                                        @Html.Raw(Model.UserPackage.Last().Package.NameAR)
+
+                                    </span>
+
+                                </div>
+
+                                <div class="mb-3 mb-md-0">
+                                    <p class="m-0 text-darkgray text-bold">تاريخ الأنتهاء :  @Convert.ToDateTime(Model.UserPackage.Last().SubscriptionEndDate).ToString("yyyy/MM/dd")</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="mb-3 mb-md-0">
+                                    <h6 class="m-0 d-inline-block mr-4 text-bold">الأشتراك الحالي:</h6>
+                                    <span>
+                                        مستخدم
+
+
+                                    </span>
+
+                                </div>
+
+                                <div class="mb-3 mb-md-0">
+                                    <p class="m-0 text-darkgray text-bold">تاريخ الأنتهاء  : لايوجد</p>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="mb-3 mb-md-0">
+                                <h6 class="m-0 d-inline-block mr-4 text-bold">الأشتراك الحالي:</h6>
+                                <span>
+                                    مستخدم
+
+
+                                </span>
+
+                            </div>
+
+                            <div class="mb-3 mb-md-0">
+                                <p class="m-0 text-darkgray text-bold">تاريخ الأنتهاء  : لايوجد</p>
+                            </div>
+                        }
+                        <div class="mb-3 mb-md-0">
+                            <a href="/packages/plans" class="btn btn-yellow">ترقية الباقة</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts{
+
+
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+
+    <script>
+
+        function CheckLenght() {
+            var checker = document.getElementById('Name');
+            var value = $(checker).val();
+            if (value.length < 8) {
+                var validator1 = document.getElementById('validator1');
+                validator1.style = "visibility:visible"
+            }
+            else {
+                var validator1 = document.getElementById('validator1');
+                validator1.style = "visibility:hidden;"
+            }
+        };
+
+    </script>
+
+    <script>
+
+
+
+        $(document).ready(function () {
+
+
+
+            var txtNid = $('#NIDNo');
+
+
+
+            $("#InputSubmit").click(function () {
+
+
+
+
+                if (txtNid.val().trim().length > 10) {
+                    Swal.fire("خطأ", "يجب إدخال رقم الهوية عشرة أرقام ", "error");
+                    return false;
+
+                }
+
+                if (txtNid.val().trim().length < 10) {
+                    Swal.fire("خطأ", "يجب إدخال رقم الهوية عشرة أرقام ", "error");
+                    return false;
+
+                }
+
+
+
+
+
+            });
+
+        });
+
+
+
+    </script>
+
+
+
+
+    @*$(document).ready(function () {
+
+               var a = "@ViewBag.Message";
+            var stat = "@ViewBag.stat";
+            if (stat==1)
+                Swal.fire(a, "With some body text and success icon!", "success");
+            if (stat==2)
+                Swal.fire(a, "With some body text and warning icon!", "warning");
+            if (stat==3)
+                Swal.fire(a, "With some body text and error icon!", "error");
+            if (stat == 4)
+                Swal.fire(a);
+        });
+    *@
+
+
+
+
+
+}
+
+@section Styles{
+    <style>
+        select {
+            width: 100%;
+        }
+
+            select:invalid {
+                border: 2px dashed #f9bf16;
+            }
+        /*
+                            select:invalid:required {
+                                background-color: #f9bf16;
+                            }*/
+
+        /*  input:valid {
+                            border: 2px solid black;
+                        }*/
+        ul li input {
+            width: auto;
+        }
+
+        .btn-group, .btn-group-vertical {
+            position: relative;
+            display: inline-flex;
+            vertical-align: middle;
+            width: 100%;
+        }
+    </style>
+}
+

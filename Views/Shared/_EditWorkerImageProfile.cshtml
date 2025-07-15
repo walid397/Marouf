@@ -1,0 +1,36 @@
+﻿@model Marofh.AspNetUser
+@using Resources
+@using (Html.BeginForm("EditWorkerImageProfile", "Worker", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row fileinputcss">
+
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ShortID)
+        <div class="d-flex justify-content-center align-items-end">
+
+
+            <div class="col-9">
+                <div class="form__group">
+                    <label for="category" class="form__label">@Resource.ChangeImage  </label>
+
+                    <input type="file" class="custom-file-input" name="ImageUrl" id="ImageUrl" />
+
+                </div>
+            </div>
+
+
+
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary mtmin">
+
+                    <i class="far fa-save mr-25"></i>
+                    @Resource.Save
+                    
+                </button>
+
+            </div>
+        </div>
+    </div>
+}

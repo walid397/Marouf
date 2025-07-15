@@ -1,0 +1,1580 @@
+﻿@model IEnumerable<AspNetUser>
+@using Marofh.Models
+@using Microsoft.AspNet.Identity
+@using Resources
+
+@{
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+    if (culture.Contains("en-us"))
+    {
+        ViewBag.Title = "Business Owner";
+    }
+    else
+    {
+        ViewBag.Title = "صاحب العمل";
+    }
+}
+
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+    AspNetUser loggedInUser = ViewModel.GetCurrentUser(User.Identity.GetUserId());
+
+}
+
+<!-- main content -->
+<main class="main main--breadcrumb styledmanin newmain">
+
+    <div class="container col-12  pl-3 pr-3">
+        <div class="row">
+
+
+
+            <div class="col-12 col-md-8 col-lg-9 col-xl-9 mb-5 ">
+                <ul class="nav nav-tabs main__nav" id="main__nav" role="tablist">
+                    <li class="nav-item">
+
+                        <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false"> @Resource.Home</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">   @Resource.WorkRequests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"> @Resource.Settings</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+
+                        <table id="files_list" class="table table-striped dt-responsive datatable" style="width:100%">
+                            <thead class="thead" style="display:none !important;">
+                                <tr>
+                                    <th scope="col">   </th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach (AspNetUser worker in Model)
+                                {
+                                    <tr>
+                                        <td class="d-flex flextable">
+                                            <div class="post d-block">
+
+                                                <div class="d-flex">
+
+
+                                                    <div class="post__head d-flex justify-content-start align-items-start">
+                                                        <a href="#" class="post__head-img">
+                                                            @if (!string.IsNullOrEmpty(worker.ImageUrl))
+                                                            {
+                                                                <img src="@worker.ImageUrl" alt="">
+                                                            }
+                                                            else
+                                                            {<img src="/Content/front/assets/img/user.png" alt="">}
+
+                                                        </a>
+                                                        <div class="post__head-title">
+                                                            <h5><a href="/kafil/WorkerProfile/@worker.ShortID">@worker.FName @Html.Raw(" ") @worker.LName </a></h5>
+
+                                                            <div class="d-flex align-items-center">
+
+                                                                <p>
+
+                                                                    <i class="icon ion-ios-eye"></i> <span>@worker.ViewCount</span>
+
+                                                                </p>
+
+                                                            </div>
+
+                                                        </div>
+                                                        @if (worker.Job != null)
+                                                        {
+                                                            if (culture.Contains("en-us"))
+                                                            {
+                                                                <h2 class="post__title stylepostitle"> @worker.Job.NameEN</h2>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <h2 class="post__title stylepostitle"> @worker.Job.NameAR</h2>
+                                                            }
+
+
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <h2 class="post__title stylepostitle"> N/A</h2>
+
+                                                        }
+
+                                                        <div class="post__location">
+                                                            <i class="icon ion-ios-navigate"></i>
+                                                            @if (worker.Country != null)
+                                                            {
+                                                                <span>
+                                                                    @if (culture.Contains("en-us"))
+                                                                    {
+                                                                        @worker.Country.NameEN
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @worker.Country.NameAR
+                                                                    }
+
+
+                                                                </span>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <span> N/A</span>
+
+                                                            }
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="post__wrap">
+
+
+
+                                                        <div class="post__actions actionicon">
+                                                            <div class="shareBlock" id="@worker.ShortID" style="float:left;display:none;"></div>
+
+                                                            <span class="stylecssshare2 ml-2">
+                                                                <i class="fa fa-share-alt" onclick="myFunction(@worker.ShortID)"></i>
+
+                                                            </span>
+
+
+
+                                                            @if (ViewModel.CheckThisWorkerHasBeenRequestBefore(loggedInUser.Id, @worker.Id))
+                                                            {
+                                                                <a id="SendWorkerRequest" data-id="@worker.Id" class="post__actions-btn post__actions-btn--green  SendWorkerRequest bluecss" title="@Resource.SendRequest">
+                                                                    <i class="far fa-file-user"></i>
+
+                                                                </a>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <a id="SendWorkerRequest" data-id="@worker.Id" class="post__actions-btn post__actions-btn--green bookmarkscss SendWorkerRequest bluecss" title="@Resource.SendRequest">
+                                                                    <i class="far fa-file-user"></i>
+
+                                                                </a>
+                                                            }
+
+
+                                                            @if (ViewModel.CheckIfWorkerInFavoriteMyList(loggedInUser.Id, @worker.Id))
+                                                            {
+                                                                <a id="AddToFavoriteByAjax" data-id="@worker.Id" class="post__actions-btn post__actions-btn--green  AddToFavoriteByAjax" title="@Resource.AddToFavorite">
+                                                                    <i class="far fa-star"></i>
+
+                                                                </a>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <a id="AddToFavoriteByAjax" data-id="@worker.Id" class="post__actions-btn post__actions-btn--green bookmarkscss AddToFavoriteByAjax " title="@Resource.AddToFavorite">
+                                                                    <i class="far fa-star"></i>
+
+                                                                </a>
+                                                            }
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="post__description">
+                                                    <p> @worker.Brief</p>
+                                                </div>
+
+
+                                                <div class="post__tags">
+                                                    @foreach (WorkerSkill skill in worker.WorkerSkills)
+                                                    {
+                                                        if (culture.Contains("en-us"))
+                                                        {
+                                                            <a href="#"> @skill.Skill.NameEN</a>
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="#"> @skill.Skill.NameAR</a>
+
+                                                        }
+
+
+                                                    }
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+                    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                        <div class="newtabs mytabs">
+                            <ul class="nav nav-tabs" id="myOffersTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active text-semibold" id="published-tab" data-toggle="tab" href="#published"
+                                       role="tab" aria-controls="published" aria-selected="true">
+                                        <i class="far fa-file mr-1 ml-1"></i>
+                                        @Resource.MyOrders   (@loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_ارسال_الطلب.ToString()).Count())
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-semibold" id="FirstAcceptance-tab" data-toggle="tab" href="#FirstAcceptance"
+                                       role="tab" aria-controls="FirstAcceptance" aria-selected="false">
+
+                                        <i class="far fa-file-times mr-1 ml-1"></i>
+
+                                        @Resource.InitialAdmission     (@loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.قبول_أولى.ToString()).Count())
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-semibold" id="expired-tab" data-toggle="tab" href="#firsrregusedtabs"
+                                       role="tab" aria-controls="firsrregusedtabs" aria-selected="false">
+
+                                        <i class="far fa-file-times mr-1 ml-1"></i>
+
+                                        @Resource.InitialRejection     (@loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.رفض_أولى.ToString()).Count())
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-semibold" id="registedtabs-tab" data-toggle="tab" href="#registedtabs"
+                                       role="tab" aria-controls="registedtab" aria-selected="false">
+
+                                        <i class="far fa-file-certificate mr-1 ml-1"></i>
+
+                                        @Resource.Accredited   @*معتمدة*@ (@loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()).Count())
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link text-semibold" id="regusedtabs-tab" data-toggle="tab" href="#regusedtabs"
+                                       role="tab" aria-controls="expired" aria-selected="false">
+
+                                        <i class="far fa-file-signature mr-1 ml-1"></i>
+
+                                        @Resource.RefusalRequest       (@loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_رفض_الاعتماد.ToString()).Count())
+                                    </a>
+                                </li>
+
+
+
+                            </ul>
+                            <div class="tab-content" id="myOffersTabContent">
+                                <div class="tab-pane fade show active animate__animated animate__fadeIn" id="published" role="tabpanel" aria-labelledby="published-tab">
+
+
+                                    <div class="col-12">
+                                        <h2 class="form__title mt-4 mb-0 stylrep">
+                                            <span>@Resource.NewRequests </span>
+                                        </h2>
+
+                                    </div>
+                                    <table id="files_list" class="table table table-striped dt-responsive datatable" style="width:100%">
+                                        <thead class="thead">
+                                            <tr>
+                                                <th scope="col">  @Resource.OfficeName </th>
+                                                <th scope="col">    @Resource.OfficeAddress</th>
+                                                <th scope="col">    @Resource.WorkerName</th>
+                                                <th scope="col">  @Resource.WorkerJob </th>
+                                                <th scope="col">@Resource.RequestDate  </th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var request in loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_ارسال_الطلب.ToString()))
+                                            {
+                                                <tr>
+                                                    <td class="img-td">
+                                                        @request.AspNetUser1.AspNetUser1.OfficeName
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                    </td>
+                                                    @if (request.AspNetUser1.Job != null)
+                                                    {
+                                                        <td>
+                                                            @if (culture.Contains("en-us"))
+                                                            {
+                                                                @request.AspNetUser1.Job.NameEN
+                                                            }
+                                                            else
+                                                            {
+                                                                @request.AspNetUser1.Job.NameAR
+                                                            }
+
+
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+
+                                                    <td scope="col">
+
+                                                        @request.RequestDate.Value.ToShortDateString()
+
+                                                    </td>
+
+
+
+
+
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="tab-pane fade show  animate__animated animate__fadeIn" id="FirstAcceptance" role="tabpanel" aria-labelledby="FirstAcceptance-tab">
+
+
+                                    <div class="col-12">
+                                        <h2 class="form__title mt-4 mb-0 stylrep">
+                                            <span>@*طلبات قبول أولى*@  @Resource.InitialAdmissionRequests</span>
+                                        </h2>
+
+                                    </div>
+                                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                                        <thead class="thead">
+                                            <tr>
+
+                                                <th scope="col">  @Resource.OfficeName </th>
+                                                <th scope="col">    @Resource.OfficeAddress</th>
+                                                <th scope="col">    @Resource.WorkerName</th>
+                                                <th scope="col">  @Resource.WorkerJob </th>
+                                                <th scope="col">@Resource.RequestDate  </th>
+
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var request in loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.قبول_أولى.ToString()))
+                                            {
+                                                <tr>
+                                                    <td class="img-td">
+                                                        @request.AspNetUser1.AspNetUser1.OfficeName
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                    </td>
+                                                    @if (request.AspNetUser1.Job != null)
+                                                    {
+                                                        <td>
+                                                            @if (culture.Contains("en-us"))
+                                                            {
+                                                                @request.AspNetUser1.Job.NameEN
+
+                                                            }
+                                                            else
+                                                            {
+
+                                                                @request.AspNetUser1.Job.NameAR
+                                                            }
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                    <td scope="col">
+
+                                                        @request.RequestDate.Value.ToShortDateString()
+
+                                                    </td>
+
+
+
+
+
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="tab-pane fade animate__animated animate__fadeIn" id="firsrregusedtabs" role="tabpanel" aria-labelledby="firsrregusedtabs-tab">
+
+                                    <div class="col-12">
+                                        <h2 class="form__title mt-4 mb-0 stylrep">
+                                            <span>
+                                                @Resource.InitialRejectionRequests
+
+                                                @*طلبات رفض أولي*@
+
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                                        <thead class="thead">
+                                            <tr>
+
+                                                <th scope="col">  @Resource.OfficeName </th>
+                                                <th scope="col">    @Resource.OfficeAddress</th>
+                                                <th scope="col">    @Resource.WorkerName</th>
+                                                <th scope="col">  @Resource.WorkerJob </th>
+                                                <th scope="col">@Resource.RequestDate  </th>
+
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var request in loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.رفض_أولى.ToString()))
+                                            {
+                                                <tr>
+                                                    <td class="img-td">
+                                                        @request.AspNetUser1.AspNetUser1.OfficeName
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                    </td>
+                                                    @if (request.AspNetUser1.Job != null)
+                                                    {
+                                                        <td>
+                                                            @if (culture.Contains("en-us"))
+                                                            {
+                                                                @request.AspNetUser1.Job.NameEN
+                                                            }
+                                                            else
+                                                            {
+                                                                @request.AspNetUser1.Job.NameAR
+                                                            }
+
+
+
+
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                    <td scope="col">
+
+                                                        @request.RequestDate.Value.ToShortDateString()
+
+                                                    </td>
+
+
+
+
+
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="tab-pane fade animate__animated animate__fadeIn" id="registedtabs" role="tabpanel" aria-labelledby="registedtabs-tab">
+                                    <div class="col-12">
+                                        <h2 class="form__title mt-4 mb-0 stylrep">
+                                            <span>
+
+                                                @Resource.AccreditedRequests
+                                                @*طلبات معتمدة*@
+
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                                        <thead class="thead">
+                                            <tr>
+
+
+                                                <th scope="col">  @Resource.OfficeName </th>
+                                                <th scope="col">    @Resource.OfficeAddress</th>
+                                                <th scope="col">    @Resource.WorkerName</th>
+                                                <th scope="col">  @Resource.WorkerJob </th>
+                                                <th scope="col">@Resource.RequestDate  </th>
+
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var request in loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()))
+                                            {
+                                                <tr>
+                                                    <td class="img-td">
+                                                        @request.AspNetUser1.AspNetUser1.OfficeName
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                    </td>
+                                                    @if (request.AspNetUser1.Job != null)
+                                                    {
+                                                        <td>
+                                                            @if (culture.Contains("en-us"))
+                                                            {
+                                                                @request.AspNetUser1.Job.NameEN
+                                                            }
+                                                            else
+                                                            {
+                                                                @request.AspNetUser1.Job.NameAR
+                                                            }
+
+
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                    <td scope="col">
+
+                                                        @request.RequestDate.Value.ToShortDateString()
+
+                                                    </td>
+
+
+
+
+
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade animate__animated animate__fadeIn" id="regusedtabs" role="tabpanel" aria-labelledby="regusedtabs-tab">
+
+                                    <div class="col-12">
+                                        <h2 class="form__title mt-4 mb-0 stylrep">
+                                            <span>
+
+                                                @Resource.ApprovalRefusalRequests
+                                                @*طلبات رفض اعتماد*@
+
+                                            </span>
+                                        </h2>
+                                    </div>
+                                    <table id="files_list" class="table table-striped dt-responsive datatable " style="width:100%">
+                                        <thead class="thead">
+                                            <tr>
+
+                                                <th scope="col">  @Resource.OfficeName </th>
+                                                <th scope="col">    @Resource.OfficeAddress</th>
+                                                <th scope="col">    @Resource.WorkerName</th>
+                                                <th scope="col">  @Resource.WorkerJob </th>
+                                                <th scope="col">@Resource.RequestDate  </th>
+
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            @foreach (var request in loggedInUser.WorkerRequests.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_رفض_الاعتماد.ToString()))
+                                            {
+                                                <tr>
+                                                    <td class="img-td">
+                                                        @request.AspNetUser1.AspNetUser1.OfficeName
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.AspNetUser1.OfficeAddress
+                                                    </td>
+                                                    <td>
+                                                        @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                    </td>
+                                                    @if (request.AspNetUser1.Job != null)
+                                                    {
+                                                        <td>
+                                                            @request.AspNetUser1.Job.NameAR
+                                                        </td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                    }
+                                                    <td scope="col">
+
+                                                        @request.RequestDate.Value.ToShortDateString()
+
+                                                    </td>
+
+
+
+
+
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade  " id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+
+                        <div class="row">
+                            <div class="col-12 ml0">
+                                <div class="nav  nav-pills v-pills-tab" id="v-pills-tab" role="tablist">
+
+                                    <a class="nav-link active pl-2 pr-2" data-toggle="pill" href="#v-pills-home" role="tab">
+                                        <i class="fad fa-user-circle"></i>
+
+                                        @Resource.PersonalInformation
+                                    </a>
+
+                                    <a class="nav-link mr-1 ml-1 pl-2 pr-2" data-toggle="pill" href="#v-pills-payment" role="tab">
+
+                                        <i class="fad fa-lock-alt"></i>
+                                        @Resource.Password
+                                        @*كلمة المرور*@
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+
+                                        <!-- form -->
+                                        <form action="/kafil/UpdateProfile" class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">  @Resource.AccountSettings  </h2>
+                                                </div>
+
+                                                @*<div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="login" class="form__label">اسم الدخول:</label>
+                                                            <input name="login" id="login" type="text" class="form__input" value="@loggedInUser.Email">
+                                                        </div>
+                                                    </div>*@
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="email" class="form__label">  @Resource.Email </label>
+                                                        <input name="Email" id="Email" type="text" class="form__input" placeholder="email@email.com" value="@loggedInUser.Email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="firstname" class="form__label">  @Resource.FirstName</label>
+                                                        <input name="FName" id="FName" type="text" class="form__input" placeholder="@Resource.FirstName" value="@loggedInUser.FName">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="lastname" class="form__label">@Resource.LastName  </label>
+                                                        <input name="LName" id="LName" type="text" class="form__input" placeholder="@Resource.LastName" value="@loggedInUser.LName">
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="lastname" class="form__label">@Resource.Country </label>
+                                                        @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>, htmlAttributes: new { @class = "form-control", disabled = "disabled" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="lastname" class="form__label">@Resource.City </label>
+                                                        @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>, Resource.ChooseCity, htmlAttributes: new { @class = "form-control select-2" })
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="lastname" class="form__label">@Resource.MobileNo </label>
+                                                        <input name="Mobile" id="Mobile" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" class="form__input" placeholder="@Resource.MobileNo" value="@loggedInUser.Mobile">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <button class="form__btn" type="submit"><span>   @Resource.SaveChanges</span></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- end form -->
+
+
+                                    </div>
+
+                                    <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                        <!-- form -->
+                                        <form action="/Kafil/UpdateUserPassword" class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">   @Resource.ChangePassword</h2>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="oldpass" class="form__label">   @Resource.OldPassword </label>
+                                                        <input name="oldpass" id="oldpass" type="password" class="form__input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="newpass" class="form__label"> @Resource.NewPassword </label>
+                                                        <input name="Password" id="Password" type="password" class="form__input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-lg-6">
+                                                    <div class="form__group">
+                                                        <label for="confirmpass" class="form__label">@Resource.ConfirmPassword </label>
+                                                        <input name="confirmpass" id="confirmpass" type="password" class="form__input">
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <button class="form__btn" type="submit"><span>@Resource.Save</span></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- end form -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 col-lg-3 col-xl-3 ">
+                <!-- sidebox -->
+                <div class="sidebox">
+                    <h4 class="sidebox__title">  @Resource.SearchFilter <button type="button" class="btn bgbt" onclick="ClearInputs();">@Resource.Clear</button></h4>
+                    <form action="/Kafil/index">
+
+                        <div class="filter">
+                            @*<div class="filter__group">
+                                    <label class="filter__label">كلمة البحث :</label>
+                                    <input type="text" class="filter__input w-100" placeholder="كلمة البحث" id="query" name="query">
+                                </div>*@
+                            <div class="filter__group">
+                                <label for="location" class="form__label">@Resource.Country </label>
+
+                                @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>, Resource.ChooseCountry, htmlAttributes: new { @class = "form__input select2" })
+
+
+                            </div>
+
+
+                            <div class="filter__group">
+
+                                <label for="sort" class="filter__label">@Resource.Sex </label>
+
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.Sex </span>
+                                    <div class="select">
+
+
+                                        @if (Request["Gender"] != null)
+                                        {
+                                            string[] genderList = Request.QueryString["Gender"].Split(',');
+                                            if (genderList.Where(p => p.ToString() == "true").Count() > 0)
+                                            {
+
+                                                <label for="checkbox-1">
+                                                    <input value="true" name="Gender" id="Gender" type="checkbox" checked>
+
+                                                    @Resource.Male
+                                                </label>
+
+                                            }
+                                            else
+                                            {
+                                                <label for="checkbox-1">
+                                                    <input value="true" name="Gender" id="Gender" type="checkbox">
+                                                    @Resource.Male
+
+                                                </label>
+
+                                            }
+
+                                            if (genderList.Where(p => p.ToString() == "false").Count() > 0)
+                                            {
+
+                                                <label for="checkbox-2">
+                                                    <input value="false" name="Gender" id="Gender" type="checkbox" checked>
+
+                                                    @Resource.Female
+                                                </label>
+
+                                            }
+                                            else
+                                            {
+                                                <label for="checkbox-2">
+                                                    <input value="false" name="Gender" id="Gender" type="checkbox">
+                                                    @Resource.Female
+                                                </label>
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <label for="checkbox-1">
+                                                <input value="true" name="Gender" id="Gender" type="checkbox">
+
+                                                @Resource.Male
+                                            </label>
+                                            <label for="checkbox-2">
+                                                <input value="false" name="Gender" id="Gender" type="checkbox">
+
+                                                @Resource.Female
+                                            </label>
+
+
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="filter__group">
+                                <label for="sort" class="filter__label">@Resource.Age </label>
+                                <div class="d-flex mfc">
+                                    <input type="number" class="filter__input " placeholder="@Resource.From" min="18" id="minAge" name="minAge" value="@ViewBag.minAge">
+                                    <input type="number" class="filter__input" placeholder="@Resource.To" min="18" id="maxAge" name="maxAge" value="@ViewBag.maxAge">
+
+                                </div>
+                            </div>
+
+
+                            <div class="filter__group">
+
+                                <label for="sort" class="filter__label">@Resource.Job  </label>
+
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss"> @Resource.Job</span>
+
+                                    <div class="select">
+                                        @foreach (var job in ViewModel.GetAllJobs())
+                                        {
+                                            if (Request["JobsID"] != null)
+                                            {
+                                                string[] jobsList = Request.QueryString["JobsID"].Split(',');
+                                                if (jobsList.Where(p => p.ToString() == job.ID.ToString()).Count() > 0)
+                                                {
+
+                                                    <label>
+                                                        <input value="@job.ID" type="checkbox" id="JobsID" name="JobsID" checked />
+                                                        @if (culture.Contains("en-us"))
+                                                        {
+                                                            @job.NameEN
+
+                                                        }
+                                                        else
+                                                        {
+                                                            @job.NameAR
+
+                                                        }
+
+
+
+                                                    </label>
+
+                                                }
+                                                else
+                                                {
+                                                    <label>
+                                                        <input value="@job.ID" type="checkbox" id="JobsID" name="JobsID" />
+
+                                                        @if (culture.Contains("en-us"))
+                                                        {
+                                                            @job.NameEN
+
+                                                        }
+                                                        else
+                                                        {
+                                                            @job.NameAR
+
+                                                        }
+
+
+                                                    </label>
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <label>
+                                                    <input value="@job.ID" type="checkbox" id="JobsID" name="JobsID" />
+
+                                                    @if (culture.Contains("en-us"))
+                                                    {
+                                                        @job.NameEN
+
+                                                    }
+                                                    else
+                                                    {
+
+                                                        @job.NameAR
+                                                    }
+
+
+                                                </label>
+
+                                            }
+
+
+                                        }
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="filter__group">
+                                <label for="sort" class="filter__label">@Resource.Religion </label>
+
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.Religion </span>
+
+                                    <div class="select">
+
+
+
+                                        @if (Request["Religion"] != null)
+                                        {
+                                            string[] religionList = Request.QueryString["Religion"].Split(',');
+                                            if (culture.Contains("en-us"))
+                                            {
+
+
+                                                if (religionList.Where(p => p.ToString() == "Muslim").Count() > 0)
+                                                {
+
+                                                    <label for="checkbox-1">
+                                                        <input value="Muslim" name="Religion" id="Religion" type="checkbox" checked>
+                                                        Muslim
+                                                    </label>
+
+                                                }
+                                                else
+                                                {
+                                                    <label for="checkbox-1">
+                                                        <input value="Muslim" name="Religion" id="Religion" type="checkbox">
+                                                        Muslim
+                                                    </label>
+
+                                                }
+
+                                                if (religionList.Where(p => p.ToString() == "Not").Count() > 0)
+                                                {
+
+                                    <label for="checkbox-2">
+                                        <input value="Not" name="Religion" id="Religion" type="checkbox" checked>
+                                        Other
+                                    </label>
+
+                                                }
+                                                else
+                                                {
+                                                    <label for="checkbox-2">
+                                                        <input value="Not" name="Religion" id="Religion" type="checkbox">
+                                                        Other
+                                                    </label>
+
+                                                }
+
+                                            }
+                                            else
+                                            {
+
+
+                                                if (religionList.Where(p => p.ToString() == "مسلم").Count() > 0)
+                                                {
+
+                                                    <label for="checkbox-1">
+                                                        <input value="مسلم" name="Religion" id="Religion" type="checkbox" checked>
+                                                        مسلم
+                                                    </label>
+
+                                                }
+                                                else
+                                                {
+                                                    <label for="checkbox-1">
+                                                        <input value="مسلم" name="Religion" id="Religion" type="checkbox">
+                                                        مسلم
+                                                    </label>
+
+                                                }
+
+                                                if (religionList.Where(p => p.ToString() == "غير").Count() > 0)
+                                                {
+
+                                                    <label for="checkbox-2">
+                                                        <input value="غير" name="Religion" id="Religion" type="checkbox" checked>
+                                                        غير ذلك
+                                                    </label>
+
+                                                }
+                                                else
+                                                {
+                                                    <label for="checkbox-2">
+                                                        <input value="غير" name="Religion" id="Religion" type="checkbox">
+                                                        غير ذلك
+                                                    </label>
+
+                                                }
+
+
+
+
+
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            if (culture.Contains("en-us"))
+                                            {
+
+                                                <label for="checkbox-1">
+                                                    <input value="Muslim" name="Religion" id="Religion" type="checkbox">
+                                                    Muslim
+                                                </label>
+                                                <label for="checkbox-2">
+                                                    <input value="Not" name="Religion" id="Religion" type="checkbox">
+                                                    Other
+                                                </label>
+
+
+                                            }
+                                            else
+                                            {
+                                                <label for="checkbox-1">
+                                                    <input value="مسلم" name="Religion" id="Religion" type="checkbox">
+                                                    مسلم
+                                                </label>
+                                                <label for="checkbox-2">
+                                                    <input value="غير" name="Religion" id="Religion" type="checkbox">
+                                                    غير ذلك
+                                                </label>
+
+                                            }
+
+
+
+
+                                        }
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="filter__group">
+                                <label class="filter__label"> @Resource.YearsofExperience </label>
+                                <div class="d-flex mfc">
+                                    <input type="number" class="filter__input " placeholder="@Resource.From" min="0" id="minExperienceYearsCount" name="minExperienceYearsCount" value="@ViewBag.minExperienceYearsCount">
+                                    <input type="number" class="filter__input" placeholder="@Resource.To" min="0" id="maxExperienceYearsCount" name="maxExperienceYearsCount" value="@ViewBag.maxExperienceYearsCount">
+
+                                </div>
+                            </div>
+                            <div class="filter__group">
+                                <button class="btn btn-primary w-100 bgtem" type="submit">     <i class="fal fa-filter"></i>    @Resource.FilterResults</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- end sidebox -->
+            </div>
+        </div>
+    </div>
+</main>
+<!-- end main content -->
+@*<div class="modal fade confirmpop aligmodla" id="confirmpop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modalsmall" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-white nopad">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-2">
+                    <div class="row d-flex flexdor  ">
+
+                        <i class="far fa-exclamation-triangle styletop"></i>
+
+                        <h4 class="bolderfo">هل انت متاكد ؟</h4>
+                        <p class="font-weight-normal">هل تريد حذف هذا العامل </p>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn  btn-danger">
+
+                            <i class="far fa-trash-alt "></i>
+                            &nbsp;
+                            حذف
+                        </button>
+                        <button type="submit" class="btn  btn-grey" data-dismiss="modal" aria-label="Close">
+
+                            <i class="far fa-times "></i>
+                            &nbsp;
+                            الغاء
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>*@
+
+
+
+@*<div class="modal fade editpopu aligmodla" id="editpopu" tabindex="-1" role="dialog"
+         aria-labelledby="editpopu" aria-hidden="true">
+        <div class="modal-dialog modalsmall" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-white nopad">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-2">
+                    <div class="row d-flex flexdor  ">
+
+                        <i class="far fa-exclamation-triangle styletop2"></i>
+
+                        <h4 class="bolderfo">هل انت متأكد ؟</h4>
+                        <p class="font-weight-normal">سيتم تعديل بيانات  </p>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn  btn-secondary2">
+
+                            <i class="far fa-check-circle "></i>
+                            &nbsp;
+                            تاكيد
+                        </button>
+                        <button type="submit" class="btn  btn-grey"  data-dismiss="modal" aria-label="Close">
+
+                            <i class="far fa-times "></i>
+                            &nbsp;
+                            الغاء
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>*@
+
+
+<!-- Modal -->
+<div class="modal  fade modal fade bd-example-modal-lg createnew" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="viewdetailsLabel" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header flex-column no-padding mb-0">
+                <h6>@Resource.Edit</h6>
+                <button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+
+            <hr class="mt-0 mb-0">
+            <div class="modal-body pt-2  pl-4 pr-4 pb-0" id="Preview">
+
+                @*PartialView*@
+
+            </div>
+        </div>
+        <div class="modal-footer justify-content-start align-items-start flex-column no-padding d-block">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+
+    <!--Datatable-->
+    <script src="/Content/front/assets/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <link href="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    @*<script>
+            $(document).ready(function () {
+                $('.datatable').DataTable({
+                    "aLengthMenu": [
+                        [7, 10, 25, -1],
+                        [7, 10, 25, "All"]
+                    ],
+                    "iDisplayLength": 7,
+
+                    "language": {
+                        "sProcessing": "جارٍ التحميل...",
+                        "sLengthMenu": "أظهر _MENU_ مدخلات",
+                        "sZeroRecords": "لم يعثر على أية سجلات",
+                        "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                        "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                        "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                        "sInfoPostFix": "",
+                        "sSearch": "ابحث:",
+                        "sUrl": "",
+                        "oPaginate": {
+                            "sFirst": "الأول",
+                            "sPrevious": "السابق",
+                            "sNext": "التالي",
+                            "sLast": "الأخير"
+                        }
+                    }
+                });
+
+                table.$('tr').tooltip({
+                    placement: '',
+                    html: true
+                });
+            });
+
+            $('.datatable').on('draw.dt', function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>*@
+    <!--Datatable-->
+
+    <script>
+        $(document).ready(function () {
+
+              var cultureInfo = '@System.Globalization.CultureInfo.CurrentCulture.Name';
+             if (cultureInfo == 'ar-SA'||cultureInfo == 'ar-EG')
+             {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+
+        }
+        else
+        {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "Loading...",
+                    "sLengthMenu": "Show _MENU_ Entered",
+                    "sZeroRecords": "No records found ",
+                    "sInfo": "Show _START_ To _END_ out of  _TOTAL_ Entered",
+                    //"sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "Display 0  From 0  Record",
+                    "sInfoFiltered": "(selected from total  _MAX_ Entered)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Search:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Previous",
+                        "sNext": "Next",
+                        "sLast": "Last"
+                    }
+                }
+            });
+
+
+        }
+
+
+            table.$('tr').tooltip({
+                placement: '',
+                html: true
+            });
+        });
+
+        $('.datatable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <!--Datatable-->
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+
+    <script>
+    $(".AddToFavoriteByAjax").click(function (e) {
+    e.preventDefault();
+    var link = $(this);
+    $.ajax({
+    url: '@Url.Action("AddToFavoriteByAjax", "Kafil")',//  this for calling the web method function in controller.
+
+    type: "POST",
+        data: '{wId: "' + link.attr("data-id") + '" }',// user name value
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: OnSuccessed,
+    failure: function (response) {
+    alert(response);
+    }
+    });
+    });
+
+
+
+
+
+        $(".SendWorkerRequest").click(function (e) {
+    e.preventDefault();
+    var link = $(this);
+    $.ajax({
+    url: '@Url.Action("SendWorkerRequest", "Kafil")',//  this for calling the web method function in controller.
+
+    type: "POST",
+    data: '{wId: "' + link.attr("data-id") + '" }',// user name value
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: OnSuccessed,
+    failure: function (response) {
+    alert(response);
+    }
+    });
+            });
+
+
+
+    function OnSuccessed(response) {
+
+    switch (response) {
+
+    case "AddedToFavoriteList":
+   //   alert('تم اضافة العامل الى القائمة المفضلة');
+            Swal.fire("@Resource.Done", "@Resource.WorkerAddedToFavoriteList", "success");
+            break;
+
+
+    case "AlreadyExistedInFavoriteList":
+           //  alert('هذا العامل موجود بالفعل فى القائمة المفضلة');
+            Swal.fire("@Resource.Warning", "@Resource.ThisWorkerisalreadyinFavoritelist", "info");
+    break;
+
+        //ارسال الطالبات
+        case "ResquestHasBeenSent":
+            // alert('تم إرسال طلبك الى مكتب الاستقدام بنجاح');
+           // Swal.fire("@Resource.Done", "@Resource.YourRequestHasbeensuccessfullySentandtheofficewillcontactyouassoonaspossible", "success", "timer: 3000");
+            Swal.fire({
+                /*  position: 'top-end',*/
+                icon: 'success',
+                title: "@Resource.Done",
+                text: "@Resource.YourRequestHasbeensuccessfullySentandtheofficewillcontactyouassoonaspossible",
+                showConfirmButton: false,
+                timer: 5000
+            });
+            break;
+
+
+        case "SentBefore":
+           // alert('تم ارسال الطلب مسبقا');
+            Swal.fire("@Resource.Warning", "@Resource.TheRequestHasalreadyBeenSent", "info");
+            break;
+
+    case "Exception":
+    alert('حدث خطأ ما');
+    break;
+
+    }
+    }
+
+
+            $(document).ready(function () {
+                $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+            });
+
+            $('#CountryID').select2({
+                placeholder: "@Resource.ChooseCountry",
+                dir: "rtl"
+
+            });
+
+            $('#CityID').select2({
+                placeholder: "@Resource.ChooseCity",
+                dir: "rtl"
+            });
+
+
+
+    function editKafilImageProfile(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditKafilImageProfile", "Kafil")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function selectElement(elementId, valueToSelect) {
+            var element = document.getElementById(elementId);
+
+                element.value = valueToSelect;
+
+        }
+        function ClearInputs() {
+
+            window.location.href = "/kafil/"
+
+
+            //selectElement('CountryID', '');
+            //$('#CountryID').select2({
+            //    placeholder: "اختر البلد",
+            //    dir: "rtl"
+
+            //});
+
+
+
+            //selectElement('JobsID', '');
+            //$('#JobsID').select2({
+            //    placeholder: "اختر الوظيفة",
+            //    dir: "rtl"
+
+            //});
+
+            //selectElement('Religion', '');
+            //$('#Religion').select2({
+            //    placeholder: "اختر الديانة",
+            //    dir: "rtl"
+
+            //});
+
+
+            //selectElement('Gender', '0');
+            //selectElement('minAge', '');
+            //selectElement('maxAge', '');
+            //selectElement('ExperienceYearsCount', '');
+
+        }
+
+
+    </script>
+    @*تم ايقاف السكربت ادناه لانه بيوقف ارسال طلب واضافة للمفضلة*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>*@
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="~/Content/front/assets/js/jquery.c-share.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+        $('.shareBlock').cShare({
+            description: '@Resource.MaroufaIsaleaderInProvidingProfessionalandhighqualitylaborthatmatchessupplyanddemand',
+            show_buttons: [
+                'fb',
+                'line',
+                'weibo',
+                'twitter',
+                'email'
+            ]
+        });
+
+        function myFunction(div) {
+            var x = document.getElementById(div);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+    </script>
+
+
+
+
+}
+

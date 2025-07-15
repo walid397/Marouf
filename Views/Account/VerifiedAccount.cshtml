@@ -1,0 +1,81 @@
+﻿@using  Resources
+@{
+    
+ var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {
+       
+
+    }
+    else
+    {
+
+     
+    }
+
+
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+
+}
+<style>
+
+    .Termcod {
+        background: #ffffff;
+        padding: 22px 20px;
+        box-shadow: -1px 6px 16px rgb(0 0 0 / 10%);
+        border-radius: 10px;
+        margin-top: 28px;
+        padding-top: 0px;
+    }
+ 
+</style>
+
+
+<section>
+
+    <div class="wrapper">
+
+
+        <div class="">
+
+
+            <div class="container ">
+
+
+                <div class="Termcod wow animated fadeIn" data-wow-delay="0.8s">
+
+                    <div class="termtem">
+
+                        <h4 class="pt-30 pb-20"></h4>
+                        @Resource.Activateacc
+
+                        @*تم تنشيط حسابك بنجاح يمكنك الان استخدام منصة معروفة*@
+
+                    </div>
+
+
+
+
+                </div>
+
+
+                <div class="row mt-5">
+                    <div class="borbo col-md-12 m-2">
+                        <a href="#" onclick="history.back()" class="backbuton">@Resource.Back </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+</section>

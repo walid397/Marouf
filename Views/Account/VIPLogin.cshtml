@@ -1,0 +1,92 @@
+﻿@using Marofh.Models
+@model LoginViewModel
+@using  Resources
+
+@{
+     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {
+       
+        ViewBag.Title = "Login";
+    }
+    else
+    {
+        ViewBag.Title = "تسجيل الدخول";
+     
+    }
+
+
+    
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+}
+
+
+    <div class="login-register-section section bg_color--5 pb-120 pb-lg-100 pb-md-80 pb-sm-60 pb-xs-50">
+        <div class="container mt-20">
+            <div class="row no-gutters align-items-center d-flex jusc">
+
+                <div class="col-lg-5">
+                    <div class="login-register-form-area">
+                        <div class="login-tab-menu">
+                            <ul class="nav">
+                                <li>
+                                    <a class="active show" data-toggle="tab" href="#login">
+                                        @*سجل الدخول لحسابك في المنصة*@
+                                        @Resource.Logintoyouraccountontheplatform
+                                    </a>
+                                </li>
+                                @*<li><a data-toggle="tab" href="#register">حساب جديد</a></li>*@
+                            </ul>
+                        </div>
+                        <div class="tab-content">
+                            @using (Html.BeginForm("VIPLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div id="login" class="tab-pane fade show active">
+                                    <div class="login-register-form">
+                                        @*<p>سجل الدخول لحسابك في الموقع</p>*@
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="single-input">
+                                                    <input type="text" placeholder="@Resource.UserName" name="UserName">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="single-input">
+                                                    <input type="password" placeholder="@Resource.Password  " name="Password">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="checkbox-input">
+                                                    <input type="checkbox" name="login-form-remember" id="login-form-remember">
+                                                    <label for="login-form-remember">@Resource.RememberMeNextTime </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 mb-25"><button class="ht-btn">  @Resource.Login</button></div>
+                                        </div>
+
+                                        @*<div class="divider">
+                        <span class="line"></span>
+                        <span class="circle">او دخول عن طريق</span>
+                    </div>
+                    <div class="social-login">
+                        <ul class="social-icon">
+                            <li><a class="facebook" href="#"><i class="fab fa-facebook"></i></a></li>
+                            <li><a class="twitter" href="#"><i class="fab fa-twitter"></i></a></li>
+                            <li><a class="linkedin" href="#"><i class="fab fa-linkedin"></i></a></li>
+                            <li><a class="google" href="#"><i class="fab fa-google"></i></a></li>
+                        </ul>
+                    </div>*@
+                                    </div>
+                                </div>
+                            }
+                            </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>

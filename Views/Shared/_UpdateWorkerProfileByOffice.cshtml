@@ -1,0 +1,435 @@
+﻿@model  AspNetUser
+@using Resources
+@{ 
+     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+}
+
+
+
+
+@using (Html.BeginForm("UpdateProfile", "Worker", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "FormUpdateProfile", name = "FormUpdateProfile" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- form -->
+<div class="row">
+    <div class="col-12">
+        <h2 class="form__title">
+            <i class="fad fa-user-circle"></i>
+         @Resource.PersonalInformation   
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+        </h2>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div class="form__group">
+            <label for="firstname" class="form__label">@Resource.FirstName  </label>
+            <input name="FName" id="FName" type="text" class="form__input" placeholder="@Resource.FirstName" value="@Model.FName">
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-4">
+        <div class="form__group">
+            <label for="lastname" class="form__label">@Resource.LastName  </label>
+            <input name="LName" id="LName" type="text" class="form__input" placeholder="@Resource.LastName" value="@Model.LName">
+        </div>
+    </div>
+
+
+
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="lastname" class="form__label">  @Resource.BirthDate </label>
+            @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form__input", type = "date", max = "2000-01-01", onchange="getAgeByYears();"})
+
+        </div>
+    </div>
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="category" class="form__label"> @Resource.Sex </label>
+            <div class="form__select-wrap">
+                <select name="Gender" id="Gender" class="form__select">
+                    @if (Convert.ToBoolean(Model.Gender))
+                    {
+                        <option value="True" selected>@Resource.Male </option>
+                        <option value="False">@Resource.Female </option>
+
+
+                    }
+                    else
+                    {
+                <option value="True">@Resource.Male</option>
+                        <option value="False" selected>@Resource.Female</option>
+                    }
+
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-4 ">
+        <div class="form__group">
+            <label for="category" class="form__label">@Resource.Job </label>
+            <div class="form__select-wrap">
+
+                @Html.DropDownList("JobsID", null, Resource.Job, htmlAttributes: new { @class = "form-control ", @onchange = "GetNationalitiesByJobIDAndGenderID(this.value,'FormUpdateProfile');" })
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="location" class="form__label">@Resource.Nationality </label>
+            @Html.DropDownList("NationalityID", ViewBag.NationalityID as List<SelectListItem>, Resource.ChooseNationality, htmlAttributes: new { required = "required", @class = "form-control form__select select2"})
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form__group">
+            <label for="location" class="form__label">@Resource.Country </label>
+            @Html.DropDownList("CountryID", null, Resource.Country, htmlAttributes: new { @class = "form-control ", @onchange = "GetCitiesByCountryID(this.value,'FormUpdateProfile');" })
+
+
+        </div>
+    </div>
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="lang" class="form__label">@Resource.City </label>
+            <div class="form__select-wrap">
+
+                @Html.DropDownList("CityID", null, htmlAttributes: new { @class = "form-control form__select" })
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="type" class="form__label">@Resource.Religion </label>
+            <div class="form__select-wrap">
+                <select name="Religion" id="Religion" class="form__select">
+                    @if (culture.Contains("en-us"))
+                    {
+                        if (Model.Religion == "Muslim")
+                        {
+                    <option value="Muslim" selected>Muslim </option>
+                    <option value="Not">Not</option>
+                        }
+
+                        else
+                        {
+                <option value="Muslim">Muslim </option>
+                <option value="Not" selected>Not</option>
+                        }
+
+                    }
+                    else
+                    {
+                       if (Model.Religion == "مسلم")
+                        {
+                            <option value="مسلم" selected>مسلم </option>
+                            <option value="غير">غير</option>
+                        }
+
+                        else
+                        {
+                            <option value="مسلم">مسلم </option>
+                            <option value="غير" selected>غير</option>
+                        }
+
+                    }
+
+
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="level" class="form__label">  @Resource.Noofchildren </label>
+            <div class="form__select-wrap">
+                <select name="ChildernsCount" id="ChildernsCount" class="form__select">
+                    @if (Model.ChildernsCount == 0)
+                    {
+
+
+                        <option value="0" selected>@Resource.None </option>
+
+                    }
+                    else
+                    {
+                        <option value="0">@Resource.None</option>
+
+                    }
+                    @for (int i = 1; i < 8; i++)
+                    {
+
+                        if (i == Model.ChildernsCount)
+                        {
+                            <option value="@i" selected>@i</option>
+
+                        }
+                        else
+                        {
+                            <option value="@i">@i</option>
+
+                        }
+                    }
+
+
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="col-4">
+        <div class="form__group">
+            <label for="location" class="form__label"> @Resource.Age</label>
+
+
+            <input name="Age" id="Age" type="number" min="0" class="form__input " placeholder="@Resource.Age" value="@Model.Age">
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form__group">
+            <label for="location" class="form__label">   @Resource.YearsofExperience</label>
+
+
+            <input name="ExperienceYearsCount" id="ExperienceYearsCount" min="0" type="number" class="form__input " placeholder="@Resource.YearsofExperience " value="@Model.ExperienceYearsCount">
+
+
+        </div>
+    </div>
+
+    <div class="col-4 selectcss">
+        <div class="form__group">
+            <label for="lang" class="form__label">@Resource.SocialStatus </label>
+            <select class="" name="MaritalStatus" id="MaritalStatus">
+                @if (Model.MaritalStatus == Resource.Single)
+                {
+                <option value="@Resource.Single" selected>@Resource.Single</option>
+                    <option value="@Resource.Married">@Resource.Married</option>
+                    <option value="@Resource.Divorced">@Resource.Divorced</option>
+                }
+                else if (Model.MaritalStatus == Resource.Married)
+                {
+            <option value="@Resource.Single">@Resource.Single</option>
+            <option value="@Resource.Married" selected>@Resource.Married</option>
+            <option value="@Resource.Divorced">@Resource.Divorced</option>
+                }
+                else
+                {
+            <option value="@Resource.Single">@Resource.Single</option>
+            <option value="@Resource.Married">@Resource.Married</option>
+            <option value="@Resource.Divorced" selected> @Resource.Divorced</option>
+                }
+
+            </select>
+
+        </div>
+    </div>
+
+    <div class="col-4 selectcss">
+        <div class="form__group">
+            <label for="lang" class="form__label">  @Resource.BirthPlace </label>
+            @Html.DropDownList("BirthCountryID", null, Resource.Country, htmlAttributes: new { @class = "form-control " })
+
+
+        </div>
+    </div>
+
+
+    <div class="col-4">
+        <div class="form__group">
+            <label for="location" class="form__label">    @Resource.Weightkg </label>
+
+
+            <input name="Weight" id="Weight" type="number" min="0" class="form__input " placeholder="@Resource.TheWeight" value="@Model.Weight">
+
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="form__group">
+            <label for="location" class="form__label"> @Resource.lengthCm </label>
+
+
+            <input name="Height" id="Height" type="number" min="0" class="form__input " placeholder="@Resource.Length" value="@Model.Height">
+
+
+        </div>
+    </div>
+
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="level" class="form__label">  @Resource.RoomSharing </label>
+            <div class="form__select-wrap">
+                <select name="IsRoomShared" id="IsRoomShared" class="form__select">
+                    <option value="True">@Resource.Yes </option>
+                    <option value="False"> @Resource.No </option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="level" class="form__label">  @Resource.RecruitmentAmount</label>
+            <input name="RequestAmount" id="RequestAmount" type="number" class="form__input "  min="0" placeholder="@Resource.RecruitmentAmount" value="@Model.RequestAmount">
+
+        </div>
+    </div>
+    @*<div class="col-12">
+            <div class="form__group">
+                <label for="skills" class="form__label">المهارات:</label>
+
+                <select id="SkillsID" name="SkillsID" multiple="multiple" class="form-control" style="width:100% !important">
+                    @foreach (Skill item in Marofh.Models.ViewModel.GetAllSkills())
+                    {
+                        <option value="@item.ID">@item.NameAR</option>
+                    }
+
+                </select>
+
+            </div>
+        </div>*@
+
+    <div class="col-12">
+        <button class="btn form__btn" type="submit">
+            <span>
+                <span class="fa fa-save"></span>
+                  @Resource.SaveChanges
+            </span>
+        </button>
+
+    </div>
+</div>
+    <!-- end form -->
+
+
+
+
+    <script>
+
+
+        $(function () {
+            $("#btn").click(function () {
+                var obj = [],
+                    items = '';
+                $('.SkillsID option:selected').each(function (i) {
+                    obj.push($(this).val());
+                    $('.SkillsID')[0].sumo.unSelectItem(i);
+                });
+
+
+
+                // send select ittems to controlelr
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    url: '@Url.Action("UpdateProfile", "Worker")',
+                    data: JSON.stringify(obj)
+                });
+
+            });
+
+
+        })
+
+
+
+        function GetCitiesByCountryID(_countryId, _formName) {
+            var procemessage = "<option value='0'> @Resource.ChooseCity  </option>";
+            $("#" + _formName + " " + "#CityID").html(procemessage).show();
+            var url = "/Cities/GetCitiesByCountryID/";
+            $.ajax({
+                url: url,
+                data: { countryId: _countryId },
+
+                cache: false,
+                type: "POST",
+                success: function (data) {
+
+                    var markup = "<option value='0'> @Resource.ChooseCity</option>";
+                    for (var x = 0; x < data.length; x++) {
+                        markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                    }
+                    $("#" + _formName + " " + "#CityID").html(markup).show();
+
+
+
+                },
+                error: function (reponse) {
+                    if (CityID > 0) {
+                        alert("error : " + reponse);
+                    }
+                }
+            });
+
+        }
+
+        function GetNationalitiesByJobIDAndGenderID(_jobId, _formName) {
+            var procemessage = "<option value='0'>@Resource.ChooseNationality  </option>";
+            $("#" + _formName + " " + "#NationalityID").html(procemessage).show();
+            var url = "/Worker/GetNationalitiesByJobIDAndGenderID/";
+            var _gender = $("#" + _formName + " " + "#Gender").val();
+
+            $.ajax({
+                url: url,
+                data: { jobId: _jobId, gender: _gender },
+
+                cache: false,
+                type: "POST",
+                success: function (data) {
+
+                    var markup = "<option value='0'>  @Resource.ChooseNationality</option>";
+                    for (var x = 0; x < data.length; x++) {
+                        markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                    }
+                    $("#" + _formName + " " + "#NationalityID").html(markup).show();
+
+
+
+                },
+                error: function (reponse) {
+                    if (NationalityID > 0) {
+                        alert("error : " + reponse);
+                    }
+                }
+            });
+
+        }
+
+
+
+        function getAgeByYears() {
+      
+            var date = $("#DOB").val();
+            var year = new Date(date).getFullYear();
+            var today = new Date();
+            var age = today.getFullYear() - year;
+            $("#Age").val(age);
+        }
+    </script>
+}

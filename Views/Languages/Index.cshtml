@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Marofh.Language>
+
+@{
+    ViewBag.Title = "متابعة اللغات ";
+    ViewBag.Parent = "اللغات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<p>
+    @Html.ActionLink("إضافة لغة جديدة", "Create", new { @class = "btn btn-default" })
+</p>
+
+<table class="table display responsive nowrap">
+    <thead>
+        <tr>
+            <th>
+                الاسم باللغة العربية
+            </th>
+            <th>
+                الاسم باللغة الانجليزية
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameAR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameEN)
+            </td>
+
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>

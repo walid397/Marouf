@@ -1,0 +1,582 @@
+﻿@model Marofh.Models.RegisterViewModel
+@using Resources
+
+@{ 
+     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {       
+         ViewBag.Title = "Create New Account";
+    }
+    else
+    {
+      ViewBag.Title = "انشاء مستخدم جديد";
+    }
+}
+
+@{
+   
+    ViewBag.Parent = "المستخدمين";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+}
+
+
+
+@using (Html.BeginForm("Register", "Office", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <section>
+
+        <div class="wrapper">
+            <div class="wizard-content-1 pos-flex clearfix">
+                <div class="steps d-inline-block clearfix">
+                    <span class="bg-shape"></span>
+                    <ul class="tablist multisteps-form__progress">
+                        <li class="multisteps-form__progress-btn">
+                            <div class="step-btn-icon-text">
+                                <span>1</span>
+                                <div class="step-btn-icon float-right position-relative">
+                                    <i class="fal fa-user-circle iconifo"></i>
+
+                                </div>
+                                <div class="step-btn-text">
+                                    <h2 class="text-uppercase">  @Resource.AccountType</h2>
+                                    <span class="text-capitalize"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="multisteps-form__progress-btn js-active current">
+                            <div class="step-btn-icon-text">
+                                <span>2</span>
+                                <div class="step-btn-icon float-right position-relative">
+
+
+                                    <i class="fal fa-address-card iconifo"></i>
+                                </div>
+                                <div class="step-btn-text">
+                                    <h2 class="text-uppercase">@Resource.CompletingData   </h2>
+                                    <span class="text-capitalize"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="multisteps-form__progress-btn">
+                            <div class="step-btn-icon-text">
+                                <span>3</span>
+                                <div class="step-btn-icon float-right position-relative">
+
+                                    <i class="far fa-check-circle iconifo"></i>
+                                </div>
+                                <div class="step-btn-text">
+                                    <h2 class="text-uppercase"> @Resource.RegistrationIsDone </h2>
+                                    <span class="text-capitalize"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="step-inner-content clearfix position-relative">
+                    <span class="bg-shape"></span>
+                    <div class="multisteps-form__form" id="wizard">
+                        <div class="form-area position-relative">
+                            <div class="multisteps-form__panel" data-animation="scaleIn">
+                                <div class="wizard-forms position-relative">
+                                    <span class="step-no position-absolute"> @Resource.FirstStep  </span>
+                                    <div class="wizard-progress">
+                                        <span>  @Resource.Stage1of3  </span>
+                                        <div class="progress">
+                                            <div class="progress-bar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-inner-box">
+                                        <div class="inner-title text-center mb-50">
+                                            <h2>   @Resource.SelectAccountType</h2>
+                                            <p>    @Resource.Choosethetypeofaccountyouwanttoopen </p>
+                                        </div>
+
+
+
+                                        <div class="acounttyupe text-center">
+
+
+
+                                            <label class="need-job-icon-text text-center">
+                                                <input type="radio" name="job_title" value="Ux designer label" class="j-checkbox">
+                                                <span class="need-job-text-inner">
+                                                    <span class="checkbox-circle-mark position-absolute"> </span>
+                                                    <span class="need-job-icon">
+                                                        <img src="/Content/front/assets/img/imagenew/n.jpg" />
+                                                    </span>
+                                                    <span class="need-job-text">
+                                                        <span class="text-uppercase need-job-title">  @Resource.BusinessOwner</span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                            <label class="need-job-icon-text text-center">
+                                                <input type="radio" name="job_title" value="Front Developer" class="j-checkbox">
+                                                <span class="need-job-text-inner">
+                                                    <span class="checkbox-circle-mark position-absolute"> </span>
+                                                    <span class="need-job-icon">
+
+                                                        <img src="/Content/front/assets/img/imagenew/office.jpg" />
+                                                    </span>
+                                                    <span class="need-job-text">
+                                                        <span class="text-uppercase need-job-title">  @Resource.RecruitingOffice</span>
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <ul>
+                                            <li><span class="js-btn-next" title="NEXT">@Resource.Next </span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="bottom-vector position-absolute">
+                                </div>
+                            </div>
+                            <!-- step 1 -->
+                            <div class="multisteps-form__panel  js-active" data-animation="scaleIn">
+                                <div class="wizard-forms form-step-2">
+                                    <span class="step-no position-absolute"> @Resource.SecondStep </span>
+                                    <div class="wizard-progress">
+                                        <span>  @Resource.Stage2of3 </span>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 66%;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-inner-box ">
+                                        <div class="inner-title text-center">
+                                            <h2>    @Resource.Recruitmentofficedata</h2>
+                                            <p>   @Resource.CompleteYourAccountInformation </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="container ">
+                                        <!--<div class="radio-tile-group">
+
+                                            <div class="input-container">
+                                                <input id="male" class="radio-button" type="radio" name="gender" />
+                                                <div class="radio-tile">
+                                                    <div class="icon">
+                                                        <i class="fas fa-male"></i>
+                                                    </div>
+                                                    <label for="male" class="radio-tile-label">ذكر</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="input-container">
+                                                <input id="female" class="radio-button" type="radio" name="gender" />
+                                                <div class="radio-tile">
+                                                    <div class="icon">
+                                                        <i class="fas fa-female"></i>
+                                                    </div>
+                                                    <label for="female" class="radio-tile-label">انثي</label>
+                                                </div>
+                                            </div>
+                                        </div>-->
+                                    </div>
+                                    <div class="details-form-area">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="text" name="OfficeName" id="OfficeName" placeholder="@Resource.OfficeName" class="form-control" required onkeyup="return validateUniqueValues(this)">
+                                                    <label>@Resource.OfficeName  </label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input  name="HRLicenseNo" id="HRLicenseNo" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" style="text-align: right; margin-right: 25px;"  placeholder="@Resource.licenseNumberofMinistryofHumanResourcesandSocialDevelopment" class="form-control">
+                                                    <label>@Resource.licenseNumberofMinistryofHumanResourcesandSocialDevelopment</label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative ">
+                                                    <input type="text" data-date-format="dd/mm/yyyy" placeholder="@Resource.LicenseExpiryDate" class="datepicker" name="HRLicenseExpiryDate" id="HRLicenseExpiryDate">
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-calendar-alt"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input  name="CommercialRegisterNO" id="CommercialRegisterNO" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" style="text-align: right; margin-right: 25px;"  placeholder="@Resource.CommercialRegistrationNo" class="form-control">
+                                                    <label>@Resource.CommercialRegistrationNo</label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="text" data-date-format="dd/mm/yyyy" placeholder="@Resource.CommercialRegistrationExpiryDate" class="datepicker" name="CommercialRegisterExpirationDate" id="CommercialRegisterExpirationDate">
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-calendar-alt"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="number"  id="PhoneNumber" name="PhoneNumber" placeholder="@Resource.UnifiedPhoneNumber " class="form-control"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" style="text-align: right; margin-right: 25px;" >
+                                                    <!--<label>رقم الهاتف</label>-->
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-phone"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner select-option-area position-relative">
+                                                    @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,Resource.Country, htmlAttributes: new { required = "required", oninvalid = "this.setCustomValidity(' الدولة ')", oninput = "setCustomValidity('')", @class = "form-control", @onfocus = "this.size = 10; this.width = 100%; ", @onblur = "this.size = 1; ", @onchange = "this.size = 1; this.blur();   " })
+
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-flag-checkered"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner select-option-area position-relative">
+                                                    @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,Resource.ChooseCity, htmlAttributes: new { required = "required", oninvalid = "this.setCustomValidity(' المدينة ')", oninput = "setCustomValidity('')", @class = "form-control", @onfocus = "this.size = 10; this.width = 100%; ", @onblur = "this.size = 1; ", @onchange = "this.size = 1; this.blur();" })
+
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-handshake"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="email" name="Email" id="Email" placeholder="@Resource.OfficeEmail" class="form-control">
+                                                    <label>@Resource.Email </label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-envelope"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="text" name="FName" id="FName" placeholder="@Resource.Thefirstnameofthemanagerorofficeowner" class="form-control" required>
+                                                    <label>@Resource.Thefirstnameofthemanagerorofficeowner</label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="text" name="LName" id="LName" placeholder="@Resource.Thelastnameoftheowner" class="form-control">
+                                                    <label> @Resource.Thelastnameoftheowner</label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input  name="NID" id="NID" type="number" pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" style="text-align: right; margin-right: 25px;"  placeholder="@Resource.IdentificationNumber" class="form-control">
+                                                    <label> @Resource.OfficeownerIDnumber</label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="number"  id="Mobile" name="Mobile"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" style="text-align: right; margin-right: 25px;"  placeholder="@Resource.ManagerMobileNumber " class="form-control">
+
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-phone"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="text" name="EmployeeFName" id="EmployeeFName" placeholder="@Resource.Employeefirstname" class="form-control" required>
+                                                    <label>@Resource.Employeefirstname </label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="text" name="EmployeeLName" id="EmployeeLName" placeholder="@Resource.EmployeeLastname " class="form-control">
+                                                    <label> @Resource.EmployeeLastname  </label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-user"></i>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="email" name="EmployeeEmail" id="EmployeeEmail" placeholder="@Resource.EmployeeEmail" class="form-control" required >
+                                                    <label>  @Resource.EmployeeEmail</label>
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-envelope"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="number"   pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" style="text-align: right; margin-right: 25px;"  name="EmployeeMobile" id="EmployeeMobile" placeholder="@Resource.EmployeePhoneNumber" class="form-control">
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fas fa-phone"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="form-input-inner position-relative has-float-label">
+                                                    <input type="number"  pattern="/^-?\d+\.?\d*$/" onKeyPress="if(this.value.length==10) return false;" style="text-align: right; margin-right: 25px;"  id="WhatsAppNo" name="WhatsAppNo" placeholder="@Resource.WhatAppNo" class="form-control">
+                                                    <div class="icon-bg text-center">
+                                                        <i class="fab fa-whatsapp"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <div class="input-filed-innerbox">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="row">
+
+                                                            <div class="col-lg-6">
+                                                                <div class="form-input-inner position-relative has-float-label">
+                                                                    <span toggle="#Password" class="fa fa-fw fa-eye field-icon toggle-password toggle-password4"></span>
+
+                                                                    <input placeholder="  @Resource.Password" id="Password" type="password" class="form-control" name="Password">
+                                                                    <label>  @Resource.Password</label>
+                                                                    <div class="icon-bg text-center">
+                                                                        <i class="fas fa-lock-alt"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-lg-6">
+                                                                <div class="form-input-inner position-relative has-float-label">
+                                                                    <span toggle="#ConfirmPassword" class="fa fa-fw fa-eye field-icon toggle-password toggle-password6"></span>
+
+                                                                    <input placeholder="@Resource.Password" id="ConfirmPassword" type="password" class="form-control" name="ConfirmPassword">
+                                                                    <label>  @Resource.Password</label>
+                                                                    <div class="icon-bg text-center">
+                                                                        <i class="fas fa-lock-alt"></i>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="agreec">
+                                            <input class="inp-cbx" id="cbx" type="checkbox" style="display: none;" />
+                                            <label class="cbx" for="cbx">
+                                                <span>
+                                                    <svg width="12px" height="9px" viewbox="0 0 12 9">
+                                                        <polyline points="1 5 4 8 11 1"></polyline>
+                                                    </svg>
+                                                </span><span>
+                                                    &nbsp;
+                                                    @*أوافق على كافة*@
+                                                @Resource.IagreeandAccept
+
+                                                    <a href="/pages/details/4" class="conditions-link" target="_blank"> @*الشروط والاحكام*@  @Resource.TermsandConditions</a>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="actions">
+                                    
+                                    <ul>
+                                        <li><a href="/account/register"><span class="js-btn-prev" title="BACK"> @Resource.Previous </span></a></li>
+                                        <li><button type="submit" name="submit"><span class="js-btn-next " title="NEXT">   @Resource.Register</span></button></li>
+                                    </ul>
+                                </div>
+                                <div class="bottom-vector position-absolute">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- step 2 -->
+                        <div class="multisteps-form__panel" data-animation="scaleIn">
+                            <div class="wizard-forms form-step-3">
+                                <span class="step-no position-absolute"> @Resource.Step3  </span>
+                                <div class="wizard-progress">
+                                    <span>    @Resource.Stage3of3</span>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 100%;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wizard-inner-box">
+                                    <div class="thank-content text-center">
+                                        <div class="thank-img">
+                                            <img src="/Content/front/assets/img/th1.png" alt="">
+                                        </div>
+                                        <div class="thank-text">
+                                            <h2>@Resource.ThankYouforregisteringInthesite    </h2>
+                                            <p>@ViewBag.Result</p>
+                                        </div>
+
+                                        <div class="thank-btn text-uppercase">
+                                            <a href="/home/"> @Resource.BackToHome  </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- step 3 -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+@section Scripts{
+    <script src="~/Scripts/conutrywithflags/build/js/intlTelInput.js"></script>
+
+    <script>
+            var input = document.querySelector("#PhoneNumber");
+        window.intlTelInput(input, {
+            onlyCountries: ['sa'],
+            utilsScript: "Scripts/conutrywithflags/build/js/utils.js",
+        });
+            var input = document.querySelector("#Mobile");
+                window.intlTelInput(input, {
+                    onlyCountries: ['sa'],
+                    utilsScript: "Scripts/conutrywithflags/build/js/utils.js",
+                });
+
+            var input = document.querySelector("#EmployeeMobile");
+                window.intlTelInput(input, {
+                    onlyCountries: ['sa'],
+                    utilsScript: "Scripts/conutrywithflags/build/js/utils.js",
+                });
+
+            var input = document.querySelector("#WhatsAppNo");
+                window.intlTelInput(input, {
+                    onlyCountries: ['sa'],
+                    utilsScript: "Scripts/conutrywithflags/build/js/utils.js",
+                });
+
+
+    $(".toggle-password").click(function () {
+
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+    input.attr("type", "text");
+    } else {
+    input.attr("type", "password");
+    }
+    });
+
+
+    $(".toggle-password2").click(function () {
+
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+    input.attr("type", "text");
+    } else {
+    input.attr("type", "password");
+    }
+    });
+
+        function validateUniqueValues(input) {
+            
+            var input = $(input);
+                $.ajax({
+                    url: '@Url.Action("ValidateUniqueValues", "Office")',
+                    type: "POST",
+                    data: '{id: "' + input.id + '" , value: "' + input.value + '" }',// user name value
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: OnSuccessed,
+                    failure: function (response) {
+                        alert(response);
+                    }
+                });
+        
+        }
+
+        function OnSuccessed(response) {
+
+            switch (response) {
+
+                case "AddedToFavoriteList":
+                    //   alert('تم اضافة العامل الى القائمة المفضلة');
+             Swal.fire("@Resource.Done", "@Resource.WorkerAddedToFavoriteList", "success");
+                    break;
+
+
+                case "AlreadyExistedInFavoriteList":
+                    //  alert('هذا العامل موجود بالفعل فى القائمة المفضلة');
+                  Swal.fire("@Resource.Warning", "@Resource.ThisWorkerisalreadyinFavoritelist", "info");
+                    break;
+
+                //ارسال الطالبات
+                case "ResquestHasBeenSent":
+                    // alert('تم إرسال طلبك الى مكتب الاستقدام بنجاح');
+                      Swal.fire("@Resource.Done", "@Resource.YourRequestHasbeensuccessfullySentandtheofficewillcontactyouassoonaspossible", "success");
+                    window.location.href = "/kafil/"
+                    break;
+
+
+                case "SentBefore":
+                    // alert('تم ارسال الطلب مسبقا');
+                     Swal.fire("@Resource.Warning", "@Resource.TheRequestHasalreadyBeenSent", "info");
+                    break;
+
+                case "Exception":
+                    alert('حدث خطأ ما');
+                    break;
+
+            }
+        }
+
+
+
+    ($("#select2-CountryID-container").text("@Resource.ChooseCountry"));
+    ($("#select2-CityID-container").text("@Resource.ChooseCity"));
+
+ //   alert($("#select2-CountryID-container").text("Country"));
+
+    </script>
+} 

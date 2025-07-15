@@ -1,0 +1,24 @@
+﻿@model Marofh.Language
+
+@{
+    ViewBag.Title = "حذف للغة ";
+    ViewBag.Parent = "اللغات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="delete-page">
+    <h3>سوف يتم  حذف احدى الغات  :    <span style="color:red;font-weight:bold;">"@Model.NameAR"</span> هل انت متأكد من ذلك؟</h3>
+
+
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="تأكيد الحذف" class="btn btn-default" /> |
+            @Html.ActionLink("العودة صفحة عرض الكل", "Index", new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

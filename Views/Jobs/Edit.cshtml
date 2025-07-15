@@ -1,0 +1,51 @@
+﻿@model Marofh.Job
+
+
+@{
+    ViewBag.Title = "تعديل وظيفة ";
+    ViewBag.Parent = "الوظائف";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ID)
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.NameAR, " الاسم باللغة العربية", htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.NameAR, "حقل اجبارى", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.NameEN, " الاسم باللغة الانجليزية", htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameEN, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                @Html.ValidationMessageFor(model => model.NameEN, "حقل اجبارى", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="حفظ التعديلات" class="btn btn-default" />
+                @Html.ActionLink("عرض الكل", "Index", new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+    <style>
+        textarea {
+            font-family: inherit;
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+}
+

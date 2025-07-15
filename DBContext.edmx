@@ -1,0 +1,3376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ShortID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="FName" Type="nvarchar" MaxLength="256" />
+          <Property Name="LName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" />
+          <Property Name="NationalityID" Type="int" />
+          <Property Name="WhatsAppNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="HRLicenseNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="HRLicenseExpiryDate" Type="date" />
+          <Property Name="OfficeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OfficeAddress" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmployeeFName" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmployeeLName" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmployeeEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmployeeMobile" Type="nvarchar" MaxLength="20" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" />
+          <Property Name="RoleID" Type="int" />
+          <Property Name="CommercialRegisterNO" Type="nvarchar" MaxLength="20" />
+          <Property Name="CommercialRegisterExpirationDate" Type="date" />
+          <Property Name="LicenseNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="LicenseNoExpirationDate" Type="date" />
+          <Property Name="Gender" Type="bit" />
+          <Property Name="DOB" Type="date" />
+          <Property Name="BirthCountryID" Type="int" />
+          <Property Name="JobsID" Type="int" />
+          <Property Name="ChildernsCount" Type="int" />
+          <Property Name="ExperienceYearsCount" Type="int" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Religion" Type="nvarchar" MaxLength="10" />
+          <Property Name="MaritalStatus" Type="nvarchar" MaxLength="10" />
+          <Property Name="HasDrivingLicense" Type="bit" />
+          <Property Name="Age" Type="int" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Height" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="IsRoomShared" Type="bit" />
+          <Property Name="PassportNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="PassportRealseDate" Type="date" />
+          <Property Name="PassportExpirationDate" Type="date" />
+          <Property Name="PassportRealseCountryID" Type="int" />
+          <Property Name="VideoUrl" Type="nvarchar(max)" />
+          <Property Name="Brief" Type="nvarchar(max)" />
+          <Property Name="LastLoggedInDate" Type="date" />
+          <Property Name="ViewCount" Type="int" />
+          <Property Name="ContractUrl" Type="nvarchar(max)" />
+          <Property Name="IsVerifed" Type="bit" />
+          <Property Name="RequestAmount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="District" Type="nvarchar" MaxLength="250" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="NID" Type="nvarchar" MaxLength="10" />
+          <Property Name="IsBlocked" Type="bit" Nullable="false" />
+          <Property Name="IsActivated" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Attachment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OwnershipTransferID" Type="int" Nullable="false" />
+          <Property Name="FileTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BlokedUsers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="KafilID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Branches">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="15" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityID" Type="int" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryID" Type="int" Nullable="false" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Facebook" Type="nvarchar(max)" />
+          <Property Name="Twitter" Type="nvarchar(max)" />
+          <Property Name="Youtube" Type="nvarchar(max)" />
+          <Property Name="LinkedIn" Type="nvarchar(max)" />
+          <Property Name="Instagram" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" />
+          <Property Name="MAP" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ContactUsMessages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="From" Type="nvarchar" MaxLength="50" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsGulf" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="500" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="500" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Longitude" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionAR" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="QuestionEN" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="AnswerAR" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AnswerEN" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FavoriteList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KafilID" Type="nvarchar" MaxLength="128" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gallery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jobs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="OperatorID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="MailID" Type="int" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="FileUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IsSubscribed" Type="bit" />
+        </EntityType>
+        <EntityType Name="Notifications">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" />
+          <Property Name="KafilID" Type="nvarchar" MaxLength="128" />
+          <Property Name="AdminID" Type="nvarchar" MaxLength="128" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+          <Property Name="RequestID" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="20" />
+          <Property Name="Date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OfficeDocuments">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="FileUrl" Type="nvarchar(max)" />
+          <Property Name="Date" Type="date" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="OfficeServices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DescriptionAR" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DescriptionEN" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReportedWorkers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="KafilID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ReportDate" Type="date" Nullable="false" />
+          <Property Name="HasFakeData" Type="bit" Nullable="false" />
+          <Property Name="HasInappropriateImages" Type="bit" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherReason" Type="bit" />
+          <Property Name="Notes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DescriptionAR" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DescriptionEN" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExpiryDuration" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skills">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameAR" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="NameEN" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserFamily">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="RealationshipTypeID" Type="int" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkerCertificates">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="University" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="From" Type="date" />
+          <Property Name="To" Type="date" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityID" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkerCourses">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="CenterName" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="WorkerExpertises">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="KafilName" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="From" Type="date" />
+          <Property Name="To" Type="date" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityID" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkerLanguages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LanguageID" Type="int" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="Level" Type="nvarchar" MaxLength="10" />
+          <Property Name="Method" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="WorkerRequests">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KafilID" Type="nvarchar" MaxLength="128" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="OfficeID" Type="nvarchar" MaxLength="128" />
+          <Property Name="RequestStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="RequestDate" Type="date" />
+          <Property Name="Balance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PaidStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaidDate" Type="date" />
+          <Property Name="RefundDate" Type="date" />
+          <Property Name="ReceiptUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="WorkerSkills">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+          <Property Name="SkillID" Type="int" />
+          <Property Name="Level" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="WorkerWorkingPlaces">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <Association Name="FK_AspNetUsers_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="AspNetUsers1" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsers1">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Country1">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="BirthCountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Country2">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="PassportRealseCountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Jobs">
+          <End Role="Jobs" Type="Self.Jobs" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobs">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="JobsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Nationality">
+          <End Role="Nationality" Type="Self.Nationality" Multiplicity="0..1" />
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationality">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="NationalityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attachment_FileType">
+          <End Role="FileType" Type="Self.FileType" Multiplicity="1" />
+          <End Role="Attachment" Type="Self.Attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attachment">
+              <PropertyRef Name="FileTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlokedUsers_AspNetUsers_KafilID">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="BlokedUsers" Type="Self.BlokedUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlokedUsers">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlokedUsers_AspNetUsers_OfficeID">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="BlokedUsers" Type="Self.BlokedUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlokedUsers">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branches_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Branches" Type="Self.Branches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Branches">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branches_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Branches" Type="Self.Branches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branches">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branches_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="Branches" Type="Self.Branches" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branches">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="City" Type="Self.City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="District" Type="Self.District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavoriteList_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="FavoriteList" Type="Self.FavoriteList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FavoriteList">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavoriteList_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="FavoriteList" Type="Self.FavoriteList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FavoriteList">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gallery_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gallery">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KafilWorkers_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="WorkerRequests" Type="Self.WorkerRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerRequests">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KafilWorkers_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="WorkerRequests" Type="Self.WorkerRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerRequests">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KafilWorkers_AspNetUsers2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="WorkerRequests" Type="Self.WorkerRequests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerRequests">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mail_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Mail" Type="Self.Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mail_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Mail" Type="Self.Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="OperatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mail_Mail">
+          <End Role="Mail" Type="Self.Mail" Multiplicity="0..1" />
+          <End Role="Mail1" Type="Self.Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mail">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mail1">
+              <PropertyRef Name="MailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_AspNetUsers2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_WorkerRequests">
+          <End Role="WorkerRequests" Type="Self.WorkerRequests" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerRequests">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notifications">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeDocuments_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="OfficeDocuments" Type="Self.OfficeDocuments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OfficeDocuments">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeServices_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="OfficeServices" Type="Self.OfficeServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OfficeServices">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedWorkers_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReportedWorkers" Type="Self.ReportedWorkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportedWorkers">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedWorkers_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ReportedWorkers" Type="Self.ReportedWorkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportedWorkers">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedWorkers_AspNetUsers2">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ReportedWorkers" Type="Self.ReportedWorkers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportedWorkers">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserFamily_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="UserFamily" Type="Self.UserFamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserFamily">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCertificates_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerCertificates" Type="Self.WorkerCertificates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerCertificates">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCertificates_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="WorkerCertificates" Type="Self.WorkerCertificates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerCertificates">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCertificates_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="WorkerCertificates" Type="Self.WorkerCertificates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerCertificates">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCourses_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerCourses" Type="Self.WorkerCourses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerCourses">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerExpertises_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerExpertises" Type="Self.WorkerExpertises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerExpertises">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerExpertises_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="WorkerExpertises" Type="Self.WorkerExpertises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerExpertises">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerExpertises_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="WorkerExpertises" Type="Self.WorkerExpertises" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerExpertises">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerLanguages_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerLanguages" Type="Self.WorkerLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerLanguages">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerLanguages_Languages">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerLanguages" Type="Self.WorkerLanguages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerLanguages">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerSkills_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerSkills" Type="Self.WorkerSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerSkills">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerSkills_Skills">
+          <End Role="Skills" Type="Self.Skills" Multiplicity="0..1" />
+          <End Role="WorkerSkills" Type="Self.WorkerSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skills">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerSkills">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerWorkingPlaces_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WorkerWorkingPlaces" Type="Self.WorkerWorkingPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerWorkingPlaces">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerWorkingPlaces_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="WorkerWorkingPlaces" Type="Self.WorkerWorkingPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerWorkingPlaces">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerWorkingPlaces_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="0..1" />
+          <End Role="WorkerWorkingPlaces" Type="Self.WorkerWorkingPlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerWorkingPlaces">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Attachment" EntityType="Self.Attachment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BlokedUsers" EntityType="Self.BlokedUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Branches" EntityType="Self.Branches" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUsMessages" EntityType="Self.ContactUsMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FAQ" EntityType="Self.FAQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FavoriteList" EntityType="Self.FavoriteList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileType" EntityType="Self.FileType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jobs" EntityType="Self.Jobs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mail" EntityType="Self.Mail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nationality" EntityType="Self.Nationality" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NewsLetter" EntityType="Self.NewsLetter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Notifications" EntityType="Self.Notifications" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficeDocuments" EntityType="Self.OfficeDocuments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficeServices" EntityType="Self.OfficeServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Page" EntityType="Self.Page" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReportedWorkers" EntityType="Self.ReportedWorkers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceType" EntityType="Self.ServiceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skills" EntityType="Self.Skills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserFamily" EntityType="Self.UserFamily" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerCertificates" EntityType="Self.WorkerCertificates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerCourses" EntityType="Self.WorkerCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerExpertises" EntityType="Self.WorkerExpertises" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerLanguages" EntityType="Self.WorkerLanguages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerRequests" EntityType="Self.WorkerRequests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerSkills" EntityType="Self.WorkerSkills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkerWorkingPlaces" EntityType="Self.WorkerWorkingPlaces" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AspNetUsers_AspNetUsers" Association="Self.FK_AspNetUsers_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUsers1" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_City" Association="Self.FK_AspNetUsers_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Country" Association="Self.FK_AspNetUsers_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Country1" Association="Self.FK_AspNetUsers_Country1">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Country2" Association="Self.FK_AspNetUsers_Country2">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Jobs" Association="Self.FK_AspNetUsers_Jobs">
+            <End Role="Jobs" EntitySet="Jobs" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Nationality" Association="Self.FK_AspNetUsers_Nationality">
+            <End Role="Nationality" EntitySet="Nationality" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attachment_FileType" Association="Self.FK_Attachment_FileType">
+            <End Role="FileType" EntitySet="FileType" />
+            <End Role="Attachment" EntitySet="Attachment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlokedUsers_AspNetUsers_KafilID" Association="Self.FK_BlokedUsers_AspNetUsers_KafilID">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="BlokedUsers" EntitySet="BlokedUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlokedUsers_AspNetUsers_OfficeID" Association="Self.FK_BlokedUsers_AspNetUsers_OfficeID">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="BlokedUsers" EntitySet="BlokedUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branches_AspNetUsers" Association="Self.FK_Branches_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Branches" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branches_City" Association="Self.FK_Branches_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Branches" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branches_Country" Association="Self.FK_Branches_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Branches" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_Country" Association="Self.FK_City_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="City" EntitySet="City" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_City" Association="Self.FK_District_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="District" EntitySet="District" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavoriteList_AspNetUsers" Association="Self.FK_FavoriteList_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="FavoriteList" EntitySet="FavoriteList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavoriteList_AspNetUsers1" Association="Self.FK_FavoriteList_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="FavoriteList" EntitySet="FavoriteList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gallery_AspNetUsers" Association="Self.FK_Gallery_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Gallery" EntitySet="Gallery" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KafilWorkers_AspNetUsers" Association="Self.FK_KafilWorkers_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerRequests" EntitySet="WorkerRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KafilWorkers_AspNetUsers1" Association="Self.FK_KafilWorkers_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerRequests" EntitySet="WorkerRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KafilWorkers_AspNetUsers2" Association="Self.FK_KafilWorkers_AspNetUsers2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerRequests" EntitySet="WorkerRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_AspNetUsers" Association="Self.FK_Mail_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Mail" EntitySet="Mail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_AspNetUsers1" Association="Self.FK_Mail_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Mail" EntitySet="Mail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_Mail" Association="Self.FK_Mail_Mail">
+            <End Role="Mail" EntitySet="Mail" />
+            <End Role="Mail1" EntitySet="Mail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_AspNetUsers" Association="Self.FK_Notifications_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_AspNetUsers1" Association="Self.FK_Notifications_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_AspNetUsers2" Association="Self.FK_Notifications_AspNetUsers2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_WorkerRequests" Association="Self.FK_Notifications_WorkerRequests">
+            <End Role="WorkerRequests" EntitySet="WorkerRequests" />
+            <End Role="Notifications" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeDocuments_AspNetUsers" Association="Self.FK_OfficeDocuments_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="OfficeDocuments" EntitySet="OfficeDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeServices_AspNetUsers" Association="Self.FK_OfficeServices_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="OfficeServices" EntitySet="OfficeServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedWorkers_AspNetUsers" Association="Self.FK_ReportedWorkers_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ReportedWorkers" EntitySet="ReportedWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedWorkers_AspNetUsers1" Association="Self.FK_ReportedWorkers_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ReportedWorkers" EntitySet="ReportedWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedWorkers_AspNetUsers2" Association="Self.FK_ReportedWorkers_AspNetUsers2">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ReportedWorkers" EntitySet="ReportedWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFamily_AspNetUsers" Association="Self.FK_UserFamily_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="UserFamily" EntitySet="UserFamily" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCertificates_AspNetUsers" Association="Self.FK_WorkerCertificates_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerCertificates" EntitySet="WorkerCertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCertificates_City" Association="Self.FK_WorkerCertificates_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="WorkerCertificates" EntitySet="WorkerCertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCertificates_Country" Association="Self.FK_WorkerCertificates_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="WorkerCertificates" EntitySet="WorkerCertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCourses_AspNetUsers" Association="Self.FK_WorkerCourses_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerCourses" EntitySet="WorkerCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerExpertises_AspNetUsers" Association="Self.FK_WorkerExpertises_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerExpertises" EntitySet="WorkerExpertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerExpertises_City" Association="Self.FK_WorkerExpertises_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="WorkerExpertises" EntitySet="WorkerExpertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerExpertises_Country" Association="Self.FK_WorkerExpertises_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="WorkerExpertises" EntitySet="WorkerExpertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerLanguages_AspNetUsers" Association="Self.FK_WorkerLanguages_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerLanguages" EntitySet="WorkerLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerLanguages_Languages" Association="Self.FK_WorkerLanguages_Languages">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="WorkerLanguages" EntitySet="WorkerLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerSkills_AspNetUsers" Association="Self.FK_WorkerSkills_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerSkills" EntitySet="WorkerSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerSkills_Skills" Association="Self.FK_WorkerSkills_Skills">
+            <End Role="Skills" EntitySet="Skills" />
+            <End Role="WorkerSkills" EntitySet="WorkerSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerWorkingPlaces_AspNetUsers" Association="Self.FK_WorkerWorkingPlaces_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="WorkerWorkingPlaces" EntitySet="WorkerWorkingPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerWorkingPlaces_City" Association="Self.FK_WorkerWorkingPlaces_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="WorkerWorkingPlaces" EntitySet="WorkerWorkingPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerWorkingPlaces_Country" Association="Self.FK_WorkerWorkingPlaces_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="WorkerWorkingPlaces" EntitySet="WorkerWorkingPlaces" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="DBModel.AspNetRole" />
+          <EntitySet Name="AspNetUsers" EntityType="DBModel.AspNetUser" />
+          <EntitySet Name="Attachments" EntityType="DBModel.Attachment" />
+          <EntitySet Name="BlokedUsers" EntityType="DBModel.BlokedUser" />
+          <EntitySet Name="Branches" EntityType="DBModel.Branch" />
+          <EntitySet Name="Cities" EntityType="DBModel.City" />
+          <EntitySet Name="Contacts" EntityType="DBModel.Contact" />
+          <EntitySet Name="ContactUsMessages" EntityType="DBModel.ContactUsMessage" />
+          <EntitySet Name="Countries" EntityType="DBModel.Country" />
+          <EntitySet Name="Districts" EntityType="DBModel.District" />
+          <EntitySet Name="FAQs" EntityType="DBModel.FAQ" />
+          <EntitySet Name="FavoriteLists" EntityType="DBModel.FavoriteList" />
+          <EntitySet Name="FileTypes" EntityType="DBModel.FileType" />
+          <EntitySet Name="Galleries" EntityType="DBModel.Gallery" />
+          <EntitySet Name="Jobs" EntityType="DBModel.Job" />
+          <EntitySet Name="Languages" EntityType="DBModel.Language" />
+          <EntitySet Name="Mails" EntityType="DBModel.Mail" />
+          <EntitySet Name="Nationalities" EntityType="DBModel.Nationality" />
+          <EntitySet Name="NewsLetters" EntityType="DBModel.NewsLetter" />
+          <EntitySet Name="Notifications" EntityType="DBModel.Notification" />
+          <EntitySet Name="OfficeDocuments" EntityType="DBModel.OfficeDocument" />
+          <EntitySet Name="OfficeServices" EntityType="DBModel.OfficeService" />
+          <EntitySet Name="Pages" EntityType="DBModel.Page" />
+          <EntitySet Name="ReportedWorkers" EntityType="DBModel.ReportedWorker" />
+          <EntitySet Name="Services" EntityType="DBModel.Service" />
+          <EntitySet Name="ServiceTypes" EntityType="DBModel.ServiceType" />
+          <EntitySet Name="Settings" EntityType="DBModel.Setting" />
+          <EntitySet Name="Skills" EntityType="DBModel.Skill" />
+          <EntitySet Name="Status" EntityType="DBModel.Status" />
+          <EntitySet Name="UserFamilies" EntityType="DBModel.UserFamily" />
+          <EntitySet Name="WorkerCertificates" EntityType="DBModel.WorkerCertificate" />
+          <EntitySet Name="WorkerCourses" EntityType="DBModel.WorkerCours" />
+          <EntitySet Name="WorkerExpertises" EntityType="DBModel.WorkerExpertis" />
+          <EntitySet Name="WorkerLanguages" EntityType="DBModel.WorkerLanguage" />
+          <EntitySet Name="WorkerRequests" EntityType="DBModel.WorkerRequest" />
+          <EntitySet Name="WorkerSkills" EntityType="DBModel.WorkerSkill" />
+          <EntitySet Name="WorkerWorkingPlaces" EntityType="DBModel.WorkerWorkingPlace" />
+          <AssociationSet Name="FK_AspNetUsers_AspNetUsers" Association="DBModel.FK_AspNetUsers_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUser1" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_City" Association="DBModel.FK_AspNetUsers_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Country" Association="DBModel.FK_AspNetUsers_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Country1" Association="DBModel.FK_AspNetUsers_Country1">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Country2" Association="DBModel.FK_AspNetUsers_Country2">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Jobs" Association="DBModel.FK_AspNetUsers_Jobs">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_Nationality" Association="DBModel.FK_AspNetUsers_Nationality">
+            <End Role="Nationality" EntitySet="Nationalities" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlokedUsers_AspNetUsers_KafilID" Association="DBModel.FK_BlokedUsers_AspNetUsers_KafilID">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="BlokedUser" EntitySet="BlokedUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BlokedUsers_AspNetUsers_OfficeID" Association="DBModel.FK_BlokedUsers_AspNetUsers_OfficeID">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="BlokedUser" EntitySet="BlokedUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branches_AspNetUsers" Association="DBModel.FK_Branches_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Branch" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavoriteList_AspNetUsers" Association="DBModel.FK_FavoriteList_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="FavoriteList" EntitySet="FavoriteLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FavoriteList_AspNetUsers1" Association="DBModel.FK_FavoriteList_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="FavoriteList" EntitySet="FavoriteLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Gallery_AspNetUsers" Association="DBModel.FK_Gallery_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Gallery" EntitySet="Galleries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KafilWorkers_AspNetUsers" Association="DBModel.FK_KafilWorkers_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerRequest" EntitySet="WorkerRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KafilWorkers_AspNetUsers1" Association="DBModel.FK_KafilWorkers_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerRequest" EntitySet="WorkerRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KafilWorkers_AspNetUsers2" Association="DBModel.FK_KafilWorkers_AspNetUsers2">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerRequest" EntitySet="WorkerRequests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_AspNetUsers" Association="DBModel.FK_Mail_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Mail" EntitySet="Mails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_AspNetUsers1" Association="DBModel.FK_Mail_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Mail" EntitySet="Mails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_AspNetUsers" Association="DBModel.FK_Notifications_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_AspNetUsers1" Association="DBModel.FK_Notifications_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_AspNetUsers2" Association="DBModel.FK_Notifications_AspNetUsers2">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeDocuments_AspNetUsers" Association="DBModel.FK_OfficeDocuments_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="OfficeDocument" EntitySet="OfficeDocuments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficeServices_AspNetUsers" Association="DBModel.FK_OfficeServices_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="OfficeService" EntitySet="OfficeServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedWorkers_AspNetUsers" Association="DBModel.FK_ReportedWorkers_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ReportedWorker" EntitySet="ReportedWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedWorkers_AspNetUsers1" Association="DBModel.FK_ReportedWorkers_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ReportedWorker" EntitySet="ReportedWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportedWorkers_AspNetUsers2" Association="DBModel.FK_ReportedWorkers_AspNetUsers2">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ReportedWorker" EntitySet="ReportedWorkers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserFamily_AspNetUsers" Association="DBModel.FK_UserFamily_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="UserFamily" EntitySet="UserFamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCertificates_AspNetUsers" Association="DBModel.FK_WorkerCertificates_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerCertificate" EntitySet="WorkerCertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCourses_AspNetUsers" Association="DBModel.FK_WorkerCourses_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerCours" EntitySet="WorkerCourses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerExpertises_AspNetUsers" Association="DBModel.FK_WorkerExpertises_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerExpertis" EntitySet="WorkerExpertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerLanguages_AspNetUsers" Association="DBModel.FK_WorkerLanguages_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerLanguage" EntitySet="WorkerLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerSkills_AspNetUsers" Association="DBModel.FK_WorkerSkills_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerSkill" EntitySet="WorkerSkills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerWorkingPlaces_AspNetUsers" Association="DBModel.FK_WorkerWorkingPlaces_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerWorkingPlace" EntitySet="WorkerWorkingPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attachment_FileType" Association="DBModel.FK_Attachment_FileType">
+            <End Role="FileType" EntitySet="FileTypes" />
+            <End Role="Attachment" EntitySet="Attachments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branches_City" Association="DBModel.FK_Branches_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Branch" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Branches_Country" Association="DBModel.FK_Branches_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Branch" EntitySet="Branches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_City_Country" Association="DBModel.FK_City_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="City" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_District_City" Association="DBModel.FK_District_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="District" EntitySet="Districts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCertificates_City" Association="DBModel.FK_WorkerCertificates_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="WorkerCertificate" EntitySet="WorkerCertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerExpertises_City" Association="DBModel.FK_WorkerExpertises_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="WorkerExpertis" EntitySet="WorkerExpertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerWorkingPlaces_City" Association="DBModel.FK_WorkerWorkingPlaces_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="WorkerWorkingPlace" EntitySet="WorkerWorkingPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerCertificates_Country" Association="DBModel.FK_WorkerCertificates_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="WorkerCertificate" EntitySet="WorkerCertificates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerExpertises_Country" Association="DBModel.FK_WorkerExpertises_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="WorkerExpertis" EntitySet="WorkerExpertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerWorkingPlaces_Country" Association="DBModel.FK_WorkerWorkingPlaces_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="WorkerWorkingPlace" EntitySet="WorkerWorkingPlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerLanguages_Languages" Association="DBModel.FK_WorkerLanguages_Languages">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="WorkerLanguage" EntitySet="WorkerLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mail_Mail" Association="DBModel.FK_Mail_Mail">
+            <End Role="Mail" EntitySet="Mails" />
+            <End Role="Mail1" EntitySet="Mails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notifications_WorkerRequests" Association="DBModel.FK_Notifications_WorkerRequests">
+            <End Role="WorkerRequest" EntitySet="WorkerRequests" />
+            <End Role="Notification" EntitySet="Notifications" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerSkills_Skills" Association="DBModel.FK_WorkerSkills_Skills">
+            <End Role="Skill" EntitySet="Skills" />
+            <End Role="WorkerSkill" EntitySet="WorkerSkills" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="DBModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="C__MigrationHistory" EntityType="DBModel.C__MigrationHistory" />
+          <EntitySet Name="AspNetUserClaims" EntityType="DBModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="DBModel.AspNetUserLogin" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="AspNetRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="IsShow" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DBModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ShortID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NationalityID" Type="Int32" />
+          <Property Name="WhatsAppNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="HRLicenseNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="HRLicenseExpiryDate" Type="DateTime" Precision="0" />
+          <Property Name="OfficeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeFName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeLName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeMobile" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" />
+          <Property Name="CommercialRegisterNO" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CommercialRegisterExpirationDate" Type="DateTime" Precision="0" />
+          <Property Name="LicenseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LicenseNoExpirationDate" Type="DateTime" Precision="0" />
+          <Property Name="Gender" Type="Boolean" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="BirthCountryID" Type="Int32" />
+          <Property Name="JobsID" Type="Int32" />
+          <Property Name="ChildernsCount" Type="Int32" />
+          <Property Name="ExperienceYearsCount" Type="Int32" />
+          <Property Name="OfficeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Religion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MaritalStatus" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="HasDrivingLicense" Type="Boolean" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Height" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="IsRoomShared" Type="Boolean" />
+          <Property Name="PassportNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PassportRealseDate" Type="DateTime" Precision="0" />
+          <Property Name="PassportExpirationDate" Type="DateTime" Precision="0" />
+          <Property Name="PassportRealseCountryID" Type="Int32" />
+          <Property Name="VideoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Brief" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastLoggedInDate" Type="DateTime" Precision="0" />
+          <Property Name="ViewCount" Type="Int32" />
+          <Property Name="ContractUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsVerifed" Type="Boolean" />
+          <Property Name="RequestAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="District" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="IsBlocked" Type="Boolean" Nullable="false" />
+          <Property Name="IsActivated" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="DBModel.FK_AspNetUsers_AspNetUsers" FromRole="AspNetUser" ToRole="AspNetUser1" />
+          <NavigationProperty Name="AspNetUser1" Relationship="DBModel.FK_AspNetUsers_AspNetUsers" FromRole="AspNetUser1" ToRole="AspNetUser" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK_AspNetUsers_City" FromRole="AspNetUser" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK_AspNetUsers_Country" FromRole="AspNetUser" ToRole="Country" />
+          <NavigationProperty Name="Country1" Relationship="DBModel.FK_AspNetUsers_Country1" FromRole="AspNetUser" ToRole="Country" />
+          <NavigationProperty Name="Country2" Relationship="DBModel.FK_AspNetUsers_Country2" FromRole="AspNetUser" ToRole="Country" />
+          <NavigationProperty Name="Job" Relationship="DBModel.FK_AspNetUsers_Jobs" FromRole="AspNetUser" ToRole="Job" />
+          <NavigationProperty Name="Nationality" Relationship="DBModel.FK_AspNetUsers_Nationality" FromRole="AspNetUser" ToRole="Nationality" />
+          <NavigationProperty Name="BlokedUsers" Relationship="DBModel.FK_BlokedUsers_AspNetUsers_KafilID" FromRole="AspNetUser" ToRole="BlokedUser" />
+          <NavigationProperty Name="BlokedUsers1" Relationship="DBModel.FK_BlokedUsers_AspNetUsers_OfficeID" FromRole="AspNetUser" ToRole="BlokedUser" />
+          <NavigationProperty Name="Branches" Relationship="DBModel.FK_Branches_AspNetUsers" FromRole="AspNetUser" ToRole="Branch" />
+          <NavigationProperty Name="FavoriteLists" Relationship="DBModel.FK_FavoriteList_AspNetUsers" FromRole="AspNetUser" ToRole="FavoriteList" />
+          <NavigationProperty Name="FavoriteLists1" Relationship="DBModel.FK_FavoriteList_AspNetUsers1" FromRole="AspNetUser" ToRole="FavoriteList" />
+          <NavigationProperty Name="Galleries" Relationship="DBModel.FK_Gallery_AspNetUsers" FromRole="AspNetUser" ToRole="Gallery" />
+          <NavigationProperty Name="WorkerRequests" Relationship="DBModel.FK_KafilWorkers_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerRequest" />
+          <NavigationProperty Name="WorkerRequests1" Relationship="DBModel.FK_KafilWorkers_AspNetUsers1" FromRole="AspNetUser" ToRole="WorkerRequest" />
+          <NavigationProperty Name="WorkerRequests2" Relationship="DBModel.FK_KafilWorkers_AspNetUsers2" FromRole="AspNetUser" ToRole="WorkerRequest" />
+          <NavigationProperty Name="Mails" Relationship="DBModel.FK_Mail_AspNetUsers" FromRole="AspNetUser" ToRole="Mail" />
+          <NavigationProperty Name="Mails1" Relationship="DBModel.FK_Mail_AspNetUsers1" FromRole="AspNetUser" ToRole="Mail" />
+          <NavigationProperty Name="Notifications" Relationship="DBModel.FK_Notifications_AspNetUsers" FromRole="AspNetUser" ToRole="Notification" />
+          <NavigationProperty Name="Notifications1" Relationship="DBModel.FK_Notifications_AspNetUsers1" FromRole="AspNetUser" ToRole="Notification" />
+          <NavigationProperty Name="Notifications2" Relationship="DBModel.FK_Notifications_AspNetUsers2" FromRole="AspNetUser" ToRole="Notification" />
+          <NavigationProperty Name="OfficeDocuments" Relationship="DBModel.FK_OfficeDocuments_AspNetUsers" FromRole="AspNetUser" ToRole="OfficeDocument" />
+          <NavigationProperty Name="OfficeServices" Relationship="DBModel.FK_OfficeServices_AspNetUsers" FromRole="AspNetUser" ToRole="OfficeService" />
+          <NavigationProperty Name="ReportedWorkers" Relationship="DBModel.FK_ReportedWorkers_AspNetUsers" FromRole="AspNetUser" ToRole="ReportedWorker" />
+          <NavigationProperty Name="ReportedWorkers1" Relationship="DBModel.FK_ReportedWorkers_AspNetUsers1" FromRole="AspNetUser" ToRole="ReportedWorker" />
+          <NavigationProperty Name="ReportedWorkers2" Relationship="DBModel.FK_ReportedWorkers_AspNetUsers2" FromRole="AspNetUser" ToRole="ReportedWorker" />
+          <NavigationProperty Name="UserFamilies" Relationship="DBModel.FK_UserFamily_AspNetUsers" FromRole="AspNetUser" ToRole="UserFamily" />
+          <NavigationProperty Name="WorkerCertificates" Relationship="DBModel.FK_WorkerCertificates_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerCertificate" />
+          <NavigationProperty Name="WorkerCourses" Relationship="DBModel.FK_WorkerCourses_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerCours" />
+          <NavigationProperty Name="WorkerExpertises" Relationship="DBModel.FK_WorkerExpertises_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerExpertis" />
+          <NavigationProperty Name="WorkerLanguages" Relationship="DBModel.FK_WorkerLanguages_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerLanguage" />
+          <NavigationProperty Name="WorkerSkills" Relationship="DBModel.FK_WorkerSkills_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerSkill" />
+          <NavigationProperty Name="WorkerWorkingPlaces" Relationship="DBModel.FK_WorkerWorkingPlaces_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerWorkingPlace" />
+          <NavigationProperty Name="AspNetRoles" Relationship="DBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+        </EntityType>
+        <EntityType Name="Attachment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OwnershipTransferID" Type="Int32" Nullable="false" />
+          <Property Name="FileTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FileType" Relationship="DBModel.FK_Attachment_FileType" FromRole="Attachment" ToRole="FileType" />
+        </EntityType>
+        <EntityType Name="BlokedUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficeID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="KafilID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_BlokedUsers_AspNetUsers_KafilID" FromRole="BlokedUser" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="DBModel.FK_BlokedUsers_AspNetUsers_OfficeID" FromRole="BlokedUser" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_Branches_AspNetUsers" FromRole="Branch" ToRole="AspNetUser" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK_Branches_City" FromRole="Branch" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK_Branches_Country" FromRole="Branch" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" Nullable="false" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DBModel.FK_AspNetUsers_City" FromRole="City" ToRole="AspNetUser" />
+          <NavigationProperty Name="Branches" Relationship="DBModel.FK_Branches_City" FromRole="City" ToRole="Branch" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK_City_Country" FromRole="City" ToRole="Country" />
+          <NavigationProperty Name="Districts" Relationship="DBModel.FK_District_City" FromRole="City" ToRole="District" />
+          <NavigationProperty Name="WorkerCertificates" Relationship="DBModel.FK_WorkerCertificates_City" FromRole="City" ToRole="WorkerCertificate" />
+          <NavigationProperty Name="WorkerExpertises" Relationship="DBModel.FK_WorkerExpertises_City" FromRole="City" ToRole="WorkerExpertis" />
+          <NavigationProperty Name="WorkerWorkingPlaces" Relationship="DBModel.FK_WorkerWorkingPlaces_City" FromRole="City" ToRole="WorkerWorkingPlace" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Youtube" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LinkedIn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Instagram" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MAP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ContactUsMessage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="From" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DBModel.FK_AspNetUsers_Country" FromRole="Country" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUsers1" Relationship="DBModel.FK_AspNetUsers_Country1" FromRole="Country" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUsers2" Relationship="DBModel.FK_AspNetUsers_Country2" FromRole="Country" ToRole="AspNetUser" />
+          <NavigationProperty Name="Branches" Relationship="DBModel.FK_Branches_Country" FromRole="Country" ToRole="Branch" />
+          <NavigationProperty Name="Cities" Relationship="DBModel.FK_City_Country" FromRole="Country" ToRole="City" />
+          <NavigationProperty Name="WorkerCertificates" Relationship="DBModel.FK_WorkerCertificates_Country" FromRole="Country" ToRole="WorkerCertificate" />
+          <NavigationProperty Name="WorkerExpertises" Relationship="DBModel.FK_WorkerExpertises_Country" FromRole="Country" ToRole="WorkerExpertis" />
+          <NavigationProperty Name="WorkerWorkingPlaces" Relationship="DBModel.FK_WorkerWorkingPlaces_Country" FromRole="Country" ToRole="WorkerWorkingPlace" />
+          <Property Name="IsGulf" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK_District_City" FromRole="District" ToRole="City" />
+        </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionAR" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="QuestionEN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerAR" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnswerEN" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FavoriteList">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KafilID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_FavoriteList_AspNetUsers" FromRole="FavoriteList" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="DBModel.FK_FavoriteList_AspNetUsers1" FromRole="FavoriteList" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="FileType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Attachments" Relationship="DBModel.FK_Attachment_FileType" FromRole="FileType" ToRole="Attachment" />
+        </EntityType>
+        <EntityType Name="Gallery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WorkerID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_Gallery_AspNetUsers" FromRole="Gallery" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DBModel.FK_AspNetUsers_Jobs" FromRole="Job" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WorkerLanguages" Relationship="DBModel.FK_WorkerLanguages_Languages" FromRole="Language" ToRole="WorkerLanguage" />
+        </EntityType>
+        <EntityType Name="Mail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OfficeID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OperatorID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MailID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_Mail_AspNetUsers" FromRole="Mail" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="DBModel.FK_Mail_AspNetUsers1" FromRole="Mail" ToRole="AspNetUser" />
+          <NavigationProperty Name="Mail1" Relationship="DBModel.FK_Mail_Mail" FromRole="Mail" ToRole="Mail1" />
+          <NavigationProperty Name="Mail2" Relationship="DBModel.FK_Mail_Mail" FromRole="Mail1" ToRole="Mail" />
+        </EntityType>
+        <EntityType Name="Nationality">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="DBModel.FK_AspNetUsers_Nationality" FromRole="Nationality" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="NewsLetter">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsSubscribed" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="KafilID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="AdminID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <Property Name="RequestID" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_Notifications_AspNetUsers" FromRole="Notification" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="DBModel.FK_Notifications_AspNetUsers1" FromRole="Notification" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser2" Relationship="DBModel.FK_Notifications_AspNetUsers2" FromRole="Notification" ToRole="AspNetUser" />
+          <NavigationProperty Name="WorkerRequest" Relationship="DBModel.FK_Notifications_WorkerRequests" FromRole="Notification" ToRole="WorkerRequest" />
+        </EntityType>
+        <EntityType Name="OfficeDocument">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FileUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <Property Name="OfficeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_OfficeDocuments_AspNetUsers" FromRole="OfficeDocument" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="OfficeService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_OfficeServices_AspNetUsers" FromRole="OfficeService" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Page">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionAR" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEN" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ReportedWorker">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="KafilID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ReportDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="HasFakeData" Type="Boolean" Nullable="false" />
+          <Property Name="HasInappropriateImages" Type="Boolean" Nullable="false" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherReason" Type="Boolean" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_ReportedWorkers_AspNetUsers" FromRole="ReportedWorker" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="DBModel.FK_ReportedWorkers_AspNetUsers1" FromRole="ReportedWorker" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser2" Relationship="DBModel.FK_ReportedWorkers_AspNetUsers2" FromRole="ReportedWorker" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionAR" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DescriptionEN" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ServiceType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExpiryDuration" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WorkerSkills" Relationship="DBModel.FK_WorkerSkills_Skills" FromRole="Skill" ToRole="WorkerSkill" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameAR" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="NameEN" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserFamily">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="RealationshipTypeID" Type="Int32" Nullable="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_UserFamily_AspNetUsers" FromRole="UserFamily" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="WorkerCertificate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="University" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="From" Type="DateTime" Precision="0" />
+          <Property Name="To" Type="DateTime" Precision="0" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerCertificates_AspNetUsers" FromRole="WorkerCertificate" ToRole="AspNetUser" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK_WorkerCertificates_City" FromRole="WorkerCertificate" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK_WorkerCertificates_Country" FromRole="WorkerCertificate" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="WorkerCours">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CenterName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerCourses_AspNetUsers" FromRole="WorkerCours" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="WorkerExpertis">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="KafilName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="From" Type="DateTime" Precision="0" />
+          <Property Name="To" Type="DateTime" Precision="0" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerExpertises_AspNetUsers" FromRole="WorkerExpertis" ToRole="AspNetUser" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK_WorkerExpertises_City" FromRole="WorkerExpertis" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK_WorkerExpertises_Country" FromRole="WorkerExpertis" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="WorkerLanguage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Method" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerLanguages_AspNetUsers" FromRole="WorkerLanguage" ToRole="AspNetUser" />
+          <NavigationProperty Name="Language" Relationship="DBModel.FK_WorkerLanguages_Languages" FromRole="WorkerLanguage" ToRole="Language" />
+        </EntityType>
+        <EntityType Name="WorkerRequest">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KafilID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="RequestStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RequestDate" Type="DateTime" Precision="0" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="PaidStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaidDate" Type="DateTime" Precision="0" />
+          <Property Name="RefundDate" Type="DateTime" Precision="0" />
+          <Property Name="ReceiptUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_KafilWorkers_AspNetUsers" FromRole="WorkerRequest" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="DBModel.FK_KafilWorkers_AspNetUsers1" FromRole="WorkerRequest" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser2" Relationship="DBModel.FK_KafilWorkers_AspNetUsers2" FromRole="WorkerRequest" ToRole="AspNetUser" />
+          <NavigationProperty Name="Notifications" Relationship="DBModel.FK_Notifications_WorkerRequests" FromRole="WorkerRequest" ToRole="Notification" />
+        </EntityType>
+        <EntityType Name="WorkerSkill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SkillID" Type="Int32" />
+          <Property Name="Level" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerSkills_AspNetUsers" FromRole="WorkerSkill" ToRole="AspNetUser" />
+          <NavigationProperty Name="Skill" Relationship="DBModel.FK_WorkerSkills_Skills" FromRole="WorkerSkill" ToRole="Skill" />
+        </EntityType>
+        <EntityType Name="WorkerWorkingPlace">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerWorkingPlaces_AspNetUsers" FromRole="WorkerWorkingPlace" ToRole="AspNetUser" />
+          <NavigationProperty Name="City" Relationship="DBModel.FK_WorkerWorkingPlaces_City" FromRole="WorkerWorkingPlace" ToRole="City" />
+          <NavigationProperty Name="Country" Relationship="DBModel.FK_WorkerWorkingPlaces_Country" FromRole="WorkerWorkingPlace" ToRole="Country" />
+        </EntityType>
+        <Association Name="FK_AspNetUsers_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUser1">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_City">
+          <End Type="DBModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Country">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Country1">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="BirthCountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Country2">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="PassportRealseCountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Jobs">
+          <End Type="DBModel.Job" Role="Job" Multiplicity="0..1" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="JobsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_Nationality">
+          <End Type="DBModel.Nationality" Role="Nationality" Multiplicity="0..1" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nationality">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="NationalityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlokedUsers_AspNetUsers_KafilID">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DBModel.BlokedUser" Role="BlokedUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlokedUser">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BlokedUsers_AspNetUsers_OfficeID">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DBModel.BlokedUser" Role="BlokedUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BlokedUser">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branches_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.Branch" Role="Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavoriteList_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.FavoriteList" Role="FavoriteList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FavoriteList">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FavoriteList_AspNetUsers1">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.FavoriteList" Role="FavoriteList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FavoriteList">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Gallery_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Gallery" Role="Gallery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Gallery">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KafilWorkers_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerRequest" Role="WorkerRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerRequest">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KafilWorkers_AspNetUsers1">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerRequest" Role="WorkerRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerRequest">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KafilWorkers_AspNetUsers2">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerRequest" Role="WorkerRequest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerRequest">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mail_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DBModel.Mail" Role="Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mail_AspNetUsers1">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.Mail" Role="Mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mail">
+              <PropertyRef Name="OperatorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_AspNetUsers1">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_AspNetUsers2">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="AdminID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeDocuments_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.OfficeDocument" Role="OfficeDocument" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OfficeDocument">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficeServices_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="DBModel.OfficeService" Role="OfficeService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OfficeService">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedWorkers_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.ReportedWorker" Role="ReportedWorker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportedWorker">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedWorkers_AspNetUsers1">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DBModel.ReportedWorker" Role="ReportedWorker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportedWorker">
+              <PropertyRef Name="OfficeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportedWorkers_AspNetUsers2">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DBModel.ReportedWorker" Role="ReportedWorker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReportedWorker">
+              <PropertyRef Name="KafilID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserFamily_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="DBModel.UserFamily" Role="UserFamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserFamily">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCertificates_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerCertificate" Role="WorkerCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerCertificate">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCourses_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerCours" Role="WorkerCours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerCours">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerExpertises_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerExpertis" Role="WorkerExpertis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerExpertis">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerLanguages_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerLanguage" Role="WorkerLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerLanguage">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerSkills_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerSkill" Role="WorkerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerSkill">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerWorkingPlaces_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerWorkingPlace" Role="WorkerWorkingPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerWorkingPlace">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Attachment_FileType">
+          <End Type="DBModel.FileType" Role="FileType" Multiplicity="1" />
+          <End Type="DBModel.Attachment" Role="Attachment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FileType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Attachment">
+              <PropertyRef Name="FileTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branches_City">
+          <End Type="DBModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="DBModel.Branch" Role="Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Branches_Country">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.Branch" Role="Branch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Branch">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_City_Country">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.City" Role="City" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="City">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_District_City">
+          <End Type="DBModel.City" Role="City" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.District" Role="District" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="District">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCertificates_City">
+          <End Type="DBModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerCertificate" Role="WorkerCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerCertificate">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerExpertises_City">
+          <End Type="DBModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerExpertis" Role="WorkerExpertis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerExpertis">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerWorkingPlaces_City">
+          <End Type="DBModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerWorkingPlace" Role="WorkerWorkingPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerWorkingPlace">
+              <PropertyRef Name="CityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerCertificates_Country">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerCertificate" Role="WorkerCertificate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerCertificate">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerExpertises_Country">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerExpertis" Role="WorkerExpertis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerExpertis">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerWorkingPlaces_Country">
+          <End Type="DBModel.Country" Role="Country" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerWorkingPlace" Role="WorkerWorkingPlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerWorkingPlace">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerLanguages_Languages">
+          <End Type="DBModel.Language" Role="Language" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerLanguage" Role="WorkerLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerLanguage">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mail_Mail">
+          <End Type="DBModel.Mail" Role="Mail" Multiplicity="0..1" />
+          <End Type="DBModel.Mail" Role="Mail1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mail">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Mail1">
+              <PropertyRef Name="MailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notifications_WorkerRequests">
+          <End Type="DBModel.WorkerRequest" Role="WorkerRequest" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkerRequest">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="RequestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerSkills_Skills">
+          <End Type="DBModel.Skill" Role="Skill" Multiplicity="0..1" />
+          <End Type="DBModel.WorkerSkill" Role="WorkerSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerSkill">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="DBModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="DBModel.AspNetRole">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="DBModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+                <ScalarProperty Name="IsBlocked" ColumnName="IsBlocked" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="RequestAmount" ColumnName="RequestAmount" />
+                <ScalarProperty Name="IsVerifed" ColumnName="IsVerifed" />
+                <ScalarProperty Name="ContractUrl" ColumnName="ContractUrl" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+                <ScalarProperty Name="LastLoggedInDate" ColumnName="LastLoggedInDate" />
+                <ScalarProperty Name="Brief" ColumnName="Brief" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="PassportRealseCountryID" ColumnName="PassportRealseCountryID" />
+                <ScalarProperty Name="PassportExpirationDate" ColumnName="PassportExpirationDate" />
+                <ScalarProperty Name="PassportRealseDate" ColumnName="PassportRealseDate" />
+                <ScalarProperty Name="PassportNo" ColumnName="PassportNo" />
+                <ScalarProperty Name="IsRoomShared" ColumnName="IsRoomShared" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="HasDrivingLicense" ColumnName="HasDrivingLicense" />
+                <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+                <ScalarProperty Name="Religion" ColumnName="Religion" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="ExperienceYearsCount" ColumnName="ExperienceYearsCount" />
+                <ScalarProperty Name="ChildernsCount" ColumnName="ChildernsCount" />
+                <ScalarProperty Name="JobsID" ColumnName="JobsID" />
+                <ScalarProperty Name="BirthCountryID" ColumnName="BirthCountryID" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="LicenseNoExpirationDate" ColumnName="LicenseNoExpirationDate" />
+                <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
+                <ScalarProperty Name="CommercialRegisterExpirationDate" ColumnName="CommercialRegisterExpirationDate" />
+                <ScalarProperty Name="CommercialRegisterNO" ColumnName="CommercialRegisterNO" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="EmployeeMobile" ColumnName="EmployeeMobile" />
+                <ScalarProperty Name="EmployeeEmail" ColumnName="EmployeeEmail" />
+                <ScalarProperty Name="EmployeeLName" ColumnName="EmployeeLName" />
+                <ScalarProperty Name="EmployeeFName" ColumnName="EmployeeFName" />
+                <ScalarProperty Name="OfficeAddress" ColumnName="OfficeAddress" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="HRLicenseExpiryDate" ColumnName="HRLicenseExpiryDate" />
+                <ScalarProperty Name="HRLicenseNo" ColumnName="HRLicenseNo" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="WhatsAppNo" ColumnName="WhatsAppNo" />
+                <ScalarProperty Name="NationalityID" ColumnName="NationalityID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ShortID" ColumnName="ShortID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Attachments">
+            <EntityTypeMapping TypeName="DBModel.Attachment">
+              <MappingFragment StoreEntitySet="Attachment">
+                <ScalarProperty Name="FileTypeID" ColumnName="FileTypeID" />
+                <ScalarProperty Name="OwnershipTransferID" ColumnName="OwnershipTransferID" />
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BlokedUsers">
+            <EntityTypeMapping TypeName="DBModel.BlokedUser">
+              <MappingFragment StoreEntitySet="BlokedUsers">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="KafilID" ColumnName="KafilID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="DBModel.Branch">
+              <MappingFragment StoreEntitySet="Branches">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="DBModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="DBModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="MAP" ColumnName="MAP" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="LinkedIn" ColumnName="LinkedIn" />
+                <ScalarProperty Name="Youtube" ColumnName="Youtube" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUsMessages">
+            <EntityTypeMapping TypeName="DBModel.ContactUsMessage">
+              <MappingFragment StoreEntitySet="ContactUsMessages">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="DBModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="IsGulf" ColumnName="IsGulf" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="DBModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAQs">
+            <EntityTypeMapping TypeName="DBModel.FAQ">
+              <MappingFragment StoreEntitySet="FAQ">
+                <ScalarProperty Name="AnswerEN" ColumnName="AnswerEN" />
+                <ScalarProperty Name="AnswerAR" ColumnName="AnswerAR" />
+                <ScalarProperty Name="QuestionEN" ColumnName="QuestionEN" />
+                <ScalarProperty Name="QuestionAR" ColumnName="QuestionAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FavoriteLists">
+            <EntityTypeMapping TypeName="DBModel.FavoriteList">
+              <MappingFragment StoreEntitySet="FavoriteList">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="KafilID" ColumnName="KafilID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileTypes">
+            <EntityTypeMapping TypeName="DBModel.FileType">
+              <MappingFragment StoreEntitySet="FileType">
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Galleries">
+            <EntityTypeMapping TypeName="DBModel.Gallery">
+              <MappingFragment StoreEntitySet="Gallery">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="DBModel.Job">
+              <MappingFragment StoreEntitySet="Jobs">
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="DBModel.Language">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mails">
+            <EntityTypeMapping TypeName="DBModel.Mail">
+              <MappingFragment StoreEntitySet="Mail">
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="MailID" ColumnName="MailID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nationalities">
+            <EntityTypeMapping TypeName="DBModel.Nationality">
+              <MappingFragment StoreEntitySet="Nationality">
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsLetters">
+            <EntityTypeMapping TypeName="DBModel.NewsLetter">
+              <MappingFragment StoreEntitySet="NewsLetter">
+                <ScalarProperty Name="IsSubscribed" ColumnName="IsSubscribed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notifications">
+            <EntityTypeMapping TypeName="DBModel.Notification">
+              <MappingFragment StoreEntitySet="Notifications">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="RequestID" ColumnName="RequestID" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="KafilID" ColumnName="KafilID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficeDocuments">
+            <EntityTypeMapping TypeName="DBModel.OfficeDocument">
+              <MappingFragment StoreEntitySet="OfficeDocuments">
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficeServices">
+            <EntityTypeMapping TypeName="DBModel.OfficeService">
+              <MappingFragment StoreEntitySet="OfficeServices">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pages">
+            <EntityTypeMapping TypeName="DBModel.Page">
+              <MappingFragment StoreEntitySet="Page">
+                <ScalarProperty Name="DescriptionEN" ColumnName="DescriptionEN" />
+                <ScalarProperty Name="DescriptionAR" ColumnName="DescriptionAR" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReportedWorkers">
+            <EntityTypeMapping TypeName="DBModel.ReportedWorker">
+              <MappingFragment StoreEntitySet="ReportedWorkers">
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="OtherReason" ColumnName="OtherReason" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="HasInappropriateImages" ColumnName="HasInappropriateImages" />
+                <ScalarProperty Name="HasFakeData" ColumnName="HasFakeData" />
+                <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+                <ScalarProperty Name="KafilID" ColumnName="KafilID" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="DBModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="DescriptionEN" ColumnName="DescriptionEN" />
+                <ScalarProperty Name="DescriptionAR" ColumnName="DescriptionAR" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceTypes">
+            <EntityTypeMapping TypeName="DBModel.ServiceType">
+              <MappingFragment StoreEntitySet="ServiceType">
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="DBModel.Setting">
+              <MappingFragment StoreEntitySet="Setting">
+                <ScalarProperty Name="ExpiryDuration" ColumnName="ExpiryDuration" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="DBModel.Skill">
+              <MappingFragment StoreEntitySet="Skills">
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="DBModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="NameEN" ColumnName="NameEN" />
+                <ScalarProperty Name="NameAR" ColumnName="NameAR" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserFamilies">
+            <EntityTypeMapping TypeName="DBModel.UserFamily">
+              <MappingFragment StoreEntitySet="UserFamily">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="RealationshipTypeID" ColumnName="RealationshipTypeID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerCertificates">
+            <EntityTypeMapping TypeName="DBModel.WorkerCertificate">
+              <MappingFragment StoreEntitySet="WorkerCertificates">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="University" ColumnName="University" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerCourses">
+            <EntityTypeMapping TypeName="DBModel.WorkerCours">
+              <MappingFragment StoreEntitySet="WorkerCourses">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="CenterName" ColumnName="CenterName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerExpertises">
+            <EntityTypeMapping TypeName="DBModel.WorkerExpertis">
+              <MappingFragment StoreEntitySet="WorkerExpertises">
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="KafilName" ColumnName="KafilName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerLanguages">
+            <EntityTypeMapping TypeName="DBModel.WorkerLanguage">
+              <MappingFragment StoreEntitySet="WorkerLanguages">
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerRequests">
+            <EntityTypeMapping TypeName="DBModel.WorkerRequest">
+              <MappingFragment StoreEntitySet="WorkerRequests">
+                <ScalarProperty Name="ReceiptUrl" ColumnName="ReceiptUrl" />
+                <ScalarProperty Name="RefundDate" ColumnName="RefundDate" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="PaidStatus" ColumnName="PaidStatus" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="RequestStatus" ColumnName="RequestStatus" />
+                <ScalarProperty Name="OfficeID" ColumnName="OfficeID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="KafilID" ColumnName="KafilID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerSkills">
+            <EntityTypeMapping TypeName="DBModel.WorkerSkill">
+              <MappingFragment StoreEntitySet="WorkerSkills">
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerWorkingPlaces">
+            <EntityTypeMapping TypeName="DBModel.WorkerWorkingPlace">
+              <MappingFragment StoreEntitySet="WorkerWorkingPlaces">
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="DBModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="DBModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="DBModel.AspNetUserClaim">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="DBModel.AspNetUserLogin">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

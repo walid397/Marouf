@@ -1,0 +1,466 @@
+﻿@model IEnumerable<FavoriteList>
+@using Marofh.Models
+@using Microsoft.AspNet.Identity
+@using Resources
+
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if (culture.Contains("en-us"))
+    {
+        ViewBag.Title = "Favorite List";
+
+    }
+    else
+    {
+        ViewBag.Title = "القائمة المفضلة";
+
+    }
+
+
+}
+
+@{
+
+    ViewBag.Sub1Title = "حسابى";
+    ViewBag.Sub1Url = "/Kafil/";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+    AspNetUser loggedInUser = ViewModel.GetCurrentUser(User.Identity.GetUserId());
+}
+
+<!-- main content -->
+<main class="main main--breadcrumb styledmanin newmain">
+    <div class="container favourlist">
+        <div class="row">
+
+
+
+            <div class="col-12  col-lg-9 col-md-8 col-xl-12 pl-0 pr-0 ">
+                <ul class="nav nav-tabs main__nav" id="main__nav" role="tablist">
+                    <li class="nav-item">
+
+                        <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false">
+                            <i class="far fa-star ml-1 mr-1 colororange"></i>
+
+                            <span class="colororange2">  @Resource.FavoriteItems (@Model.Count()) </span>
+                        </a>
+
+                    </li>
+
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+
+
+                        <table id="files_list" class="table table-striped dt-responsive datatable" style="width:100%">
+                            <thead class="thead" style="display:none !important;">
+                                <tr>
+                                    <th scope="col">   </th>
+
+                                </tr>
+                            </thead>
+
+
+                            <tbody>
+                                @foreach (FavoriteList worker in Model)
+                                {
+                                    <tr>
+                                        <td class="d-flex flextable">
+                                            <!-- post -->
+                                            <div class="post d-block">
+
+                                                <div class="d-flex">
+
+                                                    <div class="post__head d-flex justify-content-start align-items-start">
+                                                        <a href="#" class="post__head-img">
+                                                            @if (!string.IsNullOrEmpty(worker.AspNetUser1.ImageUrl))
+                                                            {
+                                                                <img src="@worker.AspNetUser1.ImageUrl" alt="">
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <img src="~/Content/front/assets/img/user.png" alt="">
+                                                            }
+                                                        </a>
+                                                        <div class="post__head-title d-flex align-items-center">
+                                                            <h5 class="ml-5"><a href="/kafil/WorkerProfile/@worker.AspNetUser1.ShortID">@worker.AspNetUser1.FName @Html.Raw(" ") @worker.AspNetUser1.LName </a></h5>
+                                                            @if (worker.AspNetUser1.Job != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <h2 class="post__title mt-0 ml-5"><span class=" "></span> @worker.AspNetUser1.Job.NameEN</h2>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <h2 class="post__title mt-0 ml-5"><span class=" "></span> @worker.AspNetUser1.Job.NameAR</h2>
+
+                                                                }
+
+
+
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <h2 class="post__title mt-0 ml-5"> <span class=" "></span>N/A</h2>
+
+                                                            }
+
+
+                                                        </div>
+                                                        <div class="post__location mr-2">
+
+
+                                                            <i class="far fa-map-marker-alt"></i>
+                                                            @if (worker.AspNetUser1.Country != null)
+                                                            {
+                                                                <span>
+
+                                                                    @if (culture.Contains("en-us"))
+                                                                    {
+                                                                        @worker.AspNetUser1.Country.NameEN
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @worker.AspNetUser1.Country.NameAR
+
+                                                                    }
+
+
+
+                                                                </span>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <span> N/A</span>
+
+                                                            }
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="post__wrap">
+
+
+                                                        <div class="post__actions actionicon">
+                                                            <div class="shareBlock" id="@worker.ID" style="float:left;display:none;"></div>
+                                                            <span class="ml-2 stylecssshare">
+
+
+                                                                <i class="fa fa-share-alt" onclick="myFunction(@worker.ID)"></i>
+                                                            </span>
+
+                                                            @if (ViewModel.CheckThisWorkerHasBeenRequestBefore(loggedInUser.Id, @worker.AspNetUser1.Id))
+                                                            {
+                                                                <a id="SendWorkerRequest" data-id="@worker.AspNetUser1.Id" class="post__actions-btn post__actions-btn--green  SendWorkerRequest bluecss" title="@Resource.SendRequest">
+                                                                    <i class="far fa-file-user"></i>
+
+                                                                </a>
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <a id="SendWorkerRequest" data-id="@worker.AspNetUser1.Id" class="post__actions-btn post__actions-btn--green bookmarkscss post__actions-btn2 SendWorkerRequest bluecss" title="@Resource.SendRequest">
+                                                                    <i class="far fa-file-user"></i>
+
+                                                                </a>
+                                                            }
+
+
+                                                            <a id="RemoveFromFavoriteByAjax" data-id="@worker.ID" class="post__actions-btn post__actions-btn--green bookmarkscss post__actions-btn2 RemoveFromFavoriteByAjax bluecss" title="@Resource.Removefromfavourites">
+                                                                <i class="far fa-trash-alt"></i>
+
+                                                            </a>
+
+
+                                                        </div>
+
+
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="post__description">
+                                                    <p> @worker.AspNetUser1.Brief</p>
+                                                </div>
+
+                                                <div class="post__tags">
+                                                    @foreach (WorkerSkill skill in worker.AspNetUser1.WorkerSkills)
+                                                    {
+                                                        if (culture.Contains("en-us"))
+                                                        {
+
+                                                            <a href="#"> @skill.Skill.NameEN</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="#"> @skill.Skill.NameAR</a>
+
+                                                        }
+
+
+
+                                                    }
+
+
+                                                </div>
+
+
+
+                                            </div>
+                                            <!-- end post -->
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</main>
+<!-- end main content -->
+@section Scripts{
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+
+    <script>
+    $(".AddToFavoriteByAjax").click(function (e) {
+    e.preventDefault();
+    var link = $(this);
+    $.ajax({
+    url: '@Url.Action("AddToFavoriteByAjax", "Kafil")',//  this for calling the web method function in controller.
+
+    type: "POST",
+        data: '{wId: "' + link.attr("data-id") + '" }',// user name value
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: OnSuccessed,
+    failure: function (response) {
+    alert(response);
+    }
+    });
+    });
+
+
+
+        $(".RemoveFromFavoriteByAjax").click(function (e) {
+    e.preventDefault();
+    var link = $(this);
+    $.ajax({
+    url: '@Url.Action("RemoveFromFavoriteByAjax", "Kafil")',//  this for calling the web method function in controller.
+
+    type: "POST",
+        data: '{id: "' + link.attr("data-id") + '" }',// user name value
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: OnSuccessed,
+    failure: function (response) {
+    alert(response);
+    }
+    });
+    });
+
+
+
+
+
+        $(".SendWorkerRequest").click(function (e) {
+    e.preventDefault();
+    var link = $(this);
+    $.ajax({
+    url: '@Url.Action("SendWorkerRequest", "Kafil")',//  this for calling the web method function in controller.
+
+    type: "POST",
+    data: '{wId: "' + link.attr("data-id") + '" }',// user name value
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: OnSuccessed,
+    failure: function (response) {
+    alert(response);
+    }
+    });
+            });
+
+
+
+    function OnSuccessed(response) {
+
+    switch (response) {
+
+    case "AddedToFavoriteList":
+   //   alert('تم اضافة العامل الى القائمة المفضلة');
+            Swal.fire("@Resource.Done", "@Resource.WorkerAddedToFavoriteList", "success");
+            break;
+
+
+    case "AlreadyExistedInFavoriteList":
+           //  alert('هذا العامل موجود بالفعل فى القائمة المفضلة');
+           Swal.fire("@Resource.Warning", "@Resource.ThisWorkerisalreadyinFavoritelist", "info");
+    break;
+
+
+
+        //ارسال الطالبات
+        case "ResquestHasBeenSent":
+            // alert('تم إرسال طلبك الى مكتب الاستقدام بنجاح');
+             Swal.fire("@Resource.Done", "@Resource.YourRequestHasbeensuccessfullySentandtheofficewillcontactyouassoonaspossible", "success");
+            window.location.href = "/kafil/"
+            break;
+
+
+
+
+        case "SentBefore":
+           // alert('تم ارسال الطلب مسبقا');
+                Swal.fire("@Resource.Warning", "@Resource.TheRequestHasalreadyBeenSent", "info");
+            break;
+
+
+
+        //القائمة المفضلة
+        case "RemovedFromMyFavoriteList":
+            // alert('تم إرسال طلبك الى مكتب الاستقدام بنجاح');
+            Swal.fire("@Resource.Done", "@Resource.TheworkerhasbeenRemovedfromyourFavoritelistsuccessfully", "success");
+            window.location.href = "/kafil/FavoriteList"
+            break;
+
+    case "Exception":
+    alert('حدث خطأ ما');
+    break;
+
+    }
+    }
+
+    </script>
+
+    <!--Datatable-->
+    <script src="/Content/front/assets/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <link href="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <!--Datatable-->
+
+    <script>
+
+        $(document).ready(function () {
+
+              var cultureInfo = '@System.Globalization.CultureInfo.CurrentCulture.Name';
+             if (cultureInfo == 'ar-SA')
+             {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+
+        }
+        else
+        {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "Loading...",
+                    "sLengthMenu": "Show _MENU_ Entered",
+                    "sZeroRecords": "No records found ",
+                    "sInfo": "Show _START_ To _END_ out of  _TOTAL_ Entered",
+                    //"sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "Display 0  From 0  Record",
+                    "sInfoFiltered": "(selected from total  _MAX_ Entered)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Search:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Previous",
+                        "sNext": "Next",
+                        "sLast": "Last"
+                    }
+                }
+            });
+
+
+        }
+
+
+            table.$('tr').tooltip({
+                placement: '',
+                html: true
+            });
+        });
+
+        $('.datatable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+
+    </script>
+    <!--Datatable-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+    <script src="~/Content/front/assets/js/jquery.c-share.js"></script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+        $('.shareBlock').cShare({
+                description: '@Resource.MaroufaIsaleaderInProvidingProfessionalandhighqualitylaborthatmatchessupplyanddemand',
+            show_buttons: [
+                'fb',
+                'line',
+                'weibo',
+                'twitter',
+                'email'
+            ]
+        });
+        function myFunction(div) {
+            var x = document.getElementById(div);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+}

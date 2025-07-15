@@ -1,0 +1,8 @@
+﻿@model IEnumerable<Marofh.Page>
+
+@*<li><a href="/Pages/Create/"> إنشاء صفحة جديدة</a></li>*@
+@foreach (var menu in Model)
+{
+    <li><a href="/Pages/Edit/@menu.ID"> @menu.NameAR  </a></li>
+}
+<li><a href="/Contacts/Edit/1"> بيانات التواصل </a></li>

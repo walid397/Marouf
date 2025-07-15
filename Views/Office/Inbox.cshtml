@@ -1,0 +1,243 @@
+﻿@model IEnumerable<Mail>
+ @using Resources
+
+@{
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {
+           ViewBag.Title = "Email";
+
+    }
+    else
+    {
+            ViewBag.Title = "البريد الالكتروني";     
+    }
+
+
+
+    ViewBag.Parent = "المستخدمين";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+}
+<link href="~/Content/front/assets/css/mailpage.css" rel="stylesheet" />
+
+<div class="row pr-25 pl-25">
+    <div class="mail-box">
+       
+        <aside class="lg-side">
+
+            <div class="inbox-body">
+                <table id="files_list" class="table table-striped dt-responsive datatable" style="width:100%">
+                    <thead class="thead">
+                        <tr>
+                            <th scope="col" > @Resource.Message </th>
+                            <th scope="col" >  @Resource.Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (Mail message in Model.Where(p => p.MailID == null))
+                        {
+                            if (message.IsRead == false)
+                            {
+                                <tr class="unread">
+
+
+                                    <td class="view-message" style="text-align:right;"> <a href="/Office/Message/@message.ID">@message.Message</a></td>
+                                    @if (!string.IsNullOrEmpty(message.FileUrl))
+                                    {
+                                        <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
+                                    }
+                                    <td class="view-message  text-right">@message.Date.ToShortDateString()</td>
+
+                                </tr>
+                            }
+                            else
+                            {
+                    <tr class="">
+
+
+                        <td class="view-message" style="text-align:right;"> <a href="/Office/Message/@message.ID">@message.Message</a></td>
+                        @if (!string.IsNullOrEmpty(message.FileUrl))
+                        {
+                            <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
+                        }
+                        <td class="view-message  text-right">@message.Date.ToShortDateString()</td>
+
+                    </tr>
+                            }
+                        }
+
+
+
+                    </tbody>
+                </table>
+               
+            </div>
+        </aside>
+    </div>
+</div>
+<!--Start Datatable-->
+<script src="/Content/front/assets/js/datatable/jquery.dataTables.min.js"></script>
+<script src="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+<link href="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<script>
+        $(document).ready(function () {
+
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+
+            $(".next").click(function () {
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        next_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+
+            $(".previous").click(function () {
+
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+
+            $('.radio-group .radio').click(function () {
+                $(this).parent().find('.radio').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            $(".submit").click(function () {
+                return false;
+            })
+
+        });
+
+        $(document).ready(function () {
+
+              var cultureInfo = '@System.Globalization.CultureInfo.CurrentCulture.Name';
+             if (cultureInfo == 'ar-SA')
+             {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+
+        }
+        else
+        {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "Loading...",
+                    "sLengthMenu": "Show _MENU_ Entered",
+                    "sZeroRecords": "No records found ",
+                    "sInfo": "Show _START_ To _END_ out of  _TOTAL_ Entered",
+                    //"sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "Display 0  From 0  Record",
+                    "sInfoFiltered": "(selected from total  _MAX_ Entered)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Search:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Previous",
+                        "sNext": "Next",
+                        "sLast": "Last"
+                    }
+                }
+            });
+
+
+        }
+
+
+            table.$('tr').tooltip({
+                placement: '',
+                html: true
+            });
+        });
+
+        $('.datatable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+</script>
+<!--End Datatable-->
+
+<style>
+    .table thead th {
+
+         text-align: right !important; 
+         padding-right:15px;
+    }
+</style>

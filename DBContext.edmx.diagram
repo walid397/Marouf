@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3edf739eb2774d2393bf1af6f3969a64" Name="Diagram1">
+        <EntityTypeShape EntityType="DBModel.AspNetRole" Width="1.5" PointX="6" PointY="27.375" />
+        <EntityTypeShape EntityType="DBModel.AspNetUser" Width="1.5" PointX="8.25" PointY="21.5" />
+        <EntityTypeShape EntityType="DBModel.Attachment" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="DBModel.BlokedUser" Width="1.5" PointX="10.5" PointY="51.625" />
+        <EntityTypeShape EntityType="DBModel.Branch" Width="1.5" PointX="13.5" PointY="30.5" />
+        <EntityTypeShape EntityType="DBModel.City" Width="1.5" PointX="3" PointY="30.125" />
+        <EntityTypeShape EntityType="DBModel.Contact" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModel.ContactUsMessage" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModel.Country" Width="1.5" PointX="0.75" PointY="30.25" />
+        <EntityTypeShape EntityType="DBModel.District" Width="1.5" PointX="5.25" PointY="30.625" />
+        <EntityTypeShape EntityType="DBModel.FAQ" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModel.FavoriteList" Width="1.5" PointX="10.5" PointY="35.875" />
+        <EntityTypeShape EntityType="DBModel.FileType" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="DBModel.Gallery" Width="1.5" PointX="10.5" PointY="18.75" />
+        <EntityTypeShape EntityType="DBModel.Job" Width="1.5" PointX="6" PointY="34.125" />
+        <EntityTypeShape EntityType="DBModel.Language" Width="1.5" PointX="14.25" PointY="23" />
+        <EntityTypeShape EntityType="DBModel.Mail" Width="1.5" PointX="10.5" PointY="62.125" />
+        <EntityTypeShape EntityType="DBModel.Nationality" Width="1.5" PointX="6" PointY="36.625" />
+        <EntityTypeShape EntityType="DBModel.NewsLetter" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBModel.Notification" Width="1.5" PointX="12.75" PointY="39.625" />
+        <EntityTypeShape EntityType="DBModel.OfficeDocument" Width="1.5" PointX="10.5" PointY="25.5" />
+        <EntityTypeShape EntityType="DBModel.OfficeService" Width="1.5" PointX="10.5" PointY="66.125" />
+        <EntityTypeShape EntityType="DBModel.Page" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DBModel.ReportedWorker" Width="1.5" PointX="10.5" PointY="21.25" />
+        <EntityTypeShape EntityType="DBModel.Service" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModel.ServiceType" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DBModel.Setting" Width="1.5" PointX="6.75" PointY="6.75" />
+        <EntityTypeShape EntityType="DBModel.Skill" Width="1.5" PointX="11.25" PointY="44" />
+        <EntityTypeShape EntityType="DBModel.Status" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DBModel.UserFamily" Width="1.5" PointX="10.5" PointY="16" />
+        <EntityTypeShape EntityType="DBModel.WorkerCertificate" Width="1.5" PointX="10.5" PointY="30.25" />
+        <EntityTypeShape EntityType="DBModel.WorkerCours" Width="1.5" PointX="10.5" PointY="54.5" />
+        <EntityTypeShape EntityType="DBModel.WorkerExpertis" Width="1.5" PointX="13.5" PointY="26.25" />
+        <EntityTypeShape EntityType="DBModel.WorkerLanguage" Width="1.5" PointX="16.5" PointY="26.625" />
+        <EntityTypeShape EntityType="DBModel.WorkerRequest" Width="1.5" PointX="10.5" PointY="57.5" />
+        <EntityTypeShape EntityType="DBModel.WorkerSkill" Width="1.5" PointX="13.5" PointY="34.75" />
+        <EntityTypeShape EntityType="DBModel.WorkerWorkingPlace" Width="1.5" PointX="16.5" PointY="30.625" />
+        <AssociationConnector Association="DBModel.FK_AspNetUsers_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_AspNetUsers_City" />
+        <AssociationConnector Association="DBModel.FK_AspNetUsers_Country" />
+        <AssociationConnector Association="DBModel.FK_AspNetUsers_Country1" />
+        <AssociationConnector Association="DBModel.FK_AspNetUsers_Country2" />
+        <AssociationConnector Association="DBModel.FK_AspNetUsers_Jobs" />
+        <AssociationConnector Association="DBModel.FK_AspNetUsers_Nationality" />
+        <AssociationConnector Association="DBModel.FK_BlokedUsers_AspNetUsers_KafilID" />
+        <AssociationConnector Association="DBModel.FK_BlokedUsers_AspNetUsers_OfficeID" />
+        <AssociationConnector Association="DBModel.FK_Branches_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_FavoriteList_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_FavoriteList_AspNetUsers1" />
+        <AssociationConnector Association="DBModel.FK_Gallery_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_KafilWorkers_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_KafilWorkers_AspNetUsers1" />
+        <AssociationConnector Association="DBModel.FK_KafilWorkers_AspNetUsers2" />
+        <AssociationConnector Association="DBModel.FK_Mail_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_Mail_AspNetUsers1" />
+        <AssociationConnector Association="DBModel.FK_Notifications_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_Notifications_AspNetUsers1" />
+        <AssociationConnector Association="DBModel.FK_Notifications_AspNetUsers2" />
+        <AssociationConnector Association="DBModel.FK_OfficeDocuments_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_OfficeServices_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_ReportedWorkers_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_ReportedWorkers_AspNetUsers1" />
+        <AssociationConnector Association="DBModel.FK_ReportedWorkers_AspNetUsers2" />
+        <AssociationConnector Association="DBModel.FK_UserFamily_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_WorkerCertificates_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_WorkerCourses_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_WorkerExpertises_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_WorkerLanguages_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_WorkerSkills_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_WorkerWorkingPlaces_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_Attachment_FileType" />
+        <AssociationConnector Association="DBModel.FK_Branches_City" />
+        <AssociationConnector Association="DBModel.FK_Branches_Country" />
+        <AssociationConnector Association="DBModel.FK_City_Country" />
+        <AssociationConnector Association="DBModel.FK_District_City" />
+        <AssociationConnector Association="DBModel.FK_WorkerCertificates_City" />
+        <AssociationConnector Association="DBModel.FK_WorkerExpertises_City" />
+        <AssociationConnector Association="DBModel.FK_WorkerWorkingPlaces_City" />
+        <AssociationConnector Association="DBModel.FK_WorkerCertificates_Country" />
+        <AssociationConnector Association="DBModel.FK_WorkerExpertises_Country" />
+        <AssociationConnector Association="DBModel.FK_WorkerWorkingPlaces_Country" />
+        <AssociationConnector Association="DBModel.FK_WorkerLanguages_Languages" />
+        <AssociationConnector Association="DBModel.FK_Mail_Mail" />
+        <AssociationConnector Association="DBModel.FK_Notifications_WorkerRequests" />
+        <AssociationConnector Association="DBModel.FK_WorkerSkills_Skills" />
+        <AssociationConnector Association="DBModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="DBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="DBModel.AspNetUserClaim" Width="1.5" PointX="10.875" PointY="38.875" />
+        <EntityTypeShape EntityType="DBModel.AspNetUserLogin" Width="1.5" PointX="10.875" PointY="46.625" />
+        <AssociationConnector Association="DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

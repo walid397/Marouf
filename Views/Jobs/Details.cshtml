@@ -1,0 +1,30 @@
+﻿@model Marofh.Job
+
+
+@{
+    ViewBag.Title = "  الغرض من الاعلان ";
+    ViewBag.Parent = "أنواع الغرض من الاعلان";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameAR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameAR)
+        </dd>
+
+      
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

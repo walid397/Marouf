@@ -1,0 +1,212 @@
+﻿@using Microsoft.AspNet.Identity
+@using Marofh.Models
+@using Resources
+
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    var targetCulture = culture.Contains("en") ? "ar" : "en";
+    var flagImage = targetCulture == "ar" ? "~/Content/front/assets/img/ar.png" : "~/Content/front/assets/img/us.jpg";
+    var flagText = targetCulture == "ar" ? "عربي" : "English";
+    var cultureUrl = "/Home/SetCulture?culture=" + targetCulture;
+}
+
+@if (Request.IsAuthenticated)
+{
+    AspNetUser user = ViewModel.GetAspNetUser(User.Identity.GetUserId());
+    int adminRoleId = Convert.ToInt32(clsEnum.Roles.Administrators);
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int kafilRoleId = Convert.ToInt32(clsEnum.Roles.Kafil);
+
+    <div class="main-menu d-none d-lg-block classnotifcation">
+        <nav id="mobile-menu">
+            <ul>
+                <li class="active"><a href="/home/">@Resource.Home</a></li>
+                <li><a href="/pages/details/1">@Resource.AboutUs</a></li>
+
+                <li class="flx">
+                    <a href="@cultureUrl" class="langauagbtn">
+                        <img src="@Url.Content(flagImage)" class="iconflagh" />
+                        <text> @flagText </text>
+                    </a>
+                </li>
+
+                <li><a href="/Pages/Contacts">@Resource.ContactUs</a></li>
+
+                @if (user.RoleID == officeRoleId)
+                {
+                    List<Notification> notificationList = ViewModel.GetNotificationsByOfficeID(user.Id);
+
+                    <li class="flx">
+                        <a href="/Office/inbox">
+                            <i class="far fa-envelope-open"></i>
+                            @{
+                                var unreadCount = ViewModel.GetMailsByOfficeID(user.Id).Where(p => !p.IsRead && p.OperatorID != null).Count();
+                                if (unreadCount > 0)
+                                {
+                                    <span class="badge badge-default">@unreadCount</span>
+                                }
+                            }
+                        </a>
+                    </li>
+
+                    <li class="flx">
+                        @{
+                            if (notificationList.Count > 0)
+                            {
+                                <a><i class="far fa-bell"></i><span class="badge badge-default">@notificationList.Count()</span></a>
+                                <ul class="sub-menu text-right widthnew dropdown-menu-list scroller" style="height: 214px; overflow: hidden;">
+                                    <div class="dropdownbody">
+                                        @foreach (var item in notificationList.OrderByDescending(p => p.Date))
+                                        {
+                                            <a class="styledvi text-capitalize text-semibold pt-1 pb-1" href="/office/index?nid=@item.ID">
+                                                <div class="notification new d-flex">
+                                                    <div class="notification-image-wrapper">
+                                                        <div class="notification-image"></div>
+                                                    </div>
+                                                    <div class="notification-text">
+                                                        <p><i class="fas fa-clock"></i><span>@item.Date</span></p>
+                                                        <span class="highlight">@item.Message</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        }
+                                    </div>
+                                </ul>
+                            }
+                            else
+                            {
+                                <a><i class="far fa-bell"></i></a>
+                            }
+                        }
+                    </li>
+                }
+
+                @if (user.RoleID == kafilRoleId)
+                {
+                    List<Notification> notificationList = ViewModel.GetNotificationsByKafilID(user.Id);
+
+                    <li class="flx">
+                        @{
+                            if (notificationList.Count > 0)
+                            {
+                                <a><i class="far fa-bell"></i><span class="badge badge-default">@notificationList.Count()</span></a>
+                                <ul class="sub-menu text-right widthnew dropdown-menu-list scroller" style="height: 214px; overflow: hidden;">
+                                    <div class="dropdownbody">
+                                        @foreach (var item in notificationList.OrderByDescending(p => p.Date))
+                                        {
+                                            <a class="styledvi text-capitalize text-semibold pt-1 pb-1" href="/kafil/index?nid=@item.ID">
+                                                <div class="notification new d-flex">
+                                                    <div class="notification-image-wrapper">
+                                                        <div class="notification-image"></div>
+                                                    </div>
+                                                    <div class="notification-text">
+                                                        <p><i class="fas fa-clock"></i><span>@item.Date</span></p>
+                                                        <span class="highlight">@item.Message</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        }
+                                    </div>
+                                </ul>
+                            }
+                            else
+                            {
+                                <a><i class="far fa-bell"></i></a>
+                            }
+                        }
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right cmobile" style="flex-direction:inherit;">
+            @if (user.RoleID == adminRoleId)
+            {
+                <li><a class="h-btn loginbtn myaccount" href="/admin/"><i class="fa fa-user mr-1 ml-1"></i>@user.FName</a></li>
+            }
+            else if (user.RoleID == kafilRoleId)
+            {
+                <li class="ml-3 mt-1">
+                    <a href="/kafil/FavoriteList" class="delete_icon1 editicob selectedcss favour" data-toggle="tooltip" title="@Resource.Showfavourites">
+                        <i class="far fa-star"></i>
+                    </a>
+                </li>
+                <li><a class="h-btn loginbtn myaccount" href="/Kafil/"><i class="fa fa-user mr-1 ml-1"></i>@user.FName</a></li>
+            }
+            else
+            {
+                <li><a class="h-btn loginbtn myaccount" href="/office/"><i class="fa fa-user mr-1 ml-1"></i>@user.FName</a></li>
+            }
+
+            <li>
+                <a class="h-btn loginbtn btn-danger ml-mr-1" href="javascript:document.getElementById('logoutForm').submit()">
+                    <i class="fa fa-sign-out mr-1 ml-1"></i> @Resource.Logout
+                </a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <div class="main-menu d-none d-lg-block classnotifcation">
+        <nav id="mobile-menu">
+            <ul>
+                <li><a href="/home/">@Resource.Home</a></li>
+                @*<li><a href="/pages/details/1">@Resource.AboutUs</a></li>*@
+                <li><a href="#aboutus">@Resource.AboutUs</a></li>
+
+                <li class="flx">
+                    <a href="@cultureUrl" class="langauagbtn">
+                        <img src="@Url.Content(flagImage)" class="iconflagh" />
+                        <text> @flagText </text>
+                    </a>
+                </li>
+                <li><a href="#partners">@Resource.OurPartners</a></li>
+                <li><a href="/Pages/Contacts">@Resource.ContactUs</a></li>
+                @*<li><a href="#contactus">@Resource.ContactUs</a></li>*@
+
+            </ul>
+        </nav>
+    </div>
+
+
+    <ul class="nav navbar-nav navbar-right">
+        <div class="header-btn d-none d-lg-block">
+            <div class="hedder-button">
+                <a class="h-btn h-btn-green d-lg-none d-xl-inline-block" href="/account/register"><i class="far fa-user-circle"></i>@Resource.NewUser</a>
+                <a class="h-btn loginbtn" href="/account/login"><i class="far fa-lock-alt"></i>@Resource.Login</a>
+            </div>
+        </div>
+    </ul>
+
+
+}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentPath = window.location.pathname.toLowerCase();
+
+        document.querySelectorAll('#mobile-menu li').forEach(li => {
+            const link = li.querySelector('a');
+            const href = link?.getAttribute('href')?.toLowerCase();
+
+            if (!href || href === "#" || href.startsWith("javascript")) return;
+
+            // تطابق المسار الحالي مع الـ href
+            if (currentPath === href || currentPath.startsWith(href)) {
+                document.querySelectorAll('#mobile-menu li').forEach(li => li.classList.remove('active'));
+                li.classList.add('active');
+            }
+        });
+    });
+    document.querySelectorAll('#mobile-menu a[href^="#"]').forEach(link => {
+        link.addEventListener('click', function () {
+            document.querySelectorAll('#mobile-menu li').forEach(li => li.classList.remove('active'));
+            this.parentElement.classList.add('active');
+        });
+    });
+</script>
+

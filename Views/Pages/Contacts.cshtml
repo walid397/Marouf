@@ -1,0 +1,233 @@
+﻿@model Marofh.Contact
+@using Resources
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {
+        ViewBag.Title = "Contact Us";
+
+    }
+    else
+    {
+         ViewBag.Title = "تواصل معنا";
+     
+    }
+
+
+}
+<style>
+
+    .Termcod {
+        background: #ffffff;
+        padding: 22px 20px;
+        box-shadow: -1px 6px 16px rgb(0 0 0 / 10%);
+        border-radius: 10px;
+        margin-top: 28px;
+        padding-top: 0px;
+    }
+
+    .page__title-height {
+        min-height: 150px;
+        MARGIN-TOP: 89PX;
+    }
+</style>
+
+
+<main>
+
+    <div class="Termcod wow  fadeIn animated">
+        <!-- contact area start -->
+        <section class="contact__area pt-50 pb-150 grey-bg ">
+            <div class="container">
+                <div class="contact__inner pl-60 pr-60">
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-6">
+                            <div class="contact__content">
+                                <h4>  @Resource.ContactUs</h4>
+                                <p>   @Resource.ContactWithMaroufah</p>
+                                <div class="contact__info">
+                                    <ul>
+                                        <li>
+                                            <div class="contact__item d-flex">
+                                                <div class="icon ml-30">
+                                                    <i class="flaticon-map"></i>
+                                                </div>
+                                                <div class="text">
+                                                    <h4>@Resource.Site </h4>
+                                                    <p>
+                                                        @Resource.Sahafa   - @Resource.Riyadh - @Resource.KingdomofSaudiArabia 
+
+                                                        <br>    @Resource.KingdomofSaudiArabia
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="contact__item d-flex">
+                                                <div class="icon ml-30">
+                                                    <i class="flaticon-email"></i>
+                                                </div>
+                                                <div class="text">
+                                                    <h4>  @Resource.Email  </h4>
+                                                    <p><a href="mailto:@Model.Email">@Model.Email</a></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="contact__item d-flex">
+                                                <div class="icon ml-30">
+                                                    <i class="flaticon-phone-call"></i>
+                                                </div>
+                                                <div class="text">
+                                                    <h4> @Resource.ContactUs   </h4>
+                                                    <p><a href="tel:@Model.Phone">@Model.Phone</a></p>
+                                                    <p><a href="tel:@Model.Mobile"> @Model.Mobile</a></p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-6">
+                            <div class="contact__form">
+                             
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="contact__input">
+                                                <input type="text" placeholder="@Resource.EnterName" id="Name" name="Name">
+                                                <i class="far fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="contact__input">
+                                                <input type="email" placeholder="@Resource.Email" id="From" name="From" required>
+                                                <i class="far fa-envelope"></i>
+                                            </div>
+                                        </div>
+                                     
+                                        <div class="col-xl-12">
+                                            <div class="contact__input">
+                                                <textarea placeholder="@Resource.Message" name="Message" id="Message"></textarea>
+                                                <i class="far fa-pen-alt"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <button type="submit" class="b-btn b-btn-green w-100" onclick="sendMessage();">
+                                                <i class="far fa-arrow-right"></i>
+                                                @*ارسال الرسالة*@
+
+                                                @Resource.SendMessage
+                                            </button>
+                                        </div>
+                                    </div>
+                             
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="contact__map mt-30">
+                                <div class="contact__map-inner">
+                                    <iframe src="@Html.Raw(Model.MAP)"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- contact area end -->
+
+    </div>
+
+</main>
+@section Scripts{
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+    <script>
+        function sendMessage() {
+
+             event.preventDefault();
+            var Name = $('#Name').val();
+            var From = $('#From').val();
+            var Message = $('#Message').val();
+            if (Name == "" || From == "" || Message == "") {
+                  Swal.fire("@Resource.Warning", "@Resource.PleaseEnterAlltheDataCorrectlysothattheMaroufateamcancontactyou", "warning");
+                return;
+            }
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("SendMessage", "Home")',//  this for calling the web method function in controller.
+                data: { Name: Name, From: From, Message: Message},
+                dataType: "json",
+                success: function (response) {
+                    switch (response) {
+
+
+                        //ارسال الطالبات
+                        case "MessageHasBeenSent":
+                          Swal.fire("@Resource.Done", "@Resource.YourInquiryhasbeensentsuccessfullyandMaroufateamwillrespondtoyouassoonaspossible", "success");
+
+                            /*      $('#Name').val(""); $('#From').val(""); $('#Message').val("");*/
+
+                           // clearTxtInputs('Name'); clearTxtInputs('From'); clearTxtInputs('Message');
+                            break;
+
+                        case "WrongEmail":
+                               Swal.fire("@Resource.Warning", "@Resource.YouMustEnteraValidEmailinordertoGetbackintouchwithyou", "warning");
+                            break;
+
+
+                        case "Exception":
+                            alert('@Resource.SomeThingWrong');
+                            break;
+
+                    }
+
+                }
+            });
+        }
+
+
+        function OnSuccessed(response) {
+
+            switch (response) {
+
+
+
+
+                //ارسال الطالبات
+                case "MessageHasBeenSent":
+                    Swal.fire("تم", "تم إرسال استفسارك بنجاح وسيقوم فريق معروفة بالرد على سيادتكم فى اقرب وقت", "success");
+                    break;
+
+
+
+
+                case "WrongEmail":
+                    Swal.fire("تنبية", "يجب وضع بريد الكترونى حقيقى لمعاوده التواصل معكمم من خلاله", "warning");
+                    break;
+
+
+                case "Exception":
+                    alert('حدث خطأ ما');
+                    break;
+
+            }
+        }
+        function clearTxtInputs(elementId) {
+            var element = document.getElementById(elementId);
+
+            element.value = '';
+
+        }
+    </script>
+}
+

@@ -1,0 +1,186 @@
+﻿@model Marofh.Models.RegisterViewModel
+@using Resources
+
+@{
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+
+
+    if (culture.Contains("en-us"))
+    {
+
+          ViewBag.Title = "Create New Account";
+    }
+    else
+    {
+          ViewBag.Title = "انشاء مستخدم جديد";
+
+    }
+
+
+
+
+}
+
+@{
+  
+    ViewBag.Parent = "المستخدمين";
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+}
+
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    <section>
+
+        <div class="wrapper">
+            <div class="wizard-content-1 pos-flex clearfix">
+                <div class="steps d-inline-block clearfix">
+                    <span class="bg-shape"></span>
+                    <ul class="tablist multisteps-form__progress">
+                        <li class="multisteps-form__progress-btn js-active current">
+                            <div class="step-btn-icon-text">
+                                <span>1</span>
+                                <div class="step-btn-icon float-right position-relative">
+                                    <i class="fal fa-user-circle iconifo"></i>
+
+                                </div>
+                                <div class="step-btn-text">
+                                    <h2 class="text-uppercase"> @Resource.AccountType</h2>
+                                    <span class="text-capitalize"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="multisteps-form__progress-btn">
+                            <div class="step-btn-icon-text">
+                                <span>2</span>
+                                <div class="step-btn-icon float-right position-relative">
+
+
+                                    <i class="fal fa-address-card iconifo"></i>
+                                </div>
+                                <div class="step-btn-text">
+                                    <h2 class="text-uppercase">  @Resource.CompletingData</h2>
+                                    <span class="text-capitalize"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="multisteps-form__progress-btn">
+                            <div class="step-btn-icon-text">
+                                <span>3</span>
+                                <div class="step-btn-icon float-right position-relative">
+
+                                    <i class="far fa-check-circle iconifo"></i>
+                                </div>
+                                <div class="step-btn-text">
+                                    <h2 class="text-uppercase">   @Resource.RegistrationIsDone</h2>
+                                    <span class="text-capitalize"></span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="step-inner-content clearfix position-relative">
+                    <span class="bg-shape"></span>
+                    <div class="multisteps-form__form" id="wizard">
+                        <div class="form-area position-relative">
+                            <div class="multisteps-form__panel js-active" data-animation="scaleIn">
+                                <div class="wizard-forms position-relative">
+                                    <span class="step-no position-absolute"> @Resource.FirstStep  </span>
+                                    <div class="wizard-progress">
+                                        <span>   @Resource.Stage1of3</span>
+                                        <div class="progress">
+                                            <div class="progress-bar">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="wizard-inner-box">
+                                        <div class="inner-title text-center mb-50">
+                                            <h2> @Resource.SelectAccountType </h2>
+                                            <p>  @Resource.Choosethetypeofaccountyouwanttoopen </p>
+                                        </div>
+
+
+
+                                        <div class="acounttyupe text-center">
+
+
+
+                                            <label class="need-job-icon-text text-center">
+                                                <input type="radio" name="job_title" value="Kafil" class="j-checkbox" onchange="getSelected(this.value);" checked>
+                                                <span class="need-job-text-inner">
+                                                    <span class="checkbox-circle-mark position-absolute"> </span>
+                                                    <span class="need-job-icon">
+                                                        <img src="/Content/front/assets/img/imagenew/n.jpg" />
+                                                    </span>
+                                                    <span class="need-job-text">
+                                                        <span class="text-uppercase need-job-title">@*صاحب عمل*@ @Resource.BusinessOwner</span>
+                                                    </span>
+                                                </span>
+                                            </label>
+                                            <label class="need-job-icon-text text-center">
+                                                <input type="radio" name="job_title" value="office" class="j-checkbox" onchange="getSelected(this.value);">
+                                                <span class="need-job-text-inner">
+                                                    <span class="checkbox-circle-mark position-absolute"> </span>
+                                                    <span class="need-job-icon">
+
+                                                        <img src="/Content/front/assets/img/imagenew/office.jpg" />
+                                                    </span>
+                                                    <span class="need-job-text">
+                                                        <span class="text-uppercase need-job-title">@*مكتب استقدام*@  @Resource.RecruitingOffice</span>
+                                                    </span>
+                                                </span>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <ul>
+                                            <li><span class="js-btn-next" onclick="redirect();"> @Resource.Next</span></li>
+                                        </ul>
+                                        <input id="rurl" type="hidden" />
+                                    </div>
+                                </div>
+                                <div class="bottom-vector position-absolute">
+                                </div>
+                            </div>
+                            <!-- step 1 -->
+
+                        </div>
+                        <!-- step 2 -->
+                        <!-- step 3 -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @section Scripts{
+        <script>
+            function getSelected(value) {
+                var rurl = document.getElementById('rurl');
+                rurl.value = value;
+                //   alert(value);
+            }
+
+            function redirect() {
+                var rurl = document.getElementById('rurl');
+                if (rurl.value == 'office') {
+                    window.location.href = '/office/register';
+                }
+                else {
+                    window.location.href = '/kafil/register';
+
+                }
+            }
+
+        </script>
+    }
+}

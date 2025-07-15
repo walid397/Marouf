@@ -1,0 +1,86 @@
+﻿@model IEnumerable<WorkerRequest>
+@using Resources
+@using (Html.BeginForm("PayBulkRequestsByOffice", "Office", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+
+        <div class="col-6 col-xl-6">
+            <div class="form__group">
+                <label for="category" class="form__label">  @Resource.OfficeName @Model.FirstOrDefault().AspNetUser2.OfficeName</label>
+
+            </div>
+        </div>
+
+
+        <div class="col-6 col-xl-6">
+            <div class="form__group">
+                <label for="category" class="form__label">  @Resource.DeservedAmount </label>
+                <label id="WalletBalance" name="WalletBalance"> @Model.Sum(p => p.Balance)</label>
+            </div>
+        </div>
+        <div class="col-6 col-xl-6">
+            <div class="form-group row">
+                <label for="category" class="form__label">   @Resource.UploadReceipt  </label>
+                <input type="file" id="ReceiptUrl" name="ReceiptUrl" onchange="validateAmount();" />
+                <input type="hidden" class="form-control" id="PaiedAmount" name="PaiedAmount" value="@Model.Sum(p=>p.Balance)" />
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" id="payBtn" name="payBtn" disabled >
+
+            <i class="far fa-save "></i>
+            &nbsp;
+            @Resource.AccountSettlement
+            @*تسوية الحساب*@
+        </button>
+
+
+
+    </div>
+
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+
+    <script>
+
+
+
+        function validateAmount() {
+            var WalletBalance = document.getElementById('WalletBalance').innerHTML;
+            var PaiedAmount = document.getElementById('PaiedAmount').value;
+            var payBtn = document.getElementById('payBtn');
+
+            //alert(WalletBalance);
+            //alert(PaiedAmount);
+
+            if (parseFloat(PaiedAmount, 10) != parseFloat(WalletBalance, 10)) {
+                Swal.fire("@Resource.Warning", "@Resource.TheAmountEnteredDoesnotMatchtheAmountdue", "info");
+
+                // alert('لايمكن تسديد مبلغ اكثر من المبلغ المستحق');
+                payBtn.disabled = true;
+            }
+            else {
+                payBtn.disabled = false;
+            }
+
+
+
+            if (document.getElementById("ReceiptUrl").files.length == 0) {
+                payBtn.disabled = true;
+            }
+
+            else {
+                payBtn.disabled = false;
+            }
+
+        }
+
+    </script>
+
+    }

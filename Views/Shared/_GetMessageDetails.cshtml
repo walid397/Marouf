@@ -1,0 +1,119 @@
+﻿@model IEnumerable<Mail>
+@using Resources
+
+@using (Html.BeginForm("SendReply", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row" style="text-align: right; float: right; ">
+
+
+        @Html.HiddenFor(model => model.FirstOrDefault().OfficeID)
+        <input type="hidden" id="MailID" name="MailID" value="@Model.FirstOrDefault().ID" />
+        <div class="col-12 mt-10">
+
+            <div class="row">
+                <div class="container">
+
+                    <div class="card-box readmore mt-5">
+
+                        <h6 class="page-title font-weight-bolder border-bottom pt-3 pb-3  stthead"> @Resource.Inbox </h6>
+
+                        @foreach (var msg in Model)
+                        {
+
+
+                            <div class="email-content">
+
+                                <div class="body_comment">
+
+                                    <div class="row">
+                                        <ul id="list_comment" class="col-md-12">
+                                            <!-- Start List Comment  -->
+
+                                            <li class="box_result row">
+
+                                                <div class="avatar_comment col-md-1">
+                                                    <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar">
+                                                </div>
+                                                <a href="#" class="col-md-11">
+
+                                                    <div class="result_comment w-100">
+
+
+                                                        <div>
+                                                            @if (!string.IsNullOrEmpty(msg.OperatorID))
+                                                            {
+                                                                <h4> @msg.AspNetUser.FName</h4>
+
+                                                            }
+                                                            else
+                                                            { <h4> @msg.AspNetUser1.OfficeName</h4>}
+
+                                                        </div>
+
+
+                                                        <p>   @msg.Message  </p>
+
+
+                                                        <div class="tools_comment">
+
+                                                            <i class="far fa-clock  ml-1 mr-1"></i>
+                                                            <span>
+                                                                @msg.Date
+                                                            </span>
+                                                        </div>
+
+                                                    </div>
+                                                </a>
+                                            </li>
+
+
+
+
+                                        </ul>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                                <span class="readmore-link"></span>
+
+
+                            </div>
+                        }
+
+
+
+                        <div class="col-12">
+                            <label class="Control-label">@*اضف ردا*@  @Resource.TypeInYourMessage</label>
+                            <textarea id="Message" name="Message" class="form-control" style="height:100px;" required></textarea>
+
+                        </div>
+                        <div class="col-12">
+                            <label class="Control-label"> @Resource.Attachments </label>
+                            <input type="file" name="FileUrl" id="FileUrl" multiple />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary mtmin">
+
+                        <i class="far fa-edit"></i>
+                        @Resource.Send
+                        @*إرسال*@
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+}

@@ -1,0 +1,43 @@
+﻿@model Marofh.WorkerCours
+@using  Resources
+ @using (Html.BeginForm("EditWorkerCourses", "Worker", FormMethod.Post))
+ {
+<div class="row">
+
+
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.WorkerID)
+
+    <div class="col-12 mt-10">
+
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label"> @Resource.CertificateName </label>
+                    <input name="Name" id="Name" type="text" class="form__input" placeholder="@Resource.CertificateName" value="@Model.Name">
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">@Resource.ReleaseDate  </label>
+                    @Html.TextBoxFor(m => m.Date, "{0:yyyy-MM-dd}", new { @class = "form-control form__input", type = "date" })
+
+                </div>
+            </div>
+            <div class="col-12 col-lg-12">
+                <div class="form__group">
+                    <label for="firstname" class="form__label"> @Resource.EducationalCenter </label>
+                    <input name="CenterName" id="CenterName" type="text" class="form__input" placeholder="@Resource.EducationalCenter " value="@Model.CenterName">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">@Resource.Save </button>
+    </div>
+
+</div>
+    }

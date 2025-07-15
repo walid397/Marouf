@@ -1,0 +1,75 @@
+﻿
+@model IEnumerable<AspNetUser>
+@foreach (AspNetUser worker in Model)
+{
+    <div class="post">
+        <div class="post__head">
+            <a href="#" class="post__head-img">
+                @if (!string.IsNullOrEmpty(worker.ImageUrl))
+                {
+                    <img src="@worker.ImageUrl" alt="">
+                }
+                else
+                {
+                    <img src="/Content/front/assets/img/user.png" alt="">
+                }
+            </a>
+            <div class="post__head-title">
+                <h5>
+                    <a href="/worker/details/@worker.ShortID">
+                        @worker.FName @Html.Raw(" ") @worker.LName
+                    </a>
+                </h5>
+                <div class="d-flex align-items-center">
+                    <p><i class="icon ion-ios-eye"></i> <span>@worker.ViewCount</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div style="justify-content: flex-start" class="post__wrap">
+            <div class="post__location">
+                <i class="icon ion-ios-navigate"></i>
+                <span>
+                    @(worker.Country != null
+                        ? (System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower().Contains("en-us")
+                            ? worker.Country.NameEN
+                            : worker.Country.NameAR)
+                        : "N/A")
+                </span>
+            </div>
+        </div>
+
+        @if (worker.Job != null)
+        {
+            <h2 class="post__title">
+                @(System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower().Contains("en-us")
+                    ? worker.Job.NameEN
+                    : worker.Job.NameAR)
+            </h2>
+        }
+        else
+        {
+            <h2 class="post__title">N/A</h2>
+        }
+
+        <div class="post__description">
+            <p>@worker.Brief</p>
+        </div>
+
+        <div class="post__tags">
+            @foreach (var skill in worker.WorkerSkills)
+            {
+                <a href="#">
+                    @(System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower().Contains("en-us")
+                        ? skill.Skill.NameEN
+                        : skill.Skill.NameAR)
+                </a>
+            }
+        </div>
+
+        <div class="post__title">
+            <a href="#">@worker.RequestAmount</a>
+        </div>
+    </div>
+}
+

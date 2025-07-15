@@ -1,0 +1,1871 @@
+﻿@model  AspNetUser
+@using Microsoft.AspNet.Identity
+@using Marofh.Models
+@using Resources
+
+
+
+
+@{
+
+     var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+    if(culture.Contains("en-us"))
+    {
+            ViewBag.Title = "Worker Personal Page";
+           ViewBag.Sub1Title = "My Account";
+
+    }
+    else
+    {
+            ViewBag.Title = "الصفحة الشخصية لعامل";
+           ViewBag.Sub1Title = "حسابى";
+     
+    }
+
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+
+ 
+    ViewBag.Sub1Url = "/office/";
+}
+
+@{string userId = User.Identity.GetUserId();
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);
+    int index = 1;
+}
+
+<div class="container pl-0 pr-0 mt-5">
+    <div class="row ">
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3">
+            <!-- user -->
+            <div class="user">
+                <div class="user__head">
+                    <div class="user__img">
+                        @{string profileImg = ViewModel.GetCurrentUser(userId).ImageUrl;}
+                        @if (!string.IsNullOrEmpty(profileImg))
+                        {
+                            <img src="@profileImg" alt="">
+                        }
+                        else
+                        {
+                            <img src="/Content/front/assets/img/user.png" alt="">
+                        }
+
+
+                        <a href="#" class="imgcss" onclick="editOfficeImageProfile(@Model.AspNetUser1.ShortID)">
+                            <i class="fa fa-camera fa-5x"></i>
+                            <span class="changetitle">  @Resource.ChangeImage</span>
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="user__title">
+                    <h2>@Model.AspNetUser1.OfficeName</h2>
+                    @if (@Model.AspNetUser1.Country != null)
+                    {
+                        if (culture.Contains("en-us"))
+                        {
+                            <p>@Model.AspNetUser1.Country.NameEN</p>
+
+                        }
+                        else
+                        {
+                            <p>@Model.AspNetUser1.Country.NameAR</p>
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        <p></p>
+                    }
+
+                    <div class="verviedaccoutn  ">
+                        <i class="fa fa-check-circle"></i>
+
+                    </div>
+
+                    <div class=" mt-20 staticite">
+                        <div class="">
+                            <span class="fad fa-user-circle d-block"></span>
+                            <span class="d-block fontsizerbol">
+                                @Marofh.Models.ViewModel.GetWorkersCount(userId, workerRoleId)
+
+
+                            </span>
+                            <span class="cfont">
+                              @Resource.FemaleWorkers  
+                            </span>
+
+                        </div>
+                        <div class="">
+                            <span class="fad fa-eye d-block"></span>
+                            <span class="d-block fontsizerbol">@Model.ViewCount </span>
+                            <span class="cfont">
+                              @Resource.Views  
+                            </span>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <ul class="user__list">
+
+                    <li>
+                        <a href="/office/"><i class="fad fa-home-lg-alt"></i>@Resource.HomePage  </a>
+                    </li>
+                    <!--<li>
+                        <a href="#"><i class="fad fa-user-tie"></i> الملف الشخصى</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fad fa-handshake"></i>إدارة المقابلات </a>
+                    </li>-->
+
+                    <li>
+
+                        <a href="javascript:document.getElementById('logoutForm').submit()"><i class="fad fa-sign-out-alt"></i>@Resource.Logout  </a>
+
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- end user -->
+            <!-- social -->
+            <div class="sidebox">
+                <!--<div class="sidebox__share">
+                    <span>اجتماعی:</span>
+                    <ul>
+                        <li class="facebook"><a href="#"><i class="icon ion-logo-facebook"></i></a></li>
+                        <li class="instagram"><a href="#"><i class="icon ion-logo-instagram"></i></a></li>
+                        <li class="twitter"><a href="#"><i class="icon ion-logo-twitter"></i></a></li>
+                    </ul>
+                </div>-->
+            </div>
+            <!-- end social -->
+        </div>
+        <div class="col-12 col-md-8 col-lg-8 col-xl-9">
+
+
+            <!--<ul class="nav nav-tabs main__nav" id="main__nav" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false">الاعدادت</a>
+                </li>
+
+
+            </ul>-->
+
+            <div class="tab-content">
+                <div class="w-100 d-flex centerlai2 pt-2">
+                    <div class="col-2 align-items-center ml0 pr0 ">
+                        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                        {
+                            <img src="@Model.ImageUrl" alt="" class="borderdov">
+                        }
+                        else
+                        {
+                            <img src="/Content/front/assets/img/user.png" alt="" class="borderdov">
+                        }
+
+                        @*<div class="deletebox">
+                                <a href="#" class="delete_icon1 delteicob" data-toggle="tooltip" title="حذف" alt="حذف"><i class="far fa-trash-alt" ></i></a>
+                            </div>*@
+
+
+                        <div class="deletebox">
+                            <a href="#" class="delete_icon1 delteicob2 uploaifncss" data-toggle="tooltip" title="@Resource.ChangeImage" alt="@Resource.ChangeImage" onclick="editWorkerImageProfile(@Model.ShortID)"><i class="fa fa-camera "></i></a>
+
+                            <a href="#" class="delete_icon1 delteicob" data-toggle="tooltip" title="@Resource.Delete" alt="@Resource.Delete" onclick="editWorkerImageProfile(@Model.ShortID)"><i class="far fa-trash-alt"></i></a>
+
+                            @*<input id='uploadprofile' type='file'>*@
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div class="col-10 text-right">
+
+                        <div class="d-flex align-items-center">
+                            <div class="col-10 ">
+                                <h4 class="textrig">@Model.FName  @Html.Raw(" ") @Model.LName  </h4>
+                                @if (Model.Job != null)
+                                {
+                                    if (culture.Contains("en-us"))
+                                    {
+                                        <p class="righttex pb-0">@Model.Job.NameEN  </p>
+
+                                    }
+                                    else
+                                    {
+                                        <p class="righttex pb-0">@Model.Job.NameAR  </p>
+
+                                    }
+
+
+
+                                }
+                                else
+                                {
+                                    <p class="righttex pb-0">  </p>
+
+                                }
+
+                            </div>
+
+                            <div>
+                                <div class="col-2">
+                                    <div role="progressbar" aria-valuenow="@ViewBag.Percetage" aria-valuemin="0" aria-valuemax="100" style="--value:@ViewBag.Percetage"></div>
+                                    @*<script>
+            function addText() {
+                document.getElementById('cont').innerHTML = document.getElementById('percent').value;
+            }
+
+        </script>*@
+
+                                    @*<input id="percent" name="percent" value="" type="hidden" />
+                                    <div id="cont" data-pct="@ViewBag.Percetage">
+                                        <svg id="svg" width="200" height="200" viewPort="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <circle r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+                                            <circle id="bar" r="90" cx="100" cy="100" fill="transparent" stroke-dasharray="565.48" stroke-dashoffset="0"></circle>
+                                        </svg>
+                                    </div>*@
+
+                                </div>
+
+
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    @*<div class="set-size charts-container">
+
+
+                            <div class="pie-wrapper progress-45 style-2">
+                                <span class="label"> <span class="smaller">%</span></span>
+                                <div class="pie">
+                                    <div class="left-side half-circle"></div>
+                                    <div class="right-side half-circle"></div>
+                                </div>
+
+                            </div>
+
+
+                        </div>*@
+
+
+
+
+
+                    @*<div class="col-3 cssleft">
+
+
+                        </div>*@
+                </div>
+
+
+                <div class="tab-pane fade show active" id="tab-3" role="tabpanel" aria-labelledby="tab-3">
+
+
+                    <div class="row">
+
+
+                        <div class="col-2 ml0 pr0">
+
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" data-toggle="pill" href="#v-pills-home" role="tab">
+                                    <i class="fad fa-user-circle"></i>
+                                  @Resource.PersonalInformation  
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-video" role="tab">
+
+
+                                    <i class="fad fa-file-video"></i>
+                                 @Resource.Introductionvideo  
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-profile" role="tab">
+
+
+                                    <i class="fad fa-address-card"></i>
+                                 @Resource.BriefSummary   
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-messages" role="tab">
+                                    <i class="fad fa-building"></i>
+                                   @Resource.YearsofExperience  
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">
+                                    <i class="fad fa-user-tie"></i>
+                                   @Resource.Education 
+
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-payment" role="tab">
+
+                                    <i class="fad fa-user-graduate"></i>
+
+                                 @Resource.Certificates   
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-skikks" role="tab">
+
+                                    <i class="fad fa-magic"></i>
+
+                                  @Resource.Skills  
+                                </a>
+
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-work" role="tab">
+
+                                    <i class="fad fa-location"></i>
+
+                                  @Resource.workareas  
+                                </a>
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-lang" role="tab">
+
+                                    <i class="fad fa-globe"></i>
+
+                                 @Resource.language   
+                                </a>
+
+                                <a class="nav-link" data-toggle="pill" href="#v-pills-gallery" role="tab">
+                                    <i class="fad fa-images"></i>
+
+                                  @Resource.PhotoGallery   
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-10">
+
+                            <div class="workerProfile">
+
+                                <div class="tab-content" id="v-pills-tabContent">
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+
+
+                                        @Html.Partial("_UpdateWorkerProfileByOffice", Model)
+
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-video" role="tabpanel" aria-labelledby="v-pills-video-tab">
+
+
+
+                                        <form action="/worker/UpdateVideoUrl" class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-file-video"></i>
+                                                        @Resource.Introductionvideo
+
+                                                      
+                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-12">
+
+
+                                                    <iframe width="100%" height="315" src="@Model.VideoUrl" title="YouTube video player"
+                                                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                            allowfullscreen></iframe>
+
+                                                </div>
+
+                                                <div class="col-12">
+                                                    <div class="form__group">
+                                                        <label class="form__label">@Resource.VideoLink  </label>
+
+                                                        <input id="VideoUrl" name="VideoUrl" class="col-md-12" />
+
+
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <button class="form__btn" type="submit">
+                                                        <span>
+                                                            <span class="fa fa-save"></span>
+                                                          @Resource.SaveChanges  
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+
+
+
+                                        <form action="/worker/UpdateBrief" class="form formcss" method="post">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-address-card"></i>
+
+                                                        @Resource.BriefSummary
+                                                      
+                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <textarea class="textarea" rows="4" cols="5" id="Brief" name="Brief">
+                        @Html.Raw(Model.Brief)
+                                                            </textarea>
+
+                                                </div>
+
+
+                                                <div class="col-12">
+                                                    <button class="form__btn" type="submit">
+                                                        <span>
+                                                            <span class="fa fa-save"></span>
+                                                          @Resource.SaveChanges  
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-building"></i>
+                                                        @Resource.YearsofExperience
+                                                        @*سنوات الخبرة*@
+
+                                                    </h2>
+                                                </div>
+
+
+
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.Company </th>
+                                                            <th scope="col"> @Resource.From</th>
+                                                            <th scope="col"> @Resource.To </th>
+                                                            <th scope="col"> @Resource.Country</th>
+                                                            <th scope="col"> @Resource.City</th>
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (WorkerExpertis expertis in Model.WorkerExpertises)
+                                                        {
+                                                        <tr id="row_@expertis.ID">
+                                                            <td> @index</td>
+                                                            <td>@expertis.CompanyName </td>
+
+                                                            <td>@expertis.From.Value.ToShortDateString() </td>
+
+                                                            <td>@expertis.To.Value.ToShortDateString() </td>
+                                                            @if (@expertis.Country != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@expertis.Country.NameEN </td>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@expertis.Country.NameAR </td>
+
+                                                                }
+
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+
+                                                            @if (@expertis.City != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+
+                                                                    <td>@expertis.City.NameEN </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@expertis.City.NameAR </td>
+
+                                                                }
+
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+
+
+
+
+                                                            <td>
+                                                                <a href="#">
+                                                                    <i class="fad fa-edit" onclick="editWorkerExpertis(@expertis.ID)"></i>
+
+                                                                </a>
+                                                                @*<a class="table-link-download"  href="/worker/DeleteWorkerExpertis/@expertis.ID"><i class="fad fa-trash"></i></a>*@
+
+                                                                <a class="table-link-download" href="javascript:void(0);" onclick="fillRequiredData(@expertis.ID,'/worker/DeleteWorkerExpertis')"><i class="fad fa-trash"></i></a>
+
+                                                            </td>
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="">
+                                                    <button class="cssadd" type="button" data-toggle="modal" data-target="#Experiedivl">
+                                                        <span>
+                                                            <i class="far fa-plus-circle"></i>
+                                                          @Resource.Addnew 
+                                                        </span>
+                                                    </button>
+
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                            <div class="modal fade" id="Experiedivl" tabindex="-1" role="dialog" aria-labelledby="Experiedivl" aria-hidden="true">
+                                                <div class="modal-dialog nemofa">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">@Resource.Addnew  </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="/worker/AddWorkerExpertises" id="FormAddWorkerExpertises">
+                                                                <div class="col-12 mt-10">
+                                                                    <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label">@Resource.CompanyName  </label>
+                                                                                <input name="CompanyName" id="CompanyName" type="text" class="form__input" placeholder="@Resource.CompanyName">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label">  @Resource.SponsorName </label>
+                                                                                <input name="KafilName" id="KafilName" type="text" class="form__input" placeholder=" @Resource.SponsorName">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label">  @Resource.DateFrom </label>
+                                                                                <input name="From" id="From" type="date" class="form__input" placeholder="@Resource.DateFrom " required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label">  @Resource.DateTo </label>
+                                                                                <input name="To" id="To" type="date" class="form__input" placeholder="@Resource.DateTo" required>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label"> @Resource.Country  </label>
+                                                                                @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,Resource.Country, htmlAttributes: new { @class = "form-control ", @onchange = "GetCitiesByCountryID(this.value,'FormAddWorkerExpertises');" })
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label">@Resource.City </label>
+                                                                                @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,Resource.City, htmlAttributes: new { @class = "form-control " })
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary"> @Resource.Save</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                        <div action="#" class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-user-tie"></i>
+                                                        @Resource.Education
+                                                    
+
+                                                    </h2>
+                                                </div>
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col"> @Resource.Degree</th>
+                                                            <th scope="col"> @Resource.From  </th>
+                                                            <th scope="col"> @Resource.To </th>
+                                                            <th scope="col"> @Resource.Country </th>
+                                                            <th scope="col">  @Resource.PlaceName</th>
+                                                            <th colspan="3" scope="col"></th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerCertificate certificate in Model.WorkerCertificates)
+                                                        {
+                                                        <tr id="row_@certificate.ID">
+                                                            <td> @index</td>
+                                                            <td>@certificate.Name </td>
+
+                                                            <td>@certificate.From.Value.ToShortDateString() </td>
+
+                                                            <td>@certificate.To.Value.ToShortDateString() </td>
+                                                            @if (certificate.Country != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+
+                                                                    <td>@certificate.Country.NameEN </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@certificate.Country.NameAR </td>
+
+                                                                }
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+
+
+                                                            <td>@certificate.University </td>
+
+                                                            <td>
+                                                                <a href="#">
+                                                                    <i class="fad fa-edit" onclick="editWorkerCertificate(@certificate.ID)"></i>
+
+                                                                </a>
+                                                                <a class="table-link-download" href="javascript:void(0);" onclick="fillRequiredData(@certificate.ID,'/worker/DeleteWorkerCertificate')"><i class="fad fa-trash"></i></a>
+
+                                                            </td>
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="">
+                                                    <button class="cssadd" type="button" data-toggle="modal" data-target="#Educatio">
+                                                        <span>
+                                                            <i class="far fa-plus-circle"></i>
+                                                          @Resource.Addnew  @*اضافة جديد*@
+                                                        </span>
+                                                    </button>
+
+                                                </div>
+                                                <div class="modal fade" id="Educatio" tabindex="-1" role="dialog" aria-labelledby="Educatio" aria-hidden="true">
+                                                    <div class="modal-dialog nemofa">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">  @Resource.Addnew</h4>
+                                                            </div>
+                                                            <form action="/worker/AddWorkerCertificates">
+                                                                <div class="col-12 mt-10">
+                                                                    <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label"> @Resource.Degree </label>
+                                                                                <input name="Name" id="Name" type="text" class="form__input" placeholder="@Resource.Degree">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label"> @Resource.PlaceName  </label>
+                                                                                <input name="University" id="University" type="text" class="form__input" placeholder="@Resource.PlaceName">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label"> @Resource.DateFrom </label>
+                                                                                <input name="From" id="From" type="date" class="form__input" placeholder=" @Resource.DateFrom">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label"> @Resource.DateTo </label>
+                                                                                <input name="To" id="To" type="date" class="form__input" placeholder="@Resource.DateTo">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label"> @Resource.Country </label>
+                                                                                @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,Resource.Country, htmlAttributes: new { @class = "form-control " })
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="modal-footer">
+                                                                    <button type="submit" class="btn btn-primary">@Resource.Save </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-payment" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                        <!-- form -->
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+
+                                                        <i class="fad fa-user-graduate"></i>
+                                                        @Resource.Certificates
+                                                        
+                                                    </h2>
+                                                </div>
+
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.Certificate </th>
+                                                            <th scope="col">  @Resource.ReleaseDate</th>
+                                                            <th scope="col"> @Resource.EducationalCenter  </th>
+                                                            <th colspan="3" scope="col"></th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerCours course in Model.WorkerCourses)
+                                                        {
+                                                        <tr id="row_@course.ID">
+                                                            <td> @index</td>
+                                                            <td>@course.Name </td>
+
+                                                            <td>@course.Date.Value.ToShortDateString() </td>
+
+                                                            <td>@course.CenterName </td>
+                                                            <td>
+                                                                <a href="#">
+                                                                    <i class="fad fa-edit" onclick="editWorkerCourses(@course.ID)"></i>
+
+                                                                </a>
+                                                                <a class="table-link-download" href="javascript:void(0);" onclick="fillRequiredData(@course.ID,'/worker/DeleteWorkerCourses')"><i class="fad fa-trash"></i></a>
+
+                                                            </td>
+
+
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="col-12">
+                                                    <button class="form__btn" type="button" data-toggle="modal" data-target="#gradu"><span>@Resource.Addnew </span></button>
+                                                </div>
+
+                                                <div class="modal fade" id="gradu" tabindex="-1" role="dialog" aria-labelledby="gradu" aria-hidden="true">
+                                                    <div class="modal-dialog nemofa">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel"> @Resource.Certificates</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/worker/AddWorkerCourses">
+
+                                                                    <div class="col-12 mt-10">
+                                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">@Resource.CertificateName  </label>
+                                                                                    <input name="Name" id="Name" type="text" class="form__input" placeholder="@Resource.CertificateName ">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">@Resource.ReleaseDate  </label>
+                                                                                    <input name="Date" id="Date" type="date" class="form__input" placeholder="@Resource.ReleaseDate">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-lg-12">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">@Resource.EducationalCenter </label>
+                                                                                    <input name="CenterName" id="CenterName" type="text" class="form__input" placeholder="@Resource.EducationalCenter">
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary">  @Resource.Save</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- end form -->
+                                    </div>
+
+
+
+                                    <div class="tab-pane fade" id="v-pills-skikks" role="tabpanel" aria-labelledby="v-pills-skikks-tab">
+
+
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+
+                                                        <i class="fad fa-magic"></i>
+
+                                                       
+                                                        @Resource.Skills
+                                                    </h2>
+                                                </div>
+
+                                                <div class="col-12">
+
+                                                    <table class="table table-bordered table-striped tabdiv">
+                                                        <thead class="thead">
+                                                            <tr>
+                                                                <th scope="col">#</th>
+                                                                <th scope="col">@Resource.SkillName  </th>
+                                                                <th scope="col"> @Resource.Degreeofmastery</th>
+                                                                <th colspan="3" scope="col"></th>
+
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @{index = 1; }
+                                                            @foreach (WorkerSkill skill in Model.WorkerSkills)
+                                                            {
+                                                            <tr id="row_@skill.ID">
+                                                                <td> @index</td>
+                                                                @if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@skill.Skill.NameEN </td>
+
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@skill.Skill.NameAR </td>
+
+                                                                }
+
+
+
+                                                                <td>@skill.Level </td>
+
+
+                                                                <td>
+                                                                    <a onclick="editWorkerSkill(@skill.ID)">
+                                                                        <i class="fad fa-edit"></i>
+
+                                                                    </a>
+                                                                    <a class="table-link-download" href="javascript:void(0);" onclick="fillRequiredData(@skill.ID,'/worker/DeleteWorkerSkill')"><i class="fad fa-trash"></i></a>
+
+                                                                </td>
+
+                                                            </tr>
+                                                                { index++; }
+                                                            }
+
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+
+                                                <div class="col-12">
+                                                    <button class="form__btn" type="button" data-toggle="modal" data-target="#skikk">
+                                                        <span>
+                                                            <span class="fa fa-save"></span>
+                                                         
+                                                            @Resource.Addskill
+                                                        </span>
+                                                    </button>
+                                                </div>
+
+                                                <div class="modal fade" id="skikk" tabindex="-1" role="dialog" aria-labelledby="skikk" aria-hidden="true">
+                                                    <div class="modal-dialog nemofa">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">@Resource.Skills </h4>
+                                                            </div>
+                                                            <div class="modal-body">
+
+
+                                                                <form action="/worker/AddWorkerSkills">
+
+                                                                    <div class="col-12 mt-10">
+                                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">  @Resource.SkillName </label>
+                                                                                    @*@Html.DropDownList("SkillID", ViewBag.SkillsID as List<SelectListItem>,"المهارة", htmlAttributes: new { @class = "form-control " })*@
+                                                                                <select id="SkillID" name="SkillID" class="form-control">
+                                                                                    @foreach (Skill item in Marofh.Models.ViewModel.GetAllSkills())
+                                                                                    {
+                                                                                        if (Model.WorkerSkills.Any(p => p.SkillID == item.ID))
+                                                                                        {
+                                                                                            if (culture.Contains("en-us"))
+                                                                                            {
+                                                                                                <option value="@item.ID" selected>@item.NameEN</option>
+
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <option value="@item.ID" selected>@item.NameAR</option>
+
+                                                                                            }
+
+
+
+                                                                                        }
+                                                                                        else
+                                                                                        {
+
+                                                                                            if (culture.Contains("en-us"))
+                                                                                            {
+                                                                                                <option value="@item.ID">@item.NameEN</option>
+
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <option value="@item.ID">@item.NameAR</option>
+
+                                                                                            }
+
+
+
+                                                                                        }
+                                                                                    }
+
+                                                                                </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">   @Resource.Degreeofmastery </label>
+                                                                                    <select class="form-control" name="Level">
+                                                                                        <option value="">
+                                                                                              @Resource.Degreeofmastery
+                                                                                        </option>
+                                                                                        <option value="@Resource.Good"> @Resource.Good</option>
+                                                                                        <option value="@Resource.Moderate">@Resource.Moderate</option>
+                                                                                        <option value="@Resource.Excellent"> @Resource.Excellent</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary"> @Resource.Save</button>
+                                                                    </div>
+                                                                </form>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-work" role="tabpanel" aria-labelledby="v-pills-work-tab">
+
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-location"></i>
+                                                        @Resource.workareas
+                                                        @*مناطق العمل*@
+
+                                                    </h2>
+                                                </div>
+
+
+
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">  @Resource.Country</th>
+                                                            <th scope="col"> @Resource.City</th>
+
+                                                            <th scope="col"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerWorkingPlace place in Model.WorkerWorkingPlaces)
+                                                        {
+                                                        <tr id="row_@place.ID">
+                                                            <td> @index</td>
+
+                                                            @if (place.Country != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@place.Country.NameEN </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@place.Country.NameAR </td>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+                                                            @if (place.City != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+
+                                                                    <td>@place.City.NameEN </td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@place.City.NameAR </td>
+
+                                                                }
+
+
+
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+
+
+
+                                                            <td>
+                                                                <a onclick="editWorkerWorkingPlace(@place.ID)">
+                                                                    <i class="fad fa-edit"></i>
+
+                                                                </a>
+                                                                <a class="table-link-download" href="javascript:void(0);" onclick="fillRequiredData(@place.ID,'/worker/DeleteWorkerWorkingPlace')"><i class="fad fa-trash"></i></a>
+
+                                                            </td>
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="">
+                                                    <button class="cssadd" type="button" data-toggle="modal" data-target="#newarea">
+                                                        <span>
+                                                            <i class="far fa-plus-circle"></i>
+                                                           @Resource.AddArea @*اضافة منطقة*@
+                                                        </span>
+                                                    </button>
+
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                            <div class="modal fade" id="newarea" tabindex="-1" role="dialog" aria-labelledby="newarea" aria-hidden="true">
+                                                <div class="modal-dialog nemofa">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">@Resource.Addnew  </h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="col-12 mt-10">
+                                                                <form action="/worker/AddWorkerWorkingPlaces" id="FormAddWorkerWorkingPlaces">
+                                                                    <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                    <div class="row">
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label">  @Resource.ChooseCountry </label>
+                                                                                @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,Resource.Country, htmlAttributes: new { @class = "form-control " , @onchange = "GetCitiesByCountryID(this.value,'FormAddWorkerWorkingPlaces');" })
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-12 col-lg-6">
+                                                                            <div class="form__group">
+                                                                                <label for="firstname" class="form__label">@Resource.ChooseCity  </label>
+                                                                                @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,Resource.City, htmlAttributes: new { @class = "form-control " })
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-primary"> @Resource.Save</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-lang" role="tabpanel" aria-labelledby="v-pills-lang-tab">
+                                        <div class="form formcss">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+                                                        <i class="fad fa-globe"></i>
+                                                        @Resource.language
+                                                        
+                                                    </h2>
+                                                </div>
+                                                <table class="table table-bordered table-striped tabdiv">
+                                                    <thead class="thead">
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">@Resource.language </th>
+                                                            <th scope="col">@Resource.Degreeofmastery   </th>
+                                                            <th scope="col">@Resource.Natureoflanguage  </th>
+
+                                                            <th colspan="3" scope="col"></th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @{index = 1; }
+                                                        @foreach (WorkerLanguage wl in Model.WorkerLanguages)
+                                                        {
+                                                        <tr id="row_@wl.ID">
+                                                            <td> @index</td>
+                                                            @if (wl.Language != null)
+                                                            {
+                                                                if (culture.Contains("en-us"))
+                                                                {
+                                                                    <td>@wl.Language.NameEN</td>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <td>@wl.Language.NameAR</td>
+                                                                }
+
+                                                            }
+                                                            else
+                                                            {
+                                                                <td></td>
+                                                            }
+                                                            <td>@wl.Level </td>
+                                                            <td>@wl.Method </td>
+
+                                                            <td>
+                                                                <a href="#">
+                                                                    <i class="fad fa-edit" onclick="editWorkerLanguage(@wl.ID)"></i>
+
+                                                                </a>
+                                                                <a class="table-link-download" href="javascript:void(0);" onclick="fillRequiredData(@wl.ID,'/worker/DeleteWorkerLanguage')"><i class="fad fa-trash"></i></a>
+
+                                                            </td>
+                                                        </tr>
+                                                            { index++; }
+                                                        }
+
+                                                    </tbody>
+                                                </table>
+                                                <div class="">
+                                                    <button class="cssadd" type="button" data-toggle="modal" data-target="#langc">
+                                                        <span>
+                                                            <i class="far fa-plus-circle"></i>
+                                                           @Resource.Addlanguage 
+                                                        </span>
+                                                    </button>
+
+                                                </div>
+                                                <div class="modal fade" id="langc" tabindex="-1" role="dialog" aria-labelledby="langc" aria-hidden="true">
+                                                    <div class="modal-dialog nemofa">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel">@Resource.Addlanguage  </h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/worker/AddWorkerLanguages">
+                                                                    <div class="col-12 mt-10">
+                                                                        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                        <div class="row">
+                                                                            <div class="col-12 col-lg-12">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">@*اسم اللغة*@ @Resource.language </label>
+                                                                                    @Html.DropDownList("LanguageID", ViewBag.LanguageID as List<SelectListItem>,htmlAttributes: new { @class = "form-control select2" })
+
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">@Resource.Degreeofmastery  </label>
+                                                                                    <select name="Level" id="Level" class="" required="">
+
+                                                                                        <option value="@Resource.Acceptable"> @Resource.Acceptable</option>
+                                                                                        <option value="@Resource.Good"> @Resource.Good</option>
+
+                                                                                        <option value="@Resource.VeryGood">@Resource.VeryGood  </option>
+                                                                                        <option value=" @Resource.Excellent">@Resource.Excellent </option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">  @Resource.ReadingAndwriting</label>
+                                                                                    <select name="Method" id="Method" class="" required="">
+
+                                                                                        <option value="@Resource.ReadingAndwriting">@Resource.ReadingAndwriting  </option>
+                                                                                        <option value="@Resource.Reading">@Resource.Reading </option>
+                                                                                        <option value="@Resource.Writing">@Resource.Writing</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="submit" class="btn btn-primary"> @Resource.Save</button>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </form>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="v-pills-gallery" role="tabpanel" aria-labelledby="v-pills-gallery-tab">
+                                        <!-- form -->
+                                        <div class="form formcss">
+                                            <div class="row">
+
+                                                <div class="col-12">
+                                                    <h2 class="form__title">
+
+                                                        <i class="fad fa-images"></i>
+                                                        @Resource.PhotoGallery
+                                                        
+                                                    </h2>
+                                                </div>
+
+                                                <div class="w-100">
+                                                    <div class="demo-gallery">
+                                                        @foreach (Gallery gallery in Model.Galleries)
+                                                        {
+                                                            <a href="@gallery.ImageUrl" class="without-caption image-link">
+                                                                <img src="@gallery.ImageUrl" width="172" height="115" />
+
+
+                                                                <span class="bgdangercss">
+
+                                                                    <i class="far fa-trash" onclick="ConfirmDeleteGallery(@gallery.ID)"></i>
+                                                                </span>
+                                                            </a>
+
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                                    <div class="w-100">
+                                                        <form action="/worker/AddWorkerGallery" enctype="multipart/form-data" method="post">
+                                                            <div class="col-12">
+                                                                <input type="file" name="gallery" id="gallery" multiple />
+                                                                <input type="hidden" id="Id" name="Id" value="@Model.Id" />
+
+                                                                <button class="cssadd" type="submit">
+                                                                    <span>
+                                                                        <i class="far fa-plus-circle"></i>
+                                                                      @Resource.Addphotos  
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        <!-- end form -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal fade" id="imageipload" tabindex="-1" role="dialog" aria-labelledby="imageipload" aria-hidden="true">
+                        <div class="modal-dialog nemofa">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">@Resource.Addphotos @*اضافة صور جديدة*@</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="col-12 mt-10">
+
+                                        <div class="container">
+                                            <div class="fileupload-wrapper"><div id="myUpload"></div></div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"> @Resource.Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal  fade modal fade bd-example-modal-lg createnew" id="viewdetails" tabindex="-1" role="dialog"
+     aria-labelledby="viewdetailsLabel" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header flex-column no-padding mb-0">
+                <h6>@Resource.Edit </h6>
+                <button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+
+            <hr class="mt-0 mb-0">
+            <div class="modal-body pt-2  pl-4 pr-4 pb-0" id="Preview">
+
+                @*PartialView*@
+
+            </div>
+        </div>
+        <div class="modal-footer justify-content-start align-items-start flex-column no-padding d-block">
+
+        </div>
+    </div>
+</div>
+
+
+<input type="hidden" id="hiddenItemId" name="hiddenItemId" />
+<input type="hidden" id="hiddenUrl" name="hiddenUrl" />
+
+<div class="modal fade confirmpop " id="confirmpop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalsmall" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-white nopad">
+                <h5 class="modal-title" id="exampleModalLabel">
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-2">
+                <div class="row d-flex flexdor  ">
+
+                    <i class="far fa-exclamation-triangle styletop"></i>
+
+                    <h4 class="bolderfo">@Resource.AreYouSure </h4>
+                    <p class="font-weight-normal"> @Resource.Doyouwanttodeletethisphoto </p>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn  btn-danger" onclick="DeleteImageFromGallery();">
+
+                        <i class="far fa-trash-alt "></i>
+                        &nbsp;
+                       @Resource.Delete 
+                    </button>
+                    <button type="submit" class="btn  btn-grey" data-dismiss="modal" aria-label="Close">
+
+                        <i class="far fa-times "></i>
+                        &nbsp;
+                     @Resource.Cancel   
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade confirmpop " id="confirmDeletePopUp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modalsmall" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-white nopad">
+                <h5 class="modal-title" id="exampleModalLabel">
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body p-2">
+                <div class="row d-flex flexdor  ">
+
+                    <i class="far fa-exclamation-triangle styletop"></i>
+
+                    <h4 class="bolderfo">@Resource.AreYouSure </h4>
+                    <p class="font-weight-normal">@Resource.DoYouWanttoDeletThisItem  </p>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn  btn-danger" onclick="DeleteItem();">
+
+                        <i class="far fa-trash-alt "></i>
+                        &nbsp;
+                    @Resource.Delete    
+                    </button>
+                    <button type="submit" class="btn  btn-grey" data-dismiss="modal" aria-label="Close">
+
+                        <i class="far fa-times "></i>
+                        &nbsp;
+                     @Resource.Cancel   
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+
+
+    <script>
+        function add(ths, sno) {
+
+
+            for (var i = 1; i <= 5; i++) {
+                var cur = document.getElementById("star" + i)
+                cur.className = "far fa-star"
+            }
+
+            for (var i = 1; i <= sno; i++) {
+                var cur = document.getElementById("star" + i)
+                if (cur.className == "far fa-star") {
+                    cur.className = "fas fa-star checked"
+                }
+            }
+
+        }
+
+
+        $(document).ready(function () {
+            $('[data-toggle=tooltip]').tooltip();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $("[data-toggle=\"tooltip\"]").tooltip();
+
+
+        $('.without-caption').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+            image: {
+                verticalFit: true
+            },
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+            },
+            zoom: {
+                enabled: true,
+                duration: 300 // don't foget to change the duration also in CSS
+            }
+        });
+
+        $('.with-caption').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            mainClass: 'mfp-with-zoom mfp-img-mobile',
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+            },
+            image: {
+                verticalFit: true,
+                titleSrc: function (item) {
+                    return item.el.attr('title') + ' &middot; <a class="image-source-link" href="' + item.el.attr('data-source') + '" target="_blank">image source</a>';
+                }
+            },
+            zoom: {
+                enabled: true
+            }
+        });
+
+
+    </script>
+
+
+    <link href="/Content/front/assets/css/bootstrap-FileUpload.min.css" rel="stylesheet" />
+    <script src="/Content/front/assets/css/bootstrap-FileUpload.min.js"></script>
+    <script>
+        $("#myUpload").bootstrapFileUpload({
+            url: "processor.php"
+        });
+    </script>
+
+    <script>
+
+    function editWorkerExpertis(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerExpertis", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+        function editWorkerCourses(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerCourses", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function editWorkerCertificate(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerCertificate", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function editOfficeImageProfile(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditOfficeImageProfile", "Office")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+        function editWorkerSkill(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerSkill", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function editWorkerWorkingPlace(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerWorkingPlace", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+    }
+
+        function editWorkerLanguage(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerLanguage", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+        function deleteImageFromGallry(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("DeleteImageFromGallry", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+
+             //this function for Confirm Delete Image From Gallery
+        var ConfirmDeleteGallery = function (ApproveId) {
+            $("#hiddenItemId").val(ApproveId);
+            $("#confirmpop").modal('show');
+        }
+        var DeleteImageFromGallery = function () {
+            var ApproveId = $("#hiddenItemId").val();
+            $.ajax({
+                type: "POST",
+                url: "/Worker/DeleteImageFromGallery",
+                data: { id: ApproveId },
+                success: function (result) {
+                    $("#confirmpop").modal("hide");
+                    //$("#row_" + ApproveId).remove();
+
+                    window.location.href = "/Worker/Profile/@Model.ShortID";
+                    }
+            })
+
+        }
+
+        function editWorkerImageProfile(_id) {
+    $.ajax({
+    type: "Get",
+    url: '@Url.Action("EditWorkerImageProfile", "Worker")',
+    data: { id: _id  },
+    success: function (data) {
+    $('#Preview').html(data);
+    $('#viewdetails').modal('show');
+    }
+    })
+        }
+
+
+
+
+        $(function () {
+            $("#btn").click(function () {
+                var obj = [],
+                    items = '';
+                $('.SkillsID option:selected').each(function (i) {
+                    obj.push($(this).val());
+                    $('.SkillsID')[0].sumo.unSelectItem(i);
+                });
+
+
+
+                // send select ittems to controlelr
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    url: '@Url.Action("UpdateProfile", "Worker")',
+                    data: JSON.stringify(obj)
+                });
+
+            });
+
+        })
+
+        /* Start Confirm Pop up */
+        function fillRequiredData(_itemId, _url,) {
+            $("#hiddenItemId").val(_itemId);
+            $("#hiddenUrl").val(_url);
+            DeleteConfirmation();
+        }
+
+           //this function for Confirm Delete Worker
+        var DeleteConfirmation = function () {
+            $("#confirmDeletePopUp").modal('show');
+        }
+        var DeleteItem = function () {
+            var _itemId = $("#hiddenItemId").val();
+            var _url = $("#hiddenUrl").val();
+
+            $.ajax({
+                type: "POST",
+                url: _url,
+                data: { id: _itemId },
+                success: function (result) {
+                    $("#confirmDeletePopUp").modal("hide");
+                    $("#row_" + _itemId).remove();
+                 //  window.location.href = "@Url.Action("Index", "Office")";
+                    }
+            })
+
+        }
+        /* End Confirm Pop up */
+
+        function GetCitiesByCountryID(_countryId,_formName) {
+            var procemessage = "<option value='0'> @Resource.ChooseCity</option>";
+            $("#" + _formName + " " + "#CityID").html(procemessage).show();
+            var url = "/Cities/GetCitiesByCountryID/";
+            $.ajax({
+                url: url,
+                data: { countryId: _countryId },
+
+                cache: false,
+                type: "POST",
+                success: function (data) {
+
+                    var markup = "<option value='0'>@Resource.ChooseCity  </option>";
+                    for (var x = 0; x < data.length; x++) {
+                        markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+                    }
+                    $("#" + _formName + " " + "#CityID").html(markup).show();
+
+
+
+                },
+                error: function (reponse) {
+                    if (CityID > 0) {
+                        alert("error : " + reponse);
+                    }
+                }
+            });
+
+        }
+    </script>
+
+
+
+    @*Start of MultiSelect Dripdownlist*@
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- Bootstrap Multiselect CSS -->
+    <link href="~/Content/front/assets/multi-select/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <!-- Bootstrap Multiselect JS -->
+
+    <script src="~/Content/front/assets/multi-select/js/bootstrap-multiselect.js"></script>
+    <script>
+        require(['bootstrap-multiselect'], function (purchase) {
+            $('#SkillsID').multiselect();
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#SkillsID').multiselect();
+
+        });
+    </script>
+
+    @*End of MultiSelect Dripdownlist*@
+
+
+}
+

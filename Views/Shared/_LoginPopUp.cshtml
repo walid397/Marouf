@@ -1,0 +1,126 @@
+﻿@using Resources 
+
+
+@using (Html.BeginForm("LoginPopUp", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+
+    <div class="modal show fade logincssdiv" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <!--<div class="modal-header flex-column no-padding mb-2">
+                    <h5 class="modal-title mb-2 text-bold" id="loginModalLabel">@Resource.Login</h5>-->
+                    @*<p class="model-desc">@Resource.WelcomeLogin</p>*@
+                    <!--<button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <hr class="mt-0 mb-0" />
+                <div class="modal-body no-padding">
+                    <div class="form-group">
+                        <label for="emailS" class="mb-2 text-semibold">@Resource.Email</label> <span class="required">*</span>
+                        <input type="email" class="form-control" name="Email" placeholder="@Resource.EnterYourEmail" required oninvalid="this.setCustomValidity('@Resource.EnterYourEmail')" oninput="setCustomValidity('')">
+                    </div>
+                    <div class="form-group">
+                        <label for="passwordS" class="mb-2 text-semibold">@Resource.Password</label> <span class="required">*</span>
+                        <input type="password" class="form-control" name="Password" id="Password" placeholder="@Resource.Password" required oninvalid="this.setCustomValidity('@Resource.EnterPassword')" oninput="setCustomValidity('')" onfocus="getCurrentUrl();">
+                    </div>
+                    <div class="checkbox-custom d-inline-block mr-4">
+                        <input type="checkbox" name="RememberMe" value="true" id="RememberMe" class="form-checkbox pull-left">
+                        <label class="pull-left text-capitalize text-bold">@Resource.RememberMeNextTime</label>
+                        <input id="rurl" name="rurl" type="text" style="visibility:collapse;display:none" />
+
+                    </div>
+                    <a href="#" class="forget-password text-brand mt-1 mb-2 left" data-toggle="modal"
+                       data-target="#forgetModal" data-dismiss="modal">@Resource.ForgetPassword</a>
+                </div>
+                <div class="modal-footer justify-content-start align-items-start flex-column no-padding d-block">
+                    <input type="submit" value="@Resource.Login" class="btn d-block w-100" />
+                
+
+                    <span class="d-block mt-2">
+                        @Resource.DoNotHaveAccount <a href="#" class="text-brand mt-1 text-semibold"
+                                                      data-toggle="modal" data-target="#registerModal"
+                                                      data-dismiss="modal">@Resource.NewUser</a>
+                                                </span>
+                                            </div>-->
+            
+            
+            
+            
+            
+            
+                
+            
+                <div class="wrapper">
+                    <div class="wizard-content-1 pos-flex clearfix animated fadeInUp wow" data-wow-delay="0.5s">
+                        <div class="steps d-inline-block clearfix w-100">
+                            <span class="bg-shape"></span>
+                            <h2 class="text-center loginTilte">تسجيل الدخول</h2>
+                            <p class="text-center">من فضلك سجل بيانات الدخول  </p>
+                            <div class="details-form-area">
+                                <div class="col-12">
+
+                                    <div class="form-input-inner position-relative has-float-label">
+                                        <input type="email" class="form-control" name="Email" placeholder="@Resource.EnterYourEmail" required oninvalid="this.setCustomValidity('@Resource.EnterYourEmail')" oninput="setCustomValidity('')">
+                                        <label>البريد الالكتروني</label>
+                                        <div class="icon-bg text-center">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-12">
+
+                                    <div class="form-input-inner position-relative has-float-label">
+                                        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+
+                                        <input type="password" class="form-control" name="Password" id="Password" placeholder="@Resource.Password" required oninvalid="this.setCustomValidity('@Resource.EnterPassword')" oninput="setCustomValidity('')" onfocus="getCurrentUrl();">
+                                        <label>كلمة المرور</label>
+                                        <div class="icon-bg text-center">
+                                            <i class="fas fa-lock-alt"></i>
+                                        </div>
+                                    </div>
+                                    <input id="rurl" name="rurl" type="hidden"  />
+
+                                </div>
+
+                                <div class="col-12">
+
+                                    <span class="btn btnlogin" title="NEXT">
+
+                                        <i class="fa fa-check-circle pl-1">
+
+                                        </i>
+                                        دخول
+                                    </span>
+                                </div>
+
+                                <div class="forgetpassord">
+                                    <a href="#">نسيت كلمة المرور</a>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            
+            
+            
+            </div>
+        </div>
+    </div>
+    <script>
+        function getCurrentUrl() {
+            var rurl = document.getElementById('rurl');
+            const loc = window.location.href;
+            rurl.value = loc;
+
+        }
+    </script>
+}

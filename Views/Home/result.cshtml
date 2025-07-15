@@ -1,0 +1,1201 @@
+﻿@model IEnumerable<AspNetUser>
+@using Marofh.Models
+@using Microsoft.AspNet.Identity
+@using Resources
+
+@{
+
+    var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+
+
+
+    if (culture.Contains("en-us"))
+    {
+        ViewBag.Title = "Search Results";
+
+    }
+    else
+    {
+        ViewBag.Title = "نتائج البحث ";
+
+    }
+
+
+}
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutInner.cshtml";
+    AspNetUser loggedInUser = ViewModel.GetCurrentUser(User.Identity.GetUserId());
+
+}
+
+<!-- main content -->
+<main class="main main--breadcrumb styledmanin newmain">
+
+    <div class="container">
+        <div class="row">
+
+
+
+
+            <div class="col-12 col-md-8 col-lg-9 col-xl-9 ">
+                <form action="/home/result">
+
+                    <ul class="nav nav-tabs main__nav" style="justify-content: space-between;" id="main__nav" role="tablist">
+
+                        <!-- تبويب نتائج البحث -->
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="false">
+                                @Resource.SearchResults
+                            </a>
+                            <div class="filter__group--last"></div>
+                        </li>
+
+                        <!-- تبويب مبلغ الاستقدام مع اتنين Select -->
+                        <li class="nav-item">
+                            <div class="d-flex align-items-end" style="gap: 20px; margin:10px;">
+
+                                <!-- الأول -->
+                                <div class="d-flex flex-column">
+                                    <label class="mb-1" style="font-weight: bold;">@Resource.Hiring_Cost</label>
+                                    <select id="select1" class="form-select w-100 bgtem" style="height: 40px; padding: 0;">
+                                        <option value="">@Resource.SortBy</option>
+                                        <option value="desc">@Resource.HightoLow</option>
+                                        <option value="asc">@Resource.LowtoHigh</option>
+                                    </select>
+                                </div>
+
+                                <!-- الثاني -->
+                                <div class="d-flex flex-column">
+                                    <label class="mb-1" style="font-weight: bold;">@Resource.Salary</label>
+                                    <select id="select2" class="form-select w-100 bgtem" style="height: 40px; padding: 0; margin-left: auto; ">
+                                        <option value="">@Resource.SortBy</option>
+                                        <option value="desc">@Resource.HightoLow</option>
+                                        <option value="asc">@Resource.LowtoHigh</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </form>
+
+
+
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                        <div id="workersContainer">
+                            @Html.Partial("_WorkersDetails", Model)
+                        </div>
+
+
+                        <!-- view more -->
+                        @*<button class="main__btn morebtn" type="button"><span>المزيد </span></button>*@
+                        <!-- end view more -->
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-12 col-md-3 col-lg-3 col-xl-3 ">
+                <!-- sidebox -->
+                <div class="sidebox">
+                    <h4 class="sidebox__title"> @Resource.SearchFilter <button type="button" class="btn bgbt" onclick="ClearInputs();">@Resource.Clear</button></h4>
+                    <form action="/home/result">
+
+                        <div class="filter">
+                            <div class="filter__group">
+                                <label for="jobs" class="filter__label">@Resource.Job</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.Job</span>
+                                    <div class="select jobs-checkboxes">
+                                        @{
+                                            string[] selectedJobs = Request.QueryString.GetValues("JobsID") ?? new string[] { };
+                                        }
+
+                                        @foreach (SelectListItem item in ViewBag.JobsID)
+                                        {
+                                            <label>
+                                                <input type="checkbox" name="JobsID" value="@item.Value"
+                                                       @(selectedJobs.Contains(item.Value) ? "checked" : "") />
+                                                @item.Text
+                                            </label>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @*<div class="filter__group">
+                                <label class="filter__label">كلمة البحث :</label>
+                                <input type="text" class="filter__input w-100" placeholder="كلمة البحث" id="query" name="query">
+                            </div>*@
+                        <div class="filter__group">
+                            <label for="nationalities" class="filter__label">@Resource.Nationality</label>
+                            <div class="select_wrap w-100">
+                                <span class="labelcss">@Resource.Nationality</span>
+                                <div class="select nationality-checkboxes">
+                                    @{
+                                        string[] selectedNationalities = Request.QueryString.GetValues("NationalityID") ?? new string[] { };
+                                    }
+
+                                    @foreach (SelectListItem item in ViewBag.NationalityID)
+                                    {
+                                        <label>
+                                            <input type="checkbox" name="NationalityID" value="@item.Value"
+                                                   @(selectedNationalities.Contains(item.Value) ? "checked" : "") />
+                                            @item.Text
+                                        </label>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="filter__group">
+
+                            <label for="sort" class="filter__label">@Resource.Sex </label>
+                            <div class="select_wrap w-100">
+                                <span class="labelcss">@Resource.Sex </span>
+
+                                <div class="select">
+
+
+                                    @if (Request["Gender"] != null)
+                                    {
+                                        string[] genderList = Request.QueryString["Gender"].Split(',');
+                                        if (genderList.Where(p => p.ToString() == "true").Count() > 0)
+                                        {
+
+                                            <label for="checkbox-1">
+                                                <input value="true" name="Gender" id="Gender" type="checkbox" checked>
+
+                                                @Resource.Male
+                                            </label>
+
+                                        }
+                                        else
+                                        {
+                                            <label for="checkbox-1">
+                                                <input value="true" name="Gender" id="Gender" type="checkbox">
+                                                @Resource.Male
+
+                                            </label>
+
+                                        }
+
+                                        if (genderList.Where(p => p.ToString() == "false").Count() > 0)
+                                        {
+
+                                            <label for="checkbox-2">
+                                                <input value="false" name="Gender" id="Gender" type="checkbox" checked>
+
+                                                @Resource.Female
+                                            </label>
+
+                                        }
+                                        else
+                                        {
+                                            <label for="checkbox-2">
+                                                <input value="false" name="Gender" id="Gender" type="checkbox">
+                                                @Resource.Female
+                                            </label>
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <label for="checkbox-1">
+                                            <input value="true" name="Gender" id="Gender" type="checkbox">
+
+                                            @Resource.Male
+                                        </label>
+                                        <label for="checkbox-2">
+                                            <input value="false" name="Gender" id="Gender" type="checkbox">
+
+                                            @Resource.Female
+                                        </label>
+
+
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="filter__group">
+                            <label class="filter__label">@Resource.Age</label>
+
+                            <div class="d-flex" style="gap: 15px;">
+                                <select  class="select-styles" name="Range"  id="Range">
+                                    <option  hidden disabled selected @(ViewBag.minAge == null ? Resource.Age : "") value="">
+                                        اختر العمر
+                                    </option>
+                                    <option>
+                                      18-23
+
+                                    </option>
+                                    <option>
+                                        24-27
+
+                                    </option>
+                                    <option>
+                                        33-38
+
+                                    </option>
+                                    <option>
+                                        39-44
+
+                                    </option>
+                                    <option>
+                                        اكبر من 44
+                                    </option>
+                                    @*@for (int i = 18; i <= 50; i++)
+                                    {
+                                        <option value="@i" @(ViewBag.minAge?.ToString() == i.ToString() ? "selected" : "")>
+                                            @i
+                                        </option>
+                                    }*@
+                                </select>
+
+                                @*<select name="maxAge" id="maxAge"
+                                        style="min-width: 160px; height: 45px; font-size: 18px; padding: 6px;">
+                                    <option hidden disabled @(ViewBag.maxAge == null ? "selected" : "") value="">
+                                        @Resource.To
+                                    </option>
+                                    @for (int i = 18; i <= 50; i++)
+                                    {
+                                        <option value="@i" @(ViewBag.maxAge?.ToString() == i.ToString() ? "selected" : "")>
+                                            @i
+                                        </option>
+                                    }
+                                </select>*@
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <div class="filter__group">
+                            <label for="sort" class="filter__label">@Resource.Religion </label>
+
+                            <div class="select_wrap w-100">
+                                <span class="labelcss">@Resource.Religion </span>
+
+                                <div class="select">
+
+
+
+                                    @if (Request["Religion"] != null)
+                                    {
+                                        string[] religionList = Request.QueryString["Religion"].Split(',');
+                                        if (culture.Contains("en-us"))
+                                        {
+
+
+                                            if (religionList.Where(p => p.ToString() == "Muslim").Count() > 0)
+                                            {
+
+                                                <label for="checkbox-1">
+                                                    <input value="Muslim" name="Religion" id="Religion" type="checkbox" checked>
+                                                    Muslim
+                                                </label>
+
+                                            }
+                                            else
+                                            {
+                                                <label for="checkbox-1">
+                                                    <input value="Muslim" name="Religion" id="Religion" type="checkbox">
+                                                    Muslim
+                                                </label>
+
+                                            }
+
+                                            if (religionList.Where(p => p.ToString() == "Not").Count() > 0)
+                                            {
+
+                                                <label for="checkbox-2">
+                                                    <input value="Not" name="Religion" id="Religion" type="checkbox" checked>
+                                                    Other
+                                                </label>
+
+                                            }
+                                            else
+                                            {
+                                                <label for="checkbox-2">
+                                                    <input value="Not" name="Religion" id="Religion" type="checkbox">
+                                                    Other
+                                                </label>
+
+                                            }
+
+                                        }
+                                        else
+                                        {
+
+
+                                            if (religionList.Where(p => p.ToString() == "مسلم").Count() > 0)
+                                            {
+
+                                                <label for="checkbox-1">
+                                                    <input value="مسلم" name="Religion" id="Religion" type="checkbox" checked>
+                                                    مسلم
+                                                </label>
+
+                                            }
+                                            else
+                                            {
+                                                <label for="checkbox-1">
+                                                    <input value="مسلم" name="Religion" id="Religion" type="checkbox">
+                                                    مسلم
+                                                </label>
+
+                                            }
+
+                                            if (religionList.Where(p => p.ToString() == "غير").Count() > 0)
+                                            {
+
+                                                <label for="checkbox-2">
+                                                    <input value="غير" name="Religion" id="Religion" type="checkbox" checked>
+                                                    غير ذلك
+                                                </label>
+
+                                            }
+                                            else
+                                            {
+                                                <label for="checkbox-2">
+                                                    <input value="غير" name="Religion" id="Religion" type="checkbox">
+                                                    غير ذلك
+                                                </label>
+
+                                            }
+
+
+
+
+
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        if (culture.Contains("en-us"))
+                                        {
+
+                                            <label for="checkbox-1">
+                                                <input value="Muslim" name="Religion" id="Religion" type="checkbox">
+                                                Muslim
+                                            </label>
+                                            <label for="checkbox-2">
+                                                <input value="Not" name="Religion" id="Religion" type="checkbox">
+                                                Other
+                                            </label>
+
+
+                                        }
+                                        else
+                                        {
+                                            <label for="checkbox-1">
+                                                <input value="مسلم" name="Religion" id="Religion" type="checkbox">
+                                                مسلم
+                                            </label>
+                                            <label for="checkbox-2">
+                                                <input value="غير" name="Religion" id="Religion" type="checkbox">
+                                                غير ذلك
+                                            </label>
+
+                                        }
+
+
+
+
+                                    }
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="filter__group">
+                            <label class="filter__label">@Resource.YearsofExperience</label>
+                            <div class="d-flex mfc" style="gap: 15px;">
+                                <select id="yearsOfExperience"
+                                        name="yearsOfExperience"
+                                        style="min-width: 170px; height: 45px; font-size: 18px; padding: 6px;"
+                                        class="filter__input">
+                                    <option value="" disabled @(ViewBag.yearsOfExperience == null ? "selected" : "")>
+                                        @Resource.From
+                                    </option>
+                                    <option  @(ViewBag.yearsOfExperience?.ToString() == "0" ? "selected" : "")>
+                                        @Resource.Nothing
+                                    </option>
+                                    <option >
+                                        0-2
+                                    </option>
+                                    <option >
+                                        3-6
+
+                                    </option>
+                                    <option >
+                                        7-10
+
+                                    </option>
+                                    <option >
+                                       @Resource.MoreThan10
+
+                                    </option>
+
+                                </select>
+
+           
+                            </div>
+                        </div>
+
+
+                        <!-- زرار فلتر متقدم -->
+                        <div class="filter__group">
+                            <button class="btn btn-secondary w-100 bgbt" type="button" onclick="toggleAdvancedFilters()">
+                                <i class="fal fa-chevron-down"></i> @Resource.AdvancedFilter
+                            </button>
+                        </div>
+
+                        
+                        <!-- الفلاتر المتقدمة -->
+                        <div class="advanced-filters" id="advancedFilters" style="display: none;">
+
+                            <!-- عدد الاطفال -->
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.HasChildren</label>
+                                <div class="d-flex" style="gap: 15px;">
+                                    <select id="HasChilderns" name="HasChilderns" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                                        <option value="" disabled selected>من</option>
+                                        <option value="yes">@Resource.Yes</option>
+                                        <option value="no">@Resource.No</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+                            <!-- مبلغ استقدام من وإلى -->
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.RecruitingOffice</label>
+                                <div class="d-flex" style="gap: 15px;">
+                                    <select id="minprice" name="extra1_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                                        <option value="" disabled selected>من</option>
+                                        @* 0,5,10,...100 *@
+                                        @for (int i = 0; i <= 100; i += 5)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+
+                                    </select>
+
+                                    <select id="maxprice" name="extra1_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                                        <option value="" disabled selected>إلى</option>
+                                        @for (int i = 0; i <= 100; i += 5)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- وزن من وإلى -->
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.TheWeight</label>
+                                <div class="d-flex" style="gap: 15px;">
+                                    <select id="minweight" name="weight_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                                        <option value="" disabled selected>من</option>
+                                        @for (int i = 0; i <= 100; i += 5)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+
+                                    <select id="maxweight" name="weight_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                                        <option value="" disabled selected>إلى</option>
+                                        @for (int i = 0; i <= 100; i += 5)
+                                        {
+                                            <option value="@i">@i</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            @{
+                                string[] recommendationList = (Request["extra2"] != null)
+                                    ? Request.QueryString["extra2"].Split(',')
+                                    : new string[] { };
+                            }
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.Recommendation_for_Sponsor</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.Recommendation_for_Sponsor</span>
+
+                                    <div class="select">
+                                        @{
+                                            recommendationList = (Request["extra2"] != null)
+                                               ? Request.QueryString["extra2"].Split(',')
+                                               : new string[] { };
+                                        }
+
+                                        <label for="checkbox-r1">
+                                            <input value="1" name="extra2" id="checkbox-r1" type="checkbox"
+                                                   @(recommendationList.Contains("1") ? "checked" : "") />
+                                            @Resource.Recommended
+                                        </label>
+
+                                        <label for="checkbox-r2">
+                                            <input value="2" name="extra2" id="checkbox-r2" type="checkbox"
+                                                   @(recommendationList.Contains("2") ? "checked" : "") />
+                                            @Resource.NotRecommended
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.workareas</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.workareas</span>
+
+                                    <div class="select">
+                                        @{
+                                            var selectedWorkAreas = (Request["CountryIds"] != null)
+                                                ? Request.QueryString.GetValues("CountryIds")
+                                                : new string[] { };
+                                        }
+
+                                        <label for="checkbox-w0">
+                                            <input value="0" name="CountryIds" id="checkbox-w0" type="checkbox"
+                                                   class="work-checkbox"
+                                                   onchange="handleExperienceCheckbox(this)"
+                                                   @(selectedWorkAreas.Contains("0") ? "checked" : "") />
+                                            بدون خبرة
+                                        </label>
+
+                                        <label for="checkbox-w9">
+                                            <input value="9" name="CountryIds" id="checkbox-w9" type="checkbox"
+                                                   class="work-checkbox"
+                                                   onchange="handleExperienceCheckbox(this)"
+                                                   @(selectedWorkAreas.Contains("9") ? "checked" : "") />
+                                            خبرة بالسعودية
+                                        </label>
+
+                                        <label for="checkbox-w1">
+                                            <input value="1" name="CountryIds" id="checkbox-w1" type="checkbox"
+                                                   class="work-checkbox"
+                                                   onchange="handleExperienceCheckbox(this)"
+                                                   @(selectedWorkAreas.Contains("1") ? "checked" : "") />
+                                            خبرة بالخليج
+                                        </label>
+
+                                        <label for="checkbox-w2">
+                                            <input value="2" name="CountryIds" id="checkbox-w2" type="checkbox"
+                                                   class="work-checkbox"
+                                                   onchange="handleExperienceCheckbox(this)"
+                                                   @(selectedWorkAreas.Contains("2") ? "checked" : "") />
+                                            خبرة بالخارج
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            @*<div class="filter__group">
+            <label class="filter__label">@Resource.TheWeight</label>
+            <div class="d-flex" style="gap: 15px;">
+                <select id="minweight" name="weight_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                    <option value="" disabled selected>من</option>
+                    @for (int i = 0; i <= 100; i += 5)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+
+                <select id="maxweight" name="weight_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                    <option value="" disabled selected>إلى</option>
+                    @for (int i = 0; i <= 100; i += 5)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+        </div>*@
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.SocialStatus</label>
+                                <div class="d-flex" style="gap: 15px;">
+                                    <select id="MaritalStatus" name="MaritalStatus" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                                        <option value="0">@Resource.Choosemaritalstatus </option>
+
+                                        <option value="@Resource.Single">@Resource.Single</option>
+                                        <option value="@Resource.Married">@Resource.Married</option>
+                                        <option value="@Resource.Divorced">@Resource.Divorced</option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.Education</label>
+                                <div class="d-flex" style="gap: 15px;">
+                                    <select id="Education" name="Education" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                                        <option value="0">@Resource.Education </option>
+                                        <option>
+                                            امي لم يتعلم
+                                        </option>
+                                        <option>
+                                            اقل من الثانونة
+                                        </option>
+                                        <option>
+                                            ثانوية
+                                        </option>
+                                        <option>
+                                            دبلوم
+                                        </option>
+                                        <option>
+                                            جامعي
+                                        </option>
+
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.Skills</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.Skills</span>
+
+                                    <div class="select">
+                                        @{
+                                            recommendationList = (Request["extra2"] != null)
+                                               ? Request.QueryString["extra2"].Split(',')
+                                               : new string[] { };
+                                        }
+
+                                        <label for="checkbox-r1">
+                                            <input value="1" name="extra2" id="checkbox-r1" type="checkbox"
+                                                   @(recommendationList.Contains("1") ? "checked" : "") />
+                                            @Resource.Recommended
+                                        </label>
+
+                                        <label for="checkbox-r2">
+                                            <input value="2" name="extra2" id="checkbox-r2" type="checkbox"
+                                                   @(recommendationList.Contains("2") ? "checked" : "") />
+                                            @Resource.NotRecommended
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                            <div class="filter__group">
+                                <button class="btn btn-primary w-100 bgtem" type="submit">     <i class="fal fa-filter"></i>    @Resource.FilterResults</button>
+                            </div>
+                </form>
+            </div>
+            <!-- end sidebox -->
+        </div>
+    </div>
+    </div>
+</main>
+<!-- end main content -->
+<!-- Modal -->
+<div class="modal  fade modal fade bd-example-modal-lg createnew" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="viewdetailsLabel" aria-modal="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header flex-column no-padding mb-0">
+                <h6> @Resource.Edit</h6>
+                <button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+
+            <hr class="mt-0 mb-0">
+            <div class="modal-body pt-2  pl-4 pr-4 pb-0" id="Preview">
+
+                @*PartialView*@
+
+            </div>
+        </div>
+        <div class="modal-footer justify-content-start align-items-start flex-column no-padding d-block">
+
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+
+    <!--Datatable-->
+    <script src="/Content/front/assets/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <link href="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+    <script>
+
+
+        function handleExperienceCheckbox(checkbox) {
+            const allCheckboxes = document.querySelectorAll('.work-checkbox');
+            const noExpCheckbox = document.getElementById('checkbox-w0');
+
+            if (checkbox.value === "0") {
+                if (checkbox.checked) {
+                    allCheckboxes.forEach(cb => {
+                        if (cb !== noExpCheckbox) cb.checked = false;
+                    });
+                }
+            } else {
+                if (checkbox.checked) {
+                    noExpCheckbox.checked = false;
+                }
+            }
+        }
+
+
+        $(document).ready(function () {
+
+            //RequestAmount
+            $('#select1').on('change', function () {
+                var selectedValue = $(this).val(); // ← كده جبت الفاليو
+
+                if (selectedValue === "desc") {
+                    $.ajax({
+                        url: "/Home/Result",
+                        method: "GET",
+                        data: { RequestAmountFilter: selectedValue },
+                        success: function (result) {
+                            $("#workersContainer").html(result);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("فشل:", error);
+                        }
+                    });
+                } else if (selectedValue === "asc") {
+                    $.ajax({
+                        url: "/Home/Result",
+                        method: "GET",
+                        data: { RequestAmountFilter: selectedValue },
+                        success: function (result) {
+                            $("#workersContainer").html(result); // ← هنا السر
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("فشل:", error);
+                        }
+                    });
+                } else {
+                    console.log("لم يتم الاختيار");
+                }
+            });
+
+            //Salary
+            $('#select2').on('change', function () {
+                var selectedValue = $(this).val(); // ← كده جبت الفاليو
+
+                if (selectedValue === "desc") {
+                    $.ajax({
+                        url: "/Home/Result",
+                        method: "GET",
+                        data: { SalarySort: selectedValue },
+                        success: function (result) {
+                            $("#workersContainer").html(result);
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("فشل:", error);
+                        }
+                    });
+                } else if (selectedValue === "asc") {
+                    $.ajax({
+                        url: "/Home/Result",
+                        method: "GET",
+                        data: { SalarySort: selectedValue },
+                        success: function (result) {
+                            $("#workersContainer").html(result); // ← هنا السر
+                        },
+                        error: function (xhr, status, error) {
+                            console.error("فشل:", error);
+                        }
+                    });
+                } else {
+                    console.log("لم يتم الاختيار");
+                }
+            });
+
+
+
+            $("#sortDesBtn").on("click", function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    url: "/Home/Result",
+                    method: "GET",
+                    data: { RequestAmountFilter: true },
+                    success: function (result) {
+                        $("#workersContainer").html(result);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("فشل:", error);
+                    }
+                });
+
+
+
+
+            });
+
+
+            $("#sortAceBtn").on("click", function (e) {
+                e.preventDefault(); // ضروري تمنع السلوك الافتراضي
+
+                $.ajax({
+                    url: "/Home/Result",
+                    method: "GET",
+                    data: { RequestAmountFilter: false },
+                    success: function (result) {
+                        $("#workersContainer").html(result); // ← هنا السر
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("فشل:", error);
+                    }
+                });
+            });
+
+
+
+
+            $('#select1').select2({
+    placeholder: '@Resource.SortBy',
+    allowClear: true,
+    width: "150px",
+    minimumResultsForSearch: Infinity,
+    dropdownCssClass: 'no-padding-dropdown'
+            });
+                $('#select2').select2({
+    placeholder: '@Resource.SortBy',
+    allowClear: true,
+    width: "150px",
+    minimumResultsForSearch: Infinity,
+    dropdownCssClass: 'no-padding-dropdown'
+});
+
+            $('#Range').select2({
+            placeholder: '@Resource.ChooseAge',
+                allowClear: true,
+                width: "150px",
+
+            });
+            $('#HasChilderns').select2({
+ placeholder: '@Resource.HasChildren',
+     allowClear: true,
+     width: "150px",
+
+         });
+
+            $('#yearsOfExperience').select2({
+    placeholder: '@Resource.Years',
+     allowClear: true,
+        width:"100px",
+            });
+            $('#maxExperienceYearsCount').select2({
+        placeholder: '@Resource.To',
+        allowClear: true,
+        width:"100px !important" ,
+            });
+            $('#minweight').select2({
+   placeholder: '@Resource.From',
+    allowClear: true,
+       width:"100px",
+           });
+            $('#maxweight').select2({
+       placeholder: '@Resource.To',
+       allowClear: true,
+       width:"100px !important" ,
+            });
+              $('#minprice').select2({
+ placeholder: '@Resource.From',
+  allowClear: true,
+     width:"100px",
+         });
+          $('#maxprice').select2({
+     placeholder: '@Resource.To',
+     allowClear: true,
+     width:"100px !important" ,
+          });
+ $('#Recommendation_for_Sponsor').select2({
+    placeholder: '@Resource.Recommendation_for_Sponsor',
+    allowClear: true,
+     width:"width: 250px !important",
+});
+
+              var cultureInfo = '@System.Globalization.CultureInfo.CurrentCulture.Name';
+             if (cultureInfo == 'ar-SA')
+             {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+
+        }
+        else
+        {
+
+
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [5, 10, 25, -1],
+                    [5, 10, 25, "All"]
+                ],
+                "iDisplayLength": 10,
+
+                "language": {
+                    "sProcessing": "Loading...",
+                    "sLengthMenu": "Show _MENU_ Entered",
+                    "sZeroRecords": "No records found ",
+                    "sInfo": "Show _START_ To _END_ out of  _TOTAL_ Entered",
+                    //"sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "Display 0  From 0  Record",
+                    "sInfoFiltered": "(selected from total  _MAX_ Entered)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Search:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "First",
+                        "sPrevious": "Previous",
+                        "sNext": "Next",
+                        "sLast": "Last"
+                    }
+                }
+            });
+
+
+        }
+
+
+            table.$('tr').tooltip({
+                placement: '',
+                html: true
+            });
+        });
+
+        $('.datatable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        function toggleAdvancedFilters() {
+            const section = document.getElementById("advancedFilters");
+            if (section.style.display === "none" || section.style.display === "") {
+                section.style.display = "block";
+            } else {
+                section.style.display = "none";
+            }
+        }
+
+
+
+    </script>
+
+
+    <!--Datatable-->
+    @*//Start Sweet alert*@
+    <script src="/Scripts/sweetalert/sweetalert2.all.min.js"></script>
+    <link href="/Scripts/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    @*//End Sweet alert*@
+
+    <script>
+
+
+
+        $(document).ready(function () {
+            $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+        });
+
+        $('#CountryID').select2({
+            placeholder: "@Resource.ChooseCountry",
+            dir: "rtl"
+
+        });
+
+        //$('#JobsID').select2({
+        //    placeholder: "اختر الوظيفة",
+        //    dir: "rtl"
+        //});
+
+
+
+
+
+
+        function selectElement(elementId, valueToSelect) {
+            var element = document.getElementById(elementId);
+
+            element.value = valueToSelect;
+
+        }
+        function ClearInputs() {
+
+            window.location.href = "/home/result"
+
+
+            //selectElement('CountryID', '');
+            //$('#CountryID').select2({
+            //    placeholder: "اختر البلد",
+            //    dir: "rtl"
+
+            //});
+
+
+
+            //selectElement('JobsID', '');
+            //$('#JobsID').select2({
+            //    placeholder: "اختر الوظيفة",
+            //    dir: "rtl"
+
+            //});
+
+            //selectElement('Religion', '');
+            //$('#Religion').select2({
+            //    placeholder: "اختر الديانة",
+            //    dir: "rtl"
+
+            //});
+
+
+            //selectElement('Gender', '0');
+            //selectElement('minAge', '');
+            //selectElement('maxAge', '');
+            //selectElement('ExperienceYearsCount', '');
+
+    </script>
+
+
+}
+@if (TempData["NoResults"] != null && TempData["NoResults"].ToString() == "true")
+{
+    <script>
+
+
+
+
+           
+
+
+        Swal.fire({
+            title: 'عذرًا!',
+            text: 'لا توجد نتائج مطابقة لبحثك.',
+            icon: 'warning',
+            confirmButtonText: 'حسنًا'
+        });
+
+    </script>
+    <style>
+        .select2-dropdown {
+            padding: 0px !important;
+            margin-top: 0px !important;
+            border-top: none !important;
+            background-color: #fff !important;
+        }
+
+        .select2-results__options {
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+
+        .select2-search {
+            display: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            height: 0 !important;
+        }
+
+
+
+        .advanced-filters {
+            display: none;
+            transition: all 0.3s ease;
+        }
+
+            .advanced-filters.show-advanced {
+                display: block;
+            }
+
+        .select_wrap.no-arrow span:after {
+            content: none !important;
+        }
+
+        .small-input {
+            height: 35px;
+            font-size: 14px;
+            padding: 4px 8px;
+        }
+
+        
+
+        .select-styles {
+            width: 160px !important;
+            height: 45px;
+            font-size: 100px;
+            padding: 6px;
+        }
+        .pricefilter {
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 10px;
+            width: fit-content;
+            direction: rtl; /* لو الصفحة بالعربي */
+        }
+
+
+    </style>
+
+}
+
+}

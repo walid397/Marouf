@@ -1,0 +1,617 @@
+﻿@model  IEnumerable<WorkerRequest>
+@using Microsoft.AspNet.Identity
+@using Marofh.Models
+
+@{
+    ViewBag.Title = "اداره المحفظة";
+    ViewBag.Sub1Title = "لوحة التحكم";
+    ViewBag.Sub1Url = "/admin/";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@{string userId = User.Identity.GetUserId();
+    int officeRoleId = Convert.ToInt32(clsEnum.Roles.Office);
+    int workerRoleId = Convert.ToInt32(clsEnum.Roles.Worker);}
+
+@using (Html.BeginForm("ManageWallet", "Admin", FormMethod.Post))
+{
+    <div class="row">
+
+
+        <div class="col-12">
+
+
+            <div class="tab-content">
+
+
+                <div class="tab-pane fade show active animate__animated animate__slideInUp" id="tab-0" role="tabpanel" aria-labelledby="tab-0">
+
+
+                    <div class="newtabs mytabs">
+                        <ul class="nav nav-tabs" id="myOffersTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active text-semibold" id="unPaied-tab" data-toggle="tab" href="#unPaied"
+                                   role="tab" aria-controls="published" aria-selected="true">
+                                    <i class="far fa-file mr-1 ml-1"></i>
+                                    طلبات التعاقد المستحقة (@Model.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString() & p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مستحقة.ToString() || p.PaidStatus == clsEnum.WorkerRequestStatus.تحت_المراجعة.ToString() & p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()).Count())
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-semibold" id="Paied-tab" data-toggle="tab" href="#Paied"
+                                   role="tab" aria-controls="unpublished" aria-selected="false">
+                                    <i class="far fa-file-check mr-1 ml-1"></i>
+
+
+                                    طلبات التعاقد المسددة ( @Model.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString() & p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مسددة.ToString()).Count())
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-semibold" id="Refunded-tab" data-toggle="tab" href="#Refunded"
+                                   role="tab" aria-controls="unpublished" aria-selected="false">
+                                    <i class="far fa-file-check mr-1 ml-1"></i>
+
+
+                                    طلبات التعاقدالمردودة ( @Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مردودة.ToString()).Count())
+                                </a>
+                            </li>
+
+
+                        </ul>
+                        <div class="tab-content" id="myOffersTabContent">
+                            <div class="tab-pane fade show active animate__animated animate__fadeIn" id="unPaied" role="tabpanel" aria-labelledby="unPaied-tab">
+
+
+                                <div class="col-12">
+                                    <h2 class="form__title mt-4 mb-0 stylrep">
+                                        @*<span>
+
+                                                طلبات التعاقد المستحقة
+                                            </span>*@
+
+                                    </h2>
+                                    <button id="paySelectedBtn" disabled type="submit" value="Delete" class="btn btn-sm btn-warning rounded-0" onclick="return confirm('انت على وشك تسوية طلبات تعاقد ... هل انت متأكد')"><i class="fa fa-money"></i> تسويه المشار اليه</button>
+                                </div>
+
+                                <table id="tblRequests" name="tblRequests" class="table table-striped dt-responsive datatable" style="width:100%">
+                                    <thead class="thead">
+                                        <tr>
+                                            <th scope="col" class="text-center">
+
+                                            <th scope="col">اسم المكتب  </th>
+                                            <th scope="col">  هاتف الموظف المسئول  </th>
+                                            <th scope="col"> التاريخ  </th>
+                                            <th scope="col">  حالة الطلب  </th>
+                                            <th scope="col">    اسم الكفيل  </th>
+                                            <th scope="col"> اسم العامل او العاملة</th>
+                                            <th scope="col"> المبلغ المستحق</th>
+                                            <th scope="col">  الايصال</th>
+                                            <th scope="col" class="text-center">  </th>
+                                            <th scope="col" class="text-center">  </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var request in Model.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString() & p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مستحقة.ToString() || p.PaidStatus == clsEnum.WorkerRequestStatus.تحت_المراجعة.ToString() & p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()))
+                                        {
+                                            <tr>
+                                                <td><input type="checkbox" name="ID" value="@request.ID" class="custom-checkbox chkCheckBoxId" onchange="enablepaySelectedBtn(this);" /></td>
+
+                                                <td class="img-td">
+                                                    @request.AspNetUser2.OfficeName
+                                                </td>
+
+                                                <td class="img-td">
+                                                    @request.AspNetUser2.EmployeeMobile
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.RequestDate.Value.ToShortDateString()
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.RequestStatus.Replace("_", " ")
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.AspNetUser.FName @Html.Raw(" ") @request.AspNetUser.LName
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.Balance
+                                                </td>
+                                                <td class="img-td">
+                                                    <a href="@request.ReceiptUrl" target="_blank">تحميل</a>
+                                                </td>
+                                                @if (@request.Balance > 0)
+                                                {
+                                                    <td class="text-center">
+
+                                                        <a href="javascript:void(0);" onclick="payRequest(@request.ID)" data-toggle="tooltip">
+                                                            تسوية الحساب
+
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <a href="javascript:void(0);" onclick="ConfirmDeleteRequest(@request.ID)">
+                                                            الغاء احتساب الطلب
+
+                                                        </a>
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td class="text-center"></td>
+                                                    <td class="text-center"></td>
+                                                }
+
+
+                                            </tr>
+
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade animate__animated animate__fadeIn" id="Paied" role="tabpanel" aria-labelledby="Paied-tab">
+
+
+
+                                <div class="col-12">
+                                    <h2 class="form__title mt-4 mb-0 stylrep">
+                                        @*<span  >
+
+                                                طلبات التعاقد المسددة
+                                            </span>*@
+                                    </h2>
+                                </div>
+
+                                <table class="table table-striped dt-responsive datatable" style="width:100%">
+                                    <thead class="thead">
+                                        <tr>
+
+                                            <th scope="col">اسم المكتب  </th>
+                                            <th scope="col">  هاتف الموظف المسئول  </th>
+                                            <th scope="col"> التاريخ  </th>
+                                            <th scope="col">  حالة الطلب  </th>
+                                            <th scope="col">    اسم الكفيل  </th>
+                                            <th scope="col"> اسم العامل او العاملة</th>
+                                            <th scope="col"> المبلغ المستحق</th>
+                                            <th scope="col">  الايصال</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var request in Model.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString() & p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مسددة.ToString()))
+                                        {
+                                            <tr>
+
+                                                <td class="img-td">
+                                                    @request.AspNetUser2.OfficeName
+                                                </td>
+
+                                                <td class="img-td">
+                                                    @request.AspNetUser2.EmployeeMobile
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.RequestDate.Value.ToShortDateString()
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.RequestStatus.Replace("_", " ")
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.AspNetUser.FName @Html.Raw(" ") @request.AspNetUser.LName
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.Balance
+                                                </td>
+                                                <td class="img-td">
+                                                    <a href="@request.ReceiptUrl" target="_blank">تحميل</a>
+                                                </td>
+
+
+
+                                            </tr>
+
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                            <div class="tab-pane fade animate__animated animate__fadeIn" id="Refunded" role="tabpanel" aria-labelledby="Refunded-tab">
+
+
+
+                                <div class="col-12">
+                                    <h2 class="form__title mt-4 mb-0 stylrep">
+                                        @*<span>
+
+
+                                                طلبات التعاقد المردودة
+                                            </span>*@
+                                    </h2>
+                                </div>
+                                <table class="table table-striped dt-responsive datatable" style="width:100%">
+                                    <thead class="thead">
+                                        <tr>
+
+                                            <th scope="col">اسم المكتب  </th>
+                                            <th scope="col">  هاتف الموظف المسئول  </th>
+                                            <th scope="col"> التاريخ  </th>
+                                            <th scope="col">  حالة الطلب  </th>
+                                            <th scope="col">    اسم الكفيل  </th>
+                                            <th scope="col"> اسم العامل او العاملة</th>
+
+                                            <th scope="col"> المبلغ المسترد</th>
+                                            <th scope="col"> تاريخ الاسترداد </th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        @foreach (var request in Model.Where(p => p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString() & p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مردودة.ToString()))
+                                        {
+                                            <tr>
+
+                                                <td class="img-td">
+                                                    @request.AspNetUser2.OfficeName
+                                                </td>
+
+                                                <td class="img-td">
+                                                    @request.AspNetUser2.EmployeeMobile
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.RequestDate.Value.ToShortDateString()
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.RequestStatus.Replace("_", " ")
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.AspNetUser.FName @Html.Raw(" ") @request.AspNetUser.LName
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.AspNetUser1.FName @Html.Raw(" ") @request.AspNetUser1.LName
+                                                </td>
+                                                <td class="img-td">
+                                                    @request.Balance
+                                                </td>
+
+
+                                                <td class="img-td">
+                                                    @request.RefundDate.Value.ToShortDateString()
+                                                </td>
+
+
+
+
+                                            </tr>
+
+                                        }
+
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="row col-12"  style="padding-top:20px;padding-right:100px;">
+            <div class="col-4">
+                <p>اجمالى المستحق </p>
+                <h1 style="color:green">@Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مستحقة.ToString() & p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString() || p.PaidStatus == clsEnum.WorkerRequestStatus.تحت_المراجعة.ToString() & p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()).Sum(x => x.Balance)</h1>
+            </div>
+            <div class="col-4">
+                <p>اجمالى المسدد </p>
+                <h1 style="color:green">@Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مسددة.ToString() & p.RequestStatus == clsEnum.WorkerRequestStatus.تم_الاعتماد.ToString()).Sum(x => x.Balance)</h1>
+            </div>
+            <div class="col-4">
+                <p>اجمالى المردود </p>
+                <h1 style="color:green">@Model.Where(p => p.PaidStatus == clsEnum.WorkerRequestStatus.طلبات_مردودة.ToString()).Sum(x => x.Balance)</h1>
+            </div>
+        </div>
+        <hr />
+
+    </div>
+    <input type="hidden" id="hiddenApproveId" name="hiddenApproveId" />
+
+
+    <!-- Modal -->
+    <div class="modal  fade modal fade bd-example-modal-lg createnew" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="viewdetailsLabel" aria-modal="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header flex-column no-padding mb-0">
+                    <h6>تعديل</h6>
+                    <button type="button" class="close closebtn" data-dismiss="modal" aria-label="Close">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+
+                <hr class="mt-0 mb-0">
+                <div class="modal-body pt-2  pl-4 pr-4 pb-0" id="Preview">
+
+                    @*PartialView*@
+
+                </div>
+            </div>
+            <div class="modal-footer justify-content-start align-items-start flex-column no-padding d-block">
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Confirmation Modal -->
+    <!--<div id="myModalDeleteWorker" class="modal  fade modal fade bd-example-modal-lg createnew" tabindex="-1" role="dialog" aria-labelledby="viewdetailsLabel" aria-modal="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">تنبية </h3>
+                </div>
+                <div class="modal-body">
+                    <h6 class="modal-title">سوف تقوم بحذف هذا العنصر </h6>
+                    <h6 class="modal-title">هل أنت متاكد من ؟ </h6>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-success" onclick="DeleteApproveRequest()">موافق</a>
+                    <a href="#" class="btn btn-default ml-lg-2" data-dismiss="modal">إلغاء</a>
+
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+
+
+    <div class="modal fade editpopu aligmodla" id="editpopup" tabindex="-1" role="dialog"
+         aria-labelledby="editpopu" aria-hidden="true">
+        <div class="modal-dialog modalsmall" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-white nopad">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-2">
+                    <div class="row d-flex flexdor ">
+
+                        <i class="far fa-exclamation-triangle styletop2"></i>
+
+                        <h4 class="bolderfo">هل انت متأكد ؟</h4>
+                        <p class="font-weight-normal">! سيتم الغاء احتساب قيمة هذا الطلب  </p>
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn  btn-secondary2" onclick="DeleteApproveRequest()">
+
+                            <i class="far fa-check-circle "></i>
+                            &nbsp;
+                            تاكيد
+                        </button>
+                        <button type="submit" class="btn  btn-grey" data-dismiss="modal" aria-label="Close">
+
+                            <i class="far fa-times "></i>
+                            &nbsp;
+                            الغاء
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts{
+
+
+    <!--Start Datatable-->
+    <script src="/Content/front/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/Content/front/assets/js/datatable/jquery.dataTables.min.js"></script>
+    <script src="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.js"></script>
+    <link href="/Content/front/assets/js/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script>
+        $(document).ready(function () {
+
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var opacity;
+
+            $(".next").click(function () {
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                //Add Class Active
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        next_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+
+            $(".previous").click(function () {
+
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                //Remove class active
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now) {
+                        // for making fielset appear animation
+                        opacity = 1 - now;
+
+                        current_fs.css({
+                            'display': 'none',
+                            'position': 'relative'
+                        });
+                        previous_fs.css({ 'opacity': opacity });
+                    },
+                    duration: 600
+                });
+            });
+
+            $('.radio-group .radio').click(function () {
+                $(this).parent().find('.radio').removeClass('selected');
+                $(this).addClass('selected');
+            });
+
+            $(".submit").click(function () {
+                return false;
+            })
+
+        });
+        $(document).ready(function () {
+            $('.datatable').DataTable({
+                "aLengthMenu": [
+                    [7, 10, 25, -1],
+                    [7, 10, 25, "All"]
+                ],
+                "iDisplayLength": 15,
+
+                "language": {
+                    "sProcessing": "جارٍ التحميل...",
+                    "sLengthMenu": "أظهر _MENU_ مدخلات",
+                    "sZeroRecords": "لم يعثر على أية سجلات",
+                    "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                    "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                    "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                    "sInfoPostFix": "",
+                    "sSearch": "ابحث:",
+                    "sUrl": "",
+                    "oPaginate": {
+                        "sFirst": "الأول",
+                        "sPrevious": "السابق",
+                        "sNext": "التالي",
+                        "sLast": "الأخير"
+                    }
+                }
+            });
+
+            table.$('tr').tooltip({
+                placement: '',
+                html: true
+            });
+        });
+
+        $('.datatable').on('draw.dt', function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <!--End Datatable-->
+
+
+
+    <script>
+
+        function payRequest(_id) {
+        $.ajax({
+            type: "Get",
+            url: '@Url.Action("ConfirmPayRequest", "Admin")',
+            data: { id: _id  },
+            success: function (data) {
+                $('#Preview').html(data);
+                $('#viewdetails').modal('show');
+            }
+        })
+        }
+
+
+
+
+        //this function for Confirm Delete Worker
+        var ConfirmDeleteRequest = function (ApproveId) {
+            $("#hiddenApproveId").val(ApproveId);
+            $("#editpopup").modal('show');
+        }
+        var DeleteApproveRequest = function () {
+            var ApproveId = $("#hiddenApproveId").val();
+            $.ajax({
+                type: "POST",
+                url: "/admin/SetRequestBalanceToZero",
+                data: { id: ApproveId },
+                success: function (result) {
+                    $("#myModalDeleteWorker").modal("hide");
+                    //$("#row_" + ApproveId).remove();
+
+                 window.location.href = "@Url.Action("ManageWallet", "admin")";
+                    }
+            })
+
+        }
+
+
+            function enablepaySelectedBtn() {
+                var table = $('#tblRequests').DataTable();
+                var paySelectedBtn = document.getElementById('paySelectedBtn');
+
+            if ($('[name="ID"]:checked').length <= 0) {
+                //alert('Please select minimum one data');
+                paySelectedBtn.disabled = true;
+            }
+            else {
+                paySelectedBtn.disabled = false;
+                }
+
+            }
+
+        $(document).ready(function () {
+            $('#DataTable').DataTable();
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked")) {
+                    $(".chkCheckBoxId").prop("checked", true)
+                }
+                else {
+                    $(".chkCheckBoxId").prop("checked", false)
+                }
+            });
+        });
+
+    </script>
+
+
+
+}

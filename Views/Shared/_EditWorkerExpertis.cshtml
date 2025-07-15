@@ -1,0 +1,59 @@
+﻿@model Marofh.WorkerExpertis
+@using Resources
+ @using (Html.BeginForm("EditWorkerExpertis", "Worker", FormMethod.Post))
+ {
+<div class="row">
+
+
+    @Html.HiddenFor(model => model.ID)
+    @Html.HiddenFor(model => model.AspNetUser)
+    @Html.HiddenFor(model => model.WorkerID)
+    <div class="col-12 mt-10">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">@Resource.CompanyName  </label>
+                    <input name="CompanyName" id="CompanyName" type="text" class="form__input" placeholder=" @Resource.CompanyName" value="@Model.CompanyName">
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">@Resource.SponsorName  </label>
+                    <input name="KafilName" id="KafilName" type="text" class="form__input" placeholder="@Resource.SponsorName" value="@Model.KafilName">
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">   @Resource.DateFrom </label>
+                    @Html.TextBoxFor(m => m.From, "{0:yyyy-MM-dd}", new { @class = "form-control form__input", type = "date" })
+
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">@Resource.DateTo  </label>
+                    @Html.TextBoxFor(m => m.To, "{0:yyyy-MM-dd}", new { @class = "form-control form__input", type = "date" })
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label"> @Resource.Country </label>
+                    @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,htmlAttributes: new { required = "required", @class = "form-control select2" })
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="form__group">
+                    <label for="firstname" class="form__label">@Resource.City </label>
+                    @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,htmlAttributes: new { required = "required", @class = "form-control select2" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">@Resource.Save </button>
+    </div>    </div>
+    }

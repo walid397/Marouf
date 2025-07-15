@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Marofh.AspNetUser>
+
+@{
+    ViewBag.Title = "متابعة المكاتب الموثقة ";
+    ViewBag.Parent = "إدارة المكاتب";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<table class="table display responsive nowrap">
+    <thead>
+        <tr>
+            <th>
+                اسم المكتب
+            </th>
+            <th>
+               البريد الالكترونى
+            </th>
+            <th>
+                اسم الموظف المسئول
+            </th>
+            <th>
+                رقم الهاتف
+            </th> 
+            <th>
+ملف التعاقد           
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OfficeName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @item.EmployeeFName @Html.Raw(" ")  @item.EmployeeLName
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Mobile)
+    </td>
+
+   
+        <td><a href="@item.ContractUrl" target="_blank">تحميل</a>    </td>
+   
+
+   
+
+   </tr>
+    }
+
+</table>

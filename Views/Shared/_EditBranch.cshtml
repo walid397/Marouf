@@ -1,0 +1,63 @@
+﻿@model Marofh.Branch
+@using  Resources
+ @using (Html.BeginForm("EditBranch", "Office", FormMethod.Post))
+ {
+<div class="row">
+
+
+    @Html.HiddenFor(model=>model.ID)
+    @Html.HiddenFor(model=>model.OfficeID)
+    <div class="col-12 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label">@Resource.BranchName  </label>
+
+            <input type="text" class="form__input" name="Name" id="Name" value="@Model.Name" />
+
+        </div>
+    </div>
+
+
+    <div class="col-12 col-xl-6">
+        <div class="form__group">
+            <label for="category" class="form__label"> @Resource.MobileNo  </label>
+            <input type="text" class="form__input" name="Mobile" id="Mobile"  value="@Model.Mobile"/>
+
+
+        </div>
+    </div>
+
+
+
+    <div class="col-6">
+        <div class="form__group">
+            <label for="location" class="form__label"> @Resource.Country </label>
+
+
+            @Html.DropDownList("CountryID", ViewBag.CountryID as List<SelectListItem>,htmlAttributes: new { required = "required", @class = "form-control select2" })
+
+        </div>
+    </div>
+
+
+    <div class="col-6">
+        <div class="form__group">
+            <label for="location" class="form__label">@Resource.City </label>
+            @Html.DropDownList("CityID", ViewBag.CityID as List<SelectListItem>,htmlAttributes: new { required = "required", @class = "form-control select2" })
+
+        </div>
+    </div>
+    <div class="col-12 col-xl-4">
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">
+
+            <i class="far fa-plus-circle "></i>
+        @Resource.Save
+
+        </button>
+
+    </div>
+</div>
+ }

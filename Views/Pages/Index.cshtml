@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Marofh.Page>
+
+@{
+    ViewBag.Title = "متابعة الصفحات";
+    ViewBag.Parent = "الصفحات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<p>
+    @Html.ActionLink("إضافة صفحة جديدة", "Create", new { @class = "btn btn-default" })
+</p>
+
+    <table class="table display responsive nowrap">
+        <thead>
+            <tr>
+                <th>
+                    اسم الصفحة
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NameAR)
+                </td>
+
+                <td>
+                    @Html.ActionLink("تعديل", "Edit", new { id = item.ID }) 
+                    @if (item.ID != 4 & item.ID != 5)
+                    {
+
+                        @Html.Raw(" | ")
+                        @Html.ActionLink("حذف", "Delete", new { id = item.ID })
+                        }
+                </td>
+            </tr>
+        }
+
+    </table>

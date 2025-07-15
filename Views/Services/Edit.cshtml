@@ -1,0 +1,118 @@
+﻿@model Marofh.Service
+
+@{
+    ViewBag.Title = "تعديل بيانات خدمة ";
+    ViewBag.Parent = "الخدمات";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+@using (Html.BeginForm("Edit", "Services", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.ID)
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.NameAR, "اسم الخدمة باللغة العربية", htmlAttributes: new { @class = "control-label col-md-5" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NameAR, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.NameAR, "حقل اجبارى", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.NameEN, "اسم الخدمة باللغة الانجليزية", htmlAttributes: new { @class = "control-label col-md-5" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NameEN, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.NameEN, "حقل اجبارى", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.ImageUrl, "صورة الخدمة", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-6">
+            <input name="file" type="file" value="submit" class="form-control"  />
+
+            @Html.ValidationMessageFor(model => model.ImageUrl, "حقل اجبارى", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2" style="float:right">
+            <img name="cimg1" src="@Model.ImageUrl" height="100" width="100" />
+            <input name="cimg" value="@Model.ImageUrl" style="visibility:hidden" />
+
+
+        </div>
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DescriptionAR, "تفاصيل الخدمة باللغة العربية", htmlAttributes: new { @class = "control-label col-md-5" })
+
+
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DescriptionAR, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.DescriptionAR, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.DescriptionEN, "تفاصيل الخدمة باللغة الانجليزية", htmlAttributes: new { @class = "control-label col-md-5" })
+
+
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.DescriptionEN, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+            @Html.ValidationMessageFor(model => model.DescriptionEN, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-3">
+            <input type="submit" value="حفظ التعديلات" class="btn btn-default" />
+            @Html.ActionLink("عرض الكل", "Index", new { @class = "btn btn-default" })
+        </div>
+    </div>
+</div>
+}
+
+
+
+@section Scripts {
+    <!-- include SummerNote(jQuery,Type bootstrap) -->
+    @*<script src="~/Scripts/summernote/jquery-3.5.1.min.js" crossorigin="anonymous"></script>*@
+    <script src="~/Scripts/summernote/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+
+    <script src="~/Scripts/summernote/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <link href="~/Scripts/summernote/summernote-bs4.min.css" rel="stylesheet">
+    <script src="~/Scripts/summernote/summernote-bs4.min.js"></script>
+
+    <script>
+        $('#DescriptionAR').summernote({
+
+            height: 300,
+            callbacks: {
+                onPaste: function (e) {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    document.execCommand('insertText', false, bufferText);
+                }
+            }
+        });
+        $('#DescriptionEN').summernote({
+
+            height: 300,
+            callbacks: {
+                onPaste: function (e) {
+                    var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                    e.preventDefault();
+                    document.execCommand('insertText', false, bufferText);
+                }
+            }
+        });
+
+    </script>
+}
