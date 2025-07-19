@@ -1,0 +1,363 @@
+﻿@model  AspNetUser
+@using Microsoft.AspNet.Identity
+@using Marofh.Models
+@using Resources
+
+@{
+    string userId = User.Identity.GetUserId();
+    AspNetUser loggedInUser = ViewModel.GetCurrentUser(User.Identity.GetUserId());
+    string mobile = !string.IsNullOrEmpty(loggedInUser.Mobile) ? loggedInUser.Mobile : "";
+}
+
+<div id="pdfdiv" class="PDFContainer" style="font-family:Calibri;visibility:collapse;">
+    <div class="wordc" id="contentpdf" name="contentpdf" style="font-family: Calibri; padding: 22px;">
+        <div>
+            <img src="~/Content/front/assets/img/logo/newlogo.png" style="opacity: 0.2; position: absolute; top: 18%; left:30%;" />
+            <p>
+                <img width="201"
+                     height="57"
+                     src="~/Content/front/assets/img/logo/newlogo.png" style="float:left;" />
+            </p>
+
+            <p align="center" dir="RTL" style="padding-top:100px;">
+                <strong><u>عقد تقديم خدمات</u></strong>
+                <strong><u></u></strong>
+            </p>
+            <p dir="RTL">
+                <strong> </strong>
+            </p>
+            <p dir="RTL">
+                إنه فى يوم <span id="ContractWriteDay"></span> الموافق <label id="ContractWriteDayPlusMonth"></label>
+                <label id="ContractWriteYear">
+                </label> تم إبرام هذا العقد بين
+                كل من:
+            </p>
+            <p dir="RTL">
+                <strong><u>أولاً</u></strong>
+                <strong>: شركة خبراء المعلومات لتقنية المعلومات سجل تجاري رقم (</strong>
+                <strong>1010555048</strong>
+                <strong>)</strong>
+                ، ومقرها بمدينة الرياض ، ويمثلها في هذا العقد السيد/ سليمان أحمد المشاري
+                (هوية وطنية 1075843639) بصفته المدير العام<strong><u>يشار إليه فيما بعد بـ "الطرف الأول " </u></strong>    <strong></strong>
+            </p>
+            <p align="right" dir="RTL">
+                <strong><u> </u></strong>
+            </p>
+            <p dir="RTL">
+                <strong>
+                    <u>
+                        ثانيًا: مكتب ( <span id="OfficeName"></span> ) سجل تجاري رقم ( <span id="CommercialRegisterNO"></span> ) ترخيص
+                        رقم ( <span id="HRLicenseNo"></span> )
+                    </u>
+                </strong>
+                <strong> </strong>
+                ومقرها <span id="OfficeAddress"></span> ، ويمثلها في هذا العقد السيد / <span id="OwnerName"></span> (هوية رقم <span id="NID"></span> )
+                بصفته المدير المسئول والبريد الالكتروني للشركة : <label id="Email"></label>
+                <strong><u>(يشار إليه فيما بعد بـ "الطرف الثاني")</u></strong>    <strong></strong>
+            </p>
+            <p dir="RTL">
+                <strong></strong>
+            </p>
+            <p dir="RTL">
+                <strong> </strong>
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>التمهيد</u></strong>
+                <strong><u></u></strong>
+            </p>
+            <p dir="RTL">
+                حيث أن "الطرف الأول يقدم خدمات للمستفيدين، وذلك بتقديم خدمة البحث
+                الإلكتروني في السير الذاتية للعمالة المنزلية او العمالة الخاصة دون الحاجة
+                إلى زيارة مكاتب الاستقدام، وحيث أن الطرف الثاني يرغب في الاستفادة من هذه
+                الخدمة، فقد التقت إرادة الطرفين بالإيجاب والقبول، وهما بكامل أهليتهما
+                واتفقا فيما بينهما وتراضيا على تنفيذ "العقد" وفقًا للشروط والبنود التالية:
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>البند الأول</u></strong>
+                <strong><u></u></strong>
+            </p>
+            <p dir="RTL">
+                يعتبر التمهيد السابق جزءًا لا يتجزأ من هذا العقد.
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>البند الثاني</u></strong>
+            </p>
+            <p dir="RTL">
+                2-1على الطرف الأول القيام بكافة الأعمال بالموقع وكافة ما يتطلب منه من خدمات
+                في هذا الإطار دون مطالبة الطرف الثاني بتكاليف ذلك ما عدا ما تم الإشارة إليه
+                في البند الرابع من هذا العقد.
+            </p>
+            <p dir="RTL">
+                2-2 يقوم الطرف الأول بتسويق العاملات عبر منصة تابعة له ويظهر بيانات العمالة
+                التي تمت إضافتها من قبل الطرف الثاني وتحت مسئوليته.
+            </p>
+            <p dir="RTL">
+                2-3 يقوم الطرف الأول بالتأكد من بيانات طالبي استقدام العمالة المنزلية
+                المكانية وايضاً وسائل الاتصال
+            </p>
+            <p dir="RTL">
+                2-4 يقوم الموقع بتقييم مستوى الخدمات المقدمة بعد طلب الاستقدام وتزويدها
+                لمكاتب الاستقدام حسب طلبها وبمبالغ إضافية تحدد حسب الفترة وذلك لمراقبة
+                الجودة.
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u> </u></strong>
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u> </u></strong>
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u></u></strong>
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>البند الثالث</u></strong>
+            </p>
+            <p dir="RTL">
+                3-1 تبدأ مدة هذا العقد اعتبارًا من يوم <label id="ContractWriteDay"></label> بتاريخ <label id="ContractWriteDayPlusMonth"></label> <label id="ContractWriteYear"></label> وتنتهي في
+                يوم <label id="ContractEndDay"></label> وتاريخ <label id="ContractEndDayPlusMonth"></label><span> </span><label id="ContractEndYear"></label> وفقًا للأحكام المذكورة بهذا العقد، ولا يتجدد هذا
+                العقد لمدة أو مدد أخرى إلا بموافقة الطرفين الكتابية المسبقة.
+            </p>
+            <p dir="RTL">
+                3-2 يحق للطرف الأول إنهاء هذا العقد في أي وقت قبل انتهاء مدته في حال اكتشف
+                تلاعب او تعامل غير لائق مع العملاء.
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>البند الرابع</u></strong>
+            </p>
+            <p dir="RTL">
+                4-1 على الطرف الثاني أن يدفع للطرف الأول مقابل ما يقدمه من خدمات مبلغ وقدره
+                (300) ريال دفعة واحدة على الحساب بالبنكي رقم<strong> </strong><strong>(</strong><strong>SA5655000000098792700165</strong>    <strong>) بالبنك السعودي الفرنسي </strong>، وذلك عن كل طلب استقدام تم على
+                إثرة التعاقد مع صاحب عمل وذلك خلال مدة لا تتجاوز 15 يوم او ان يتم التسوية
+                بشكل شهري.
+            </p>
+            <p dir="RTL">
+                4-2 تعد أي أعمال أو مهام إضافية يطلبها الطرف الثاني ويوافق عليها الطرف
+                الأول متطلبات جديدة لا تعد جزء من هذا العقد ولا تعد مشمولة بثمن هذا العقد.
+            </p>
+            <p dir="RTL">
+                4-3 تمثل القيمة المذكورة أعلاه كافة المبالغ المستحقة لتنفيذ الأعمال
+                المطلوبة من الطرف الأول بكافة أنواعها وأشكالها طوال مدة العقد والتي يجب على
+                الطرف الثاني دفعها، ولا تخضع هذه القيمة للضريبة أو أي رسوم مقررة بموجب
+                الأنظمة بالمملكة العربية السعودية.
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>البند الخامس</u></strong>
+            </p>
+            <p dir="RTL">
+                5-1 لا يجوز لأي من الطرفين التنازل عن التزاماته الناشئة عن هذا العقد أو أي
+                جزء منها إلى طرف ثالث من دون الحصول على الموافقة الكتابية المسبقة من الطرف
+                الآخر.
+            </p>
+            <p dir="RTL">
+                5-2 جميع حقوق الملكية الفكرية والقانونية للصور والمعلومات والإعلانات التي
+                يعرضها الطرف الأول في التطبيقات الإلكترونية تعود للطرف الأول.
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>البند السادس</u></strong>
+            </p>
+            <p dir="RTL">
+                6-1 يجب على الطرف الثاني حل خلافاته وإجراءاته بينه وبين عملائه والجهات
+                الأخرى دون إدخال الطرف الأول في هذا الأمر، وفي حالة موافقة الطرف الأول على
+                إدخاله فيحق للطرف الأول مطالبة الطرف الثاني برسوم وقدرها (50) ريال لكل ساعة
+                أو جزء منها يقضيها أو أي طرف من قبله في متابعة معالجة تلك المشكلة ومع ذلك
+                فإن الطرف الأول لا يتحمل أي مسؤولية قانونية أمام الغير.
+            </p>
+            <p dir="RTL">
+                6-2 لا يتحمل الطرف الأول أي مسؤولية عن أي ضرر يلحق بالطرف الثاني في حالة
+                تعرض التطبيقات الإلكترونية لعملية قرصنة إلكترونية أو حدث إخلال بأمنها
+                وخدماتها أو توقفها أو تم التصرف بأي صورة مخالفة لإرادة الطرف الأول في
+                معلومات التطبيقات الإلكترونية.
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u> </u></strong>
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u></u></strong>
+            </p>
+
+            <div style="height:80px;"></div>
+            <hr />
+
+            <table dir="ltr" border="0" cellspacing="0" cellpadding="0" width="100%" >
+                <tbody>
+                    <tr>
+                        <td width="179" valign="top">
+                            <p dir="RTL">
+                                س . ت 1010555048
+                            </p>
+                        </td>
+                        <td colspan="2" valign="top">
+                            <p dir="RTL">
+                                <strong>شركة خبراء المعلومات لتقنية المعلومات</strong>
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <p dir="RTL">
+                                www.infoexperts.sa
+                            </p>
+                        </td>
+                        <td valign="top">
+                            <p dir="RTL" style="text-align:center">
+                                ص . ب : 285285 رمز بريدي : 11323
+                            </p>
+                        </td>
+                        <td valign="top">
+                            <p dir="RTL">
+                                المملكة العربية السعودية
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div>
+            <p style="padding-top:120px;">
+                <img width="201"
+                     height="57"
+                     src="~/Content/front/assets/img/logo/newlogo.png" style="float:left;" />
+            </p>
+            <img src="~/Content/front/assets/img/logo/newlogo.png" style="opacity: 0.2; position: absolute; top: 60%; left:30%;" />
+
+            <p align="center" dir="RTL" style="padding-top:100px;">
+                <strong><u>البند السابع</u></strong>
+            </p>
+            <p dir="RTL">
+                يلتزم الطرف الثاني بتحديث البيانات المرفوعة عبر المنصة في حال تم استقدام أي
+                عامل او عاملة خارج المنصة ، ويتزم بالتواصل المباشر مع المتقدمين لطلبات
+                الإستقدام لنهاء إجراءات الإستقدام، كما يلتزم المكتب برفع البيانات الصحيحة
+                للعمالة المسجلة لديه في الموقع، كما يلتزم المكتب برفع الصور ومقاطع فيديو
+                للعمالة بلباس محتشم.
+            </p>
+            <p align="center" dir="RTL" style="padding-top:100px;">
+                <strong><u>البند الثامن</u></strong>
+            </p>
+            <p dir="RTL">
+                في حالة نشوء أي نزاع بسب تفسير أو تنفيذ هذا العقد تختص المحاكم السعودية على
+                اختلاف درجاتها بالفصل فيه.
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u></u></strong>
+            </p>
+            <p align="center" dir="RTL">
+                <strong><u>البنـــد التاسع</u></strong>
+            </p>
+            <p dir="RTL">
+                تحرر هذا العقد من نسختين بيد كل طرف نسخة للعمل بموجبها.
+            </p>
+            <p dir="RTL">
+                <strong>وإثابتًا لما تقدم</strong>
+                ، قام الطرفان بالتوقيع على هذا العقد.
+            </p>
+            <p align="center" dir="RTL">
+                والله الموفق,,,
+            </p>
+            <div align="right">
+                <table dir="rtl" border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tbody>
+                        <tr>
+                            <td width="296" valign="top">
+                                <p dir="RTL">
+                                    الطرف الأول
+                                </p>
+                            </td>
+                            <td valign="top" style=" text-align:right;">
+                                <p align="center" dir="RTL">
+                                    الطرف الثاني
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="296" valign="top">
+                                <p dir="RTL">
+                                    شركة خبراء المعلومات لتقنية المعلومات
+                                </p>
+                            </td>
+                            <td valign="top" style="padding-right:150px;">
+                                <p dir="RTL">
+                                    مكتب <span style="text-align:right;" id="OfficeName"></span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="296" valign="top">
+                                <p dir="RTL">
+                                    السيد / سليمان أحمد المشاري
+                                </p>
+                            </td>
+                            <td width="299" valign="top" style="padding-right:150px;">
+                                <p dir="RTL">
+                                    السيد/ <span style="text-align:right;" id="OwnerName"></span>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <p dir="RTL">
+                                    المدير العام
+                                </p>
+                                <p dir="RTL">
+                                    التوقيع:
+                                </p>
+                                <p dir="RTL">
+                                    الختم
+                                </p>
+                            </td>
+                            <td valign="top" style="padding-right:150px;">
+                                <p dir="RTL">
+                                    رقم الجوال  @mobile
+                                </p>
+                                <p dir="RTL">
+                                    التوقيع:
+                                </p>
+                                <p dir="RTL">
+                                    الختم
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr style="margin-top:590px;" />
+                <table dir="ltr" border="0" cellspacing="0" cellpadding="0" width="100%" >
+                    <tbody>
+                        <tr>
+                            <td width="179" valign="top">
+                                <p dir="RTL">
+                                    س . ت 1010555048
+                                </p>
+                            </td>
+                            <td colspan="2" valign="top">
+                                <p dir="RTL">
+                                    <strong>شركة خبراء المعلومات لتقنية المعلومات</strong>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">
+                                <p dir="RTL">
+                                    www.infoexperts.sa
+                                </p>
+                            </td>
+                            <td valign="top">
+                                <p dir="RTL" style="text-align:center">
+                                    ص . ب : 285285 رمز بريدي : 11323
+                                </p>
+                            </td>
+                            <td valign="top">
+                                <p dir="RTL">
+                                    المملكة العربية السعودية
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+               
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

@@ -3178,7 +3178,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الوظيفة.
+        ///   Looks up a localized string similar to المهنة.
         /// </summary>
         internal static string Job {
             get {

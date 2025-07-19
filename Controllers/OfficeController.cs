@@ -1137,13 +1137,14 @@ public async Task<ActionResult> Register(RegisterViewModel model)
         }
         else
         {
+                    
             ViewModel.SendMessage(user.Email, "تنشيط حسابك فى استقدامي", "", user.Id);
             ViewModel.SendNotification("فريق عمل استقدامي يرحب بك", user.Id, null, null, null, clsEnum.NotificationTypes.FirstLogin.ToString());
         }
                 TempData["ShowContractModal"] = true;
 
                 // ✅ توجيه المستخدم مباشرة إلى صفحة مكتبه
-                return RedirectToLocal("/office/");
+                return RedirectToLocal("/Office/Index");
     }
 
     // ✅ في حالة فشل التسجيل نرجع نفس الصفحة مع الأخطاء

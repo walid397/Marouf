@@ -131,9 +131,9 @@
 
 
                         @*<div class="filter__group">
-                                <label class="filter__label">كلمة البحث :</label>
-                                <input type="text" class="filter__input w-100" placeholder="كلمة البحث" id="query" name="query">
-                            </div>*@
+            <label class="filter__label">كلمة البحث :</label>
+            <input type="text" class="filter__input w-100" placeholder="كلمة البحث" id="query" name="query">
+        </div>*@
                         <div class="filter__group">
                             <label for="nationalities" class="filter__label">@Resource.Nationality</label>
                             <div class="select_wrap w-100">
@@ -197,7 +197,6 @@
 
                                                 @Resource.Female
                                             </label>
-
                                         }
                                         else
                                         {
@@ -227,55 +226,40 @@
                             </div>
 
                         </div>
+                        @{
+                            // نحاول نجيب القيم المختارة من ViewBag
+                            var selectedRanges = ViewBag.SelectedRanges as List<string> ?? new List<string>();
+
+                            // نحدد القيم المتاحة للاختيار
+                            var ageRanges = new List<string>
+                                                                    {
+        "23-18",
+        "27-24",
+        "38-33",
+        "44-39",
+        "أكبر من 44"
+    };
+                        }
+
                         <div class="filter__group">
                             <label class="filter__label">@Resource.Age</label>
 
-                            <div class="d-flex" style="gap: 15px;">
-                                <select  class="select-styles" name="Range"  id="Range">
-                                    <option  hidden disabled selected @(ViewBag.minAge == null ? Resource.Age : "") value="">
-                                        اختر العمر
-                                    </option>
-                                    <option>
-                                      18-23
-
-                                    </option>
-                                    <option>
-                                        24-27
-
-                                    </option>
-                                    <option>
-                                        33-38
-
-                                    </option>
-                                    <option>
-                                        39-44
-
-                                    </option>
-                                    <option>
-                                        اكبر من 44
-                                    </option>
-                                    @*@for (int i = 18; i <= 50; i++)
+                            <div class="select_wrap w-100">
+                                <span class="labelcss">@Resource.Age</span>
+                                <div class="select">
+                                    @foreach (var range in ageRanges)
                                     {
-                                        <option value="@i" @(ViewBag.minAge?.ToString() == i.ToString() ? "selected" : "")>
-                                            @i
-                                        </option>
-                                    }*@
-                                </select>
-
-                                @*<select name="maxAge" id="maxAge"
-                                        style="min-width: 160px; height: 45px; font-size: 18px; padding: 6px;">
-                                    <option hidden disabled @(ViewBag.maxAge == null ? "selected" : "") value="">
-                                        @Resource.To
-                                    </option>
-                                    @for (int i = 18; i <= 50; i++)
-                                    {
-                                        <option value="@i" @(ViewBag.maxAge?.ToString() == i.ToString() ? "selected" : "")>
-                                            @i
-                                        </option>
+                                        var isChecked = selectedRanges.Contains(range);
+                                        <label>
+                                            <input type="checkbox" name="Range" value="@range" @(isChecked ? "checked" : "") />
+                                            @range
+                                        </label>
                                     }
-                                </select>*@
+                                </div>
                             </div>
                         </div>
+
+
 
 
 
@@ -432,38 +416,52 @@
 
                         <div class="filter__group">
                             <label class="filter__label">@Resource.YearsofExperience</label>
-                            <div class="d-flex mfc" style="gap: 15px;">
-                                <select id="yearsOfExperience"
-                                        name="yearsOfExperience"
-                                        style="min-width: 170px; height: 45px; font-size: 18px; padding: 6px;"
-                                        class="filter__input">
-                                    <option value="" disabled @(ViewBag.yearsOfExperience == null ? "selected" : "")>
-                                        @Resource.From
-                                    </option>
-                                    <option  @(ViewBag.yearsOfExperience?.ToString() == "0" ? "selected" : "")>
-                                        @Resource.Nothing
-                                    </option>
-                                    <option >
-                                        0-2
-                                    </option>
-                                    <option >
-                                        3-6
+                            <div class="select_wrap w-100">
+                                <span class="labelcss">@Resource.YearsofExperience</span>
+                                <div class="select">
+                                    @{
+                                        string[] expList = Request.QueryString["yearsOfExperience"] != null
+                                            ? Request.QueryString["yearsOfExperience"].Split(',')
+                                            : new string[] { };
 
-                                    </option>
-                                    <option >
-                                        7-10
+                                        bool isEnglish = culture.Contains("en-us");
+                                    }
 
-                                    </option>
-                                    <option >
-                                       @Resource.MoreThan10
+                                    <label for="exp-1">
+                                        <input type="checkbox" name="yearsOfExperience" value="0"
+                                               id="exp-1" @(expList.Contains("0") ? "checked" : "") />
+                                        @(isEnglish ? Resource.Nothing : "بدون خبرة")
+                                    </label>
 
-                                    </option>
+                                    <label for="exp-2">
+                                        <input type="checkbox" name="yearsOfExperience" value="0-2"
+                                               id="exp-2" @(expList.Contains("0-2") ? "checked" : "") />
+                                        0 - 2
+                                    </label>
 
-                                </select>
+                                    <label for="exp-3">
+                                        <input type="checkbox" name="yearsOfExperience" value="3-6"
+                                               id="exp-3" @(expList.Contains("3-6") ? "checked" : "") />
+                                        3 - 6
+                                    </label>
 
-           
+                                    <label for="exp-4">
+                                        <input type="checkbox" name="yearsOfExperience" value="7-10"
+                                               id="exp-4" @(expList.Contains("7-10") ? "checked" : "") />
+                                        7 - 10
+                                    </label>
+
+                                    <label for="exp-5">
+                                        <input type="checkbox" name="yearsOfExperience" value="10+"
+                                               id="exp-5" @(expList.Contains("10+") ? "checked" : "") />
+                                        @(isEnglish ? Resource.MoreThan10 : "أكثر من 10")
+                                    </label>
+                                </div>
                             </div>
                         </div>
+
+
+
 
 
                         <!-- زرار فلتر متقدم -->
@@ -473,7 +471,7 @@
                             </button>
                         </div>
 
-                        
+
                         <!-- الفلاتر المتقدمة -->
                         <div class="advanced-filters" id="advancedFilters" style="display: none;">
 
@@ -622,25 +620,25 @@
 
 
                             @*<div class="filter__group">
-            <label class="filter__label">@Resource.TheWeight</label>
-            <div class="d-flex" style="gap: 15px;">
-                <select id="minweight" name="weight_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                    <option value="" disabled selected>من</option>
-                    @for (int i = 0; i <= 100; i += 5)
-                    {
-                        <option value="@i">@i</option>
-                    }
-                </select>
+                <label class="filter__label">@Resource.TheWeight</label>
+                <div class="d-flex" style="gap: 15px;">
+                    <select id="minweight" name="weight_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                        <option value="" disabled selected>من</option>
+                        @for (int i = 0; i <= 100; i += 5)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
 
-                <select id="maxweight" name="weight_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                    <option value="" disabled selected>إلى</option>
-                    @for (int i = 0; i <= 100; i += 5)
-                    {
-                        <option value="@i">@i</option>
-                    }
-                </select>
-            </div>
-        </div>*@
+                    <select id="maxweight" name="weight_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                        <option value="" disabled selected>إلى</option>
+                        @for (int i = 0; i <= 100; i += 5)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                </div>
+            </div>*@
 
                             <div class="filter__group">
                                 <label class="filter__label">@Resource.SocialStatus</label>
@@ -713,10 +711,10 @@
 
 
                         </div>
-                            <div class="filter__group">
-                                <button class="btn btn-primary w-100 bgtem" type="submit">     <i class="fal fa-filter"></i>    @Resource.FilterResults</button>
-                            </div>
-                </form>
+                        <div class="filter__group">
+                            <button class="btn btn-primary w-100 bgtem" type="submit">     <i class="fal fa-filter"></i>    @Resource.FilterResults</button>
+                        </div>
+                    </form>
             </div>
             <!-- end sidebox -->
         </div>
