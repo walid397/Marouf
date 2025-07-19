@@ -1,0 +1,242 @@
+﻿
+@using Resources
+
+
+<div class="modal fade" id="StartContract" tabindex="-1" role="dialog" aria-labelledby="StartContract" aria-hidden="true">
+    <div class="modal-dialog nemofa">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">  @Resource.NewContract</h4>
+            </div>
+            <div class="modal-body">
+
+                MultiStep Form
+                <div class="container-fluid" id="grad1">
+                    <div class="row justify-content-center mt-0">
+                        <div class="col-12 col-sm-12 col-md-9 col-lg-11 text-center p-0 mt-3 mb-2 p-0 mt-1 mb-2">
+                            <div class="card px-0 pt-1 pb-0 mt-1 mb-2">
+                                <div class="row">
+                                    <div class="col-md-12 mx-0">
+                                        <div id="msform">
+                                            progressbar
+                                            <ul id="progressbar">
+                                                <li class="active" id="account"><strong>  @Resource.ContractDate</strong></li>
+                                                <li id="personal"><strong> @Resource.OfficeName</strong></li>
+                                                <li id="payment"><strong>@Resource.Employee </strong></li>
+                                                <li id="confirm"><strong>@Resource.Confirm </strong></li>
+                                            </ul>  fieldsets
+                                            <fieldset>
+
+                                                <div class="row pl-1 pr-1 form-card">
+
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">@Resource.TheDateofwritingthecontract </label>
+                                                            <div class="w-100">
+
+                                                                <input type="date" id="ContractWriteDate" class="form__input w-100" name="ContratWriteDate" disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">@Resource.ContractEntryIntoforce   </label>
+
+                                                            <div class="w-100">
+
+                                                                <input type="date" id="ContractStartDate" class="form__input w-100" name="ContratStartDate" disabled />
+
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">@Resource.Endofcontract </label>
+                                                            <div class="w-100">
+
+                                                                <input type="date" id="ContractEndDate" class="form__input w-100" name="ContratEndDate" disabled />
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <input type="button" name="next" class=" next action-button" value="@Resource.Next" />
+
+                                            </fieldset>
+                                            <fieldset>
+
+
+                                                <div class="row pl-1 pr-1 form-card">
+
+
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">  @Resource.OfficeName </label>
+                                                            <input name="OfficeName" id="OfficeName" type="text" class="form__input" value="@Model.OfficeName" disabled
+                                                                   placeholder="@Resource.EnterOfficeName">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">  @Resource.CommercialRegistrationNo </label>
+                                                            <input name="CommercialRegisterNO" id="CommercialRegisterNO" disabled type="number" class="form__input" placeholder="@Resource.EnterCommercialRegistrationNo" value="@Model.CommercialRegisterNO">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label"> @Resource.OfficeLicense  </label>
+                                                            <input name="HRLicenseNo" id="HRLicenseNo" type="number" class="form__input" value="@Model.HRLicenseNo" disabled
+                                                                   placeholder="@Resource.EnterOfficelicenseNo">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">@Resource.OfficeAddress </label>
+                                                            <input name="OfficeAddress" id="OfficeAddress" type="text" class="form__input" placeholder="@Resource.EnterOfficeAddress" value="@Model.OfficeAddress" disabled>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <input type="button" name="previous" class="previous action-button-previous" value="@Resource.Previous" />
+                                                <input type="button" name="next" class=" next action-button" value="@Resource.Next" />
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="row pl-1 pr-1 form-card">
+
+
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">@Resource.TheNameofOfficeownerorauthorizedmanager </label>
+                                                            <input name="OwnerName" id="OwnerName" type="text" class="form__input" disabled
+                                                                   placeholder="@Resource.EmployeeName" value="@Model.FName @Html.Raw(" ") @Model.LName">
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label">  @Resource.IdentificationNumber </label>
+                                                            <input name="NID" id="NID" type="number" class="form__input" placeholder="@Resource.IdentificationNumber" value="@Model.NID" disabled maxlength="10" pattern=".{10,}" required title="10 characters minimum">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="form__group">
+                                                            <label for="firstname" class="form__label"> @Resource.Email </label>
+                                                            <input name="firstname" id="OfficeEmail" type="text" class="form__input" disabled
+                                                                   placeholder="@Resource.Email" value="@Model.Email">
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <input type="button" name="previous" class="previous action-button-previous" value="@Resource.Previous" />
+                                                <input type="button" name="next" class=" next action-button" value="@Resource.Create" />
+                                            </fieldset>
+                                            <fieldset>
+                                                <div class="form-card">
+                                                    <h2 class="fs-title text-center"> @Resource.DoneSuccessfully!</h2> <br>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-3">
+                                                            <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                                        </div>
+                                                    </div> <br><br>
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-7 text-center">
+                                                            <h5>   @Resource.ThankYou</h5>
+                                                            <h6> @Resource.PleaseAfterdownloadingthecontractReviewitsignandsealitandthenreuploadittoMaroufaSite  </h6>
+                                                            <button id="SaveToPDF" class="action-button w-100" onclick="getContractValues();">
+                                                                <i class="fa fa-file-alt mr-1 ml-1"></i>
+                                                                تحميل العقد  @Resource.DownloadContract
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="attach mt-1">
+    <h2 class="form__title mt-4 mb-0 stylrep">
+        <span>@Resource.Attachments </span>
+    </h2>
+
+    <div class="col-12">
+        <div class="upload-araa bg-white mt-4">
+            @*<div class="col-12">
+                    <div class="upload-icon float-right">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+
+                </div>*@
+
+
+
+            <div class="col-12 ">
+
+                <div class=" row fileinputcss d-block">
+                    <p> @Resource.SigntheContractandattachithere </p>
+                    <div class="text-center">
+
+                        <div class="d-flex">
+                            <input id="ContractUrl" name="ContractUrl" type="file" class=" w-75 custom-file-input ml-0" onchange="validateUploader()">
+
+                            <button id="SendContract" name="SendContract" class="form__btn w-25 mt-0" type="button" disabled>
+                                <span>
+                                    <i class="far fa-send"></i>
+                                    @Resource.Submitthecontractforreview
+                                    @*ارسال العقد للمراجعة*@
+                                </span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="row col-12 justify-content-center ">
+
+                <div class="col-md-5">
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
