@@ -143,6 +143,7 @@ namespace Marofh.Controllers
                 else
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
