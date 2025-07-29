@@ -200,7 +200,7 @@ namespace Marofh.Controllers
             }
             else
             {
-                SelectList obj = new SelectList(db.Cities.Where(p => p.CountryID == countryId), "ID", "NameAR", 0);
+                SelectList obj = new SelectList(db.Cities.Where(p => p.CountryID == countryId).AsNoTracking().ToList(), "ID", "NameAR", 0);
                 return Json(obj);
             }
 

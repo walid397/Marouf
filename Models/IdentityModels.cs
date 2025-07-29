@@ -34,13 +34,19 @@ namespace Marofh.Models
         public string EmployeeMobile { get; set; }
 
 
+        public string Level { get; set; }
         public DateTime? DOB { get; set; }
         public int? JobsID { get; set; }
+        public int? SkillID { get; set; }
+        public int? experience { get; set; }
+        public int? expCountryID { get; set; }
+        public int? expCityID { get; set; }
         public int? ChildernsCount { get; set; }
         public int? ExperienceYearsCount { get; set; }
         public string OfficeID { get; set; }
         public string OfficeName { get; set; }
         public string Religion { get; set; }
+        public string City { get; set; }
         public string MaritalStatus { get; set; }
         public bool? HasDrivingLicense { get; set; }
         public bool? Gender { get; set; }
