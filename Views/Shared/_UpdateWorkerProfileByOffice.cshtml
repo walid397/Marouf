@@ -82,12 +82,12 @@
     <div class="col-12 col-xl-4">
         <div class="form__group">
             <label for="location" class="form__label">@Resource.Nationality </label>
-            @Html.DropDownList("NationalityID", ViewBag.NationalityID as List<SelectListItem>, Resource.ChooseNationality, htmlAttributes: new { required = "required", @class = "form-control form__select select2"})
+            @Html.DropDownList("NationalityID", null, Resource.Nationality, htmlAttributes: new { required = "required", @class = "form-control form__select select2"})
 
         </div>
     </div>
 
-    <div class="col-4">
+    @*<div class="col-4">
         <div class="form__group">
             <label for="location" class="form__label">@Resource.Country </label>
             @Html.DropDownList("CountryID", null, Resource.Country, htmlAttributes: new { @class = "form-control ", @onchange = "GetCitiesByCountryID(this.value,'FormUpdateProfile');" })
@@ -108,7 +108,7 @@
         </div>
 
 
-    </div>
+    </div>*@
 
 
 

@@ -18,6 +18,9 @@ namespace Marofh
         public Nullable<int> LanguageID { get; set; }
         public string WorkerID { get; set; }
         public string Level { get; set; }
+        public string writingMethod { get; set; }
+        public string ReadingMethod { get; set; }
+        public string SpeakingMethod { get; set; }
         public string Method { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }

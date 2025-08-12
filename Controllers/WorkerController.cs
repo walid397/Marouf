@@ -133,20 +133,23 @@ namespace Marofh.Controllers
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
                 ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
 
+                ViewBag.Languages = new SelectList(db.Languages, "ID", "NameEN");
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
-
+                ViewBag.Skill = new SelectList(db.Skills, "ID", "NameEN");
             }
             else
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
 
+                ViewBag.Languages = new SelectList(db.Languages, "ID", "NameAR");
                 ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
                 ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
 
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
+               ViewBag.Skill = new SelectList(db.Skills, "ID", "NameAR");
 
             }
 
@@ -198,7 +201,6 @@ namespace Marofh.Controllers
                 CityID = model.CityID,
                 expCountryID = model.expCountryID,
                 expCityID = model.expCityID,
-                experience = model.experience ?? 0,
                 City = model.City,
                 NationalityID = model.NationalityID,
                 WhatsAppNo = model.WhatsAppNo,
@@ -211,7 +213,6 @@ namespace Marofh.Controllers
                 EmployeeMobile = model.EmployeeMobile,
                 DOB = model.DOB,
                 SkillID = model.SkillID,
-                Level = model.Level,
                 JobsID = model.JobsID,
                 ChildernsCount = model.ChildernsCount,
                 ExperienceYearsCount = model.ExperienceYearsCount,
@@ -243,27 +244,96 @@ namespace Marofh.Controllers
             {
                 var roleresult = UserManager.AddToRole(user.Id, clsEnum.Roles.Worker.ToString());
 
-                if (user.SkillID != null)
+                if (model.Skill != null && model.Skill.Any())
                 {
-                   WorkerSkill skill = new WorkerSkill();
-                            skill.WorkerID = user.Id;
-                            skill.SkillID = user.SkillID;
-                    skill.Level = user.Level;
-                            db.WorkerSkills.Add(skill);
-                            db.SaveChanges();
+                    var addSkills = model.Skill.Select(exp => new WorkerSkill()
+                    {
+                        WorkerID = user.Id,
+                        SkillID = exp.SkillID,
+                        Level = exp.Level
+                    }).ToList();
+                    db.WorkerSkills.AddRange(addSkills);
+                    //foreach (var exp in model.Skill)
+                    //{
+                       
+                    //        WorkerSkill skill = new WorkerSkill();
+                    //        skill.WorkerID = user.Id;
+                    //        skill.SkillID = exp.SkillID;
+                    //        skill.Level = exp.Level;
+                    //        db.WorkerSkills.Add(skill);
+                        
+                    //}
+                            //db.SaveChanges();
                         
                    
                 }
-                if (user.experience != null && user.experience != 0 )
+                if (model.Languages != null && model.Languages.Any())
                 {
-                   WorkerWorkingPlace place = new WorkerWorkingPlace();
-                    place.WorkerID = user.Id;
-                    place.CountryID = user.expCountryID ?? 0;
-                    place.CityID = user.expCityID ?? 0; 
-                    db.WorkerWorkingPlaces.Add(place);
-                    db.SaveChanges();
+                    var langs = model.Languages.Select(exp => new WorkerLanguage()
+                    {
+                        WorkerID = user.Id,
+                        LanguageID = exp.LanguageID,
+                        writingMethod = exp.writingMethod,
+                        ReadingMethod = exp.ReadingMethod,
+                        SpeakingMethod = exp.SpeakingMethod,
 
+                    });
+                    db.WorkerLanguages.AddRange(langs);
+                    //foreach (var exp in model.Languages)
+                    //{
+
+                    //    WorkerLanguage Languages = new WorkerLanguage();
+                    //    Languages.WorkerID = user.Id;
+                    //    Languages.LanguageID = exp.LanguageID;
+                    //    Languages.writingMethod = exp.writingMethod;
+                    //    Languages.ReadingMethod = exp.ReadingMethod;
+                    //    Languages.SpeakingMethod = exp.SpeakingMethod;
+                    //    //db.WorkerLanguages.Add(Languages);
+                    //    //db.SaveChanges();
+
+
+                    //}
+                   var TEST= db.SaveChanges();
+                        
+                   
                 }
+                if (model.experience != null && model.experience.Any())
+                {
+
+                    var exper = model.experience.Select(exp=> new WorkerWorkingPlace() {
+
+                        WorkerID = user.Id,
+                        CountryID = exp.expCountryID ?? 0,
+                        CityID = exp.expCityID ?? 0,
+
+                    });
+                    db.WorkerWorkingPlaces.AddRange(exper);
+                    //foreach (var exp in model.experience)
+                    //{
+                    //    if (exp.experience != 0)
+                    //    {
+                    //        var place = new WorkerWorkingPlace
+                    //        {
+                    //            WorkerID = user.Id,
+                    //            CountryID = exp.expCountryID ?? 0,
+                    //            CityID = exp.expCityID ?? 0,
+                    //        };
+                    //        db.WorkerWorkingPlaces.Add(place);
+                    //    }
+                    //}
+                    //db.SaveChanges();
+                }
+                var test = db.SaveChanges();
+                //if (user.experience != null && user.experience != 0 )
+                //{
+                //   WorkerWorkingPlace place = new WorkerWorkingPlace();
+                //    place.WorkerID = user.Id;
+                //    place.CountryID = user.expCountryID ?? 0;
+                //    place.CityID = user.expCityID ?? 0; 
+                //    db.WorkerWorkingPlaces.Add(place);
+                //    db.SaveChanges();
+
+                //}
                 // تم ايقاف هذا السطر حتى لايتم تسجيل الدخول اتوماتيكيا بعد  تسجيل حساب جديد
                 //   await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
@@ -383,6 +453,7 @@ namespace Marofh.Controllers
                 ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN", worker.CityID);
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN", worker.JobsID);
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN", 0, worker.WorkerSkills);
+                ViewBag.Skill = new SelectList(db.Skills, "ID", "NameEN", 0, worker.WorkerSkills);
                 ViewBag.BirthCountryID = new SelectList(db.Countries, "ID", "NameEN", worker.BirthCountryID);
                 ViewBag.PassportRealseCountryID = new SelectList(db.Countries, "ID", "NameEN", worker.PassportRealseCountryID);
                 ViewBag.ChildernsCount = worker.ChildernsCount;
@@ -392,7 +463,7 @@ namespace Marofh.Controllers
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR", worker.CountryID);
 
-
+                ViewBag.Skill = new SelectList(db.Skills, "ID", "NameAR", worker.WorkerSkills);
                 ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR", worker.CountryID);
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR", worker.CityID);
 

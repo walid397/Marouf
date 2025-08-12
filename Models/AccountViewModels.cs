@@ -108,10 +108,11 @@ namespace Marofh.Models
         public string WhatsAppNo { get; set; }
 
 
-        public string Level { get; set; }
         public int? SkillID { get; set; }
         public string City { get; set; }
-        public int? experience { get; set; }
+        public List<ExperienceViewModel> experience { get; set; }
+        public List<SkillViewModel> Skill { get; set; }
+        public List<LanguageViewModel> Languages { get; set; }
         public int? expCountryID { get; set; }
         public int? expCityID { get; set; }
         public string ImageUrl { get; set; }

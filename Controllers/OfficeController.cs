@@ -142,6 +142,8 @@ namespace Marofh.Controllers
 
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
+                    ViewBag.Skill = new SelectList(db.Skills, "ID", "NameEN");
+                    ViewBag.Languages = new SelectList(db.Languages, "ID", "NameEN");
                     ViewBag.NationalityID = new SelectList(db.Nationalities, "ID", "NameEN");
                 }
                 else
@@ -150,9 +152,11 @@ namespace Marofh.Controllers
                     ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                     ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
 
+                    ViewBag.Languages = new SelectList(db.Languages, "ID", "NameAR");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
+                    ViewBag.Skill = new SelectList(db.Skills, "ID", "NameAR");
                     ViewBag.NationalityID = new SelectList(db.Nationalities, "ID", "NameAR");
 
                 }
@@ -230,9 +234,12 @@ namespace Marofh.Controllers
                     ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                     ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
 
+                    ViewBag.NationalityID = new SelectList(db.Nationalities, "ID", "NameEN");
+                    ViewBag.Languages = new SelectList(db.Languages, "ID", "NameEN");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
+                    ViewBag.Skill = new SelectList(db.Skills, "ID", "NameEN");
 
                 }
                 else
@@ -240,12 +247,15 @@ namespace Marofh.Controllers
 
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
 
+                    ViewBag.Languages = new SelectList(db.Languages, "ID", "NameAR");
                     ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                     ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
 
+                    ViewBag.NationalityID = new SelectList(db.Nationalities, "ID", "NameAR");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
+                    ViewBag.Skill = new SelectList(db.Skills, "ID", "NameAR");
                 }
                 List<AspNetUser> officeWorkersList = db.AspNetUsers.Where(i => i.OfficeID == loggedInUser.Id).ToList();
                 ViewBag.availableWorkerList = officeWorkersList.Where(p => p.Status == clsEnum.Status.متاح.ToString()).ToList();
@@ -1127,9 +1137,7 @@ public async Task<ActionResult> Register(RegisterViewModel model)
         HRLicenseNo = model.HRLicenseNo,
         expCountryID = model.expCountryID,
         expCityID = model.expCityID,
-        experience = model.experience ?? 0,
         SkillID = model.SkillID,
-        Level = model.Level,
         HRLicenseExpiryDate = model.HRLicenseExpiryDate,
         CommercialRegisterNO = model.CommercialRegisterNO,
         CommercialRegisterExpirationDate = model.CommercialRegisterExpirationDate,

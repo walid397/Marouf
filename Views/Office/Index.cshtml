@@ -1169,26 +1169,26 @@
 
 
                                                                                 <ul class="view_dt_job">
-
-                                                                                    @if (@worker.CountryID != null)
+@if(@worker.Nationality != null) { 
+                                                                                    if (@worker.NationalityID != null || @worker.NationalityID!=0)
                                                                                     {
                                                                                         if (culture.Contains("en-us"))
                                                                                         {
-                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Country.NameEN</div></li>
+                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Nationality.NameEN</div></li>
 
                                                                                         }
                                                                                         else
                                                                                         {
-                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Country.NameAR</div></li>
+                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Nationality.NameAR</div></li>
 
                                                                                         }
-
-
-
-
                                                                                     }
-                                                                                    else
-                                                                                    {
+
+
+
+}
+else
+{
                                                                                         <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>---</div></li>
 
                                                                                     }

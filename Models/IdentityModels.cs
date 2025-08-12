@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -34,11 +35,13 @@ namespace Marofh.Models
         public string EmployeeMobile { get; set; }
 
 
-        public string Level { get; set; }
         public DateTime? DOB { get; set; }
         public int? JobsID { get; set; }
         public int? SkillID { get; set; }
-        public int? experience { get; set; }
+        public List<ExperienceViewModel> experience { get; set; }
+
+        public List<LanguageViewModel> Languages { get; set; }
+        public List<SkillViewModel> Skill { get; set; }
         public int? expCountryID { get; set; }
         public int? expCityID { get; set; }
         public int? ChildernsCount { get; set; }

@@ -79,7 +79,33 @@ namespace Marofh.Controllers
 
             return View(country);
         }
+        [HttpPost]
+        public ActionResult GetCountry(int? expId)
+        {
+            bool ExpId = false;
+            if (expId == 1)
+            {
+                ExpId = true ;
+            }
+            else if (expId == 2)
+            {
+                ExpId = false;
+            }
+            var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+            if (culture.Contains("en-us"))
+            {
+                SelectList obj = new SelectList(db.Countries.Where(p => p.IsGulf == ExpId), "ID", "NameEN", 0);
+                return Json(obj);
 
+            }
+            else
+            {
+                SelectList obj = new SelectList(db.Countries.Where(p => p.IsGulf == ExpId).AsNoTracking().ToList(), "ID", "NameAR", 0);
+                return Json(obj);
+            }
+
+
+        }
         // GET: Countries/Edit/5
         public ActionResult Edit(int? id)
         {
