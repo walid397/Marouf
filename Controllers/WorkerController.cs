@@ -173,7 +173,6 @@ namespace Marofh.Controllers
             {
                  model.CityID = null;
             }
-            //model.ConfirmPassword = model.Password;
             var errors = ModelState.Values.SelectMany(v => v.Errors);
             var fullName = model.FullName; // "محمد علي"
             string fName = "", lName = "";
@@ -184,10 +183,7 @@ namespace Marofh.Controllers
                 fName = parts[0];
                 lName = string.Join(" ", parts.Skip(1)); // لو الاسم ثلاثي أو رباعي
             }
-            //if (ModelState.IsValid)
-            //{
-
-            //var user = new ApplicationUser { FName = model.FName,LName = model.LName, UserName = model.UserName, Email = model.Email, Password = model.Password, Mobile = model.Mobile, RoleID = Convert.ToInt32(clsEnum.Roles.Worker) };
+           
             var user = new ApplicationUser
             {
                 FName = fName,
@@ -228,17 +224,6 @@ namespace Marofh.Controllers
                 Status = clsEnum.Status.متاح.ToString()
 
             };
-
-            //var isEmailAlreadyExists = db.AspNetUsers.Any(x => x.Email == model.Email & x.RoleID==user.RoleID);
-            //if (isEmailAlreadyExists)
-            //{
-            //    ModelState.AddModelError("Email", "User with this email already exists");
-            //    ViewBag.Result = "لكن تم التسجيل بهذا البريد الالكترونى من قبل";
-
-
-            //    return View(model);
-            //}
-
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -253,18 +238,6 @@ namespace Marofh.Controllers
                         Level = exp.Level
                     }).ToList();
                     db.WorkerSkills.AddRange(addSkills);
-                    //foreach (var exp in model.Skill)
-                    //{
-                       
-                    //        WorkerSkill skill = new WorkerSkill();
-                    //        skill.WorkerID = user.Id;
-                    //        skill.SkillID = exp.SkillID;
-                    //        skill.Level = exp.Level;
-                    //        db.WorkerSkills.Add(skill);
-                        
-                    //}
-                            //db.SaveChanges();
-                        
                    
                 }
                 if (model.Languages != null && model.Languages.Any())
@@ -279,87 +252,25 @@ namespace Marofh.Controllers
 
                     });
                     db.WorkerLanguages.AddRange(langs);
-                    //foreach (var exp in model.Languages)
-                    //{
-
-                    //    WorkerLanguage Languages = new WorkerLanguage();
-                    //    Languages.WorkerID = user.Id;
-                    //    Languages.LanguageID = exp.LanguageID;
-                    //    Languages.writingMethod = exp.writingMethod;
-                    //    Languages.ReadingMethod = exp.ReadingMethod;
-                    //    Languages.SpeakingMethod = exp.SpeakingMethod;
-                    //    //db.WorkerLanguages.Add(Languages);
-                    //    //db.SaveChanges();
-
-
-                    //}
-                   var TEST= db.SaveChanges();
-                        
-                   
+                    
                 }
                 if (model.experience != null && model.experience.Any())
                 {
 
-                    var exper = model.experience.Select(exp=> new WorkerWorkingPlace() {
-
+                    var exper = model.experience.Where(exp => exp.experience != 0).Select(exp=> new WorkerWorkingPlace() {
                         WorkerID = user.Id,
                         CountryID = exp.expCountryID ?? 0,
                         CityID = exp.expCityID ?? 0,
-
-                    });
+                          
+                });
                     db.WorkerWorkingPlaces.AddRange(exper);
-                    //foreach (var exp in model.experience)
-                    //{
-                    //    if (exp.experience != 0)
-                    //    {
-                    //        var place = new WorkerWorkingPlace
-                    //        {
-                    //            WorkerID = user.Id,
-                    //            CountryID = exp.expCountryID ?? 0,
-                    //            CityID = exp.expCityID ?? 0,
-                    //        };
-                    //        db.WorkerWorkingPlaces.Add(place);
-                    //    }
-                    //}
-                    //db.SaveChanges();
+                    
                 }
-                var test = db.SaveChanges();
-                //if (user.experience != null && user.experience != 0 )
-                //{
-                //   WorkerWorkingPlace place = new WorkerWorkingPlace();
-                //    place.WorkerID = user.Id;
-                //    place.CountryID = user.expCountryID ?? 0;
-                //    place.CityID = user.expCityID ?? 0; 
-                //    db.WorkerWorkingPlaces.Add(place);
-                //    db.SaveChanges();
-
-                //}
-                // تم ايقاف هذا السطر حتى لايتم تسجيل الدخول اتوماتيكيا بعد  تسجيل حساب جديد
-                //   await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-
+                db.SaveChanges();
+               
                 return RedirectToAction("index", "Office");
             }
             AddErrors(result);
-
-
-            //}
-            //else
-            //{
-            //    List<string> errors1 = new List<string>();
-            //    foreach (ModelState modelState in ViewData.ModelState.Values)
-            //    {
-            //        foreach (ModelError error in modelState.Errors)
-            //        {
-            //            errors1.Add(error.ErrorMessage);
-            //            ViewBag.Errors += error.ErrorMessage + "##";
-            //        }
-            //    }
-
-            //}
-
-            // If we got this far, something failed, redisplay form
-
             return RedirectToAction("index", "Office");
         }
 

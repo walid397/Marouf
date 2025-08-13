@@ -256,29 +256,7 @@
 
                     </div>
 
-                    @*<div class="set-size charts-container">
-
-
-                            <div class="pie-wrapper progress-45 style-2">
-                                <span class="label"> <span class="smaller">%</span></span>
-                                <div class="pie">
-                                    <div class="left-side half-circle"></div>
-                                    <div class="right-side half-circle"></div>
-                                </div>
-
-                            </div>
-
-
-                        </div>*@
-
-
-
-
-
-                    @*<div class="col-3 cssleft">
-
-
-                        </div>*@
+                   
                 </div>
 
 
@@ -1209,7 +1187,7 @@
                                                             <th scope="col">@Resource.language </th>
                                                             <th scope="col">@Resource.Reading   </th>
                                                             <th scope="col">@Resource.Writing  </th>
-                                                            <th scope="col">Speaking  </th>
+                                                            <th scope="col">@Resource.Speaking </th>
 
                                                             <th colspan="3" scope="col"></th>
 
@@ -1280,36 +1258,57 @@
                                                                             <div class="col-12 col-lg-12">
                                                                                 <div class="form__group">
                                                                                     <label for="firstname" class="form__label">@*اسم اللغة*@ @Resource.language </label>
-                                                                                    @Html.DropDownList("LanguageID", ViewBag.LanguageID as List<SelectListItem>,htmlAttributes: new { @class = "form-control select2" })
+                                                                                    @Html.DropDownList("LanguageID", ViewBag.LanguageID as List<SelectListItem>, htmlAttributes: new { @class = "form-control select2" })
 
                                                                                 </div>
                                                                             </div>
-
                                                                             <div class="col-12 col-lg-6">
                                                                                 <div class="form__group">
-                                                                                    <label for="firstname" class="form__label">@Resource.Degreeofmastery  </label>
-                                                                                    <select name="Level" id="Level" class="" required="">
-
-                                                                                        <option value="@Resource.Acceptable"> @Resource.Acceptable</option>
-                                                                                        <option value="@Resource.Good"> @Resource.Good</option>
-
-                                                                                        <option value="@Resource.VeryGood">@Resource.VeryGood  </option>
-                                                                                        <option value=" @Resource.Excellent">@Resource.Excellent </option>
+                                                                                    <label for="location" class="form__label">  @Resource.Reading </label>
+                                                                                    <select class="select2" name="ReadingMethod" id="ReadingMethod">
+                                                                                        <option value="">
+                                                                                            @Resource.Degreeofmastery
+                                                                                        </option>
+                                                                                        <option value="@Resource.Low">@Resource.Low</option>
+                                                                                        <option value="@Resource.Acceptable">@Resource.Acceptable</option>
+                                                                                        <option value="@Resource.Good">@Resource.Good</option>
+                                                                                        <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                                                                                        <option value="@Resource.Excellent">@Resource.Excellent</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="col-12 col-lg-6">
                                                                                 <div class="form__group">
-                                                                                    <label for="firstname" class="form__label">  @Resource.ReadingAndwriting</label>
-                                                                                    <select name="Method" id="Method" class="" required="">
-
-                                                                                        <option value="@Resource.ReadingAndwriting">@Resource.ReadingAndwriting  </option>
-                                                                                        <option value="@Resource.Reading">@Resource.Reading </option>
-                                                                                        <option value="@Resource.Writing">@Resource.Writing</option>
+                                                                                    <label for="location" class="form__label">  @Resource.Writing </label>
+                                                                                    <select class="select2" name="writingMethod" id="writingMethod">
+                                                                                        <option value="">
+                                                                                            @Resource.Degreeofmastery
+                                                                                        </option>
+                                                                                        <option value="@Resource.Low">@Resource.Low</option>
+                                                                                        <option value="@Resource.Acceptable">@Resource.Acceptable</option>
+                                                                                        <option value="@Resource.Good">@Resource.Good</option>
+                                                                                        <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                                                                                        <option value="@Resource.Excellent">@Resource.Excellent</option>
                                                                                     </select>
                                                                                 </div>
                                                                             </div>
-
+                                                                            <div class="col-12 col-lg-6">
+                                                                                <div class="form__group">
+                                                                                    <label for="firstname" class="form__label">@Resource.Speaking</label>
+                                                                                    <select name="SpeakingMethod" id="SpeakingMethod" class="select2">
+                                                                                        <option value="">
+                                                                                            @Resource.Degreeofmastery
+                                                                                        </option>
+                                                                                        <option value="@Resource.Low">@Resource.Low</option>
+                                                                                        <option value="@Resource.Acceptable">@Resource.Acceptable</option>
+                                                                                        <option value="@Resource.Good">@Resource.Good</option>
+                                                                                        <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                                                                                        <option value="@Resource.Excellent">@Resource.Excellent</option>
+                                                                                       
+                                                                                    </select>
+                                                                                </div>
+                                                                            </div>
+                                                                           
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="submit" class="btn btn-primary"> @Resource.Save</button>
