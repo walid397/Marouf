@@ -134,7 +134,31 @@
                             </div>
                         </div>
 
+                        <div class="col-4 selectcss">
+                            <div class="form__group">
+                                <label for="lang" class="form__label">  @Resource.SocialStatus</label>
+                                <select class="select2" name="MaritalStatus" id="MaritalStatus">
+                                    <option value="@Resource.Single">@Resource.Single</option>
+                                    <option value="@Resource.Married">@Resource.Married</option>
+                                    <option value="@Resource.Divorced">@Resource.Divorced</option>
 
+                                </select>
+
+                            </div>
+                        </div>
+
+
+                        <div class="col-4 selectcss">
+                            <div class="form__group">
+                                <label for="lang" class="form__label">@Resource.drivinglicense</label>
+                                <select class="select2" name="HasDrivingLicense" id="HasDrivingLicense">
+                                    <option value="0">@Resource.Nothing</option>
+                                    <option value="1"> @Resource.ThereIs</option>
+
+                                </select>
+
+                            </div>
+                        </div>
 
 
                         <div class="col-12 col-xl-4">
@@ -208,33 +232,6 @@
                             <button type="button" class="btn btn-success" onclick="addExperienceBlock()">+</button>
                         </div>
 
-
-                        <div class="col-4 selectcss">
-                            <div class="form__group">
-                                <label for="lang" class="form__label">  @Resource.SocialStatus</label>
-                                <select class="select2" name="MaritalStatus" id="MaritalStatus">
-                                    <option value="@Resource.Single">@Resource.Single</option>
-                                    <option value="@Resource.Married">@Resource.Married</option>
-                                    <option value="@Resource.Divorced">@Resource.Divorced</option>
-
-                                </select>
-
-                            </div>
-                        </div>
-
-
-                        <div class="col-4 selectcss">
-                            <div class="form__group">
-                                <label for="lang" class="form__label">@Resource.drivinglicense</label>
-                                <select class="select2" name="HasDrivingLicense" id="HasDrivingLicense">
-                                    <option value="0">@Resource.Nothing</option>
-                                    <option value="1"> @Resource.ThereIs</option>
-
-                                </select>
-
-                            </div>
-                        </div>
-
                         <div id="SkillContainer">
                             <div class="Skill-block">
                                 <div class="row">
@@ -268,7 +265,7 @@
                         <div id="LanguageContainer">
                             <div class="Language-block">
                                 <div class="row">
-                                    <div class="col-12 col-lg-12">
+                                    <div class="col-12 col-lg-10">
                                         <div class="form__group">
                                             <label for="firstname" class="form__label">@*اسم اللغة*@ @Resource.language </label>
                                             @Html.DropDownList("Languages[0].LanguageID", ViewBag.Languages as SelectList, htmlAttributes: new { @class = "form-control select2" })
@@ -276,7 +273,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-xl-6 selectcss">
+                                    <div class="col-12 col-xl-3 selectcss">
                                         <div class="form__group">
                                             <label for="location" class="form__label">  @Resource.Reading </label>
                                             <select class="select2" name="Languages[0].ReadingMethod" id="ReadingMethod">
@@ -291,7 +288,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-xl-6 selectcss">
+                                    <div class="col-12 col-xl-3 selectcss">
                                         <div class="form__group">
                                             <label for="location" class="form__label">  @Resource.Writing </label>
                                             <select class="select2" name="Languages[0].writingMethod" id="writingMethod">
@@ -306,7 +303,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-lg-6">
+                                    <div class="col-12 col-lg-3 selectcss">
                                         <div class="form__group">
                                             <label for="firstname" class="form__label">@Resource.Speaking</label>
                                             <select name="Languages[0].SpeakingMethod" id="SpeakingMethod" class="select2">
@@ -318,7 +315,7 @@
                                                 <option value="@Resource.Good">@Resource.Good</option>
                                                 <option value="@Resource.Moderate">@Resource.Moderate  </option>
                                                 <option value="@Resource.Excellent">@Resource.Excellent</option>
-                                               
+
                                             </select>
                                         </div>
                                     </div>
