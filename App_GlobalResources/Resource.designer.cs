@@ -2827,6 +2827,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الطول.
+        /// </summary>
+        internal static string Height {
+            get {
+                return ResourceManager.GetString("Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to يشار إليه  فيما  بعد بـ.
         /// </summary>
         internal static string hereinafterreferredtoas {
@@ -2845,7 +2854,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to من الاعلى الى الاقل.
+        ///   Looks up a localized string similar to الاعلى الى الاقل.
         /// </summary>
         internal static string HightoLow {
             get {
@@ -3394,7 +3403,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to من الاقل الى الاعلى.
+        ///   Looks up a localized string similar to الاقل الى الاعلى.
         /// </summary>
         internal static string LowtoHigh {
             get {
@@ -6674,7 +6683,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to غير موثق.
+        ///   Looks up a localized string similar to لم يتم التعاقد.
         /// </summary>
         internal static string Undocumented {
             get {

@@ -11,6 +11,7 @@ using System.Threading;
 using System.Reflection;
 using Marofh.Models;
 using Resources;
+using static clsEnum;
 
 namespace Marofh.Controllers
 {
@@ -123,13 +124,24 @@ namespace Marofh.Controllers
             bool? Religion,
             string ExperienceYearsCount,
             string RequestAmountSort,
-            string HasChilderns,
+            string[] HasChilderns,
             string yearsOfExperience,
             List<int> CountryIds,
-            string MaritalStatus,
+            string [] MaritalStatus,
             string SalarySort,
-            string[] Range
-        )
+            string[] Range,
+            string [] Education,
+            string[] Height,
+            string[] RoomSharing,
+            string[] City,
+            string[] Countries,
+                string[] Skills ,  
+            string[] Weight,
+                string[] extra2 // <<<<< هنا
+
+
+
+            )
         {
             var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
 
@@ -137,6 +149,9 @@ namespace Marofh.Controllers
             ViewBag.CityID = new SelectList(db.Cities, "ID", culture.Contains("en-us") ? "NameEN" : "NameAR");
             ViewBag.JobsID = new SelectList(db.Jobs, "ID", culture.Contains("en-us") ? "NameEN" : "NameAR");
             ViewBag.NationalityID = new SelectList(db.Nationalities, "ID", culture.Contains("en-us") ? "NameEN" : "NameAR");
+            ViewBag.Cities = db.Cities.ToList();
+            ViewBag.Countries = db.Countries.ToList();
+            ViewBag.Skills = db.Skills.ToList(); // <<<<< تمرير المهارات
 
             if (NationalityID != null)
             {
@@ -233,35 +248,73 @@ namespace Marofh.Controllers
                 availablesWorkers = availablesWorkers.Where(p => p.ExperienceYearsCount <= maxExp).ToList();
             }
 
-            if (RequestAmountSort == "desc")
+            // مبلغ الاستقدام
+            if (!string.IsNullOrEmpty(RequestAmountSort))
             {
-                availablesWorkers = availablesWorkers.OrderByDescending(r => r.RequestAmount).ToList();
-            }
-            else
-            {
-                availablesWorkers = availablesWorkers.OrderBy(r => r.RequestAmount).ToList();
-            }
-
-            if (SalarySort == "desc")
-            {
-                availablesWorkers = availablesWorkers.OrderByDescending(w => w.Salary).ToList();
-            }
-            else if (SalarySort == "asc")
-            {
-                availablesWorkers = availablesWorkers.OrderBy(w => w.Salary).ToList();
-            }
-
-            if (!string.IsNullOrEmpty(HasChilderns))
-            {
-                if (HasChilderns == "yes")
-                {
-                    availablesWorkers = availablesWorkers.Where(a => a.ChildernsCount > 0).ToList();
-                }
+                if (RequestAmountSort == "desc")
+                    availablesWorkers = availablesWorkers.OrderByDescending(r => r.RequestAmount).ToList();
                 else
+                    availablesWorkers = availablesWorkers.OrderBy(r => r.RequestAmount).ToList();
+            }
+
+            // الراتب (يغطي على اللي فوق لو اتحدد)
+            if (!string.IsNullOrEmpty(SalarySort))
+            {
+                if (SalarySort == "desc")
+                    availablesWorkers = availablesWorkers.OrderByDescending(w => w.Salary).ToList();
+                else if (SalarySort == "asc")
+                    availablesWorkers = availablesWorkers.OrderBy(w => w.Salary).ToList();
+            }
+
+
+
+            if (HasChilderns != null && HasChilderns.Any())
+            {
+                var hasChildrenValues = HasChilderns;
+
+                // لو اختار الاتنين → ما نفلترش (يعني نعرض الكل)
+                if (!(hasChildrenValues.Contains("yes") && hasChildrenValues.Contains("no")))
                 {
-                    availablesWorkers = availablesWorkers.Where(a => a.ChildernsCount == 0 || a.ChildernsCount == null).ToList();
+                    if (hasChildrenValues.Contains("yes"))
+                    {
+                        availablesWorkers = availablesWorkers
+                            .Where(a => a.ChildernsCount > 0)
+                            .ToList();
+                    }
+                    else if (hasChildrenValues.Contains("no"))
+                    {
+                        availablesWorkers = availablesWorkers
+                            .Where(a => a.ChildernsCount == 0 || a.ChildernsCount == null)
+                            .ToList();
+                    }
                 }
             }
+            if (extra2 != null && extra2.Any())
+            {
+                // لو اختار الاتنين → نعرض الكل (مفيش فلترة)
+                if (!(extra2.Contains("1") && extra2.Contains("2")))
+                {
+                    bool filterRecommended = extra2.Contains("1"); // 1 = مرشح
+                    bool filterNotRecommended = extra2.Contains("2"); // 2 = غير مرشح
+
+                    availablesWorkers = availablesWorkers.Where(w =>
+                    {
+                        bool isRecommended = db.WorkerRequests.Any(p =>
+                            p.WorkerID == w.Id &&
+                            (p.RequestStatus == clsEnum.WorkerRequestStatus.تم_ارسال_الطلب.ToString() ||
+                             p.RequestStatus == clsEnum.WorkerRequestStatus.قبول_أولى.ToString())
+                        );
+
+                        if (filterRecommended)
+                            return isRecommended; // مرشح
+                        else if (filterNotRecommended)
+                            return !isRecommended; // غير مرشح
+                        else
+                            return true;
+                    }).ToList();
+                }
+            }
+
 
             if (!string.IsNullOrEmpty(yearsOfExperience))
             {
@@ -284,41 +337,123 @@ namespace Marofh.Controllers
 
             if (CountryIds != null && CountryIds.Any())
             {
-                var selected = new HashSet<int>(CountryIds);
+                // لو اختار "0" → بدون خبرة (لا يوجد WorkerWorkingPlaces)
+                if (CountryIds.Contains(0))
+                {
+                    availablesWorkers = availablesWorkers
+                        .Where(w => !w.WorkerWorkingPlaces.Any())
+                        .ToList();
+                }
 
-                if (selected.SetEquals(new[] { 0 }))
+                // لو اختار "9" → خبرة بالسعودية
+                if (CountryIds.Contains(9))
                 {
-                    availablesWorkers = availablesWorkers.Where(w => !w.WorkerWorkingPlaces.Any()).ToList();
+                    availablesWorkers = availablesWorkers
+                        .Where(w => w.WorkerWorkingPlaces.Any(p => p.CountryID == 9))
+                        .ToList();
                 }
-                else if (selected.SetEquals(new[] { 9 }))
+
+                // لو اختار "1" → خبرة بالخليج (غير السعودية)
+                if (CountryIds.Contains(1))
                 {
-                    availablesWorkers = availablesWorkers.Where(w => w.WorkerWorkingPlaces.Any(p => p.CountryID == 9)).ToList();
+                    availablesWorkers = availablesWorkers
+                        .Where(w => w.WorkerWorkingPlaces.Any(p => p.Country.IsGulf && p.CountryID != 9))
+                        .ToList();
                 }
-                else if (selected.SetEquals(new[] { 1 }))
+
+                // لو اختار "2" → خبرة بالخارج (غير الخليج والسعودية)
+                if (CountryIds.Contains(2))
                 {
-                    availablesWorkers = availablesWorkers.Where(w => w.WorkerWorkingPlaces.Any(p => p.Country.IsGulf && p.CountryID != 9)).ToList();
-                }
-                else if (selected.SetEquals(new[] { 2 }))
-                {
-                    availablesWorkers = availablesWorkers.Where(w => w.WorkerWorkingPlaces.Any(p => !p.Country.IsGulf && p.CountryID != 9)).ToList();
-                }
-                else if (selected.SetEquals(new[] { 1, 2 }))
-                {
-                    availablesWorkers = availablesWorkers.Where(w =>
-                        !w.WorkerWorkingPlaces.Any() ||
-                        (w.WorkerWorkingPlaces.Any(p => p.CountryID != 9) &&
-                         !w.WorkerWorkingPlaces.Any(p => p.CountryID == 9))).ToList();
-                }
-                else if (selected.SetEquals(new[] { 1, 2, 9 }) || (CountryIds.Contains(2) && CountryIds.Contains(9) && CountryIds.Contains(1)))
-                {
-                    availablesWorkers = availablesWorkers.Where(w => w.WorkerWorkingPlaces.Any()).ToList();
+                    availablesWorkers = availablesWorkers
+                        .Where(w => w.WorkerWorkingPlaces.Any(p => !p.Country.IsGulf && p.CountryID != 9))
+                        .ToList();
                 }
             }
-
-            if (!string.IsNullOrEmpty(MaritalStatus))
+            if (MaritalStatus != null && MaritalStatus.Any())
             {
-                availablesWorkers = availablesWorkers.Where(w => w.MaritalStatus == MaritalStatus).ToList();
+                availablesWorkers = availablesWorkers
+                    .Where(w => MaritalStatus.Contains(w.MaritalStatus))
+                    .ToList();
             }
+
+
+
+
+            if (Education != null && Education.Any())
+            {
+                var selectedEducations = Education.Select(e => e.Trim().ToLower()).ToList();
+                availablesWorkers = availablesWorkers
+                    .Where(w => !string.IsNullOrEmpty(w.Education) && selectedEducations.Contains(w.Education.Trim().ToLower()))
+                    .ToList();
+            }
+
+
+            if (Weight != null && Weight.Any())
+            {
+                availablesWorkers = availablesWorkers.Where(w =>
+                    Weight.Any(range =>
+                        (range == "<50" && w.Weight < 40) ||
+                        (range == "50-60" && w.Weight > 50 && w.Weight <= 60) ||
+                        (range == "60-70" && w.Weight > 60 && w.Weight <= 70) ||
+                        (range == "70-80" && w.Weight > 70 && w.Weight <= 80) ||
+                        (range == ">80" && w.Weight > 80)
+                    )
+                ).ToList();
+            }
+
+
+
+            if (Height != null && Height.Any())
+            {
+                availablesWorkers = availablesWorkers.Where(w =>
+                    Height.Any(range =>
+                        (range == "<150" && w.Height < 150) ||
+                        (range == "150-160" && w.Height >= 150 && w.Height <= 160) ||
+                        (range == "160-170" && w.Height > 160 && w.Height <= 170) ||
+                        (range == "170-180" && w.Height > 170 && w.Height <= 180) ||
+                        (range == ">180" && w.Height > 180)
+                    )
+                ).ToList();
+
+
+            }
+            // فلترة مشاركة الغرفة
+            if (RoomSharing != null && RoomSharing.Any())
+            {
+                var roomSharingValues = RoomSharing.Select(bool.Parse).ToList();
+                availablesWorkers = availablesWorkers
+                    .Where(w => w.IsRoomShared.HasValue && roomSharingValues.Contains(w.IsRoomShared.Value))
+                    .ToList();
+            }
+
+
+            // فلترة بالمهارات
+            if (Skills != null && Skills.Any())
+            {
+                var skillIds = Skills.Select(int.Parse).ToList();
+                availablesWorkers = availablesWorkers
+                    .Where(w => w.WorkerSkills.Any(s => skillIds.Contains(s.ID)))
+                    .ToList();
+            }
+            // فلترة بالدول
+            if (Countries != null && Countries.Any())
+            {
+                var countryIds = Countries.Select(int.Parse).ToList();
+                availablesWorkers = availablesWorkers
+                    .Where(w => w.CountryID.HasValue && countryIds.Contains(w.CountryID.Value))
+                    .ToList();
+            }
+
+
+            if (City != null && City.Any())
+            {
+                var cityIds = City.Select(int.Parse).ToList();
+                availablesWorkers = availablesWorkers
+                    .Where(w => w.CityID.HasValue && cityIds.Contains(w.CityID.Value))
+                    .ToList();
+            }
+
+
 
             if (!availablesWorkers.Any())
             {

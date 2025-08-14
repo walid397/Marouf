@@ -1805,7 +1805,7 @@
     <value>طلبات جديدة</value>
   </data>
   <data name="Undocumented" xml:space="preserve">
-    <value>غير موثق</value>
+    <value>لم يتم التعاقد</value>
   </data>
   <data name="Blocked" xml:space="preserve">
     <value>محجوبة</value>
@@ -2495,10 +2495,10 @@
     <value>اختر الحالة الاجتماعية</value>
   </data>
   <data name="HightoLow" xml:space="preserve">
-    <value>من الاعلى الى الاقل</value>
+    <value>الاعلى الى الاقل</value>
   </data>
   <data name="LowtoHigh" xml:space="preserve">
-    <value>من الاقل الى الاعلى</value>
+    <value>الاقل الى الاعلى</value>
   </data>
   <data name="SelectSortRecruitment" xml:space="preserve">
     <value>ترتيب الاستقدام</value>
@@ -2520,5 +2520,8 @@
   </data>
   <data name="UploadCVsforWorkers" xml:space="preserve">
     <value>رفع سير ذاتية للعمالة</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>الطول</value>
   </data>
 </root>

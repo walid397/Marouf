@@ -56,25 +56,33 @@
                         <li class="nav-item">
                             <div class="d-flex align-items-end" style="gap: 20px; margin:10px;">
 
-                                <!-- الأول -->
-                                <div class="d-flex flex-column">
-                                    <label class="mb-1" style="font-weight: bold;">@Resource.Hiring_Cost</label>
-                                    <select id="select1" class="form-select w-100" style="height: 40px; padding: 0; border: none;">
-                                        <option value="">@Resource.SortBy</option>
-                                        <option value="desc">@Resource.HightoLow</option>
-                                        <option value="asc">@Resource.LowtoHigh</option>
-                                    </select>
-                                </div>
+                                <form method="get" action="@Url.Action("Result", "YourControllerName")">
+                                    <div class="filter__group">
+                                        <label class="filter__label">@Resource.Hiring_Cost</label>
+                                        <select id="RequestAmountSort" name="RequestAmountSort" class="filter__input"
+                                                style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;"
+                                                onchange="this.form.submit()">
+                                            <option value="">@Resource.SortBy</option>
+                                            <option value="desc" @(Request["RequestAmountSort"] == "desc" ? "selected" : "")>@Resource.HightoLow</option>
+                                            <option value="asc" @(Request["RequestAmountSort"] == "asc" ? "selected" : "")>@Resource.LowtoHigh</option>
+                                        </select>
+                                    </div>
 
-                                <!-- الثاني -->
-                                <div class="d-flex flex-column">
-                                    <label class="mb-1" style="font-weight: bold;">@Resource.Salary</label>
-                                    <select id="select2" class="form-select w-100" style="height: 40px; padding: 0; margin-left: auto; border: none;">
-                                        <option value="">@Resource.SortBy</option>
-                                        <option value="desc">@Resource.HightoLow</option>
-                                        <option value="asc">@Resource.LowtoHigh</option>
-                                    </select>
-                                </div>
+                                    <div class="filter__group">
+                                        <label class="filter__label">@Resource.Salary</label>
+                                        <select id="SalarySort" name="SalarySort" class="filter__input"
+                                                style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;"
+                                                onchange="this.form.submit()">
+                                            <option value="">@Resource.SortBy</option>
+                                            <option value="desc" @(Request["SalarySort"] == "desc" ? "selected" : "")>@Resource.HightoLow</option>
+                                            <option value="asc" @(Request["SalarySort"] == "asc" ? "selected" : "")>@Resource.LowtoHigh</option>
+                                        </select>
+                                    </div>
+                                </form>
+
+
+
+
 
                             </div>
                         </li>
@@ -479,63 +487,105 @@
 
                             <div class="filter__group">
                                 <label class="filter__label">@Resource.HasChildren</label>
-                                <div class="d-flex" style="gap: 15px;">
-                                    <select id="HasChilderns" name="HasChilderns" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                                        <option value="" disabled selected>من</option>
-                                        <option value="yes">@Resource.Yes</option>
-                                        <option value="no">@Resource.No</option>
-                                    </select>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.HasChildren</span>
+                                    <div class="select">
+                                        @{
+                                            string[] hasChildrenList = Request.QueryString["HasChilderns"] != null
+                                                ? Request.QueryString["HasChilderns"].Split(',')
+                                                : new string[] { };
+
+                                            // Yes
+                                            <label for="has-children-yes">
+                                                <input type="checkbox" id="has-children-yes" name="HasChilderns" value="yes" @(hasChildrenList.Contains("yes") ? "checked" : "")>
+                                                @(culture.Contains("en-us") ? "Yes" : "نعم")
+                                            </label>
+
+                                            // No
+                                            <label for="has-children-no">
+                                                <input type="checkbox" id="has-children-no" name="HasChilderns" value="no" @(hasChildrenList.Contains("no") ? "checked" : "")>
+                                                @(culture.Contains("en-us") ? "No" : "لا")
+                                            </label>
+                                        }
+                                    </div>
                                 </div>
                             </div>
+
+
 
 
 
 
                             <!-- مبلغ استقدام من وإلى -->
-                            <div class="filter__group">
-                                <label class="filter__label">@Resource.RecruitingOffice</label>
-                                <div class="d-flex" style="gap: 15px;">
-                                    <select id="minprice" name="extra1_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                                        <option value="" disabled selected>من</option>
-                                        @* 0,5,10,...100 *@
-                                        @for (int i = 0; i <= 100; i += 5)
-                                        {
-                                            <option value="@i">@i</option>
-                                        }
+                            <!--<div class="filter__group">
+    <label class="filter__label">@Resource.RecruitingOffice</label>
+    <div class="d-flex" style="gap: 15px;">
+        <select id="minprice" name="extra1_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+            <option value="" disabled selected>من</option>-->
+                            @* 0,5,10,...100 *@
+                            <!--@for (int i = 0; i <= 100; i += 5)
+                {
+                    <option value="@i">@i</option>
+                }
 
-                                    </select>
+            </select>
 
-                                    <select id="maxprice" name="extra1_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                                        <option value="" disabled selected>إلى</option>
-                                        @for (int i = 0; i <= 100; i += 5)
-                                        {
-                                            <option value="@i">@i</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
+            <select id="maxprice" name="extra1_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                <option value="" disabled selected>إلى</option>
+                @for (int i = 0; i <= 100; i += 5)
+                {
+                    <option value="@i">@i</option>
+                }
+            </select>
+        </div>
+    </div>-->
 
-                            <!-- وزن من وإلى -->
                             <div class="filter__group">
                                 <label class="filter__label">@Resource.TheWeight</label>
-                                <div class="d-flex" style="gap: 15px;">
-                                    <select id="minweight" name="weight_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                                        <option value="" disabled selected>من</option>
-                                        @for (int i = 0; i <= 100; i += 5)
-                                        {
-                                            <option value="@i">@i</option>
-                                        }
-                                    </select>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.TheWeight</span>
+                                    <div class="select">
+                                        @{
+                                            string[] weightList = Request.QueryString["Weight"] != null
+                                                ? Request.QueryString["Weight"].Split(',')
+                                                : new string[] { };
 
-                                    <select id="maxweight" name="weight_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                                        <option value="" disabled selected>إلى</option>
-                                        @for (int i = 0; i <= 100; i += 5)
-                                        {
-                                            <option value="@i">@i</option>
+                                            bool isEnglishhhh = culture.Contains("en-us");
                                         }
-                                    </select>
+
+                                        <label for="w-1">
+                                            <input type="checkbox" name="Weight" value="<40"
+                                                   id="w-1" @(weightList.Contains("<50") ? "checked" : "") />
+                                            @(isEnglishhhh ? "Less than 50" : "أقل من 50")
+                                        </label>
+
+                                        <label for="w-3">
+                                            <input type="checkbox" name="Weight" value="50-60"
+                                                   id="w-3" @(weightList.Contains("50-60") ? "checked" : "") />
+                                            50 - 60
+                                        </label>
+
+                                        <label for="w-4">
+                                            <input type="checkbox" name="Weight" value="60-70"
+                                                   id="w-4" @(weightList.Contains("60-70") ? "checked" : "") />
+                                            60 - 70
+                                        </label>
+
+                                        <label for="w-5">
+                                            <input type="checkbox" name="Weight" value="70-80"
+                                                   id="w-5" @(weightList.Contains("70-80") ? "checked" : "") />
+                                            70 - 80
+                                        </label>
+
+                                        <label for="w-6">
+                                            <input type="checkbox" name="Weight" value=">80"
+                                                   id="w-6" @(weightList.Contains(">80") ? "checked" : "") />
+                                            @(isEnglishhhh ? "More than 80" : "أكثر من 80")
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
+
 
 
                             @{
@@ -575,7 +625,6 @@
                                 <label class="filter__label">@Resource.workareas</label>
                                 <div class="select_wrap w-100">
                                     <span class="labelcss">@Resource.workareas</span>
-
                                     <div class="select">
                                         @{
                                             var selectedWorkAreas = (Request["CountryIds"] != null)
@@ -585,32 +634,24 @@
 
                                         <label for="checkbox-w0">
                                             <input value="0" name="CountryIds" id="checkbox-w0" type="checkbox"
-                                                   class="work-checkbox"
-                                                   onchange="handleExperienceCheckbox(this)"
                                                    @(selectedWorkAreas.Contains("0") ? "checked" : "") />
                                             بدون خبرة
                                         </label>
 
                                         <label for="checkbox-w9">
                                             <input value="9" name="CountryIds" id="checkbox-w9" type="checkbox"
-                                                   class="work-checkbox"
-                                                   onchange="handleExperienceCheckbox(this)"
                                                    @(selectedWorkAreas.Contains("9") ? "checked" : "") />
                                             خبرة بالسعودية
                                         </label>
 
                                         <label for="checkbox-w1">
                                             <input value="1" name="CountryIds" id="checkbox-w1" type="checkbox"
-                                                   class="work-checkbox"
-                                                   onchange="handleExperienceCheckbox(this)"
                                                    @(selectedWorkAreas.Contains("1") ? "checked" : "") />
                                             خبرة بالخليج
                                         </label>
 
                                         <label for="checkbox-w2">
                                             <input value="2" name="CountryIds" id="checkbox-w2" type="checkbox"
-                                                   class="work-checkbox"
-                                                   onchange="handleExperienceCheckbox(this)"
                                                    @(selectedWorkAreas.Contains("2") ? "checked" : "") />
                                             خبرة بالخارج
                                         </label>
@@ -619,95 +660,297 @@
                             </div>
 
 
-                            @*<div class="filter__group">
-                <label class="filter__label">@Resource.TheWeight</label>
-                <div class="d-flex" style="gap: 15px;">
-                    <select id="minweight" name="weight_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                        <option value="" disabled selected>من</option>
-                        @for (int i = 0; i <= 100; i += 5)
-                        {
-                            <option value="@i">@i</option>
-                        }
-                    </select>
 
-                    <select id="maxweight" name="weight_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                        <option value="" disabled selected>إلى</option>
-                        @for (int i = 0; i <= 100; i += 5)
-                        {
-                            <option value="@i">@i</option>
-                        }
-                    </select>
-                </div>
-            </div>*@
+                            @*<div class="filter__group">
+            <label class="filter__label">@Resource.TheWeight</label>
+            <div class="d-flex" style="gap: 15px;">
+                <select id="minweight" name="weight_min" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                    <option value="" disabled selected>من</option>
+                    @for (int i = 0; i <= 100; i += 5)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+
+                <select id="maxweight" name="weight_max" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
+                    <option value="" disabled selected>إلى</option>
+                    @for (int i = 0; i <= 100; i += 5)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+        </div>*@
 
                             <div class="filter__group">
                                 <label class="filter__label">@Resource.SocialStatus</label>
-                                <div class="d-flex" style="gap: 15px;">
-                                    <select id="MaritalStatus" name="MaritalStatus" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                                        <option value="0">@Resource.Choosemaritalstatus </option>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.SocialStatus</span>
 
-                                        <option value="@Resource.Single">@Resource.Single</option>
-                                        <option value="@Resource.Married">@Resource.Married</option>
-                                        <option value="@Resource.Divorced">@Resource.Divorced</option>
+                                    <div class="select">
+                                        @{
+                                            var maritalStatusList = (Request["MaritalStatus"] != null)
+                                                ? Request.QueryString["MaritalStatus"].Split(',')
+                                                : new string[] { };
+                                        }
 
-                                    </select>
+                                        <label for="status1">
+                                            <input value="@Resource.Single" name="MaritalStatus" id="status1" type="checkbox"
+                                                   @(maritalStatusList.Contains(@Resource.Single) ? "checked" : "") />
+                                            @Resource.Single
+                                        </label>
 
+                                        <label for="status2">
+                                            <input value="@Resource.Married" name="MaritalStatus" id="status2" type="checkbox"
+                                                   @(maritalStatusList.Contains(@Resource.Married) ? "checked" : "") />
+                                            @Resource.Married
+                                        </label>
+
+                                        <label for="status3">
+                                            <input value="@Resource.Divorced" name="MaritalStatus" id="status3" type="checkbox"
+                                                   @(maritalStatusList.Contains(@Resource.Divorced) ? "checked" : "") />
+                                            @Resource.Divorced
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
+
 
 
 
                             <div class="filter__group">
                                 <label class="filter__label">@Resource.Education</label>
-                                <div class="d-flex" style="gap: 15px;">
-                                    <select id="Education" name="Education" class="filter__input" style="min-width: 150px; height: 40px; font-size: 16px; padding: 4px;">
-                                        <option value="0">@Resource.Education </option>
-                                        <option>
-                                            امي لم يتعلم
-                                        </option>
-                                        <option>
-                                            اقل من الثانونة
-                                        </option>
-                                        <option>
-                                            ثانوية
-                                        </option>
-                                        <option>
-                                            دبلوم
-                                        </option>
-                                        <option>
-                                            جامعي
-                                        </option>
-
-                                    </select>
-
-                                </div>
-                            </div>
-                            <div class="filter__group">
-                                <label class="filter__label">@Resource.Skills</label>
                                 <div class="select_wrap w-100">
-                                    <span class="labelcss">@Resource.Skills</span>
+                                    <span class="labelcss">@Resource.Education</span>
 
                                     <div class="select">
                                         @{
-                                            recommendationList = (Request["extra2"] != null)
-                                               ? Request.QueryString["extra2"].Split(',')
-                                               : new string[] { };
+                                            var educationList = (Request["Education"] != null)
+                                                ? Request.QueryString["Education"].Split(',')
+                                                : new string[] { };
                                         }
 
-                                        <label for="checkbox-r1">
-                                            <input value="1" name="extra2" id="checkbox-r1" type="checkbox"
-                                                   @(recommendationList.Contains("1") ? "checked" : "") />
-                                            @Resource.Recommended
+                                        <label for="edu1">
+                                            <input value="امي لم يتعلم" name="Education" id="edu1" type="checkbox"
+                                                   @(educationList.Contains("امي لم يتعلم") ? "checked" : "") />
+                                            امي لم يتعلم
                                         </label>
 
-                                        <label for="checkbox-r2">
-                                            <input value="2" name="extra2" id="checkbox-r2" type="checkbox"
-                                                   @(recommendationList.Contains("2") ? "checked" : "") />
-                                            @Resource.NotRecommended
+                                        <label for="edu2">
+                                            <input value="اقل من الثانوية" name="Education" id="edu2" type="checkbox"
+                                                   @(educationList.Contains("اقل من الثانوية") ? "checked" : "") />
+                                            اقل من الثانوية
+                                        </label>
+
+                                        <label for="edu3">
+                                            <input value="ثانوية" name="Education" id="edu3" type="checkbox"
+                                                   @(educationList.Contains("ثانوية") ? "checked" : "") />
+                                            ثانوية
+                                        </label>
+
+                                        <label for="edu4">
+                                            <input value="دبلوم" name="Education" id="edu4" type="checkbox"
+                                                   @(educationList.Contains("دبلوم") ? "checked" : "") />
+                                            دبلوم
+                                        </label>
+
+                                        <label for="edu5">
+                                            <input value="جامعي" name="Education" id="edu5" type="checkbox"
+                                                   @(educationList.Contains("جامعي") ? "checked" : "") />
+                                            جامعي
                                         </label>
                                     </div>
                                 </div>
                             </div>
+
+
+
+
+
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.Height</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.Height</span>
+                                    <div class="select">
+                                        @{
+                                            string[] heightList = Request.QueryString["Height"] != null
+                                                ? Request.QueryString["Height"].Split(',')
+                                                : new string[] { };
+
+                                            bool isEnglishh = culture.Contains("en-us");
+                                        }
+
+                                        <label for="h-1">
+                                            <input type="checkbox" name="Height" value="<150"
+                                                   id="h-1" @(heightList.Contains("<150") ? "checked" : "") />
+                                            @(isEnglishh ? "Less than 150 " : "أقل من 150 ")
+                                        </label>
+
+                                        <label for="h-2">
+                                            <input type="checkbox" name="Height" value="150-160"
+                                                   id="h-2" @(heightList.Contains("150-160") ? "checked" : "") />
+                                            150 - 160
+                                        </label>
+
+                                        <label for="h-3">
+                                            <input type="checkbox" name="Height" value="160-170"
+                                                   id="h-3" @(heightList.Contains("160-170") ? "checked" : "") />
+                                            160 - 170
+                                        </label>
+
+                                        <label for="h-4">
+                                            <input type="checkbox" name="Height" value="170-180"
+                                                   id="h-4" @(heightList.Contains("170-180") ? "checked" : "") />
+                                            170 - 180
+                                        </label>
+
+                                        <label for="h-5">
+                                            <input type="checkbox" name="Height" value=">180"
+                                                   id="h-5" @(heightList.Contains(">180") ? "checked" : "") />
+                                            @(isEnglishh ? "More than 180 " : "أكثر من 180 ")
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.RoomSharing</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.RoomSharing</span>
+                                    <div class="select">
+                                        @{
+                                            string[] roomSharingList = Request.QueryString["RoomSharing"] != null
+                                                ? Request.QueryString["RoomSharing"].Split(',')
+                                                : new string[] { };
+                                            bool isEnglishss = culture.Contains("en-us");
+                                        }
+
+                                        <label>
+                                            <input type="checkbox" name="RoomSharing" value="true" @(roomSharingList.Contains("true") ? "checked" : "") />
+                                            @(isEnglishss ? "Yes" : "نعم")
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="RoomSharing" value="false" @(roomSharingList.Contains("false") ? "checked" : "") />
+                                            @(isEnglishss ? "No" : "لا")
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+
+                            @*@{
+            string[] selectedCountries = Request.QueryString["Countries"] != null
+                ? Request.QueryString["Countries"].Split(',')
+                : new string[] { };
+            bool isEnglisha = culture.Contains("en-us");
+            var countries = ViewBag.Countries as List<Marofh.Country>; // عدل Marofh.Country حسب الـ namespace عندك
+        }
+
+        <div class="filter__group">
+            <label class="filter__label">@Resource.Country</label>
+            <div class="select_wrap w-100">
+                <span class="labelcss">@Resource.ChooseCountry</span>
+                <div class="select">
+                    @if (countries != null && countries.Any())
+                    {
+                        foreach (var country in countries)
+                        {
+                            <label>
+                                <input type="checkbox" name="Countries" value="@country.ID" @(selectedCountries.Contains(country.ID.ToString()) ? "checked" : "") />
+                                @(isEnglisha ? country.NameEN : country.NameAR)
+                            </label>
+                        }
+                    }
+                    else
+                    {
+                        <p>@(isEnglish ? "No countries available" : "لا توجد دول")</p>
+                    }
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+                            @*@{
+            string[] selectedCities = Request.QueryString["City"] != null
+                ? Request.QueryString["City"].Split(',')
+                : new string[] { };
+            bool isEnglishj = culture.Contains("en-us");
+            var cities = ViewBag.Cities as List<Marofh.City>; // عدل Marofh.City حسب الـ namespace بتاعك
+        }
+
+        <div class="filter__group">
+            <label class="filter__label">@Resource.City</label>
+            <div class="select_wrap w-100">
+                <span class="labelcss">@Resource.ChooseCity</span>
+                <div class="select">
+                    @if (cities != null && cities.Any())
+                    {
+                        foreach (var city in cities)
+                        {
+                            <label>
+                                <input type="checkbox" name="City" value="@city.ID" @(selectedCities.Contains(city.ID.ToString()) ? "checked" : "") />
+                                @(isEnglishj ? city.NameEN : city.NameAR)
+                            </label>
+                        }
+                    }
+                    else
+                    {
+                        <p>@(isEnglish ? "No cities available" : "لا توجد مدن")</p>
+                    }
+                </div>
+            </div>
+        </div>*@
+
+
+
+                            @{
+                                string[] selectedSkills = Request.QueryString["Skills"] != null
+                                    ? Request.QueryString["Skills"].Split(',')
+                                    : new string[] { };
+                                bool isEnglishf = culture.Contains("en-us");
+                                var skills = ViewBag.Skills as List<Marofh.Skill>; // عدل Marofh.Skill للـ namespace الصحيح
+                            }
+
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.Skills</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.SkillName</span>
+                                    <div class="select">
+                                        @if (skills != null && skills.Any())
+                                        {
+                                            foreach (var skill in skills)
+                                            {
+                                                <label>
+                                                    <input type="checkbox" name="Skills" value="@skill.ID" @(selectedSkills.Contains(skill.ID.ToString()) ? "checked" : "") />
+                                                    @(isEnglish ? skill.NameEN : skill.NameAR)
+                                                </label>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p>@(isEnglish ? "No skills available" : "لا توجد مهارات")</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+
 
 
                         </div>

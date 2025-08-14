@@ -117,6 +117,7 @@ namespace Marofh
         public bool IsBlocked { get; set; }
         public bool IsActivated { get; set; }
         public string Status { get; set; }
+        public string Education { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers1 { get; set; }

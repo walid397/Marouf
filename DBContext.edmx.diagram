@@ -96,6 +96,7 @@
         <EntityTypeShape EntityType="DBModel.AspNetUserLogin" Width="1.5" PointX="10.875" PointY="46.625" />
         <AssociationConnector Association="DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <EntityTypeShape EntityType="DBModel.Education" Width="1.5" PointX="9.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,5 +1,7 @@
 ﻿
 @model IEnumerable<AspNetUser>
+@using Resources
+
 @foreach (AspNetUser worker in Model)
 {
     <div class="post">
@@ -68,8 +70,16 @@
         </div>
 
         <div class="post__title">
-            <a href="#">@worker.RequestAmount</a>
+            <strong>@Resource.Hiring_Cost:</strong>
+            <span>@worker.RequestAmount</span>
         </div>
+
+        <div class="post__title">
+            <strong>@Resource.Salary:</strong>
+            <span>@worker.Salary</span>
+        </div>
+
+
     </div>
 }
 

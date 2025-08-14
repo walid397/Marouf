@@ -265,6 +265,9 @@
     <Compile Include="District.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Education.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="FAQ.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
