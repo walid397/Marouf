@@ -3403,7 +3403,16 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to الاقل الى الاعلى.
+        ///   Looks up a localized string similar to ضعيف.
+        /// </summary>
+        internal static string Low {
+            get {
+                return ResourceManager.GetString("Low", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to من الاقل الى الاعلى.
         /// </summary>
         internal static string LowtoHigh {
             get {
@@ -6057,6 +6066,15 @@ namespace Resources {
         internal static string SortBy {
             get {
                 return ResourceManager.GetString("SortBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to التحدث.
+        /// </summary>
+        internal static string Speaking {
+            get {
+                return ResourceManager.GetString("Speaking", resourceCulture);
             }
         }
         

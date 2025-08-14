@@ -2521,7 +2521,4 @@
   <data name="UploadCVsforWorkers" xml:space="preserve">
     <value>رفع سير ذاتية للعمالة</value>
   </data>
-  <data name="Height" xml:space="preserve">
-    <value>الطول</value>
-  </data>
 </root>

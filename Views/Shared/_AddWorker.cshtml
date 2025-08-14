@@ -7,13 +7,13 @@
 @using (Html.BeginForm("Register", "Worker", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "FormAddWorker", name = "FormAddWorker" }))
 {
     @Html.AntiForgeryToken()
-<div class="modal fade AddWorker" id="AddWorker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade AddWorker" id="AddWorker" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">
                         <i class="far fa-address-card"></i>
-                     
+
                         @Resource.AddAnewWorker
 
                     </h5>
@@ -22,29 +22,14 @@
                     </button>
                 </div>
                 <div class="modal-body ">
-               
+
                     <div class="row">
 
-
-
-                        <div class="col-12 col-xl-4">
-                            <div class="form__group">
-                                <label for="category" class="form__label">@Resource.FirstName  </label>
-
-                                <input type="text" name="FName" id="FName" class="form__input" required>
-
-                            </div>
+                        <div class="form__group">
+                            <label for="FullName" class="form__label">@Resource.Name</label>
+                            <input type="text" id="FullName" name="FullName" class="form__input" placeholder="@Resource.EnterName" required />
                         </div>
 
-
-                        <div class="col-12 col-xl-4">
-                            <div class="form__group">
-                                <label for="category" class="form__label">@Resource.FamilyName</label>
-                                <input type="text" name="LName" id="LName" class="form__input">
-
-
-                            </div>
-                        </div>
                         <div class="col-12 col-xl-4">
                             <div class="form__group">
                                 <label for="category" class="form__label">  @Resource.BirthDate</label>
@@ -58,8 +43,8 @@
                             <div class="form__group">
                                 <label for="availab" class="form__label"> @Resource.Sex</label>
                                 <div class="form__select-wrap">
-                                    <select name="Gender" id="Gender" class="form__select">
-                                        <option value="0">@Resource.ChooseSex </option> 
+                                    <select name="Gender" id="Gender" class="select2">
+                                        <option value="0">@Resource.ChooseSex </option>
                                         <option value="True"> @Resource.Male</option>
                                         <option value="False">@Resource.Female </option>
                                     </select>
@@ -72,7 +57,7 @@
                                 <label for="category" class="form__label">@Resource.Job </label>
                                 <div class="form__select-wrap">
 
-                                    @Html.DropDownList("JobsID", ViewBag.JobsID as SelectList,Resource.Job, htmlAttributes: new { @class = "form-control form__select", @onchange = "GetNationalitiesByJobIDAndGenderID(this.value,'FormAddWorker');" })
+                                    @Html.DropDownList("JobsID", ViewBag.JobsID as SelectList, Resource.Job, htmlAttributes: new { @class = "form-control select2", @onchange = "GetNationalitiesByJobIDAndGenderID(this.value,'AddWorker');" })
 
                                 </div>
                             </div>
@@ -80,15 +65,15 @@
                         <div class="col-12 col-xl-4">
                             <div class="form__group">
                                 <label for="location" class="form__label">@Resource.Nationality</label>
-                                @Html.DropDownList("NationalityID", ViewBag.NationalityID as SelectList,Resource.Nationality, htmlAttributes: new { required = "required",  @class = "form-control form__select" })
+                                @Html.DropDownList("NationalityID", ViewBag.NationalityID as SelectList, Resource.Nationality, htmlAttributes: new { required = "required", @class = "form-control select2" })
 
                             </div>
                         </div>
 
-                        <div class="col-12 col-xl-4">
+                        <div class="col-12 col-xl-4" hidden>
                             <div class="form__group">
                                 <label for="location" class="form__label">@Resource.Country</label>
-                                @Html.DropDownList("CountryID", ViewBag.CountryID as SelectList,Resource.Country, htmlAttributes: new { @class = "form-control form__select", @onchange = "GetCitiesByCountryID(this.value,'FormAddWorker');" })
+                                @Html.DropDownList("CountryID", ViewBag.CountryID as SelectList, Resource.Country, htmlAttributes: new { @class = "form-control select2", @onchange = "GetCitiesByCountryID(this.value,'AddWorker');" })
 
 
 
@@ -96,10 +81,10 @@
                         </div>
 
 
-                        <div class="col-12 col-xl-4">
+                        <div class="col-12 col-xl-4" hidden>
                             <div class="form__group">
                                 <label for="location" class="form__label">@Resource.City </label>
-                                @Html.DropDownList("CityID", null, Resource.ChooseCity, htmlAttributes: new {  @class = "form-control form__select" })
+                                @Html.DropDownList("CityID", null, Resource.ChooseCity, htmlAttributes: new { @class = "form-control select2" })
 
                             </div>
                         </div>
@@ -108,7 +93,7 @@
                             <div class="form__group">
                                 <label for="type" class="form__label">@Resource.Religion </label>
                                 <div class="form__select-wrap">
-                                    <select id="Religion" name="Religion" class="form__select">
+                                    <select id="Religion" name="Religion" class="select2">
                                         @if (culture.Contains("en-us"))
                                         {
                                             <option value="Muslim"> Muslim </option>
@@ -135,7 +120,7 @@
                             <div class="form__group">
                                 <label for="level" class="form__label">@Resource.Numberofchildren</label>
                                 <div class="form__select-wrap">
-                                    <select name="ChildernsCount" id="ChildernsCount" class="form__select">
+                                    <select name="ChildernsCount" id="ChildernsCount" class="select2">
                                         <option value="0"> @Resource.None</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -149,19 +134,6 @@
                             </div>
                         </div>
 
-
-
-
-                        <div class="col-12 col-xl-4">
-                            <div class="form__group">
-                                <label for="location" class="form__label">@Resource.YearsofExperience </label>
-
-
-                                <input name="ExperienceYearsCount" id="ExperienceYearsCount" type="number" class="form__input " placeholder="@Resource.YearsofExperience" min="0">
-
-
-                            </div>
-                        </div>
                         <div class="col-4 selectcss">
                             <div class="form__group">
                                 <label for="lang" class="form__label">  @Resource.SocialStatus</label>
@@ -189,75 +161,389 @@
                         </div>
 
 
-                        @*<div class="col-12">
-                    <div class="form__group">
-                        <label for="skills" class="form__label">المهارات:</label>
-
-        @Html.DropDownList("SkillsID", ViewBag.SkillsID as List<SelectListItem>,"المهارات", htmlAttributes: new { oninvalid = "this.setCustomValidity(' المهارات ')", oninput = "setCustomValidity('')", @class = "js-multiple select2 mselect2", multiple = "multiple", @onfocus = "this.size = 10; this.width = 100%; ", @onblur = "this.size = 1; ", @onchange = "this.size = 1; this.blur();   " })
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="location" class="form__label">@Resource.BriefSummary </label>
 
 
+                                <textarea name="Brief" id="Brief" type="text" class="form_input" placeholder="@Resource.BriefSummary">
+                                 @Html.Raw(Model.Brief)
+                                </textarea>
 
-                    </div>
-                </div>*@
-
-                    </div>
-
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">
-
-                                <i class="far fa-plus-circle "></i>
-                                &nbsp;
-                                @Resource.AddAnewWorker
-                                @*اضف عاملة*@
-                            </button>
-
+                            </div>
                         </div>
-                  
+                        <div class="col-12 col-xl-4">
+                            <div class="form__group">
+                                <label for="location" class="form__label">@Resource.YearsofExperience </label>
+
+
+                                <input name="ExperienceYearsCount" id="ExperienceYearsCount" type="number" class="form__input " placeholder="@Resource.YearsofExperience" min="0">
+
+
+                            </div>
+                        </div>
+
+                        <div id="experienceContainer">
+                            <div class="experience-block">
+                                <div class="row">
+                                    <div id="experienceWrapper" class="col-12 col-xl-4 experienceWrapper">
+                                        <div class="form__group">
+                                            <span class="labelcss">@Resource.workareas</span>
+                                            <select name="experience[0].experience" id="experience" onchange="handleExperienceCheckbox(this)" class="select2 experience">
+                                                <option value="0">لا يوجد خبره</option>
+                                                <option value="9"> خبرة بالسعودية</option>
+                                                <option value="1">خبرة بالخليج </option>
+                                                <option value="2">خبرة بالخارج </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-xl-4 countryWrapper" id="countryWrapper">
+                                        <div class="form__group">
+                                            <label for="location" class="form__label">@Resource.Country</label>
+                                            @Html.DropDownList("experience[0].expCountryID", ViewBag.expCountryID as SelectList, Resource.Country,
+                        htmlAttributes: new
+                             {
+                            @class = "form-control select2 CountryID",
+                            @onchange = "GetexpCitiesByexpCountryID(this.value,this)",
+                            id = "CountryID"
+                        })
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-12 col-xl-4 cityDropdownWrapper" id="cityDropdownWrapper">
+                                        <div class="form__group">
+                                            <label for="location" class="form__label">@Resource.City </label>
+                                            @Html.DropDownList("experience[0].expCityID", new List<SelectListItem>(), Resource.ChooseCity,
+
+                        htmlAttributes: new
+                             {
+                            @class = "form-control select2 dbCity",
+                            id = "dbCity"
+                        })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="button" class="btn btn-success" onclick="addExperienceBlock()">+</button>
+                        </div>
+
+                        <div id="SkillContainer">
+                            <div class="Skill-block">
+                                <div class="row">
+
+                                    <div class="col-12 col-xl-6">
+                                        <div class="form__group">
+                                            <label for="location" class="form__label">@Resource.SkillName </label>
+                                            @Html.DropDownList("Skill[0].SkillID", ViewBag.Skill as SelectList, Resource.Skills, htmlAttributes: new { @class = "form-control select2" })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-xl-6 selectcss">
+                                        <div class="form__group">
+                                            <label for="location" class="form__label">  @Resource.Degreeofmastery </label>
+                                            <select class="select2" name="Skill[0].Level" id="Level">
+                                                <option value="">
+                                                    @Resource.Degreeofmastery
+                                                </option>
+                                                <option value="@Resource.Good">@Resource.Good</option>
+                                                <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                                                <option value="@Resource.Excellent">@Resource.Excellent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="button" class="btn btn-success" onclick="addSkillBlock()">+</button>
+                        </div>
+                        <div id="LanguageContainer">
+                            <div class="Language-block">
+                                <div class="row">
+                                    <div class="col-12 col-lg-10">
+                                        <div class="form__group">
+                                            <label for="firstname" class="form__label">@*اسم اللغة*@ @Resource.language </label>
+                                            @Html.DropDownList("Languages[0].LanguageID", ViewBag.Languages as SelectList, htmlAttributes: new { @class = "form-control select2" })
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-xl-3 selectcss">
+                                        <div class="form__group">
+                                            <label for="location" class="form__label">  @Resource.Reading </label>
+                                            <select class="select2" name="Languages[0].ReadingMethod" id="ReadingMethod">
+                                                <option value="">
+                                                    @Resource.Degreeofmastery
+                                                </option>
+                                                <option value="@Resource.Low">@Resource.Low</option>
+                                                <option value="@Resource.Acceptable">@Resource.Acceptable</option>
+                                                <option value="@Resource.Good">@Resource.Good</option>
+                                                <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                                                <option value="@Resource.Excellent">@Resource.Excellent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-xl-3 selectcss">
+                                        <div class="form__group">
+                                            <label for="location" class="form__label">  @Resource.Writing </label>
+                                            <select class="select2" name="Languages[0].writingMethod" id="writingMethod">
+                                                <option value="">
+                                                    @Resource.Degreeofmastery
+                                                </option>
+                                                <option value="@Resource.Low">@Resource.Low</option>
+                                                <option value="@Resource.Acceptable">@Resource.Acceptable</option>
+                                                <option value="@Resource.Good">@Resource.Good</option>
+                                                <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                                                <option value="@Resource.Excellent">@Resource.Excellent</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-lg-3 selectcss">
+                                        <div class="form__group">
+                                            <label for="firstname" class="form__label">@Resource.Speaking</label>
+                                            <select name="Languages[0].SpeakingMethod" id="SpeakingMethod" class="select2">
+                                                <option value="">
+                                                    @Resource.Degreeofmastery
+                                                </option>
+                                                <option value="@Resource.Low">@Resource.Low</option>
+                                                <option value="@Resource.Acceptable">@Resource.Acceptable</option>
+                                                <option value="@Resource.Good">@Resource.Good</option>
+                                                <option value="@Resource.Moderate">@Resource.Moderate  </option>
+                                                <option value="@Resource.Excellent">@Resource.Excellent</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button type="button" class="btn btn-success" onclick="addLanguageBlock()">+</button>
+                        </div>
+                    </div>
+                   
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">
+
+                            <i class="far fa-plus-circle "></i>
+                            &nbsp;
+                            @Resource.AddAnewWorker
+                            @*اضف عاملة*@
+                        </button>
+
+                    </div>
+
 
                 </div>
 
-            </div>
-        </div>
-    </div>
+                        </div>
+                    </div>
+                </div>
+    <script>
+        var experienceIndex = 0;
+        var SkillIndex = 0;
+        var LanguageIndex = 0; // تبدأ من 1 بعد البلوك الأول
+        function handleExperienceCheckbox(checkbox) {
 
-<script>
+            debugger;
+            var theUpperDiv = checkbox.parentElement.parentElement.parentElement;
+            const noExpCheckbox = checkbox;
 
+            const countryWrapper = theUpperDiv.getElementsByClassName('countryWrapper')[0];
+            const experience = theUpperDiv.getElementsByClassName('experienceWrapper')[0];
+            const experienceSelect = experience.getElementsByClassName('experience')[0];
+            const cityDropdownWrapper = theUpperDiv.getElementsByClassName('cityDropdownWrapper')[0];
+            const countrySelect = countryWrapper.getElementsByClassName('CountryID')[0];
 
-    $(document).ready(function () {
-        $('.select2').select2();
-    });   
-
-
-
-    function GetCitiesByCountryID(_countryId, _formName) {
-        var procemessage = "<option value='0'> @Resource.ChooseCity</option>";
-        $("#" + _formName + " " + "#CityID").html(procemessage).show();
-        var url = "/Cities/GetCitiesByCountryID/";
-        $.ajax({
-            url: url,
-            data: { countryId: _countryId },
-
-            cache: false,
-            type: "POST",
-            success: function (data) {
-               
-                var markup = "<option value='0'>@Resource.ChooseCity</option>";
-                for (var x = 0; x < data.length; x++) {
-                    markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
-                }
-                $("#" + _formName + " " + "#CityID").html(markup).show();
-
-
-
-            },
-            error: function (reponse) {
-                if (CityID > 0) {
-                    alert("error : " + reponse);
-                }
+            // إذا تم اختيار "بدون خبرة"
+            if (checkbox?.value === "0") {
+                // if (checkbox.checked) {
+                // إلغاء اختيار جميع الخيارات الأخرى
+                //document.querySelectorAll('.work-checkbox:not(#checkbox-w0)').forEach(cb => {
+                //    cb.checked = false;
+                //});
+                // إخفاء جميع حقول المدن والبلدان
+                countryWrapper.style.display = 'none';
+                cityDropdownWrapper.style.display = 'none';
+                //}
             }
-        });
+            // إذا تم اختيار أي خيار آخر
+            else if (checkbox.value === "9") { // السعودية
 
-    }
+                countrySelect.value = '9';
+                $(countrySelect).select2();
+                countryWrapper.style.display = 'block';
+                cityDropdownWrapper.style.display = 'block';
+
+                debugger;
+                // هنا يمكنك استدعاء الدالة التي تعبئ المدن إذا لزم الأمر
+                GetexpCitiesByexpCountryID('9', countrySelect);
+                //$('#CountryID').val(9).select2();
+            }
+            else if (checkbox.value === "1") {
+                // إلغاء اختيار "بدون خبرة" إذا كان محدداً
+                // noExpCheckbox.checked = false;
+
+                // إظهار حقل البلد
+                //countryWrapper.style.display = 'block';
+
+
+                // else { // أي خيار آخر (خبرة بالخليج أو بالخارج)
+                countrySelect.value = '1';
+                $(countrySelect).select2();
+                countryWrapper.style.display = 'block';
+                cityDropdownWrapper.style.display = 'block';
+                debugger;
+                GetexpCountryID(1, experienceSelect);
+                // }
+            }
+            else if (checkbox.value === "2") {
+                // إلغاء اختيار "بدون خبرة" إذا كان محدداً
+                // noExpCheckbox.checked = false;
+
+                // إظهار حقل البلد
+                //countryWrapper.style.display = 'block';
+
+
+                // else { // أي خيار آخر (خبرة بالخليج أو بالخارج)
+                countrySelect.value = '2';
+
+                $(countrySelect).select2();
+                countryWrapper.style.display = 'block';
+                cityDropdownWrapper.style.display = 'block';
+                debugger;
+                GetexpCountryID(2, experienceSelect);
+                // }
+            }
+
+            // إذا لم يكن هناك أي خيار محدد، أخفي جميع الحقول
+            //if (!document.querySelector('.work-checkbox:checked')) {
+            //    countryWrapper.style.display = 'none';
+            //    cityDropdownWrapper.style.display = 'none';
+            //    cityTextWrapper.style.display = 'none';
+            //                }
+
+            //                $("#AddWorker"  + " " + "#dbCity").select('destroy');
+            //                $("#AddWorker"  + " " + "#dbCity").select();
+            //                $("#AddWorker"  + " " + "#CountryID").select('destroy');
+            //                $("#AddWorker"  + " " + "#CountryID").select();
+
+        }
+
+        function GetexpCountryID(_expId, EXPelem) {
+            debugger;
+            var baseDiv = EXPelem.parentElement.parentElement.parentElement;
+            var CountryID = baseDiv.getElementsByClassName("CountryID")[0];
+    var procemessage = "<option value='0'> @Resource.ChooseCountry</option>";
+            $(CountryID).html(procemessage).show();
+
+            var url = "/Countries/GetCountry/";
+    $.ajax({
+        url: url,
+        data: { expId: _expId },
+
+        cache: false,
+        type: "POST",
+        success: function (data) {
+            $(CountryID).select2('destroy');
+            $(CountryID).html('');
+            var markup = "<option value='0'>@Resource.ChooseCountry</option>";
+            for (var x = 0; x < data.length; x++) {
+                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+            }
+           // $("#" + _formName + " " + "#dbCity").html(markup).show();
+            $(CountryID).html(markup);
+            console.log(procemessage);
+            console.log(_expId);
+            console.log(EXPelem);
+            console.log(markup);
+
+            $(CountryID).select2();
+        },
+        error: function (reponse) {
+            if (CountryID > 0) {
+                alert("error : " + reponse);
+            }
+        }
+    });
+
+        }
+        function GetexpCitiesByexpCountryID(_countryId, Countryelem) {
+
+            debugger;
+            var baseDiv = Countryelem.parentElement.parentElement.parentElement;
+            var dbcity = baseDiv.getElementsByClassName("dbCity")[0];
+    var procemessage = "<option value='0'> @Resource.ChooseCity</option>";
+            $(dbcity).html(procemessage).show();
+
+    var url = "/Cities/GetCitiesByCountryID/";
+    $.ajax({
+        url: url,
+        data: { countryId: _countryId },
+
+        cache: false,
+        type: "POST",
+        success: function (data) {
+            $(dbcity).select2('destroy');
+            $(dbcity).html('');
+            var markup = "<option value='0'>@Resource.ChooseCity</option>";
+            for (var x = 0; x < data.length; x++) {
+                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+            }
+           // $("#" + _formName + " " + "#dbCity").html(markup).show();
+            $(dbcity).html(markup);
+
+
+            $(dbcity).select2();
+        },
+        error: function (reponse) {
+            if (CityID > 0) {
+                alert("error : " + reponse);
+            }
+        }
+    });
+
+            }
+            function GetCitiesByCountryID(_countryId, _formName) {
+    var procemessage = "<option value='0'> @Resource.ChooseCity</option>";
+    $("#" + _formName + " " + "#CityID").html(procemessage).show();
+
+    var url = "/Cities/GetCitiesByCountryID/";
+    $.ajax({
+        url: url,
+        data: { countryId: _countryId },
+
+        cache: false,
+        type: "POST",
+        success: function (data) {
+            $("#" + _formName + " " + "#dbCity").select('destroy');
+            $("#" + _formName + " " + "#dbCity").html('');
+
+            var markup = "<option value='0'>@Resource.ChooseCity</option>";
+            for (var x = 0; x < data.length; x++) {
+                markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
+            }
+            $("#" + _formName + " " + "#CityID").html(markup).show();
+            $("#" + _formName + " " + "#dbCity").html(markup);
+
+
+            $("#" + _formName + " " + "#dbCity").select();
+
+
+        },
+        error: function (reponse) {
+            if (CityID > 0) {
+                alert("error : " + reponse);
+            }
+        }
+    });
+
+}
 
     function GetNationalitiesByJobIDAndGenderID(_jobId, _formName) {
         var procemessage = "<option value='0'> @Resource.ChooseNationality</option>";
@@ -272,7 +558,7 @@
             cache: false,
             type: "POST",
             success: function (data) {
-               
+
                 var markup = "<option value='0'>@Resource.ChooseNationality</option>";
                 for (var x = 0; x < data.length; x++) {
                     markup += "<option value=" + data[x].Value + ">" + data[x].Text + "</option>";
@@ -290,8 +576,238 @@
         });
 
     }
+      
 
-</script>
+        function addExperienceBlock() {
+            debugger;
+            experienceIndex = experienceIndex + 1;
+            const container = document.getElementById('experienceContainer');
+            const existingBlock = container.querySelector('.experience-block');
+            $(existingBlock).find('.select2').each(function () {
+                if ($(this).hasClass('select2-hidden-accessible')) {
+                    $(this).select2('destroy');
+                }
+            });
+            const newBlock = existingBlock.cloneNode(true);
+            $(existingBlock).find('.select2').select2();
+            // إعادة تعيين القيم
+            newBlock.querySelectorAll('select, textarea').forEach(el => {
+                if (el.tagName === 'SELECT') {
+                    el.selectedIndex = 0;
+                } else {
+                    el.value = '';
+                }
+            });
 
+            // تحديث خصائص name لتمييز كل مجموعة
+            newBlock.querySelectorAll('select, textarea').forEach(el => {
+                if (el.name) {
+                    // تحويل name إلى array format
+                    const baseName = el.name.substring(el.name.indexOf('.') + 1); // مثل: experience
+                    el.name = `experience[${experienceIndex}].${baseName}`;
+                }
+            });
+
+            // إخفاء/إظهار حسب الحاجة
+            const countryWrapper = newBlock.querySelector('.countryWrapper');
+            const cityDropdownWrapper = newBlock.querySelector('.cityDropdownWrapper');
+            const cityTextWrapper = newBlock.querySelector('.cityTextWrapper');
+
+            if (countryWrapper) countryWrapper.style.display = 'none';
+            if (cityDropdownWrapper) cityDropdownWrapper.style.display = 'none';
+            if (cityTextWrapper) cityTextWrapper.style.display = 'none';
+
+            // ربط الحدث من جديد
+            const expSelect = newBlock.querySelector('.experience-select');
+            /* if (expSelect) expSelect.setAttribute('onchange', 'handleExperienceCheckbox(this)');*/
+           if (expSelect) {
+  expSelect.addEventListener('change', function() {
+    handleExperienceCheckbox(this);
+  });
+}
+
+            container.appendChild(newBlock);
+            $(newBlock).find('.select2').select2();
+            initiateSelect2(newBlock);
+
+           
+        }
+        function addSkillBlock() {
+            SkillIndex = SkillIndex + 1;
+            const container = document.getElementById('SkillContainer');
+            const SkillBlock = container.querySelector('.Skill-block');
+            $(SkillBlock).find('.select2').each(function () {
+                if ($(this).hasClass('select2-hidden-accessible')) {
+                    $(this).select2('destroy');
+                }
+            });
+            const newBlock = SkillBlock.cloneNode(true);
+            $(SkillBlock).find('.select2').select2();
+            // إعادة تعيين القيم
+            newBlock.querySelectorAll('select, textarea').forEach(el => {
+                if (el.tagName === 'SELECT') {
+                    el.selectedIndex = 0;
+                } else {
+                    el.value = '';
+                }
+            });
+
+            // تحديث خصائص name لتمييز كل مجموعة
+            newBlock.querySelectorAll('select, textarea').forEach(el => {
+                if (el.name) {
+                    // تحويل name إلى array format
+                    const baseName = el.name.substring(el.name.indexOf('.') + 1); // مثل: experience
+                    el.name = `Skill[${SkillIndex}].${baseName}`;
+                }
+            });
+
+            // إخفاء/إظهار حسب الحاجة
+            const Level = newBlock.querySelector('.Level');
+            
+
+            if (Level) Level.style.display = 'none';
+           
+            // ربط الحدث من جديد
+            const expSelect = newBlock.querySelector('.Skill-select');
+            /* if (expSelect) expSelect.setAttribute('onchange', 'handleExperienceCheckbox(this)');*/
+           
+            container.appendChild(newBlock);
+            $(newBlock).find('.select2').select2();
+            initiateSelect2(newBlock);
+          
+        }
+        function addLanguageBlock() {
+            LanguageIndex = LanguageIndex + 1;
+            const container = document.getElementById('LanguageContainer');
+            const LanguageBlock = container.querySelector('.Language-block');
+            $(LanguageBlock).find('.select2').each(function () {
+                if ($(this).hasClass('select2-hidden-accessible')) {
+                    $(this).select2('destroy');
+                }
+            });
+            const newBlock = LanguageBlock.cloneNode(true);
+            $(LanguageBlock).find('.select2').select2();
+            // إعادة تعيين القيم
+            newBlock.querySelectorAll('select, textarea').forEach(el => {
+                if (el.tagName === 'SELECT') {
+                    el.selectedIndex = 0;
+                } else {
+                    el.value = '';
+                }
+            });
+
+            // تحديث خصائص name لتمييز كل مجموعة
+            newBlock.querySelectorAll('select, textarea').forEach(el => {
+                if (el.name) {
+                    // تحويل name إلى array format
+                    const baseName = el.name.substring(el.name.indexOf('.') + 1); // مثل: experience
+                    el.name = `Languages[${LanguageIndex}].${baseName}`;
+                }
+            });
+
+            // إخفاء/إظهار حسب الحاجة
+            const ReadingMethod = newBlock.querySelector('.ReadingMethod');
+            const writingMethod = newBlock.querySelector('.writingMethod');
+            const SpeakingMethod = newBlock.querySelector('.SpeakingMethod');
+            
+
+            if (ReadingMethod) ReadingMethod.style.display = 'none';
+            if (writingMethod) writingMethod.style.display = 'none';
+            if (SpeakingMethod) SpeakingMethod.style.display = 'none';
+           
+            // ربط الحدث من جديد
+            const expSelect = newBlock.querySelector('.Languages-select');
+            /* if (expSelect) expSelect.setAttribute('onchange', 'handleExperienceCheckbox(this)');*/
+           
+            container.appendChild(newBlock);
+            $(newBlock).find('.select2').select2();
+            initiateSelect2(newBlock);
+           
+        }
+    </script>
+    @section Scripts {
+
+        <script>
+
+            function initiateSelect2(context = document) {
+                const $selects = $(context).find('.select2');
+
+                $selects.each(function () {
+                    if ($(this).hasClass('select2-hidden-accessible')) {
+                        $(this).select2('destroy');
+                    }
+                });
+
+                $selects.select2();
+            }
+    $(document).ready(function () {
+         
+        document.addEventListener('DOMContentLoaded', function () {
+            const countryWrapper = document.getElementById('countryWrapper');
+            const cityDropdownWrapper = document.getElementById('cityDropdownWrapper');
+            const cityTextWrapper = document.getElementById('cityTextWrapper');
+
+            // إخفاء الحقول في البداية
+            countryWrapper.style.display = 'none';
+            cityDropdownWrapper.style.display = 'none';
+            cityTextWrapper.style.display = 'none';
+
+            // إذا كان هناك خيار محدد مسبقاً، تطبيق التغييرات
+            //const checkedBox = document.querySelector('.work-checkbox:checked');
+            //if (checkedBox) {
+            //    handleExperienceCheckbox(checkedBox);
+            //}
+        });
+
+
+        // مراقبة تغيير أي checkbox
+
+//    function handleExperienceChange() {
+//        var isKSA = $('#exp_ksa').is(':checked');
+//        var isOther = $('#exp_gulf').is(':checked') || $('#exp_out').is(':checked');
+//        var none = $('#exp_none').is(':checked');
+//        if (isKSA) {
+//            // اختر السعودية تلقائياً
+//            $('#CountryID').val('9').change();
+//            $('#countryWrapper').hide();
+
+//            // إظهار المدن واخفاء textarea
+//            $('#cityDropdownWrapper').show();
+//            $('#cityTextWrapper').hide();
+//        } else if (isOther) {
+//            $('#CountryID').val('0');
+//            $('#countryWrapper').show();
+
+//            // إظهار textarea وإخفاء dropdown
+//            $('#cityDropdownWrapper').hide();
+//            $('#cityTextWrapper').show();
+//        }
+//        else if (none) {
+//            $('#countryWrapper').hide();
+//            $('#cityDropdownWrapper').hide();
+//            $('#cityTextWrapper').hide();
+//}
+//else {
+//            // لم يتم اختيار شيء
+//            $('#countryWrapper').show();
+//            $('#cityDropdownWrapper').hide();
+//            $('#cityTextWrapper').hide();
+//        }
+//    }
+//        $('input[name="experience"]').change(function () {
+//            // إزالة التحديد من الآخرين (تمنع تعدد الاختيارات)
+//            $('input[name="experience"]').not(this).prop('checked', false);
+//            handleExperienceChange();
+//        });
+
+
+
+//        // عند تحميل الصفحة لأول مرة
+        //        handleExperienceChange();
+        $('.select2').select2();
+    });
+           
+        </script>
 
 }
+    }

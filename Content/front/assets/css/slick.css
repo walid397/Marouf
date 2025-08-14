@@ -17,7 +17,9 @@
         touch-action: pan-y;
     -webkit-tap-highlight-color: transparent;
 }
-
+.d_none {
+    display: none !important;
+}
 .slick-list
 {
     position: relative;

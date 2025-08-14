@@ -2504,7 +2504,4 @@
   <data name="UploadCVsforWorkers" xml:space="preserve">
     <value>Upload CVs for Workers</value>
   </data>
-  <data name="Height" xml:space="preserve">
-    <value>Height</value>
-  </data>
 </root>

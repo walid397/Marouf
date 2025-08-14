@@ -127,17 +127,29 @@ namespace Marofh.Controllers
             if (culture.Contains("en-us"))
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
+                ViewBag.Languages = new SelectList(db.Languages, "ID", "NameEN");
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
-
+                ViewBag.Skill = new SelectList(db.Skills, "ID", "NameEN");
             }
             else
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+                ViewBag.Languages = new SelectList(db.Languages, "ID", "NameAR");
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
+               ViewBag.Skill = new SelectList(db.Skills, "ID", "NameAR");
 
             }
 
@@ -161,17 +173,21 @@ namespace Marofh.Controllers
             {
                  model.CityID = null;
             }
-            //model.ConfirmPassword = model.Password;
             var errors = ModelState.Values.SelectMany(v => v.Errors);
+            var fullName = model.FullName; // "محمد علي"
+            string fName = "", lName = "";
 
-            //if (ModelState.IsValid)
-            //{
-
-            //var user = new ApplicationUser { FName = model.FName,LName = model.LName, UserName = model.UserName, Email = model.Email, Password = model.Password, Mobile = model.Mobile, RoleID = Convert.ToInt32(clsEnum.Roles.Worker) };
+            if (!string.IsNullOrWhiteSpace(fullName))
+            {
+                var parts = fullName.Trim().Split(' ');
+                fName = parts[0];
+                lName = string.Join(" ", parts.Skip(1)); // لو الاسم ثلاثي أو رباعي
+            }
+           
             var user = new ApplicationUser
             {
-                FName = model.FName,
-                LName = model.LName,
+                FName = fName,
+                LName = lName,
                 UserName = model.Email,
                 Email = model.Email,
                 Password = model.Password,
@@ -179,6 +195,9 @@ namespace Marofh.Controllers
                 RoleID = Convert.ToInt32(clsEnum.Roles.Worker),
                 CountryID = model.CountryID,
                 CityID = model.CityID,
+                expCountryID = model.expCountryID,
+                expCityID = model.expCityID,
+                City = model.City,
                 NationalityID = model.NationalityID,
                 WhatsAppNo = model.WhatsAppNo,
                 HRLicenseNo = model.HRLicenseNo,
@@ -186,10 +205,10 @@ namespace Marofh.Controllers
                 CommercialRegisterNO = model.CommercialRegisterNO,
                 CommercialRegisterExpirationDate = model.CommercialRegisterExpirationDate,
                 EmployeeFName = model.EmployeeFName,
-                EmployeeLName = model.EmployeeLName,
                 EmployeeEmail = model.EmployeeEmail,
                 EmployeeMobile = model.EmployeeMobile,
                 DOB = model.DOB,
+                SkillID = model.SkillID,
                 JobsID = model.JobsID,
                 ChildernsCount = model.ChildernsCount,
                 ExperienceYearsCount = model.ExperienceYearsCount,
@@ -205,49 +224,53 @@ namespace Marofh.Controllers
                 Status = clsEnum.Status.متاح.ToString()
 
             };
-
-            //var isEmailAlreadyExists = db.AspNetUsers.Any(x => x.Email == model.Email & x.RoleID==user.RoleID);
-            //if (isEmailAlreadyExists)
-            //{
-            //    ModelState.AddModelError("Email", "User with this email already exists");
-            //    ViewBag.Result = "لكن تم التسجيل بهذا البريد الالكترونى من قبل";
-
-
-            //    return View(model);
-            //}
-
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
                 var roleresult = UserManager.AddToRole(user.Id, clsEnum.Roles.Worker.ToString());
 
+                if (model.Skill != null && model.Skill.Any())
+                {
+                    var addSkills = model.Skill.Select(exp => new WorkerSkill()
+                    {
+                        WorkerID = user.Id,
+                        SkillID = exp.SkillID,
+                        Level = exp.Level
+                    }).ToList();
+                    db.WorkerSkills.AddRange(addSkills);
+                   
+                }
+                if (model.Languages != null && model.Languages.Any())
+                {
+                    var langs = model.Languages.Select(exp => new WorkerLanguage()
+                    {
+                        WorkerID = user.Id,
+                        LanguageID = exp.LanguageID,
+                        writingMethod = exp.writingMethod,
+                        ReadingMethod = exp.ReadingMethod,
+                        SpeakingMethod = exp.SpeakingMethod,
 
-                // تم ايقاف هذا السطر حتى لايتم تسجيل الدخول اتوماتيكيا بعد  تسجيل حساب جديد
-                //   await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    });
+                    db.WorkerLanguages.AddRange(langs);
+                    
+                }
+                if (model.experience != null && model.experience.Any())
+                {
 
-
+                    var exper = model.experience.Where(exp => exp.experience != 0).Select(exp=> new WorkerWorkingPlace() {
+                        WorkerID = user.Id,
+                        CountryID = exp.expCountryID ?? 0,
+                        CityID = exp.expCityID ?? 0,
+                          
+                });
+                    db.WorkerWorkingPlaces.AddRange(exper);
+                    
+                }
+                db.SaveChanges();
+               
                 return RedirectToAction("index", "Office");
             }
             AddErrors(result);
-
-
-            //}
-            //else
-            //{
-            //    List<string> errors1 = new List<string>();
-            //    foreach (ModelState modelState in ViewData.ModelState.Values)
-            //    {
-            //        foreach (ModelError error in modelState.Errors)
-            //        {
-            //            errors1.Add(error.ErrorMessage);
-            //            ViewBag.Errors += error.ErrorMessage + "##";
-            //        }
-            //    }
-
-            //}
-
-            // If we got this far, something failed, redisplay form
-
             return RedirectToAction("index", "Office");
         }
 
@@ -333,9 +356,15 @@ namespace Marofh.Controllers
             if (culture.Contains("en-us"))
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN", worker.CountryID);
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN", worker.CountryID);
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN", worker.CityID);
+
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN", worker.CityID);
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN", worker.JobsID);
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN", 0, worker.WorkerSkills);
+                ViewBag.Skill = new SelectList(db.Skills, "ID", "NameEN", 0, worker.WorkerSkills);
                 ViewBag.BirthCountryID = new SelectList(db.Countries, "ID", "NameEN", worker.BirthCountryID);
                 ViewBag.PassportRealseCountryID = new SelectList(db.Countries, "ID", "NameEN", worker.PassportRealseCountryID);
                 ViewBag.ChildernsCount = worker.ChildernsCount;
@@ -344,7 +373,12 @@ namespace Marofh.Controllers
             else
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR", worker.CountryID);
+
+                ViewBag.Skill = new SelectList(db.Skills, "ID", "NameAR", worker.WorkerSkills);
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR", worker.CountryID);
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR", worker.CityID);
+
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR", worker.CityID);
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR", worker.JobsID);
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR", 0, worker.WorkerSkills);
                 ViewBag.BirthCountryID = new SelectList(db.Countries, "ID", "NameAR", worker.BirthCountryID);
@@ -421,7 +455,12 @@ namespace Marofh.Controllers
                 if (culture.Contains("en-us"))
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN", worker.CountryID);
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN", worker.CountryID);
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN", worker.CityID);
+
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN", worker.CityID);
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN", worker.JobsID);
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameEN");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
@@ -433,7 +472,12 @@ namespace Marofh.Controllers
                 else
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR", worker.CountryID);
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR", worker.CountryID);
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR", worker.CityID);
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN",worker.CityID);
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR", worker.JobsID);
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameAR");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
@@ -579,7 +623,12 @@ namespace Marofh.Controllers
                 if (culture.Contains("en-us"))
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                     ViewBag.SkillsID = new MultiSelectList(db.Skills, "ID", "NameEN", cWorker.WorkerSkills);
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameEN");
@@ -589,7 +638,12 @@ namespace Marofh.Controllers
                 else
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                     ViewBag.SkillsID = new MultiSelectList(db.Skills, "ID", "NameAR", cWorker.WorkerSkills);
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameAR");
@@ -605,7 +659,12 @@ namespace Marofh.Controllers
             if (culture.Contains("en-us"))
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
                 ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameEN");
@@ -615,7 +674,12 @@ namespace Marofh.Controllers
             else
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
                 ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameAR");
@@ -643,7 +707,12 @@ namespace Marofh.Controllers
                 if (culture.Contains("en-us"))
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameEN");
@@ -652,7 +721,12 @@ namespace Marofh.Controllers
                 else
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameAR");
@@ -685,7 +759,12 @@ namespace Marofh.Controllers
                 if (culture.Contains("en-us"))
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameEN");
@@ -694,7 +773,12 @@ namespace Marofh.Controllers
                 else
                 {
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameAR");
@@ -729,7 +813,12 @@ namespace Marofh.Controllers
                 {
 
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameEN");
@@ -739,7 +828,12 @@ namespace Marofh.Controllers
                 {
 
                     ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+
+                    ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                     ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                    ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameAR");
@@ -767,13 +861,23 @@ namespace Marofh.Controllers
             if (culture.Contains("en-us"))
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN", expertis.CountryID);
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN", expertis.CountryID);
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN", expertis.CityID);
+
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN", expertis.CityID);
 
             }
             else
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR", expertis.CountryID);
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR", expertis.CountryID);
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR", expertis.CityID);
+
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR", expertis.CityID);
 
             }
 
@@ -797,7 +901,12 @@ namespace Marofh.Controllers
             {
                 int shortId = db.AspNetUsers.Find(obj.WorkerID).ShortID;
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
                 return Redirect("/Worker/profile/" + shortId);
@@ -807,7 +916,12 @@ namespace Marofh.Controllers
             {
                 int shortId = db.AspNetUsers.Find(obj.WorkerID).ShortID;
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
                 ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
                 ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
                 return Redirect("/Worker/profile/" + shortId);
@@ -833,17 +947,27 @@ namespace Marofh.Controllers
             if (culture.Contains("en-us"))
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameEN");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameEN");
+
 
             }
             else
             {
                 ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+
+
+                ViewBag.expCountryID = new SelectList(db.Countries, "ID", "NameAR");
                 ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+                ViewBag.expCityID = new SelectList(db.Cities, "ID", "NameAR");
+
 
             }
 
-            
+
             return Redirect("/Worker/profile/" + shortId);
 
         }
