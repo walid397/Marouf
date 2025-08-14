@@ -52,11 +52,6 @@ namespace Marofh.Models
             db = new DBEntities();
             return db.Nationalities.ToList();
         }
-
-
-
-
-
         public static List<Mail> GetMailsByOfficeID(string userId)
         {
             db = new DBEntities();

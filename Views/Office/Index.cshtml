@@ -1169,26 +1169,26 @@
 
 
                                                                                 <ul class="view_dt_job">
-
-                                                                                    @if (@worker.CountryID != null)
+@if(@worker.Nationality != null) { 
+                                                                                    if (@worker.NationalityID != null || @worker.NationalityID!=0)
                                                                                     {
                                                                                         if (culture.Contains("en-us"))
                                                                                         {
-                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Country.NameEN</div></li>
+                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Nationality.NameEN</div></li>
 
                                                                                         }
                                                                                         else
                                                                                         {
-                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Country.NameAR</div></li>
+                                                                                            <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>@worker.Nationality.NameAR</div></li>
 
                                                                                         }
-
-
-
-
                                                                                     }
-                                                                                    else
-                                                                                    {
+
+
+
+}
+else
+{
                                                                                         <li><div class="vw1254"><i class="fas fa-map-marker-alt"></i>---</div></li>
 
                                                                                     }
@@ -3216,7 +3216,26 @@
 
 
                 $("[id*=GridHtml]").val($(".PDFContainer").html());
+                var content = $("[id*=GridHtml]").val();
 
+                // Open a new window
+                var printWindow = window.open('', '', 'height=600,width=800');
+
+                // Write the content to the new window
+                printWindow.document.write('<html><head><title>Print</title>');
+                // Optionally include styles here if needed
+                printWindow.document.write('</head><body >');
+                printWindow.document.write(content);
+                printWindow.document.write('</body></html>');
+
+                printWindow.document.close(); // Close the document to finish writing
+
+                // Wait for the content to load then print and close
+                printWindow.onload = function () {
+                    printWindow.focus();  // Focus on the new window
+                    printWindow.print();  // Trigger print
+                    printWindow.close();  // Close the print window
+                };
             });
         });
     </script>

@@ -443,6 +443,9 @@
           <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
           <Property Name="Level" Type="nvarchar" MaxLength="10" />
           <Property Name="Method" Type="nvarchar" MaxLength="30" />
+          <Property Name="SpeakingMethod" Type="nvarchar" MaxLength="128" />
+          <Property Name="ReadingMethod" Type="nvarchar" MaxLength="128" />
+          <Property Name="writingMethod" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="WorkerRequests">
           <Key>
@@ -2124,6 +2127,9 @@
           <Property Name="LanguageID" Type="Int32" />
           <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Level" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="writingMethod" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReadingMethod" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SpeakingMethod" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Method" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerLanguages_AspNetUsers" FromRole="WorkerLanguage" ToRole="AspNetUser" />
           <NavigationProperty Name="Language" Relationship="DBModel.FK_WorkerLanguages_Languages" FromRole="WorkerLanguage" ToRole="Language" />
@@ -3269,6 +3275,9 @@
             <EntityTypeMapping TypeName="DBModel.WorkerLanguage">
               <MappingFragment StoreEntitySet="WorkerLanguages">
                 <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="SpeakingMethod" ColumnName="SpeakingMethod" />
+                <ScalarProperty Name="ReadingMethod" ColumnName="ReadingMethod" />
+                <ScalarProperty Name="writingMethod" ColumnName="writingMethod" />
                 <ScalarProperty Name="Level" ColumnName="Level" />
                 <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
                 <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />

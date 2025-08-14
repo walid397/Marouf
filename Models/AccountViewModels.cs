@@ -87,6 +87,8 @@ namespace Marofh.Models
 
         [Display(Name = "UserName")]
         public string UserName { get; set; }
+        [Display(Name = "FullName")]
+        public string FullName { get; set; }
 
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
@@ -105,6 +107,14 @@ namespace Marofh.Models
         public int? CityID { get; set; }
         public string WhatsAppNo { get; set; }
 
+
+        public int? SkillID { get; set; }
+        public string City { get; set; }
+        public List<ExperienceViewModel> experience { get; set; }
+        public List<SkillViewModel> Skill { get; set; }
+        public List<LanguageViewModel> Languages { get; set; }
+        public int? expCountryID { get; set; }
+        public int? expCityID { get; set; }
         public string ImageUrl { get; set; }
         public int RoleID { get; set; }
 

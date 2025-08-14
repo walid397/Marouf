@@ -2521,4 +2521,10 @@
   <data name="UploadCVsforWorkers" xml:space="preserve">
     <value>رفع سير ذاتية للعمالة</value>
   </data>
+  <data name="Low" xml:space="preserve">
+    <value>ضعيف</value>
+  </data>
+  <data name="Speaking" xml:space="preserve">
+    <value>التحدث</value>
+  </data>
 </root>

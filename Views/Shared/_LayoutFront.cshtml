@@ -29,6 +29,7 @@
     <link href="/Content/front/assets/css/meanmenuAr.css" rel="stylesheet" />
     <link rel="stylesheet" href="/Content/front/assets/css/slick.css">
     <link rel="stylesheet" href="/Content/front/assets/css/nice-select.css">
+    <script src="~/content/backend/lib/jquery/js/jquery.js"></script>
     @{
 
         if (culture.Contains("en-us"))
@@ -41,7 +42,7 @@
         }
 
     }
-
+<link href="~/Content/front/assets/css/select2.min.css" rel="stylesheet" />
     <link href="/Content/front/assets/css/hover.css" rel="stylesheet" />
 
 
@@ -308,7 +309,7 @@
                                         </p>
                                         <p>
                                             <i class="fal fa-envelope-open pl-10"></i>
-                                            @contacts.Email    
+                                            @contacts.Email
                                         </p>
                                     </div>
                                 </div>
@@ -342,8 +343,8 @@
         </div>
     </footer>
     <!-- footer area end -->
-    @RenderSection("Scripts", false)
     <!-- JS here -->
+    <script src="~/content/backend/lib/select2/js/select2.min.js"></script>
     <script src="/Content/front/assets/js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="/Content/front/assets/js/vendor/jquery-1.12.4.min.js"></script>
     <script src="/Content/front/assets/js/vendor/waypoints.min.js"></script>
@@ -521,5 +522,6 @@
         });
 
     </script>
+    @RenderSection("Scripts", false)
 </body>
 </html>

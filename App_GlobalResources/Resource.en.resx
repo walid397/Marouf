@@ -2504,4 +2504,10 @@
   <data name="UploadCVsforWorkers" xml:space="preserve">
     <value>Upload CVs for Workers</value>
   </data>
+  <data name="Low" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Speaking" xml:space="preserve">
+    <value>Speaking</value>
+  </data>
 </root>
