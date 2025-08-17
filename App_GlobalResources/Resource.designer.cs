@@ -3412,7 +3412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to من الاقل الى الاعلى.
+        ///   Looks up a localized string similar to الاقل الى الاعلى.
         /// </summary>
         internal static string LowtoHigh {
             get {

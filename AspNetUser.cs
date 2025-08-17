@@ -41,12 +41,12 @@ namespace Marofh
             this.WorkerCertificates = new HashSet<WorkerCertificate>();
             this.WorkerCourses = new HashSet<WorkerCours>();
             this.WorkerExpertises = new HashSet<WorkerExpertis>();
-            this.WorkerLanguages = new HashSet<WorkerLanguage>();
             this.WorkerSkills = new HashSet<WorkerSkill>();
             this.WorkerWorkingPlaces = new HashSet<WorkerWorkingPlace>();
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
+            this.WorkerLanguages = new HashSet<WorkerLanguage>();
         }
     
         public string Id { get; set; }
@@ -118,6 +118,10 @@ namespace Marofh
         public bool IsActivated { get; set; }
         public string Status { get; set; }
         public string Education { get; set; }
+        public Nullable<int> SkillID { get; set; }
+        public Nullable<int> expCountryID { get; set; }
+        public Nullable<int> expCityID { get; set; }
+        public string City1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers1 { get; set; }
@@ -175,8 +179,6 @@ namespace Marofh
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkerExpertis> WorkerExpertises { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkerLanguage> WorkerLanguages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkerSkill> WorkerSkills { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WorkerWorkingPlace> WorkerWorkingPlaces { get; set; }
@@ -186,5 +188,7 @@ namespace Marofh
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkerLanguage> WorkerLanguages { get; set; }
     }
 }

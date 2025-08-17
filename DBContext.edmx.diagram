@@ -38,7 +38,6 @@
         <EntityTypeShape EntityType="DBModel.WorkerCertificate" Width="1.5" PointX="10.5" PointY="30.25" />
         <EntityTypeShape EntityType="DBModel.WorkerCours" Width="1.5" PointX="10.5" PointY="54.5" />
         <EntityTypeShape EntityType="DBModel.WorkerExpertis" Width="1.5" PointX="13.5" PointY="26.25" />
-        <EntityTypeShape EntityType="DBModel.WorkerLanguage" Width="1.5" PointX="16.5" PointY="26.625" />
         <EntityTypeShape EntityType="DBModel.WorkerRequest" Width="1.5" PointX="10.5" PointY="57.5" />
         <EntityTypeShape EntityType="DBModel.WorkerSkill" Width="1.5" PointX="13.5" PointY="34.75" />
         <EntityTypeShape EntityType="DBModel.WorkerWorkingPlace" Width="1.5" PointX="16.5" PointY="30.625" />
@@ -72,7 +71,6 @@
         <AssociationConnector Association="DBModel.FK_WorkerCertificates_AspNetUsers" />
         <AssociationConnector Association="DBModel.FK_WorkerCourses_AspNetUsers" />
         <AssociationConnector Association="DBModel.FK_WorkerExpertises_AspNetUsers" />
-        <AssociationConnector Association="DBModel.FK_WorkerLanguages_AspNetUsers" />
         <AssociationConnector Association="DBModel.FK_WorkerSkills_AspNetUsers" />
         <AssociationConnector Association="DBModel.FK_WorkerWorkingPlaces_AspNetUsers" />
         <AssociationConnector Association="DBModel.FK_Attachment_FileType" />
@@ -86,7 +84,6 @@
         <AssociationConnector Association="DBModel.FK_WorkerCertificates_Country" />
         <AssociationConnector Association="DBModel.FK_WorkerExpertises_Country" />
         <AssociationConnector Association="DBModel.FK_WorkerWorkingPlaces_Country" />
-        <AssociationConnector Association="DBModel.FK_WorkerLanguages_Languages" />
         <AssociationConnector Association="DBModel.FK_Mail_Mail" />
         <AssociationConnector Association="DBModel.FK_Notifications_WorkerRequests" />
         <AssociationConnector Association="DBModel.FK_WorkerSkills_Skills" />
@@ -97,6 +94,9 @@
         <AssociationConnector Association="DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
         <AssociationConnector Association="DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
         <EntityTypeShape EntityType="DBModel.Education" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DBModel.WorkerLanguage" Width="1.5" PointX="19.5" PointY="27.75" />
+        <AssociationConnector Association="DBModel.FK_WorkerLanguages_AspNetUsers" />
+        <AssociationConnector Association="DBModel.FK_WorkerLanguages_Languages" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

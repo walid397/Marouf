@@ -58,7 +58,6 @@ namespace Marofh
         public virtual DbSet<WorkerCertificate> WorkerCertificates { get; set; }
         public virtual DbSet<WorkerCours> WorkerCourses { get; set; }
         public virtual DbSet<WorkerExpertis> WorkerExpertises { get; set; }
-        public virtual DbSet<WorkerLanguage> WorkerLanguages { get; set; }
         public virtual DbSet<WorkerRequest> WorkerRequests { get; set; }
         public virtual DbSet<WorkerSkill> WorkerSkills { get; set; }
         public virtual DbSet<WorkerWorkingPlace> WorkerWorkingPlaces { get; set; }
@@ -66,5 +65,6 @@ namespace Marofh
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
+        public virtual DbSet<WorkerLanguage> WorkerLanguages { get; set; }
     }
 }

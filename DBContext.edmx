@@ -124,6 +124,10 @@
           <Property Name="IsActivated" Type="bit" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="Education" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillID" Type="int" />
+          <Property Name="expCountryID" Type="int" />
+          <Property Name="expCityID" Type="int" />
+          <Property Name="City" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Attachment">
           <Key>
@@ -451,9 +455,9 @@
           <Property Name="WorkerID" Type="nvarchar" MaxLength="128" />
           <Property Name="Level" Type="nvarchar" MaxLength="10" />
           <Property Name="Method" Type="nvarchar" MaxLength="30" />
-          <Property Name="SpeakingMethod" Type="nvarchar" MaxLength="128" />
-          <Property Name="ReadingMethod" Type="nvarchar" MaxLength="128" />
-          <Property Name="writingMethod" Type="nvarchar" MaxLength="128" />
+          <Property Name="WritingMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="ReadingMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="SpeakingMethod" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="WorkerRequests">
           <Key>
@@ -1435,7 +1439,6 @@
           <EntitySet Name="WorkerCertificates" EntityType="DBModel.WorkerCertificate" />
           <EntitySet Name="WorkerCourses" EntityType="DBModel.WorkerCours" />
           <EntitySet Name="WorkerExpertises" EntityType="DBModel.WorkerExpertis" />
-          <EntitySet Name="WorkerLanguages" EntityType="DBModel.WorkerLanguage" />
           <EntitySet Name="WorkerRequests" EntityType="DBModel.WorkerRequest" />
           <EntitySet Name="WorkerSkills" EntityType="DBModel.WorkerSkill" />
           <EntitySet Name="WorkerWorkingPlaces" EntityType="DBModel.WorkerWorkingPlace" />
@@ -1559,10 +1562,6 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="WorkerExpertis" EntitySet="WorkerExpertises" />
           </AssociationSet>
-          <AssociationSet Name="FK_WorkerLanguages_AspNetUsers" Association="DBModel.FK_WorkerLanguages_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="WorkerLanguage" EntitySet="WorkerLanguages" />
-          </AssociationSet>
           <AssociationSet Name="FK_WorkerSkills_AspNetUsers" Association="DBModel.FK_WorkerSkills_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="WorkerSkill" EntitySet="WorkerSkills" />
@@ -1615,10 +1614,6 @@
             <End Role="Country" EntitySet="Countries" />
             <End Role="WorkerWorkingPlace" EntitySet="WorkerWorkingPlaces" />
           </AssociationSet>
-          <AssociationSet Name="FK_WorkerLanguages_Languages" Association="DBModel.FK_WorkerLanguages_Languages">
-            <End Role="Language" EntitySet="Languages" />
-            <End Role="WorkerLanguage" EntitySet="WorkerLanguages" />
-          </AssociationSet>
           <AssociationSet Name="FK_Mail_Mail" Association="DBModel.FK_Mail_Mail">
             <End Role="Mail" EntitySet="Mails" />
             <End Role="Mail1" EntitySet="Mails" />
@@ -1647,6 +1642,15 @@
             <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
           </AssociationSet>
           <EntitySet Name="Educations" EntityType="DBModel.Education" />
+          <EntitySet Name="WorkerLanguages" EntityType="DBModel.WorkerLanguage" />
+          <AssociationSet Name="FK_WorkerLanguages_AspNetUsers" Association="DBModel.FK_WorkerLanguages_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="WorkerLanguage" EntitySet="WorkerLanguages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkerLanguages_Languages" Association="DBModel.FK_WorkerLanguages_Languages">
+            <End Role="Language" EntitySet="Languages" />
+            <End Role="WorkerLanguage" EntitySet="WorkerLanguages" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
@@ -1761,13 +1765,17 @@
           <NavigationProperty Name="WorkerCertificates" Relationship="DBModel.FK_WorkerCertificates_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerCertificate" />
           <NavigationProperty Name="WorkerCourses" Relationship="DBModel.FK_WorkerCourses_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerCours" />
           <NavigationProperty Name="WorkerExpertises" Relationship="DBModel.FK_WorkerExpertises_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerExpertis" />
-          <NavigationProperty Name="WorkerLanguages" Relationship="DBModel.FK_WorkerLanguages_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerLanguage" />
           <NavigationProperty Name="WorkerSkills" Relationship="DBModel.FK_WorkerSkills_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerSkill" />
           <NavigationProperty Name="WorkerWorkingPlaces" Relationship="DBModel.FK_WorkerWorkingPlaces_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerWorkingPlace" />
           <NavigationProperty Name="AspNetRoles" Relationship="DBModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
           <NavigationProperty Name="AspNetUserClaims" Relationship="DBModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
           <NavigationProperty Name="AspNetUserLogins" Relationship="DBModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
           <Property Name="Education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="WorkerLanguages" Relationship="DBModel.FK_WorkerLanguages_AspNetUsers" FromRole="AspNetUser" ToRole="WorkerLanguage" />
+          <Property Name="SkillID" Type="Int32" />
+          <Property Name="expCountryID" Type="Int32" />
+          <Property Name="expCityID" Type="Int32" />
+          <Property Name="City1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Attachment">
           <Key>
@@ -2129,21 +2137,6 @@
           <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerExpertises_AspNetUsers" FromRole="WorkerExpertis" ToRole="AspNetUser" />
           <NavigationProperty Name="City" Relationship="DBModel.FK_WorkerExpertises_City" FromRole="WorkerExpertis" ToRole="City" />
           <NavigationProperty Name="Country" Relationship="DBModel.FK_WorkerExpertises_Country" FromRole="WorkerExpertis" ToRole="Country" />
-        </EntityType>
-        <EntityType Name="WorkerLanguage">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LanguageID" Type="Int32" />
-          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Level" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="writingMethod" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ReadingMethod" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="SpeakingMethod" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Method" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerLanguages_AspNetUsers" FromRole="WorkerLanguage" ToRole="AspNetUser" />
-          <NavigationProperty Name="Language" Relationship="DBModel.FK_WorkerLanguages_Languages" FromRole="WorkerLanguage" ToRole="Language" />
         </EntityType>
         <EntityType Name="WorkerRequest">
           <Key>
@@ -2558,20 +2551,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WorkerLanguages_AspNetUsers">
-          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="DBModel.WorkerLanguage" Role="WorkerLanguage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="WorkerLanguage">
-              <PropertyRef Name="WorkerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_WorkerSkills_AspNetUsers">
           <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -2736,20 +2715,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_WorkerLanguages_Languages">
-          <End Type="DBModel.Language" Role="Language" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="DBModel.WorkerLanguage" Role="WorkerLanguage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Language">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="WorkerLanguage">
-              <PropertyRef Name="LanguageID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Mail_Mail">
           <End Type="DBModel.Mail" Role="Mail" Multiplicity="0..1" />
           <End Type="DBModel.Mail" Role="Mail1" Multiplicity="*" />
@@ -2858,6 +2823,49 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Degree" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="WorkerLanguage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LanguageID" Type="Int32" />
+          <Property Name="WorkerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Level" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Method" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="WritingMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ReadingMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SpeakingMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="DBModel.FK_WorkerLanguages_AspNetUsers" FromRole="WorkerLanguage" ToRole="AspNetUser" />
+          <NavigationProperty Name="Language" Relationship="DBModel.FK_WorkerLanguages_Languages" FromRole="WorkerLanguage" ToRole="Language" />
+        </EntityType>
+        <Association Name="FK_WorkerLanguages_AspNetUsers">
+          <End Type="DBModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerLanguage" Role="WorkerLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkerLanguage">
+              <PropertyRef Name="WorkerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkerLanguages_Languages">
+          <End Type="DBModel.Language" Role="Language" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DBModel.WorkerLanguage" Role="WorkerLanguage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Language">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkerLanguage">
+              <PropertyRef Name="LanguageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2877,6 +2885,10 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="DBModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="City1" ColumnName="City" />
+                <ScalarProperty Name="expCityID" ColumnName="expCityID" />
+                <ScalarProperty Name="expCountryID" ColumnName="expCountryID" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
                 <ScalarProperty Name="Education" ColumnName="Education" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
@@ -3290,20 +3302,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="WorkerLanguages">
-            <EntityTypeMapping TypeName="DBModel.WorkerLanguage">
-              <MappingFragment StoreEntitySet="WorkerLanguages">
-                <ScalarProperty Name="Method" ColumnName="Method" />
-                <ScalarProperty Name="SpeakingMethod" ColumnName="SpeakingMethod" />
-                <ScalarProperty Name="ReadingMethod" ColumnName="ReadingMethod" />
-                <ScalarProperty Name="writingMethod" ColumnName="writingMethod" />
-                <ScalarProperty Name="Level" ColumnName="Level" />
-                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
-                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="WorkerRequests">
             <EntityTypeMapping TypeName="DBModel.WorkerRequest">
               <MappingFragment StoreEntitySet="WorkerRequests">
@@ -3383,6 +3381,20 @@
               <MappingFragment StoreEntitySet="Education">
                 <ScalarProperty Name="Degree" ColumnName="Degree" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerLanguages">
+            <EntityTypeMapping TypeName="DBModel.WorkerLanguage">
+              <MappingFragment StoreEntitySet="WorkerLanguages">
+                <ScalarProperty Name="SpeakingMethod" ColumnName="SpeakingMethod" />
+                <ScalarProperty Name="ReadingMethod" ColumnName="ReadingMethod" />
+                <ScalarProperty Name="WritingMethod" ColumnName="WritingMethod" />
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="WorkerID" ColumnName="WorkerID" />
+                <ScalarProperty Name="LanguageID" ColumnName="LanguageID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

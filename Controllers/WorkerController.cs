@@ -246,7 +246,7 @@ namespace Marofh.Controllers
                     {
                         WorkerID = user.Id,
                         LanguageID = exp.LanguageID,
-                        writingMethod = exp.writingMethod,
+                        WritingMethod = exp.writingMethod,
                         ReadingMethod = exp.ReadingMethod,
                         SpeakingMethod = exp.SpeakingMethod,
 
