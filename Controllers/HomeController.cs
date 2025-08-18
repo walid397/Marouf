@@ -137,7 +137,9 @@ namespace Marofh.Controllers
             string[] Countries,
                 string[] Skills ,  
             string[] Weight,
-                string[] extra2 // <<<<< هنا
+                string[] extra2,
+             int[] Language,
+             string[] SpeakingMethods
 
 
 
@@ -443,6 +445,22 @@ namespace Marofh.Controllers
                     .Where(w => w.CountryID.HasValue && countryIds.Contains(w.CountryID.Value))
                     .ToList();
             }
+            if (Language != null && Language.Any())
+            {
+                availablesWorkers = availablesWorkers
+                    .Where(w => w.WorkerLanguages != null &&
+                                w.WorkerLanguages.Any(wl => wl.Language != null &&
+                                                            Language.Contains(wl.Language.ID) &&
+                                                            (wl.SpeakingMethod == "ممتاز"
+                                                             || wl.SpeakingMethod == "متوسط"
+                                                             || wl.SpeakingMethod == "متقدم")))
+                    .ToList();
+            }
+
+
+
+
+
 
 
             if (City != null && City.Any())

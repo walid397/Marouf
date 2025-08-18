@@ -839,6 +839,32 @@
                                 </div>
                             </div>
 
+                            <div class="filter__group">
+                                <label class="filter__label">@Resource.language</label>
+                                <div class="select_wrap w-100">
+                                    <span class="labelcss">@Resource.language</span>
+                                    <div class="select">
+                                        @{
+                                            string[] languageList = Request.QueryString.GetValues("Language") ?? new string[] { };
+                                            bool isEnglishhh = culture.Contains("en-us");
+                                        }
+
+                                        <label>
+                                            <input type="checkbox" name="Language" value="3" @(languageList.Contains("3") ? "checked" : "") />
+                                            @(isEnglishhh ? "Mother Tongue" : "اللغة الأم")
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="Language" value="1" @(languageList.Contains("1") ? "checked" : "") />
+                                            @(isEnglishhh ? "Arabic" : "اللغة العربية")
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="Language" value="2" @(languageList.Contains("2") ? "checked" : "") />
+                                            @(isEnglishhh ? "English" : "اللغة الإنجليزية")
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
 
 
 
@@ -924,7 +950,7 @@
                                     ? Request.QueryString["Skills"].Split(',')
                                     : new string[] { };
                                 bool isEnglishf = culture.Contains("en-us");
-                                var skills = ViewBag.Skills as List<Marofh.Skill>; // عدل Marofh.Skill للـ namespace الصحيح
+                                var skills = ViewBag.Skills as List<Marofh.Skill>;
                             }
 
                             <div class="filter__group">

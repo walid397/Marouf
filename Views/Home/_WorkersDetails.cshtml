@@ -68,6 +68,29 @@
                 </a>
             }
         </div>
+        <div class="post__tags">
+            @if (worker.WorkerLanguages != null && worker.WorkerLanguages.Any())
+            {
+                foreach (var workerLang in worker.WorkerLanguages
+                             .Where(wl => wl.SpeakingMethod == "متوسط"
+                                       || wl.SpeakingMethod == "متقدم"
+                                       || wl.SpeakingMethod == "ممتاز"))
+                {
+                    if (workerLang.Language != null)
+                    {
+                        <a href="#">
+                            @(System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLower().Contains("en-us")
+                        ? workerLang.Language.NameEN
+                        : workerLang.Language.NameAR)
+                        </a>
+                    }
+                }
+            }
+        </div>
+
+
+
+
 
         <div class="post__title">
             <strong>@Resource.Hiring_Cost:</strong>
