@@ -250,6 +250,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to اضافة خبرة.
+        /// </summary>
+        internal static string AddExperience {
+            get {
+                return ResourceManager.GetString("AddExperience", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to معلومات اضافية.
         /// </summary>
         internal static string AdditionalInformation {
@@ -2134,6 +2143,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تعديل التعليم.
+        /// </summary>
+        internal static string EditEducation {
+            get {
+                return ResourceManager.GetString("EditEducation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تعديل عقار.
         /// </summary>
         internal static string EditProperty {
@@ -2859,6 +2877,15 @@ namespace Resources {
         internal static string HightoLow {
             get {
                 return ResourceManager.GetString("HightoLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مبلغ الاستقدام.
+        /// </summary>
+        internal static string HiringCost {
+            get {
+                return ResourceManager.GetString("HiringCost", resourceCulture);
             }
         }
         
@@ -7075,6 +7102,15 @@ namespace Resources {
         internal static string WorkerRequest {
             get {
                 return ResourceManager.GetString("WorkerRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to خبرة العمل.
+        /// </summary>
+        internal static string WorkExperience {
+            get {
+                return ResourceManager.GetString("WorkExperience", resourceCulture);
             }
         }
         

@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using System.Threading;
+using System.Data.Entity.Migrations;
 
 namespace Marofh.Controllers
 {
@@ -971,14 +972,50 @@ namespace Marofh.Controllers
             return Redirect("/Worker/profile/" + shortId);
 
         }
-        public ActionResult AddWorkerCertificates(WorkerCertificate certificate, string Id)
+        //public ActionResult AddWorkerCertificates(WorkerCertificate certificate, string Id)
+        //{
+        //    if (Request.IsAuthenticated)
+        //    {
+        //        var cWorker = db.AspNetUsers.Where(i => i.Id == Id).FirstOrDefault();
+
+        //        certificate.WorkerID = Id;
+        //        db.WorkerCertificates.Add(certificate);
+        //        db.SaveChanges();
+
+        //        var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
+        //        if (culture.Contains("en-us"))
+        //        {
+        //            ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameEN");
+        //            ViewBag.CityID = new SelectList(db.Cities, "ID", "NameEN");
+        //            ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
+        //            ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
+
+        //        }
+        //        else
+        //        {
+        //            ViewBag.CountryID = new SelectList(db.Countries, "ID", "NameAR");
+        //            ViewBag.CityID = new SelectList(db.Cities, "ID", "NameAR");
+        //            ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameAR");
+        //            ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameAR");
+
+        //        }
+
+
+
+        //        return Redirect("/Worker/profile/" + cWorker.ShortID);
+
+        //    }
+
+        //    return RedirectToAction("Index", "Office");
+        //}
+        public ActionResult AddWorkerCertificates(string EducationDegree , string Id)
         {
             if (Request.IsAuthenticated)
             {
                 var cWorker = db.AspNetUsers.Where(i => i.Id == Id).FirstOrDefault();
 
-                certificate.WorkerID = Id;
-                db.WorkerCertificates.Add(certificate);
+                //certificate.WorkerID = Id;
+                cWorker.Education = EducationDegree;
                 db.SaveChanges();
 
                 var culture = System.Threading.Thread.CurrentThread.CurrentUICulture.Name.ToLowerInvariant();
@@ -999,7 +1036,7 @@ namespace Marofh.Controllers
 
                 }
 
-        
+
 
                 return Redirect("/Worker/profile/" + cWorker.ShortID);
 
@@ -1007,7 +1044,6 @@ namespace Marofh.Controllers
 
             return RedirectToAction("Index", "Office");
         }
-
 
         public ActionResult EditWorkerCertificate(int id)
         {
@@ -1382,6 +1418,7 @@ namespace Marofh.Controllers
                     ViewBag.JobsID = new SelectList(db.Jobs, "ID", "NameEN");
                     ViewBag.SkillsID = new SelectList(db.Skills, "ID", "NameEN");
                     ViewBag.LanguageID = new SelectList(db.Languages, "ID", "NameEN");
+                    //ViewBag.YearsofExperience = new SelectList(db.AspNetUsers.ye, "ID", "NameEN");
 
                 }
                 else

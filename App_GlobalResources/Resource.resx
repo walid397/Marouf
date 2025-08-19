@@ -2530,4 +2530,16 @@
   <data name="Speaking" xml:space="preserve">
     <value>التحدث</value>
   </data>
+  <data name="WorkExperience" xml:space="preserve">
+    <value>خبرة العمل</value>
+  </data>
+  <data name="AddExperience" xml:space="preserve">
+    <value>اضافة خبرة</value>
+  </data>
+  <data name="EditEducation" xml:space="preserve">
+    <value>تعديل التعليم</value>
+  </data>
+  <data name="HiringCost" xml:space="preserve">
+    <value>مبلغ الاستقدام</value>
+  </data>
 </root>

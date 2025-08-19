@@ -199,13 +199,13 @@
                                     @*البيانات الشخصية*@
                                     @Resource.PersonalInformation
                                 </a>
-                                <a class="nav-link" data-toggle="pill" href="#v-pills-video" role="tab">
+                                @*<a class="nav-link" data-toggle="pill" href="#v-pills-video" role="tab">
 
 
                                     <i class="fad fa-file-video"></i>
                                     
                                     @Resource.Introductionvideo
-                                </a>
+                                </a>*@
                                 <a class="nav-link" data-toggle="pill" href="#v-pills-profile" role="tab">
 
 
@@ -220,7 +220,6 @@
                                 <a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">
                                     <i class="fad fa-user-tie"></i>
                                     @Resource.Education
-
                                 </a>
                                 <a class="nav-link" data-toggle="pill" href="#v-pills-payment" role="tab">
 
@@ -239,7 +238,7 @@
 
                                     <i class="fad fa-location"></i>
 
-                                  @Resource.workareas
+                                  @Resource.WorkExperience
                                 </a>
                                 <a class="nav-link" data-toggle="pill" href="#v-pills-lang" role="tab">
 
@@ -248,11 +247,11 @@
                                  
                                 </a>
 
-                                <a class="nav-link" data-toggle="pill" href="#v-pills-gallery" role="tab">
+                                @*<a class="nav-link" data-toggle="pill" href="#v-pills-gallery" role="tab">
                                     <i class="fad fa-images"></i>
 
                                     @Resource.PhotoGallery
-                                </a>
+                                </a>*@
                             </div>
                         </div>
                         <div class="col-10">
@@ -289,13 +288,13 @@
 
 
 
-                                                <div class="col-12 col-lg-4">
+                                                @*<div class="col-12 col-lg-4">
                                                     <div class="form__group">
                                                         <label for="lastname" class="form__label">@Resource.BirthDate </label>
                                                         @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date", @disabled = "disabled" })
 
                                                     </div>
-                                                </div>
+                                                </div>*@
 
                                                 <div class="col-4">
                                                     <div class="form__group">
@@ -693,23 +692,24 @@
                                                 <table class="table table-bordered table-striped tabdiv">
                                                     <thead class="thead">
                                                         <tr>
-                                                            <th scope="col">#</th>
                                                             <th scope="col">@Resource.Universitydegree  </th>
-                                                            <th scope="col">@Resource.From </th>
+                                                            @*<th scope="col">@Resource.From </th>
                                                             <th scope="col"> @Resource.To</th>
                                                             <th scope="col"> @Resource.Country</th>
-                                                            <th scope="col">@Resource.University</th>
+                                                            <th scope="col">@Resource.University</th>*@
 
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
                                                         @{index = 1; }
-                                                        @foreach (WorkerCertificate certificate in Model.WorkerCertificates)
-                                                        {
+                                                        @if (Model.Education !=null)
+            {
+
                                                         <tr>
-                                                            <td> @index</td>
-                                                            <td>@certificate.Name </td>
+                                                            <td> @Model.Education</td>
+
+                                                            @*<td>@certificate.Name </td>
 
                                                             <td>@certificate.From.Value.ToShortDateString() </td>
 
@@ -726,24 +726,30 @@
                                                                 {
                                                                     <td>@certificate.Country.NameAR </td>
 
-                                                                }
+                                                                }*@
 
 
 
-                                                            }
+                                                            @*}
                                                             else
                                                             {
                                                                 <td></td>
-                                                            }
+                                                            }*@
 
 
 
-                                                            <td>@certificate.University </td>
+                                                            @*<td>@certificate.University </td>*@
 
 
                                                         </tr>
                                                             { index++; }
-                                                        }
+                                                        
+                                                        
+            }
+else
+            {
+                <tr></tr>
+            }
 
                                                     </tbody>
                                                 </table>
@@ -867,7 +873,7 @@
                                                 <div class="col-12">
                                                     <h2 class="form__title">
                                                         <i class="fad fa-location"></i>
-                                                        @Resource.workareas
+                                                        @Resource.WorkExperience
                                                         @*مناطق العمل*@
 
                                                     </h2>
@@ -881,6 +887,7 @@
                                                             <th scope="col">#</th>
                                                             <th scope="col">@Resource.Country @*اسم البلد*@</th>
                                                             <th scope="col"> @Resource.City </th>
+                                                            <th scope="col"> @Resource.YearsofExperience </th>
 
 
                                                         </tr>
@@ -893,13 +900,17 @@
                                                             <td> @index</td>
                                                             @if (culture.Contains("en-us"))
                                                             {
-                                                                <td>@place.Country.NameEN </td>
+                                                                <td>@place.Country </td>
                                                                 <td>@place.City.NameEN </td>
+                                                                <td>@place.AspNetUser.ExperienceYearsCount </td>
+
                                                             }
                                                             else
                                                             {
                                                                 <td>@place.Country.NameAR </td>
                                                                 <td>@place.City.NameAR </td>
+                                                                <td>@place.AspNetUser.ExperienceYearsCount </td>
+
                                                             }
 
 
@@ -983,20 +994,20 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="v-pills-gallery" role="tabpanel" aria-labelledby="v-pills-gallery-tab">
+                                    <!--<div class="tab-pane fade" id="v-pills-gallery" role="tabpanel" aria-labelledby="v-pills-gallery-tab">
                                         <!-- form -->
-                                        <div class="form formcss">
+                                        <!--<div class="form formcss">
                                             <div class="row">
 
                                                 <div class="col-12">
                                                     <h2 class="form__title">
 
                                                         <i class="fad fa-images"></i>
-                                                        @Resource.PhotoGallery
+                                                        @Resource.PhotoGallery-->
                                                         @*معرض الصور*@
                                                     </h2>
                                                 </div>
-                                                <div class="demo-gallery">
+                                                @*<div class="demo-gallery">
                                                     @foreach (Gallery gallery in Model.Galleries)
                                                     {
                                                         <a href="@gallery.ImageUrl" class="without-caption image-link">
@@ -1007,12 +1018,12 @@
 
 
 
-                                                </div>
+                                                </div>*@
 
                                             </div>
                                         </div>
                                         <!-- end form -->
-                                    </div>
+                                    <!--</div>-->
                                 </div>
                             </div>
                         </div>

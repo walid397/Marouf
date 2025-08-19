@@ -16,7 +16,7 @@
     <div class="col-12">
         <h2 class="form__title">
             <i class="fad fa-user-circle"></i>
-         @Resource.PersonalInformation   
+            @Resource.PersonalInformation
             <input type="hidden" id="Id" name="Id" value="@Model.Id" />
         </h2>
     </div>
@@ -40,7 +40,7 @@
     <div class="col-12 col-xl-4">
         <div class="form__group">
             <label for="lastname" class="form__label">  @Resource.BirthDate </label>
-            @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form__input", type = "date", max = "2000-01-01", onchange="getAgeByYears();"})
+            @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}", new { @class = "form__input", type = "date", max = "2000-01-01", onchange = "getAgeByYears();" })
 
         </div>
     </div>
@@ -58,7 +58,7 @@
                     }
                     else
                     {
-                <option value="True">@Resource.Male</option>
+                        <option value="True">@Resource.Male</option>
                         <option value="False" selected>@Resource.Female</option>
                     }
 
@@ -82,7 +82,7 @@
     <div class="col-12 col-xl-4">
         <div class="form__group">
             <label for="location" class="form__label">@Resource.Nationality </label>
-            @Html.DropDownList("NationalityID", null, Resource.Nationality, htmlAttributes: new { required = "required", @class = "form-control form__select select2"})
+            @Html.DropDownList("NationalityID", null, Resource.Nationality, htmlAttributes: new { required = "required", @class = "form-control form__select select2" })
 
         </div>
     </div>
@@ -96,20 +96,20 @@
                     {
                         if (Model.Religion == "Muslim")
                         {
-                    <option value="Muslim" selected>Muslim </option>
-                    <option value="Not">Not</option>
+                            <option value="Muslim" selected>Muslim </option>
+                            <option value="Not">Not</option>
                         }
 
                         else
                         {
-                <option value="Muslim">Muslim </option>
-                <option value="Not" selected>Not</option>
+                            <option value="Muslim">Muslim </option>
+                            <option value="Not" selected>Not</option>
                         }
 
                     }
                     else
                     {
-                       if (Model.Religion == "مسلم")
+                        if (Model.Religion == "مسلم")
                         {
                             <option value="مسلم" selected>مسلم </option>
                             <option value="غير">غير</option>
@@ -200,21 +200,21 @@
             <select class="" name="MaritalStatus" id="MaritalStatus">
                 @if (Model.MaritalStatus == Resource.Single)
                 {
-                <option value="@Resource.Single" selected>@Resource.Single</option>
+                    <option value="@Resource.Single" selected>@Resource.Single</option>
                     <option value="@Resource.Married">@Resource.Married</option>
                     <option value="@Resource.Divorced">@Resource.Divorced</option>
                 }
                 else if (Model.MaritalStatus == Resource.Married)
                 {
-            <option value="@Resource.Single">@Resource.Single</option>
-            <option value="@Resource.Married" selected>@Resource.Married</option>
-            <option value="@Resource.Divorced">@Resource.Divorced</option>
+                    <option value="@Resource.Single">@Resource.Single</option>
+                    <option value="@Resource.Married" selected>@Resource.Married</option>
+                    <option value="@Resource.Divorced">@Resource.Divorced</option>
                 }
                 else
                 {
-            <option value="@Resource.Single">@Resource.Single</option>
-            <option value="@Resource.Married">@Resource.Married</option>
-            <option value="@Resource.Divorced" selected> @Resource.Divorced</option>
+                    <option value="@Resource.Single">@Resource.Single</option>
+                    <option value="@Resource.Married">@Resource.Married</option>
+                    <option value="@Resource.Divorced" selected> @Resource.Divorced</option>
                 }
 
             </select>
@@ -269,10 +269,20 @@
     <div class="col-12 col-xl-4">
         <div class="form__group">
             <label for="level" class="form__label">  @Resource.RecruitmentAmount</label>
-            <input name="RequestAmount" id="RequestAmount" type="number" class="form__input "  min="0" placeholder="@Resource.RecruitmentAmount" value="@Model.RequestAmount">
+            <input name="RequestAmount" id="RequestAmount" type="number" class="form__input " min="0" placeholder="@Resource.RecruitmentAmount" value="@Model.RequestAmount">
 
         </div>
     </div>
+
+
+    <div class="col-12 col-xl-4">
+        <div class="form__group">
+            <label for="level" class="form__label">  @Resource.Salary</label>
+            <input name="Salary" id="Salary" type="number" class="form__input " min="0" placeholder="@Resource.Salary" value="@Model.Salary">
+
+        </div>
+    </div>
+
     @*<div class="col-12">
             <div class="form__group">
                 <label for="skills" class="form__label">المهارات:</label>
@@ -292,7 +302,7 @@
         <button class="btn form__btn" type="submit">
             <span>
                 <span class="fa fa-save"></span>
-                  @Resource.SaveChanges
+                @Resource.SaveChanges
             </span>
         </button>
 

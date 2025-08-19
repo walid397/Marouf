@@ -2513,4 +2513,16 @@
   <data name="Speaking" xml:space="preserve">
     <value>Speaking</value>
   </data>
+  <data name="WorkExperience" xml:space="preserve">
+    <value>WorkExperience</value>
+  </data>
+  <data name="AddExperience" xml:space="preserve">
+    <value>Add Experience</value>
+  </data>
+  <data name="EditEducation" xml:space="preserve">
+    <value>Edit Education</value>
+  </data>
+  <data name="HiringCost" xml:space="preserve">
+    <value>Hiring Cost</value>
+  </data>
 </root>
